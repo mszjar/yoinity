@@ -1,17 +1,4 @@
 Rails.application.routes.draw do
-  get 'dashboard/show'
-  get 'comments/index'
-  get 'comments/new'
-  get 'comments/create'
-  get 'comments/show'
-  get 'comments/destroy'
-  get 'posts/index'
-  get 'posts/new'
-  get 'posts/create'
-  get 'posts/show'
-  get 'posts/destroy'
-  get 'posts/update'
-  get 'posts/edit'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   root to: "pages#home"
@@ -19,4 +6,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :posts do
+    resources :comments, only: [:index, :show, :new, :create, :destroy]
+  end
+
+  get "dashboard", to: "dashboard#show"
 end
