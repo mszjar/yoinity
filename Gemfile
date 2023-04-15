@@ -83,3 +83,4 @@ gem "pundit"
 gem "pg_search"
 gem "faker"
 gem "dotenv-rails", groups: [:development, :test]
+gem "cloudinary"
