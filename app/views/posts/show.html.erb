@@ -1,2 +1,59 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container">
+  <div class="mt-5"><%= link_to "All articles", "/posts", class: "btn btn-flat" %></div>
+  <div class="show-cards">
+
+
+    <div class="photo-map">
+      <div class="photo-btn">
+      <% if @post.photo.key.nil? %>
+        <%= image_tag "default_image.png", class:"car-photo" %>
+      <% else %>
+        <%= cl_image_tag(@post.photo.key, class:"car-photo" ) %>
+      <% end %>
+        <% if current_user == @post.user %>
+          <%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger text-decoration-none" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="car-infos">
+      <h1> <%= @post.title %></h1>
+      <ul>
+        <li>
+          <p><%= @post.content %></p>
+        </li>
+        <li>
+          <p><%= @post.url %></p>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="show-comment">
+
+    <div class="form-group mt-3">
+      <div class="text">
+        <h2>Comments (<%= @post.comments.count %>)</h2>
+        <% @post.comments.reverse.each do |comment|%>
+          <div class="d-flex mt-3">
+            <% if User.find(comment.user_id).photo.key.nil? %>
+            <p><%= image_tag "default_image.png", class:"avatar" %></p>
+
+            <% else %>
+            <p><%= cl_image_tag(User.find(comment.user_id).photo.key, class:"avatar" )%></p>
+            <% end %>
+            <p><%= comment.content %></p>
+          </div>
+        <% end %>
+        <%= simple_form_for [@post, @comment] do |f| %>
+          <p><%= f.input :content, class: "form-control", placeholder: "Type your comment here...", label: false %></p>
+          <div class="show-comment-btn">
+            <%= f.submit "Publish your comment", class: "btn btn-flat" %>
+          </div>
+            <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

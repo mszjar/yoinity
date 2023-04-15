@@ -1,2 +1,27 @@
-<h1>Dashboard#show</h1>
-<p>Find me in app/views/dashboard/show.html.erb</p>
+<div class="container mt-5">
+  <h1>My articles</h1>
+</div>
+
+
+<div class="container mt-5">
+  <div class="cards">
+    <% @posts.each do |post| %>
+    <%= link_to post_path(post)  do %>
+    <div class="card-trip">
+      <% if   post.photo.key.nil? %>
+        <%= image_tag "default_image.png", class:"car-photo" %>
+      <% else %>
+      <%= cl_image_tag post.photo.key %>
+      <% end %>
+      <div class="card-trip-infos">
+        <div>
+          <h2><%=post.title%></h2>
+          <p><%=post.content%></p>
+        </div>
+        <h2 class="card-trip-pricing"><%=post.url%></h2>
+      </div>
+    </div>
+    <%end%>
+    <% end %>
+  </div>
+</div>

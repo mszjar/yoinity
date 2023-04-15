@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon navbar-lewagon-white" >
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand" do %>
       <%= image_tag "electropals_logo.png" %>
@@ -18,26 +18,22 @@
               </div>
             </li>
             <% end %>
-          <li class="nav-item home">
+          <li class="nav-item home all-text-white">
             <%= link_to "Home", "/", class: "nav-link" %>
           </li>
-          <li class="nav-item rent">
+          <li class="nav-item rent all-text-white">
             <%= link_to "Articles", "/posts", class: "nav-link" %>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item active all-text-white">
             <%= link_to "Publish", "/posts/new", class: "nav-link" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item all-text-white">
             <%= link_to "Dashboard", "/dashboard", class: "nav-link" %>
           </li>
-          <li class="nav-item dropdown">
-            <% if current_user.photo.key == nil %>
-              <%= image_tag "default_image.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% else %>
-              <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% end %>
+          <li class="nav-item dropdown all-text-black">
+            <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Profile",edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Profile", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
