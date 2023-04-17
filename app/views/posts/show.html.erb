@@ -1,5 +1,4 @@
 <div class="container">
-  <div class="mt-5"><%= link_to "All articles", "/posts", class: "btn btn-flat" %></div>
   <div class="show-cards">
 
 
@@ -49,7 +48,7 @@
         <%= simple_form_for [@post, @comment] do |f| %>
           <p><%= f.input :content, class: "form-control", placeholder: "Type your comment here...", label: false %></p>
           <div class="show-comment-btn">
-            <%= f.submit "Publish your comment", class: "btn btn-flat" %>
+            <%= f.submit "Comment", class: "btn btn-flat" %>
           </div>
             <% end %>
       </div>

@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   margin: 60px;
-  border-radius: 10px;
+  border-radius: 4%;
   box-shadow: 0 0 15px rgba(0,0,0,0.1)
 }
 
@@ -12,6 +12,7 @@
   object-fit: cover;
   height: 400px;
   width: 600px;
+  border-radius: 4%;
 }
 
 .car-photo-avatar {
@@ -24,6 +25,7 @@
   width: 600px;
   background-color: white;
   padding: 50px;
+  border-radius: 4%;
 }
 
 .car-infos li {

@@ -1,16 +1,17 @@
 <div class="container mt-5">
-    <h1>Publish an article</h1>
-</div>
-<div class="container">
-  <div class="form-group mt-3">
-    <div class="text">
-      <%= simple_form_for [@post] do |f| %>
-          <%= f.input :title, class: "form-control", placeholder: "Your article's title", label: false %>
-          <%= f.input :content, class: "form-control", placeholder: "The article's content", label: false %>
-          <%= f.input :url, class: "form-control", placeholder: "URL", label: false %>
-          <%= f.input :photo, as: :file, class: "form-control", placeholder: "Image", label: "Image" %>
-          <%= f.submit "Publish", class: "btn btn-flat"%>
-        <% end %>
+  <div class="">
+    <div class="form-group mt-3">
+      <div class="text">
+        <%= simple_form_for [@post] do |f| %>
+            <p><%= f.input :title, class: "form-control", placeholder: "Title", label: false %></p>
+            <p><%= f.input :content, class: "form-control", placeholder: "Write here", label: false %></p>
+            <div><%= f.input :url, class: "form-control", placeholder: "URL", label: false %></div>
+            <p><%= f.input :photo, as: :file, class: "form-control", placeholder: "Image", label: "Image" %></p>
+            <div class="show-comment-btn">
+              <%= f.submit "Post", class: "btn btn-flat" %>
+            </div>
+          <% end %>
+      </div>
     </div>
   </div>
 </div>
