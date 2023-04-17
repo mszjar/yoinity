@@ -10,9 +10,15 @@
     <%= javascript_include_tag "application.js", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
-
+  <body>
+    <div class="maintain_height">
+      <% if controller_name == "pages"  %>
+        <%= render "shared/navbar_home" %>
+      <% else %>
+        <%= render "shared/navbar" %>
+      <% end %>
+      <%= render "shared/flashes" %>
     <%= yield %>
+    </div>
   </body>
 </html>
