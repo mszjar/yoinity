@@ -1,4 +1,38 @@
 .text {
   padding: 100px;
   margin-bottom: 100px;
+  font-size: 35px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+
+.form-border{
+  border-style: none;
+  text-align: left;
+  background-color: white;
+}
+
+.form-button{
+  font-size: 25px;
+  border: 8px;
+  border-radius: 8%;
+  background-color: #FFCC90;
+}
+
+.form-back {
+  justify-content: center;
+  background-color: white;
+  margin: 60px;
+  border-radius: 10px;
+}
+
+.form-title{
+  font-size: 55px;
+}
+
+.form-image{
+  border-style: none;
+  text-align: left;
+  background-color: white;
+  text-decoration: none;
 }
