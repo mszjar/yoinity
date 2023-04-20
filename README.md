@@ -4,7 +4,7 @@ $ bundle install
 
 $ yarn install
 
-$ yarn --build
+$ yarn build --watch
 
 $ rails db:create db:migrate db:seed
 
