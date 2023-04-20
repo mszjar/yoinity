@@ -16,6 +16,9 @@
         <div class="card-trip">
           <% if   post.photo.key.nil? %>
             <%= image_tag "default_image.png", class:"car-photo" %>
+            <% content_for :meta_title, "#{post.title} is on #{DEFAULT_META["meta_product_name"]}" %>
+            <% content_for :meta_description, post.content %>
+            <% content_for :meta_image, cl_image_path(post.photo.key) if post.photo.attached? %>
           <% else %>
           <%= cl_image_tag post.photo.key %>
           <% end %>

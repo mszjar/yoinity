@@ -1,0 +1,5 @@
+meta_product_name : "Yoinity"
+meta_title : "Yoinity"
+meta_description : "Find the most valuable content"
+meta_image : "yoinity_logo.png" # doit exister dans `app/assets/images/`
+twitter_account : "@yoinitycompany" # requis pour les cartes Twitter
