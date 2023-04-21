@@ -4,14 +4,14 @@
 
     <div class="photo-map">
       <div class="photo-btn">
+      <% if current_user == @post.user%>
+        <div class="btn-delete"><%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your post?'}%></div>
+      <% end %>
       <% if @post.photo.key.nil? %>
         <%= image_tag "default_image.png", class:"post-photo" %>
       <% else %>
         <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
       <% end %>
-        <% if current_user == @post.user %>
-          <%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger text-decoration-none" %>
-        <% end %>
       </div>
     </div>
 
