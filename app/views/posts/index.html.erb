@@ -4,7 +4,7 @@
     <%= link_to post_path(post)  do %>
     <div class="card-trip">
       <% if   post.photo.key.nil? %>
-        <%= image_tag "default_image.png", class:"car-photo" %>
+        <%= image_tag "default_image.png", class:"" %>
       <% else %>
       <%= cl_image_tag post.photo.key %>
       <% end %>
