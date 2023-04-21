@@ -6,34 +6,34 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.1)
 }
 
-.car-photo {
+.post-photo {
   object-fit: cover;
   height: 400px;
   width: 600px;
   border-radius: 4%;
 }
 
-.car-infos {
+.post-infos {
   width: 600px;
   background-color: white;
   padding: 50px;
   border-radius: 4%;
 }
 
-.car-infos li {
+.post-infos li {
   list-style-type:none;
 }
 
-.car-infos .btn-flat {
+.post-infos .btn-flat {
   align-items: flex-end;
 }
 
-.car-infos p  {
+.post-infos p  {
   padding-left: 10px;
   display: inline-block;
 }
 
-.car-infos ul  {
+.post-infos ul  {
   margin-top: 30px;
   margin-bottom: 30px;
   display: inline-block;
