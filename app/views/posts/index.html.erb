@@ -2,18 +2,18 @@
   <div class="cards">
     <% @posts.each do |post| %>
     <%= link_to post_path(post)  do %>
-    <div class="card-trip">
+    <div class="card-post">
       <% if   post.photo.key.nil? %>
-        <%= image_tag "default_image.png", class:"car-photo" %>
+        <%= image_tag "default_image.png", class:"" %>
       <% else %>
       <%= cl_image_tag post.photo.key %>
       <% end %>
-      <div class="card-trip-infos">
+      <div class="card-post-infos">
         <div>
           <h2><%=post.title%></h2>
           <p><%=post.content%></p>
         </div>
-        <h2 class="card-trip-pricing"><%=post.url%></h2>
+        <h2 class="card-post-pricing"><%=post.url%></h2>
       </div>
     </div>
     <%end%>

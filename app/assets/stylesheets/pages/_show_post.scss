@@ -1,5 +1,3 @@
-
-
 .show-cards {
   display: flex;
   justify-content: center;
@@ -8,40 +6,34 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.1)
 }
 
-.car-photo {
+.post-photo {
   object-fit: cover;
   height: 400px;
   width: 600px;
   border-radius: 4%;
 }
 
-.car-photo-avatar {
-  object-fit: cover;
-  height: 40px;
-  width: 60px;
-}
-
-.car-infos {
+.post-infos {
   width: 600px;
   background-color: white;
   padding: 50px;
   border-radius: 4%;
 }
 
-.car-infos li {
+.post-infos li {
   list-style-type:none;
 }
 
-.car-infos .btn-flat {
+.post-infos .btn-flat {
   align-items: flex-end;
 }
 
-.car-infos p  {
+.post-infos p  {
   padding-left: 10px;
   display: inline-block;
 }
 
-.car-infos ul  {
+.post-infos ul  {
   margin-top: 30px;
   margin-bottom: 30px;
   display: inline-block;
@@ -56,42 +48,6 @@
   position: absolute;
   top: 10px;
   left: 10px;
-}
-
-.photo-map {
-  margin: 0px;
-}
-
-.btn-booking {
-  margin-top: 30px;
-}
-
-
-.show-reviews {
-  display: flex;
-  margin: 0px auto;
-  justify-content: center;
-  margin: 60px;
-
-}
-
-.show-review {
-justify-content: center;
-box-shadow: 0 0 15px rgba(0,0,0,0.1);
-width: 750px;
-background-color: white;
-padding: 50px;
-}
-
-.review_formulaire {
-  width: 450px;
-  background-color: white;
-  padding: 50px;
-
-}
-
-.show-review p {
-  margin-bottom: 50px;
 }
 
 .show-comment {
