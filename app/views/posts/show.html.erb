@@ -1,10 +1,6 @@
-<div class="" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(255, 255, 255, 0.8)), url('<%= cl_image_path @post.photo.key %>')">
-  <div class="container" >
-    <div class="show-cards">
-
-
-      <div class="photo-map">
-        <div class="photo-btn">
+<div class="banner" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(255, 255, 255, 0.8)), url('<%= cl_image_path @post.photo.key %>')">
+  <div class="post" >
+      <div class="post-item">
         <% if current_user == @post.user%>
           <div class="btn-delete"><%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your post?'}%></div>
         <% end %>
@@ -13,10 +9,9 @@
         <% else %>
           <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
         <% end %>
-        </div>
       </div>
 
-      <div class="post-infos">
+      <div class="">
         <h1> <%= @post.title %></h1>
         <ul>
           <li>
@@ -28,18 +23,13 @@
         </ul>
       </div>
 
-    </div>
-
-    <div class="show-comment">
-
-      <div class="form-group mt-3">
+      <div class="form-group">
         <div class="text">
-          <h2>Comments (<%= @post.comments.count %>)</h2>
+          <h3>Comments (<%= @post.comments.count %>)</h3>
           <% @post.comments.reverse.each do |comment|%>
-            <div class="d-flex mt-3">
+            <div class="d-flex">
               <% if User.find(comment.user_id).photo.key.nil? %>
               <p><%= image_tag "default_image.png", class:"avatar" %></p>
-
               <% else %>
               <p><%= cl_image_tag(User.find(comment.user_id).photo.key, class:"avatar" )%></p>
               <% end %>
@@ -54,7 +44,6 @@
               <% end %>
         </div>
       </div>
-    </div>
 
   </div>
 </div>
