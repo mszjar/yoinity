@@ -24,10 +24,10 @@
             </li>
             <% end %>
           <li class="nav-item rent">
-            <%= link_to "Read", "/posts/#{Post.all.sample.id}", class: "nav-link" %>
+            <a href="/posts"><li><i class="fa-solid fa-magnifying-glass fa-xl mt-3" style="color: #ffffff;"></i></li></a>
           </li>
           <li class="nav-item rent">
-            <%= link_to "🔍", "/posts", class: "nav-link" %>
+            <%= link_to "Read", "/posts/#{Post.all.sample.id}", class: "nav-link" %>
           </li>
           <li class="nav-item active">
             <%= link_to "Write", "/posts/new", class: "nav-link" %>
