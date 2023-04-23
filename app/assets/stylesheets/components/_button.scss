@@ -24,3 +24,17 @@ a {
   position: absolute;
   text-align: end;
 }
+
+.btn-classic {
+  color: white ;
+  border-radius: 8px;
+  background-color: rgba(177, 176, 176, 0.5); /* Use rgba value with opacity (0.8 in this example) */
+  transition: background 0.3s ease;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-classic:hover {
+  background-color: rgba(226, 226, 226, 0.945); /* Use rgba value with opacity (0.8 in this example) */
+  color: black !important;
+}

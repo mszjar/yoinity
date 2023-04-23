@@ -22,13 +22,6 @@
   z-index: -1; /* make sure pseudo-element is behind the main element */
 }
 
-.banner p {
-  font-size: 20px;
-  color: white;
-  opacity: .7;
-  text-align: center;
-}
-
 .card-last{
   position: relative;
   z-index: 2;

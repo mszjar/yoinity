@@ -6,19 +6,12 @@
             <% @posts.each do |post| %>
             <div class="swiper-slide">
               <%= link_to post_path(post)  do %>
-              <div  class="post-card">
-                <% if   post.photo.key.nil? %>
-                  <%= image_tag "default_image.png", class:"" %>
-                <% else %>
-                  <%= cl_image_tag post.photo.key %>
-                <% end %>
-                <div class="post-card-infos">
-                  <div>
-                    <p><%=post.title%></p>
-                    <p><%=post.content%></p>
-                  </div>
-                  <p class="post-card-pricing"><%=post.url%></p>
-                </div>
+              <div  class="post-card" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url('<%= cl_image_path post.photo.key %>')" >
+                <h2 class="title"><%=post.title%></h2>
+                <h3 class="nickname"> By <%=post.user.nickname%></h3>
+                <h3 class="nickname"><i class="fa-solid fa-badge-check" style="color: #ffffff;"></i></h3>
+                <p class="content"><%= post.content %></p>
+                <h3 class="btn btn-classic read">Read</h3>
               </div>
               <%end%>
             </div>
