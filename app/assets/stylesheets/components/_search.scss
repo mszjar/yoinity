@@ -1,9 +1,6 @@
 .search-form-control {
-  position: relative;
-  align-items: left;
-  width: 1220px;
-  margin-right: 100px;
-
+  width: 1200px;
+  margin-right: 110px;
 }
 
 .search-form-control .form-control {
@@ -12,10 +9,11 @@
   outline: none !important;
   border: none;
   align-items: center;
+  width: 1200px;
 }
 
 .search-form-control .form-control:focus {
-  background-color: rgba(255, 255, 255, 0.144);
+  background-color: rgba(255, 255, 255, 0.192);
   outline: none !important;
   border: none;
   align-items: center;
