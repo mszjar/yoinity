@@ -50,7 +50,6 @@ gem "sassc-rails"
 
 gem "devise"
 gem "autoprefixer-rails"
-gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -84,3 +83,5 @@ gem "pg_search"
 gem "faker"
 gem "dotenv-rails", groups: [:development, :test]
 gem "cloudinary"
+
+gem "font-awesome-sass", "~> 6.4.0"
