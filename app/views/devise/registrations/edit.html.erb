@@ -1,7 +1,7 @@
 <div class="container mt-5">
-  <div class="">
-    <h2><%= current_user.nickname %></h2>
-    <div class="mb-5"><%=  cl_image_tag current_user.photo.key, class: "avatar-large" %></div>
+  <div class="profile">
+    <div  class="mb-2"><%=  cl_image_tag current_user.photo.key, class: "avatar-large" %></div>
+    <h2  class="mb-5"><%= current_user.nickname %></h2>
   </div>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
