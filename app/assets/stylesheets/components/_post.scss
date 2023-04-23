@@ -5,6 +5,87 @@
   align-items: center;
 }
 
+.post-last {
+  padding: 40px;
+}
+
 .post-item {
   position: absolute;
+}
+
+.post-card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  transform: scale(1);
+  transition: transform 0.2s ease-in;
+  height: 500px;
+  width: 1200px;
+  border-radius: 4%;
+  z-index: 1;
+}
+
+.post-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  z-index: -1; /* make sure pseudo-element is behind the main element */
+}
+
+.post-card > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.post-card h2 {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: $gray;
+}
+
+.post-card p {
+  text-decoration: none;
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+  color: $gray;
+}
+
+
+.post-card .post-card-infos {
+  padding: 20px;
+  display: flex;
+  justify-content:space-between;
+  align-items: flex-end;
+  position: relative;
+  text-decoration: none;
+
+}
+
+.post-card .post-card-infos {
+  padding: 20px;
+  display: flex;
+  justify-content:space-between;
+  align-items: flex-end;
+  position: relative;
+  text-decoration: none;
+
+}
+
+.post-card-infos .post-card-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+}
+
+.post-card:hover {
+  transform: scale(1.03);
 }

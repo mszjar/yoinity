@@ -1,23 +1,23 @@
 <div class="banner" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(255, 255, 255, 0.8)), url('<%= cl_image_path @posts.last.photo.key %>')" >
-  <div class="container card-last">
+  <div class="container post-last">
       <h2><strong>Be curious, find the most valuable content</strong></h2>
       <div data-controller="carousel" class="swiper-container mt-5">
           <div class="swiper-wrapper cards">
             <% @posts.each do |post| %>
             <div class="swiper-slide">
               <%= link_to post_path(post)  do %>
-              <div  class="card-post">
+              <div  class="post-card">
                 <% if   post.photo.key.nil? %>
                   <%= image_tag "default_image.png", class:"" %>
                 <% else %>
                   <%= cl_image_tag post.photo.key %>
                 <% end %>
-                <div class="card-post-infos card-design">
+                <div class="post-card-infos">
                   <div>
                     <p><%=post.title%></p>
                     <p><%=post.content%></p>
                   </div>
-                  <p class="card-post-pricing"><%=post.url%></p>
+                  <p class="post-card-pricing"><%=post.url%></p>
                 </div>
               </div>
               <%end%>
