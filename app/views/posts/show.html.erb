@@ -1,14 +1,10 @@
-<div class="banner" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(255, 255, 255, 0.8)), url('<%= cl_image_path @post.photo.key %>')">
+<div class="banner" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.8)), url('<%= cl_image_path @post.photo.key %>')">
   <div class="post" >
-      <div class="post-item">
+      <div class="">
         <% if current_user == @post.user%>
           <div class="btn-delete"><%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your post?'}%></div>
         <% end %>
-        <% if @post.photo.key.nil? %>
-          <%= image_tag "default_image.png", class:"post-photo" %>
-        <% else %>
           <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
-        <% end %>
       </div>
 
       <div class="">
@@ -18,7 +14,7 @@
             <p><%= @post.content %></p>
           </li>
           <li>
-            <a class="btn btn-classic" href=<%= @post.url %>>Go to the blog 🔗</a>
+            <a class="btn btn-classic" href=<%= @post.url %>>Visit the writer's site 🔗</a>
           </li>
         </ul>
       </div>
