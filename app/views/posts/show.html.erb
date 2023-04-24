@@ -1,22 +1,17 @@
-<div class="banner" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.8)), url('<%= cl_image_path @post.photo.key %>')">
+<div class="banner" style="background-image: radial-gradient(circle at center, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9)), url('<%= cl_image_path @post.photo.key %>')">
   <div class="post" >
-      <div class="">
-        <% if current_user == @post.user%>
-          <div class="btn-delete"><%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your post?'}%></div>
-        <% end %>
+        <h1 class="title"> <%= @post.title %></h1>
+          <p><%= @post.content %></p>
+          <a class="btn btn-classic" href=<%= @post.url %> target= "_blank">Visit the writer's site 🔗</a>
+        <div class="">
           <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
       </div>
 
       <div class="">
-        <h1> <%= @post.title %></h1>
-        <ul>
-          <li>
-            <p><%= @post.content %></p>
-          </li>
-          <li>
-            <a class="btn btn-classic" href=<%= @post.url %>>Visit the writer's site 🔗</a>
-          </li>
-        </ul>
+      <% if current_user == @post.user%>
+          <div class="btn-delete"><%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your post?'}%></div>
+        <% end %>
+
       </div>
 
       <div class="form-group">
