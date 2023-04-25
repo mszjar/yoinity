@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :post_likes, dependent: :destroy
+  has_many :post_qualities, dependent: :destroy
+  
   validates :title, :content, presence: true
 
   include PgSearch::Model

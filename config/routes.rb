@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   root to: "pages#home"
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :post_likes, only: [:create, :destroy]
+  resources :post_qualities, only: [:create, :destroy]
 
   get "dashboard", to: "dashboard#show"
 end
