@@ -1,17 +1,33 @@
 <div class="banner" style="background-image: radial-gradient(circle at center, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9)), url('<%= cl_image_path @post.photo.key %>')">
   <div class="post" >
         <h1 class="title"> <%= @post.title %></h1>
-          <% if user_signed_in? %>
-            <% post_like = current_user.post_likes.find_by(post: @post) %>
-            <% if post_like.nil? %>
-              <%= button_to "🤍", post_likes_path, class: "btn btn-like", params: { post_like: { post_id: @post.id }}, method: :post %>
-            <% else %>
-              <%= button_to "💖", post_like_path(post_like), class: "btn btn-like", method: :delete %>
+        <div class="d-flex">
+          <div>
+            <% if user_signed_in? %>
+              <% post_like = current_user.post_likes.find_by(post: @post) %>
+              <% if post_like.nil? %>
+                <%= button_to "🤍", post_likes_path, class: "btn btn-like", params: { post_like: { post_id: @post.id }}, method: :post %>
+              <% else %>
+                <%= button_to "💖", post_like_path(post_like), class: "btn btn-like", method: :delete %>
+              <% end %>
             <% end %>
-          <% end %>
-          <p><%= @post.post_likes.count %> Likes</p>
+            <p><%= @post.post_likes.count %> Likes</p>
+          </div>
+          <div>
+            <% if user_signed_in? %>
+              <% post_quality = current_user.post_qualities.find_by(post: @post) %>
+              <% if post_quality.nil? %>
+                <%= button_to " ✨", post_qualities_path, class: "btn btn-like", params: { post_quality: { post_id: @post.id }}, method: :post %>
+              <% else %>
+                <%= button_to " ✨", post_quality_path(post_quality), class: "btn btn-like", method: :delete %>
+              <% end %>
+            <% end %>
+            <p><%= @post.post_qualities.count %> Quality</p>
+          </div>
+        </div>
+
           <p><%= @post.content %></p>
-          <a class="btn btn-classic" href=<%= @post.url %> target= "_blank">Visit the writer's site 🔗</a>
+          <a class="btn btn-classic" href=<%= @post.url %> target= "_blank">Visit the author's site 🔗</a>
         <div class="">
           <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
       </div>
