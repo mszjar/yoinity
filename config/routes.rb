@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :show, :new, :create, :destroy]
   end
 
+  resources :post_likes, only: [:create, :destroy]
+
   get "dashboard", to: "dashboard#show"
 end
