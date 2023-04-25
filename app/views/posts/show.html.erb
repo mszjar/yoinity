@@ -5,6 +5,8 @@
           <a class="btn btn-classic" href=<%= @post.url %> target= "_blank">Visit the writer's site 🔗</a>
         <div class="">
           <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
+          <%= button_to "💖", post_likes_path, params: { post_like: { post_id: @post.id }}, method: :post %>
+          <p><% @post.post_like.count %> Likes</p>
       </div>
 
       <div class="">
