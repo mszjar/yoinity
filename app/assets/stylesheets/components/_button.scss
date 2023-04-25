@@ -38,3 +38,14 @@ a {
   background-color: rgba(226, 226, 226, 0.945); /* Use rgba value with opacity (0.8 in this example) */
   color: black !important;
 }
+
+.btn-like {
+  font-size: 38px;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-like:hover {
+  text-decoration: none;
+  border: none;
+}

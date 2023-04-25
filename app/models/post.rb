@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :post_likes, dependent: :destroy
-  validates :title, :content, :photo, presence: true
+  validates :title, :content, presence: true
 
   include PgSearch::Model
   pg_search_scope :search, against: [ :title, :content, :url ], using: {
