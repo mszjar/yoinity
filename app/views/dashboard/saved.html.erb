@@ -1,10 +1,10 @@
 <div class="container mt-5">
-  <h1>My stories</h1>
+  <h1>Saved for later</h1>
 </div>
 
 <div class="container mt-5">
   <div class="cards">
-    <% @posts.each do |post| %>
+    <% current_user.saved_posts.each do |post| %>
     <%= link_to post_path(post)  do %>
     <div class="card-post">
       <% if   post.photo.key.nil? %>

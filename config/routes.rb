@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   resources :post_qualities, only: [:create, :destroy]
   resources :saved_for_laters, only: [:index, :create, :destroy]
 
-  get "dashboard", to: "dashboard#show"
+  get "dashboard/show", to: "dashboard#show"
+  get "dashboard/saved", to: "dashboard#saved"
 end
