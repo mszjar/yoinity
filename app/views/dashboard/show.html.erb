@@ -2,7 +2,6 @@
   <h1>My stories</h1>
 </div>
 
-
 <div class="container mt-5">
   <div class="cards">
     <% @posts.each do |post| %>
@@ -19,6 +18,33 @@
           <p><%=post.content%></p>
         </div>
         <h2 class="card-post-pricing"><%=post.url%></h2>
+      </div>
+    </div>
+    <%end%>
+    <% end %>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <h1>Saved for later</h1>
+</div>
+
+<div class="container mt-5">
+  <div class="cards">
+    <% current_user.saved_posts.each do |saved_post| %>
+    <%= link_to saved_for_later_path(saved_post)  do %>
+    <div class="card-post">
+      <% if   saved_post.photo.key.nil? %>
+        <%= image_tag "default_image.png", class:"post-photo" %>
+      <% else %>
+      <%= cl_image_tag saved_post.photo.key %>
+      <% end %>
+      <div class="card-post-infos">
+        <div>
+          <h2><%=saved_post.title%></h2>
+          <p><%=saved_post.content%></p>
+        </div>
+        <h2 class="card-post-pricing"><%=saved_post.url%></h2>
       </div>
     </div>
     <%end%>

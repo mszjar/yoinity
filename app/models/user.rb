@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :post_likes, dependent: :destroy
   has_many :post_qualities, dependent: :destroy
 
+  has_many :saved_for_laters, dependent: :destroy
+  has_many :saved_posts, through: :saved_for_laters, source: :post
+
   validates :nickname, presence: true
   validates :nickname, length: { maximum: 25 }
 

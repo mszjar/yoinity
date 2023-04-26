@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :post_likes, only: [:create, :destroy]
   resources :post_qualities, only: [:create, :destroy]
+  resources :saved_for_laters, only: [:index, :create, :destroy]
 
   get "dashboard", to: "dashboard#show"
 end
