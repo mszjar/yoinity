@@ -1,7 +1,15 @@
 <div class="banner" style="background-image: radial-gradient(circle at center, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9)), url('<%= cl_image_path @post.photo.key %>')">
   <div class="post" >
         <h1 class="title"> <%= @post.title %></h1>
-        <div class="d-flex">
+        <div class="d-flex align-items-center">
+          <h3 class="post-avatar d-flex justift-content-left"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
+          <div></div>
+          <p> by <%= @post.user.nickname %> </p>
+        </div>
+
+        <p class="mb-5"><%= @post.content %></p>
+
+        <div class="d-flex justify-content-center mb-5">
           <div>
             <% if user_signed_in? %>
               <% post_like = current_user.post_likes.find_by(post: @post) %>
@@ -26,11 +34,11 @@
           </div>
         </div>
 
-          <p><%= @post.content %></p>
-          <a class="btn btn-classic" href=<%= @post.url %> target= "_blank">Visit the author's site 🔗</a>
-        <div class="">
+        <a class="btn btn-classic mb-5" href=<%= @post.url %> target= "_blank">Visit the author's site 🔗</a>
+
+        <div class="mb-5">
           <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
-      </div>
+        </div>
 
       <div class="mt-5">
         <% if current_user == @post.user%>
