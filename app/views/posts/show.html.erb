@@ -8,10 +8,10 @@
           <div>
             <% if user_signed_in? %>
               <% user_follow = current_user.following?(User.find(@post.user_id)) %>
-              <% if user_follow%>
-                <%= button_to "Unfollow", stop_following_path(User.find(@post.user_id)), class: "btn btn-like", :method :delete %>
+              <% if user_follow %>
+                <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-follower", method: :post %></p>
               <% else %>
-                <%= button_to "Follow", follow_user_path(User.find(@post.user_id)), class: "btn btn-like", method: :post %>
+                <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follower", method: :post %></p>
               <% end %>
             <% end %>
           </div>

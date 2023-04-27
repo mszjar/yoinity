@@ -15,6 +15,13 @@ Rails.application.routes.draw do
   resources :post_qualities, only: [:create, :destroy]
   resources :saved_for_laters, only: [:index, :create, :destroy]
 
+  resources :followers do
+    member do
+      post 'follow'
+      post 'unfollow'
+    end
+  end
+
   get "dashboard/show", to: "dashboard#show"
   get "dashboard/saved", to: "dashboard#saved"
 end
