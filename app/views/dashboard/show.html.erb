@@ -1,4 +1,15 @@
 <div class="container mt-5">
+  <div class="profile">
+    <div  class="mb-2"><%=  cl_image_tag current_user.photo.key, class: "avatar-large" %></div>
+    <h2  class="mb-5"><%= current_user.nickname %></h2>
+    <div class="d-flex justify-content-center">
+      <h3  class="mb-5", style="margin-right: 30px"><%= current_user.posts.count %> Stories</h3>
+      <h3  class="mb-5"><%= current_user.followers_count %> Followers</h3>
+      <h3  class="mb-5", style="margin-left: 30px"><%= current_user.follow_count %> Following</h3>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
   <h1>My stories</h1>
 </div>
 

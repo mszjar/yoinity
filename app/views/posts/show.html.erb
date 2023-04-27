@@ -5,6 +5,16 @@
           <h3 class="post-avatar d-flex justift-content-left"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
           <div></div>
           <p> by <%= @post.user.nickname %> </p>
+          <div>
+            <% if user_signed_in? %>
+              <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+              <% if user_follow%>
+                <%= button_to "Unfollow", stop_following_path(User.find(@post.user_id)), class: "btn btn-like", :method :delete %>
+              <% else %>
+                <%= button_to "Follow", follow_user_path(User.find(@post.user_id)), class: "btn btn-like", method: :post %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
 
         <p class="mb-5"><%= @post.content %></p>
