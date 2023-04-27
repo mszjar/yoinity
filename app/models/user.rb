@@ -11,6 +11,9 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   validates :nickname, length: { maximum: 25 }
 
+  acts_as_followable
+  acts_as_follower
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
