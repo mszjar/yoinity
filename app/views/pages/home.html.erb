@@ -1,29 +1,37 @@
-<div class="banner" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.8)), url('<%= cl_image_path @posts.last.photo.key %>')" >
-  <div class="container post-last">
-      <h2><strong>Be curious, find the most valuable content</strong></h2>
-      <div data-controller="carousel" class="swiper-container mt-5">
-          <div class="swiper-wrapper cards">
-            <% @posts.each do |post| %>
-            <div class="swiper-slide">
-              <%= link_to post_path(post)  do %>
-              <div  class="post-card" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url('<%= cl_image_path post.photo.key %>')" >
-                <h4 class="like">💖 <%= post.post_likes.count %></h4>
-                <h4 class="quality">✨ <%= post.post_qualities.count %></h4>
-                <h5 class="trend">Top 10% content in #technology</h5>
-                <h5 class="language">Originally written in English {english_flag}</h5>
-                <div class="infos">
-                  <h3 class="post-avatar"> <%= cl_image_tag post.user.photo.key, class: "avatar-small" %></h3>
-                  <h2 class="title"><%=post.title%></h2>
-                  <h3 class="nickname"> By <%=post.user.nickname%></h3>
-                  <h3 class="nickname"><i class="fa-solid fa-badge-check" style="color: #ffffff;"></i></h3>
-                  <p class="content"><%= post.content %></p>
+  <div class="banner" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.8)), url('<%= cl_image_path @posts.last.photo.key %>')" >
+    <div class="container post-last">
+        <h2><strong>Be curious, find the most valuable content</strong></h2>
+        <div data-controller="carousel" class="swiper-container mt-5">
+            <div class="swiper-wrapper cards">
+              <% @posts.each do |post| %>
+              <div class="swiper-slide">
+                <%= link_to post_path(post)  do %>
+                <div  class="post-card" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url('<%= cl_image_path post.photo.key %>')" >
+                  <h4 class="like">💖 <%= post.post_likes.count %></h4>
+                  <h4 class="quality">✨ <%= post.post_qualities.count %></h4>
+                  <h5 class="trend">Top 10% content in #technology</h5>
+                  <h5 class="language">Originally written in <%= post.language %> from </h5>
+                  <% if post.language == "English" %>
+                    <div class= "england-flag"></div>
+                  <% elsif post.language == "French" %>
+                    <div class= "france-flag"></div>
+                  <% elsif post.language == "Spanish" %>
+                    <div class= "spain-flag"></div>
+                  <% end %>
+                  <div class="infos">
+                    <h3 class="post-avatar"> <%= cl_image_tag post.user.photo.key, class: "avatar-small" %></h3>
+                    <h2 class="title"><%=post.title%></h2>
+                    <h3 class="nickname"> By <%=post.user.nickname%></h3>
+                    <h3 class="nickname"><i class="fa-solid fa-badge-check" style="color: #ffffff;"></i></h3>
+                    <h3 class="date"> on <%= post.created_at.strftime("%B %Y") %></h3>
+                    <p class="content"><%= post.content %></p>
+                  </div>
+                  <h3 class="btn btn-classic read">Read</h3>
                 </div>
-                <h3 class="btn btn-classic read">Read</h3>
+                <%end%>
               </div>
-              <%end%>
+              <% end %>
             </div>
-            <% end %>
           </div>
-        </div>
+    </div>
   </div>
-</div>

@@ -76,6 +76,16 @@
   top: 340px;
 }
 
+.post-card .date {
+  position: absolute;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(173, 173, 173, 0.4);
+  right: 300px;
+  top: 344px;
+}
+
 .post-card .post-avatar {
   position: absolute;
   text-decoration: none;
@@ -113,9 +123,44 @@
   color: white;
   font-weight: lighter !important;
   text-decoration: none;
+  right:98px;
+  top: 120px;
+}
+
+.post-card .england-flag {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/320px-Flag_of_the_United_Kingdom_%283-5%29.svg.png");
+  width: 50px;
+  height: 30px;
+  background-size: cover;
+  position: absolute;
+  text-decoration: none;
   right: 34px;
   top: 120px;
 }
+
+
+.post-card .france-flag {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/320px-Flag_of_France.svg.png");
+  width: 50px;
+  height: 30px;
+  background-size: cover;
+  position: absolute;
+  text-decoration: none;
+  right: 34px;
+  top: 120px;
+}
+
+.post-card .spain-flag {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png");
+  width: 50px;
+  height: 30px;
+  background-size: contain;
+  position: absolute;
+  text-decoration: none;
+  right: 34px;
+  top: 120px;
+}
+
 .post-card .content {
   display: -webkit-box;
   -webkit-line-clamp: 2;
