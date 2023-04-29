@@ -50,13 +50,40 @@ a {
   border: none;
 }
 
-.btn-follower {
+.btn-follow {
+  margin-left: 20px;
+  margin-bottom: 12px;
   font-size: 12px;
+  background-color: #0095F6;
+  color: white;
   text-decoration: none;
   border: none;
 }
 
-.btn-follower:hover {
+.btn-follow:hover {
+  margin-left: 20px;
+  margin-bottom: 12px;
+  background-color: #1877F2;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-following {
+  margin-left: 20px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  background-color: #EFEFEF;
+  color: grey;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-following:hover {
+  margin-left: 20px;
+  margin-bottom: 12px;
+  background-color: #DBDBDB;
+  color: grey;
   text-decoration: none;
   border: none;
 }
