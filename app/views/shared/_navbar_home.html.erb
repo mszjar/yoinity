@@ -24,10 +24,14 @@
             </li>
             <% end %>
           <li class="nav-item all-text-white">
-            <%= link_to "Surf🏄🏽‍♂️", "/posts", class: "nav-link" %>
+            <%= link_to "Surf", "/posts", class: "nav-link" %>
           </li>
           <li class="nav-item active all-text-white">
             <%= link_to "Write", "/posts/new", class: "nav-link" %>
+          </li>
+          <li class="d-flex nav-item active all-text-white">
+            <%= link_to "Web3", web3_path, class: "nav-link" %>
+            <p class= "btn btn-new">NEW</p>
           </li>
           <li class="nav-item dropdown all-text-black">
             <% if current_user.photo.key == nil %>
