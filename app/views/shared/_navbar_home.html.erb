@@ -15,9 +15,6 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
-          <li class="d-flex justify-content-right nav-item active all-text-white">
-            <%= link_to "About", about_path, class: "nav-link" %>
-        </li>
         <% if user_signed_in? %>
             <li>
               <div class="search-form-control form-group">
@@ -52,6 +49,9 @@
         <% else %>
           <li class="nav-item all-text-white">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="d-flex justify-content-right nav-item active all-text-white">
+            <%= link_to "About", about_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>
