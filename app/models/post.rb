@@ -9,6 +9,8 @@ class Post < ApplicationRecord
   has_many :users_who_saved, through: :saved_for_laters, source: :user
 
   validates :title, :content, :language, presence: true
+  validates :title, length: { maximum: 100 }
+
 
   include PgSearch::Model
   pg_search_scope :search, against: [ :title, :content, :language ], using: {
