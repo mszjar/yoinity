@@ -114,6 +114,22 @@
   color: white;
   font-weight: lighter !important;
   text-decoration: none;
+  right: 160px;
+  top: 88px;
+}
+
+.post-card .category {
+  border-radius: 8%;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  position: absolute;
+  transform: transparent;
+  color: #6c9b7d91;
+  background-color: #DBEDDB;
+  font-weight: lighter !important;
+  text-decoration: none;
   right: 34px;
   top: 88px;
 }
