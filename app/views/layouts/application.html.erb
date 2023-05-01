@@ -57,10 +57,8 @@
         <%= render "shared/navbar_home" %>
       <% elsif action_name == "new" && controller_name == "posts" %>
         <%= render "shared/flashes" %>
-      <% elsif action_name == "show" && controller_name == "posts" %>
-        <%= render "shared/navbar_home" %>
       <% else %>
-        <%= render "shared/navbar" %>
+        <%= render "shared/navbar_home" %>
       <% end %>
       <%= render "shared/flashes" %>
     <%= yield %>

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'categories/index'
+  get 'categories/new'
+  get 'categories/create'
+  get 'categories/show'
+  get 'categories/destroy'
+  get 'categories/set_post'
+  get 'categories/params_category'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users

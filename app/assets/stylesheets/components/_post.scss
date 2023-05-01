@@ -7,10 +7,23 @@
   text-decoration: none;
 }
 
+.category {
+  transform: transparent;
+  color: #6c9b7d91;
+  background-color: #DBEDDB;
+  font-weight: lighter !important;
+  text-decoration: none;
+}
+
 .post .title {
+<<<<<<< HEAD
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 24px;
+=======
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 60px;
+>>>>>>> ab3b6c2fe59327e021c42bec6d1daa7bb7e06049
   color: black;
   margin-bottom: 20px;
 }
@@ -63,11 +76,11 @@
 .post-card .title {
   position: absolute;
   text-decoration: none;
-  font-size: 38px;
+  font-size: 48px;
   font-weight: bold;
   color: white;
   left: 16px;
-  top: 280px;
+  top: 250px;
 }
 
 .post-card .nickname {
@@ -77,7 +90,7 @@
   font-weight: bold;
   color: rgba(255, 255, 255, 0.5);
   left: 90px;
-  top: 230px;
+  top: 200px;
 }
 
 .post-card .date {
@@ -87,14 +100,14 @@
   font-weight: bold;
   color: rgba(173, 173, 173, 0.4);
   left: 240px;
-  top: 240px;
+  top: 210px;
 }
 
 .post-card .post-avatar {
   position: absolute;
   text-decoration: none;
   left: 16px;
-  top: 200px;
+  top: 170px;
 }
 
 .post-card .like {
