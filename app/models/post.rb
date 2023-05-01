@@ -4,9 +4,9 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_likes, dependent: :destroy
   has_many :post_qualities, dependent: :destroy
-
   has_many :saved_for_laters, dependent: :destroy
   has_many :users_who_saved, through: :saved_for_laters, source: :user
+  has_and_belongs_to_many :categories
 
   validates :title, :content, :language, presence: true
   validates :title, length: { maximum: 100 }
