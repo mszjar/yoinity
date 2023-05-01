@@ -6,14 +6,17 @@ class Post < ApplicationRecord
   has_many :post_qualities, dependent: :destroy
   has_many :saved_for_laters, dependent: :destroy
   has_many :users_who_saved, through: :saved_for_laters, source: :user
-  has_and_belongs_to_many :categories
+  has_and_belongs_to_many :categories, limit: 6
 
   validates :title, :content, :language, presence: true
-  validates :title, length: { maximum: 100 }
+  validates :title, length: { maximum: 80 }
 
 
   include PgSearch::Model
-  pg_search_scope :search, against: [ :title, :content, :language ], using: {
-    tsearch: { prefix: true }
-  }
+  pg_search_scope :search, against: [ :title, :content, :language ],
+    associated_against: { categories: [ :name ] },
+    using: {
+      tsearch: { prefix: true }
+    }
+    
 end
