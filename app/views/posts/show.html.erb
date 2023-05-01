@@ -64,7 +64,7 @@
 
       <div class="mt-5">
         <% if current_user == @post.user%>
-          <div class="btn-delete"><%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your post?'}%></div>
+          <div class="btn-delete"><%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your story?'}%></div>
         <% end %>
 
       </div>
