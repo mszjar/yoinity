@@ -1,23 +1,24 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  skip_after_action :verify_authorized, only: :index
-  skip_after_action :verify_policy_scoped, only: :index
 
   def index
-    @categories = Category.all
+    @categories = policy_scope(Category)
+    # @categories = Category.all
   end
 
   def show
+    authorize @category
     @posts = @category.posts
   end
 
   def new
     @category = Category.new
+    authorize @category
   end
 
   def create
     @category = Category.new(category_params)
-
+    authorize @category
     if @category.save
       redirect_to @category, notice: 'Category was successfully created.'
     else
@@ -29,14 +30,10 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    if @category.update(category_params)
-      redirect_to @category, notice: 'Category was successfully updated.'
-    else
-      render :edit
-    end
   end
 
   def destroy
+    authorize @category
     @category.destroy
     redirect_to categories_url, notice: 'Category was successfully destroyed.'
   end
