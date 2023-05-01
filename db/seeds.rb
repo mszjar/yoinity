@@ -124,7 +124,7 @@ post = Post.create!(
 post.photo.attach(io: file, filename: "post3.jpg", content_type: "image/jpg")
 post.save
 
-file = URI.open("app/assets/images/twitter-balance.gif")
+file = URI.open("app/assets/images/twitter_wallpaper.jpg")
 post = Post.create!(
   title: "Cómo conseguir seguidores en Twitter?",
   content: "En este post primero empezaremos cambiando el chip sobre la red social “Twitter” y como conseguir de manera legal uno a uno seguidores, contaré un poco mi experiencia utilizando varias herramientas que surgieron y dieron un buen resultado.
