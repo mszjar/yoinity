@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
   end
 
   def delete
+    authorize @comment
     @comment = Comment.find(params[:post_id])
     @comment.destroy
   end
