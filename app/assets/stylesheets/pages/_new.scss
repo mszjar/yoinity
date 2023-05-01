@@ -97,4 +97,16 @@
 .hyperlink-container {
   display: flex;
   flex-direction: row;
+  background-color: gray;
+}
+
+.icon {
+  vertical-align: middle;
+  background-color: red;
+}
+
+.imagelink-container {
+  display: flex;
+  flex-direction: row;
+  background-color: blue;
 }
