@@ -1,6 +1,7 @@
 <div class="banner" style="background-image: radial-gradient(circle at center, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9)), url('<%= cl_image_path @post.photo.key %>')">
   <div class="post" >
         <h1 class="title"> <%= @post.title %></h1>
+        <p class="date" style="color: grey"><%= @post.created_at.strftime("%B %Y") %></p>
         <div class="d-flex align-items-center">
           <h3 class="post-avatar"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
           <p style="margin-left: 16px"> by <%= @post.user.nickname %> </p>
@@ -8,9 +9,9 @@
             <% if user_signed_in? %>
               <% user_follow = current_user.following?(User.find(@post.user_id)) %>
               <% if user_follow %>
-                <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-follower", method: :post %></p>
+                <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
               <% else %>
-                <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follower", method: :post %></p>
+                <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
               <% end %>
             <% end %>
           </div>

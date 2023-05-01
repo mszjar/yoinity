@@ -1,6 +1,7 @@
 .navbar-lewagon {
+  //display: flex;
   justify-content: space-between;
-  background: white;
+  //background: white;
   background-color: transparent;
   transition: 0.5s background-color ease;
 }
@@ -20,12 +21,10 @@
   display: flex;
 }
 
-
 .navbar-lewagon-white {
   background-color: white;
   a {
     color: black;
-
   }
 }
 

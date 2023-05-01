@@ -9,9 +9,9 @@
             </div>
             <p><%= f.input :title, class: "form-control", placeholder: "Add title here", label: false, input_html: { class: 'form-border form-title' } %></p>
             <p><%= f.input :content,as: :text , placeholder: "Write here", label: false, input_html: { rows: 30, class: 'form-border' } %></p>
-            <div class="hyperlink-container"><i class="fa-solid fa-link fa-xs icon"></i><%= f.input :url, as: :url,  class: "form-control", placeholder: "Add your url", label: false, input_html: { class: 'form-border' } %></div>
-            <div class="hyperlink-container"><i class="fa-solid fa-link fa-xs icon"></i><%= f.input :language, as: :string,  class: "form-control", placeholder: "In which language is your story written on?", label: false, input_html: { class: 'form-border' } %></div>
-            <div class="imagelink-container" ><i class="fa-regular fa-image"></i><%= f.input :photo, as: :file, placeholder: false, label: "Cover image", input_html: { class: 'form-image' } %></div>
+            <div class="hyperlink-container"><i class="fa-solid fa-link icon"></i><%= f.input :url, as: :url,  class: "form-control", placeholder: "Add your url", label: false, input_html: { class: 'form-border' } %></div>
+            <div class="hyperlink-container"><i class="fa-solid fa-language icon"></i><%= f.input :language, as: :string,  class: "form-control", placeholder: "Content's language", label: false, input_html: { class: 'form-border' } %></div>
+            <div class="imagelink-container" ><%= f.input :photo, as: :file, placeholder: false, label: "Cover image", input_html: { class: 'form-image' } %></div>
           <% end %>
       </div>
     </div>
