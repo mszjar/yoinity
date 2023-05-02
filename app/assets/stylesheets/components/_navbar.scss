@@ -1,12 +1,39 @@
 .navbar-lewagon {
+  //display: flex;
   justify-content: space-between;
-  background: white;
+  //background: white;
   background-color: transparent;
   transition: 0.5s background-color ease;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  width: 100%;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-bar {
+  width: 90%;
+}
+
+@media (max-width: 690px) {
+  /*.navbar-lewagon .navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.6);
+  }*/
+  .menu-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-top: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .search-bar {
+    width: 100%;
+  }
 }
 
 .navbar-brand img {
@@ -20,12 +47,10 @@
   display: flex;
 }
 
-
 .navbar-lewagon-white {
   background-color: white;
   a {
     color: black;
-
   }
 }
 

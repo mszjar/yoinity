@@ -97,4 +97,24 @@
 .hyperlink-container {
   display: flex;
   flex-direction: row;
+  //align-items: center;
+
+  //background-color: gray;
+}
+
+.icon {
+  margin-right: 5px;
+  //vertical-align: middle;
+  //background-color: red;
+}
+
+.imagelink-container {
+  display: flex;
+  flex-direction: row;
+  //background-color: blue;
+}
+
+.form-label {
+  font-family: "Arial Black";
+  font-size: 24px;
 }

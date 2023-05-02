@@ -1,12 +1,12 @@
   <div class="banner" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.8)), url('<%= cl_image_path @posts.last.photo.key %>')" >
     <div class="container post-last">
-        <h2><strong>Be curious, find the most valuable content</strong></h2>
-        <div data-controller="carousel" class="swiper-container mt-5">
+        <h2 class="main-title"><strong>Be curious, find the most valuable content</strong></h2>
+        <div data-controller="carousel" class="swiper-container">
             <div class="swiper-wrapper cards">
               <% @posts.each do |post| %>
               <div class="swiper-slide">
                 <%= link_to post_path(post)  do %>
-                <div  class="post-card" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url('<%= cl_image_path post.photo.key %>')" >
+                <div class="post-card" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url('<%= cl_image_path post.photo.key %>')" >
                   <h4 class="like">💖 <%= post.post_likes.count %></h4>
                   <h4 class="quality">✨ <%= post.post_qualities.count %></h4>
                   <div class="d-flex">
