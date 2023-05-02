@@ -6,9 +6,7 @@
   padding: 10px 0;
   height: 100vh;
   z-index: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-top: 120px;
 }
 
 .banner::before {
@@ -22,7 +20,7 @@
   z-index: -1; /* make sure pseudo-element is behind the main element */
 }
 
-.card-last{
+.card-last {
   position: relative;
   z-index: 2;
 }

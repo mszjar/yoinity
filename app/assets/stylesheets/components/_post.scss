@@ -1,10 +1,28 @@
+.post-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
 .post {
   position: absolute;
   top: 100px;
-  width: 640px;
+  width: 60%;
   height: 100%;
   text-align: left;
   text-decoration: none;
+}
+
+.post-image {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .post-image {
+    width: 80%;
+  }
 }
 
 .category {
@@ -38,7 +56,7 @@
 }
 
 .post-last {
-  padding: 40px;
+  margin-top: 40px;
 }
 
 .post-item {
@@ -55,7 +73,7 @@
   max-width: 100%;
   min-width: 375px;
   //width: 80%;
-  border-radius: 4%;
+  border-radius: 26px;
   z-index: 1;
   background-size: cover;
   background-position: center;
@@ -65,7 +83,7 @@
   position: absolute;
   left: 16px;
   top: 16px;
-  padding: 600px;
+  width: 100%;
 }
 
 .post-card .title {
@@ -76,7 +94,18 @@
   color: white;
   left: 16px;
   top: 250px;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
+
+/*@media (max-width: 770px) {
+  .post-card .title {
+    font-size: 24px;
+  }
+}*/
 
 .post-card .nickname {
   position: absolute;
