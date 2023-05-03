@@ -1,18 +1,3 @@
-.btn-flat {
-  color: black;
-  padding: 8px 24px;
-  border-radius: 4px;
-  background: #ffc900;
-  transition: background 0.3s ease;
-  text-decoration: none;
-  border: none;
-}
-
-.btn-flat:hover {
-  background: #cfa200;
-  color: black;
-}
-
 a {
   text-decoration: none;
 }
@@ -37,6 +22,24 @@ a {
 .btn-classic:hover {
   background-color: rgba(226, 226, 226, 0.945); /* Use rgba value with opacity (0.8 in this example) */
   color: black !important;
+}
+
+.btn-dropdown {
+  color: rgba(255, 255, 255, 0.5) ;
+  font-size: 12px;
+  border-radius: 8px;
+  background-color: rgba(177, 176, 176, 0.1); /* Use rgba value with opacity (0.8 in this example) */
+  transition: background 0.3s ease;
+  text-decoration: none;
+  border: none;
+  align-self: end;
+}
+
+.btn-dropdown:hover {
+  font-size: 12px;
+  background-color: rgba(226, 226, 226, 0.5); /* Use rgba value with opacity (0.8 in this example) */
+  color: rgba(0, 0, 0, 0.5);
+  align-self: end;
 }
 
 .btn-like {

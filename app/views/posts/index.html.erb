@@ -1,12 +1,39 @@
 <div class="web3" >
       <div class="banner">
-            <div class="container mt-5">
+            <div class="container">
+            <div class="dropdown filters mb-3">
+              <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Advanced Filters
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" style="font-size: 12px"  href="#">Language: All</a></li>
+                <li><a class="dropdown-item" style="font-size: 12px" href="#">Country: All</a></li>
+                <li><a class="dropdown-item" style="font-size: 12px" href="#">Duration: 8min</a></li>
+              </ul>
+            </div>
+            <div class="d-flex justify-content-between" >
+              <h3 class="btn btn-classic">All</h3>
+              <h3 class="btn btn-classic">Technology</h3>
+              <h3 class="btn btn-classic">Health</h3>
+              <h3 class="btn btn-classic">Food</h3>
+              <h3 class="btn btn-classic">Fitness</h3>
+              <h3 class="btn btn-classic">Entrepreneurship</h3>
+              <h3 class="btn btn-classic">StarUp</h3>
+              <h3 class="btn btn-classic">Finance</h3>
+              <h3 class="btn btn-classic">Literary</h3>
+              <h3 class="btn btn-classic">Cooking</h3>
+              <h3 class="btn btn-classic">NFT Stories</h3>
+            </div>
+            <div class="cards-header" >
+              <h3 class="cards-header-item">Highest quality</h3>
+              <h3 class="cards-header-item">Most likable</h3>
+            </div>
                 <div class="cards">
                     <% @posts.each do |post| %>
                     <%= link_to post_path(post)  do %>
                         <div  class="post-card-small" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url('<%= cl_image_path post.photo.key %>')" >
-                          <h4 class="like">💖 <%= post.post_likes.count %></h4>
-                          <h4 class="quality">✨ <%= post.post_qualities.count %></h4>
+                          <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
+                          <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>
                           <h5 class="language"><%= post.language %> from </h5>
                           <% if post.language == "English" %>
                             <div class= "england-flag"></div>

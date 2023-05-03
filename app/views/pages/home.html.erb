@@ -7,8 +7,8 @@
               <div class="swiper-slide">
                 <%= link_to post_path(post)  do %>
                 <div class="post-card" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url('<%= cl_image_path post.photo.key %>')" >
-                  <h4 class="like">💖 <%= post.post_likes.count %></h4>
-                  <h4 class="quality">✨ <%= post.post_qualities.count %></h4>
+                  <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
+                  <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>
                   <div class="d-flex">
                     <h5 class="trend">Top 10%</h5>
                     <h5 class="btn btn-category"> #technology </h5>

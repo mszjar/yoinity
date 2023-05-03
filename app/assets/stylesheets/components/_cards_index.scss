@@ -14,6 +14,32 @@
   text-align: center;
 }
 
+.cards-header {
+  margin-top: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cards-header-item {
+  margin-right: 50px;
+}
+
+.filters {
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.filters-item {
+  margin-left: 50px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .card-post {
   overflow: hidden;
   background: white;
