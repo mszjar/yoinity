@@ -53,12 +53,12 @@
 
   <body>
     <div class="maintain_height">
-      <% if controller_name == "pages"  %>
+      <% if controller_name == "pages" && action_name == "home" %>
         <%= render "shared/navbar_home" %>
       <% elsif action_name == "new" && controller_name == "posts" %>
         <%= render "shared/flashes" %>
       <% else %>
-        <%= render "shared/navbar_home" %>
+        <%= render "shared/navbar_standard" %>
       <% end %>
       <%= render "shared/flashes" %>
     <%= yield %>

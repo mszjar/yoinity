@@ -1,10 +1,23 @@
-// Specific CSS for your home-page
-
 .banner {
   background-size: cover;
   background-position: center;
-  //height: 100vh;
   position: relative;
+}
+
+.main-title {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.promoted-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+  margin-bottom: 16px;
+  color: white;
 }
 
 .banner h1 {
@@ -21,7 +34,6 @@
 
 @media (max-width: 768px) {
   .banner .main-title {
-    //margin-top: 100px;
     font-size: 44px;
   }
 }

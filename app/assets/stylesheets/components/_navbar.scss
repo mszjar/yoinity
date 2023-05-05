@@ -1,7 +1,5 @@
 .navbar-lewagon {
-  //display: flex;
   justify-content: space-between;
-  //background: white;
   background-color: transparent;
   transition: 0.5s background-color ease;
 }
@@ -21,9 +19,6 @@
 }
 
 @media (max-width: 690px) {
-  /*.navbar-lewagon .navbar-collapse {
-    background-color: rgba(0, 0, 0, 0.6);
-  }*/
   .menu-container {
     background-color: rgba(0, 0, 0, 0.6);
     margin-top: 5px;
