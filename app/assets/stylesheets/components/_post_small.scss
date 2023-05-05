@@ -17,6 +17,7 @@
 .post-card-small .infos {
   position: absolute;
   left: 16px;
+  right: 16px;
   top: 16px;
   padding: 280px;
 }
@@ -47,7 +48,7 @@
   font-size: 8px;
   font-weight: bold;
   color: rgba(173, 173, 173, 0.4);
-  right: 10px;
+  right: 5px;
   top: 210px;
 }
 
@@ -208,7 +209,7 @@
 }
 
 .post-card-small .post-card-small-infos {
-  padding: 20px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
