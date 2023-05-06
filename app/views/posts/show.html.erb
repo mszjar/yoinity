@@ -1,100 +1,144 @@
 <div class="banner" style="background-image: radial-gradient(circle at center, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9)), url('<%= cl_image_path @post.photo.key %>')">
   <div class="post-container">
   <div class="post" >
-        <h1 class="title"> <%= @post.title %></h1>
-        <p class="date" style="color: grey"><%= @post.created_at.strftime("%B %Y") %></p>
-        <div class="d-flex align-items-center">
-          <h3 class="post-avatar"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
-          <p style="margin-left: 16px"> by <%= @post.user.nickname %> </p>
-          <div>
-            <% if user_signed_in? %>
-              <% user_follow = current_user.following?(User.find(@post.user_id)) %>
-              <% if user_follow %>
-                <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
-              <% else %>
-                <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
-              <% end %>
-            <% end %>
-          </div>
+
+
+        <div class="mb-3 mt-3" data-controller="tabs">
+              <div class="tabs" >
+                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Cover</a>
+                <a href="" class="tab active" data-tabs-target="tab" data-action="click->tabs#changeTab">Story</a>
+                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Reviews</a>
+                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Author</a>
+              </div>
+
+              <div class="notifications">
+              <!-- cover -->
+                  <div class="notification cover d-none" data-tabs-target="notification">
+                            <h1 class="title"> <%= @post.title %></h1>
+                            <div class="post-image mb-5">
+                              <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
+                            </div>
+
+                          <div class="mt-5">
+                            <% if current_user == @post.user%>
+                              <div class="btn btn-classic"><%= link_to "Delete", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your story?'}%></div>
+                            <% end %>
+                          </div>
+                  </div>
+
+              <!-- story -->
+                  <div class="notification story" data-tabs-target="notification">
+                          <h1 class="title"> <%= @post.title %></h1>
+                          <p class="date" style="color: grey"><%= @post.created_at.strftime("%B %Y") %></p>
+                          <div class="d-flex align-items-center">
+                            <h3 class="post-avatar"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
+                            <p style="margin-left: 16px"> by <%= @post.user.nickname %> </p>
+                            <div>
+                              <% if user_signed_in? %>
+                                <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+                                <% if user_follow %>
+                                  <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
+                                <% else %>
+                                  <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
+                                <% end %>
+                              <% end %>
+                            </div>
+                          </div>
+
+                          <p class="mb-5"><%= @post.content %></p>
+                  </div>
+
+              <!-- reviews -->
+                  <div class="notification reviews d-none" data-tabs-target="notification">
+                              <!--categories-->
+                              <div class="category">
+                                <% @post.categories.each do |category| %>
+                                  <p><%= category.name %></p>
+                                <% end %>
+                              </div>
+                              <!--like, quality buttons-->
+                              <div class="d-flex justify-content-center mb-5">
+                                <div>
+                                  <% if user_signed_in? %>
+                                    <% post_like = current_user.post_likes.find_by(post: @post) %>
+                                    <% if post_like.nil? %>
+                                      <%= button_to "🤍", post_likes_path, class: "btn btn-like", params: { post_like: { post_id: @post.id }}, method: :post %>
+                                    <% else %>
+                                      <%= button_to "💖", post_like_path(post_like), class: "btn btn-like", method: :delete %>
+                                    <% end %>
+                                  <% end %>
+                                  <p><%= @post.post_likes.count %> Likes</p>
+                                </div>
+                                <div>
+                                  <% if user_signed_in? %>
+                                    <% post_quality = current_user.post_qualities.find_by(post: @post) %>
+                                    <% if post_quality.nil? %>
+                                      <%= button_to "✨", post_qualities_path, class: "btn btn-like", params: { post_quality: { post_id: @post.id }}, method: :post %>
+                                    <% else %>
+                                      <%= button_to "✨", post_quality_path(post_quality), class: "btn btn-like", method: :delete %>
+                                    <% end %>
+                                  <% end %>
+                                  <p><%= @post.post_qualities.count %> Quality</p>
+                                </div>
+                                <div>
+                                  <% if user_signed_in? %>
+                                    <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
+                                    <% if saved_for_later.nil? %>
+                                      <%= button_to "🕔", saved_for_laters_path, class: "btn btn-like", params: { saved_for_later: { post_id: @post.id }}, method: :post %>
+                                      <p>Save for later</p>
+                                    <% else %>
+                                      <%= button_to "🕔", saved_for_later_path(saved_for_later), class: "btn btn-like", method: :delete %>
+                                      <p>✅ Saved for later</p>
+                                    <% end %>
+                                  <% end %>
+                                </div>
+                              </div>
+
+                              <!--comments-->
+                              <div class="form-group">
+                                <div class="text">
+                                  <h3 style="color: black">Reviews (<%= @post.comments.count %>)</h3>
+                                  <% @post.comments.reverse.each do |comment|%>
+                                    <div class="d-flex">
+                                      <% if User.find(comment.user_id).photo.key.nil? %>
+                                      <p><%= image_tag "default_image.png", class:"avatar" %></p>
+                                      <% else %>
+                                      <p><%= cl_image_tag(User.find(comment.user_id).photo.key, class:"avatar" )%></p>
+                                      <% end %>
+                                      <p><%= comment.content %></p>
+                                    </div>
+                                  <% end %>
+                                  <%= simple_form_for [@post, @comment] do |f| %>
+                                    <p><%= f.input :content, class: "form-control", placeholder: "Type your review here...", label: false %></p>
+                                    <div class="show-comment-btn">
+                                      <%= f.submit "Submit", class: "btn btn-flat" %>
+                                    </div>
+                                  <% end %>
+                                </div>
+                              </div>
+                  </div>
+
+              <!-- author -->
+                  <div class="notification author d-none" data-tabs-target="notification">
+                            <div class="d-flex align-items-center">
+                              <h3 class="post-avatar"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
+                              <p style="margin-left: 16px"> by <%= @post.user.nickname %> </p>
+                              <div>
+                                <% if user_signed_in? %>
+                                  <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+                                  <% if user_follow %>
+                                    <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
+                                  <% else %>
+                                    <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                            </div>
+                            <a class="btn btn-classic mb-5" href=<%= @post.url %> target= "_blank">Visit the author's site 🔗</a>
+                  </div>
+
+              </div>
         </div>
-
-        <p class="mb-5"><%= @post.content %></p>
-
-        <div class="d-flex justify-content-center mb-5">
-          <div>
-            <% if user_signed_in? %>
-              <% post_like = current_user.post_likes.find_by(post: @post) %>
-              <% if post_like.nil? %>
-                <%= button_to "🤍", post_likes_path, class: "btn btn-like", params: { post_like: { post_id: @post.id }}, method: :post %>
-              <% else %>
-                <%= button_to "💖", post_like_path(post_like), class: "btn btn-like", method: :delete %>
-              <% end %>
-            <% end %>
-            <p><%= @post.post_likes.count %> Likes</p>
-          </div>
-          <div>
-            <% if user_signed_in? %>
-              <% post_quality = current_user.post_qualities.find_by(post: @post) %>
-              <% if post_quality.nil? %>
-                <%= button_to "✨", post_qualities_path, class: "btn btn-like", params: { post_quality: { post_id: @post.id }}, method: :post %>
-              <% else %>
-                <%= button_to "✨", post_quality_path(post_quality), class: "btn btn-like", method: :delete %>
-              <% end %>
-            <% end %>
-            <p><%= @post.post_qualities.count %> Quality</p>
-          </div>
-          <div>
-            <% if user_signed_in? %>
-              <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
-              <% if saved_for_later.nil? %>
-                <%= button_to "🕔", saved_for_laters_path, class: "btn btn-like", params: { saved_for_later: { post_id: @post.id }}, method: :post %>
-                <p>Save for later</p>
-              <% else %>
-                <%= button_to "🕔", saved_for_later_path(saved_for_later), class: "btn btn-like", method: :delete %>
-                <p>✅ Saved for later</p>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-
-        <a class="btn btn-classic mb-5" href=<%= @post.url %> target= "_blank">Visit the author's site 🔗</a>
-
-        <div class="post-image mb-5">
-          <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
-        </div>
-
-      <div class="mt-5">
-        <% if current_user == @post.user%>
-          <div class="btn-delete"><%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your story?'}%></div>
-        <% end %>
-      </div>
-      <div class="category">
-        <% @post.categories.each do |category| %>
-          <p><%= category.name %></p>
-        <% end %>
-      </div>
-
-      <div class="form-group">
-        <div class="text">
-          <h3 style="color: black">Reviews (<%= @post.comments.count %>)</h3>
-          <% @post.comments.reverse.each do |comment|%>
-            <div class="d-flex">
-              <% if User.find(comment.user_id).photo.key.nil? %>
-              <p><%= image_tag "default_image.png", class:"avatar" %></p>
-              <% else %>
-              <p><%= cl_image_tag(User.find(comment.user_id).photo.key, class:"avatar" )%></p>
-              <% end %>
-              <p><%= comment.content %></p>
-            </div>
-          <% end %>
-          <%= simple_form_for [@post, @comment] do |f| %>
-            <p><%= f.input :content, class: "form-control", placeholder: "Type your review here...", label: false %></p>
-            <div class="show-comment-btn">
-              <%= f.submit "Submit", class: "btn btn-flat" %>
-            </div>
-              <% end %>
-        </div>
-      </div>
 
   </div>
   </div>

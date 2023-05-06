@@ -12,3 +12,6 @@ application.register("disable-button", DisableButtonController)
 
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
+
+import TabsController from "./tabs_controller"
+application.register("tabs", TabsController)
