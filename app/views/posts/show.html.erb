@@ -14,16 +14,37 @@
               <div class="notifications">
               <!-- cover -->
                   <div class="notification cover d-none" data-tabs-target="notification">
-                            <h1 class="title"> <%= @post.title %></h1>
-                            <div class="post-image mb-5">
-                              <%= cl_image_tag(@post.photo.key, class:"post-photo" ) %>
-                            </div>
-
                           <div class="mt-5">
                             <% if current_user == @post.user%>
                               <div class="btn btn-classic"><%= link_to "Delete", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Delete your story?'}%></div>
                             <% end %>
                           </div>
+
+                          <div class="post-card" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url('<%= cl_image_path @post.photo.key %>')" >
+                            <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= @post.post_likes.count %></h4>
+                            <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= @post.post_qualities.count %></h4>
+                            <div class="d-flex">
+                              <h5 class="trend">Top 10%</h5>
+                              <h5 class="btn btn-category"> #technology </h5>
+                            </div>
+                            <h5 class="language"><%= @post.language %> from </h5>
+                            <% if @post.language == "English" %>
+                              <div class= "england-flag"></div>
+                            <% elsif @post.language == "French" %>
+                              <div class= "france-flag"></div>
+                            <% elsif @post.language == "Spanish" %>
+                              <div class= "spain-flag"></div>
+                            <% end %>
+                            <div class="infos">
+                              <h3 class="post-avatar"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
+                              <h2 class="title"><%= @post.title %></h2>
+                              <h3 class="nickname"> By <%= @post.user.nickname %></h3>
+                              <h3 class="nickname"><i class="fa-solid fa-badge-check" style="color: #ffffff;"></i></h3>
+                              <h3 class="date"> on <%= @post.created_at.strftime("%B %Y") %></h3>
+                              <p class="content"><%= @post.content %></p>
+                            </div>
+                          </div>
+
                   </div>
 
               <!-- story -->
