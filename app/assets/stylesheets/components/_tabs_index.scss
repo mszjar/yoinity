@@ -1,0 +1,15 @@
+.tab-index {
+  color: white;
+  cursor: pointer;
+  margin-right: 16px;
+  opacity: .3;
+}
+
+.tab-index:hover {
+  color: white;
+  opacity: .6;
+}
+
+.tab-index.active {
+  opacity: 1;
+}

@@ -1,8 +1,9 @@
 .cards {
   margin-top: 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 30px;
+  grid-template-columns: 1fr;
+  grid-gap: 48px;
+
 }
 
 .main-card {
@@ -12,6 +13,7 @@
 .container-index {
   margin: 0 auto;
   padding: 30px;
+  width: 40%;
 }
 
 .container-index h1 {
@@ -19,16 +21,17 @@
 }
 
 .cards-header {
-  margin-top: 15px;
+  margin-top: 10px;
   padding-top: 15px;
-  padding-bottom: 15px;
+  padding-bottom: 0px;
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .cards-header-item {
-  margin-right: 50px;
+  color: white;
+  margin-right: 30px;
 }
 
 .filters {

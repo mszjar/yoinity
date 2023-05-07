@@ -19,6 +19,13 @@
   align-items: center;
 }
 
+.search-form-control .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.623);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+
 .ask-form-control {
   color: rgb(70, 70, 70);
   margin-top: 60px;

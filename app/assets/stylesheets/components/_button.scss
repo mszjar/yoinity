@@ -120,6 +120,16 @@ a {
 }
 
 .btn-category {
+  color: white ;
+  font-style: 12px;
+  border-radius: 8px;
+  background-color: rgba(177, 176, 176, 0.5); /* Use rgba value with opacity (0.8 in this example) */
+  transition: background 0.3s ease;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-category-post {
   font-weight: lighter;
   border-radius: 8%;
   padding-left: 2px;
@@ -138,7 +148,7 @@ a {
   top: 88px;
 }
 
-.btn-category:hover {
+.btn-category-post:hover {
   border-radius: 8%;
   padding-left: 2px;
   padding-right: 2px;
