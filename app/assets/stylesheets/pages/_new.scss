@@ -3,6 +3,7 @@
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
+  color: white;
 }
 
 .form-group {
@@ -30,17 +31,17 @@
 .form-border {
   border-style: none;
   text-align: left;
-  background-color: white;
+  background-color: #444654;
 }
 
 .form-button {
   font-size: 24px;
   font-family: "Arial Black";
   font-weight: 400;
-  color: #222;
+  color: #6C7570;
   border: 0;
   border-radius: 8px;
-  background-color: white;
+  background-color: #DDE0E3;
   border-color: transparent;
   padding-left: 10px;
   padding-right: 10px;
@@ -49,17 +50,17 @@
 }
 
 .form-button:hover {
-  background-color: #eee;
+  color: black;
 }
 
 .form-back {
   justify-content: center;
-  background-color: white;
+  background-color: #444654;
 }
 
 .form-control:focus {
-  color: #0e0000;
-  background-color: white;
+  color: #ECECF1;
+  background-color: #444654;
   border-color: transparent;
   outline: 0;
   box-shadow: 0 0 0 0.25rem transparent;
@@ -70,7 +71,7 @@
   font-family: "Arial Black";
   font-size: 24px;
   font-weight: 500;
-  color: black;
+  color: #ECECF1;
   line-height: 43.7333px;
 }
 
@@ -82,16 +83,16 @@
 .form-image {
   border-style: none;
   text-align: left;
-  background-color: white;
+  background-color: #444654;
   text-decoration: none;
 }
 
 .exit-button {
-  color: #444;
+  color: #6C7570;
 }
 
 .exit-button:hover {
-  color: #222;
+  color: white;
 }
 
 .hyperlink-container {

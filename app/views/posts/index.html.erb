@@ -1,8 +1,11 @@
 <div class="web3" >
       <div class="banner">
             <div class="container" style="width: 40%">
-            <div class="dropdown filters mb-3">
-              <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+            <!--Button filters-->
+            <!--
+            <div class="dropdown filters">
+              <button class="btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Advanced Filters
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: grey">
@@ -11,23 +14,35 @@
                 <li><a class="dropdown-item" style="font-size: 12px" href="#">Duration: 8min</a></li>
               </ul>
             </div>
-            <div class="d-flex justify-content-between" >
-              <h6 class="btn btn-dropdown">All</h6>
-              <h6 class="btn btn-dropdown">Technology</h6>
-              <h6 class="btn btn-dropdown">Health</h6>
-              <h6 class="btn btn-dropdown">Entrepreneurship</h6>
-              <h6 class="btn btn-dropdown">StartUp</h6>
-              <h6 class="btn btn-dropdown">Literary</h6>
-              <h6 class="btn btn-dropdown">NFT Stories</h6>
+            -->
+            <!--Button categories-->
+            <div class="d-flex justify-content-between" data-controller="tabs" >
+              <h6 class="btn-dropdown tab-index active" data-tabs-target="tab" data-action="click->tabs#changeTab">All</h6>
+              <h6 class="btn-dropdown tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">Technology</h6>
+              <h6 class="btn-dropdown tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">Health</h6>
+              <h6 class="btn-dropdown tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">Entrepreneurship</h6>
+              <h6 class="btn-dropdown tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">StartUp</h6>
+              <h6 class="btn-dropdown tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">Literary</h6>
+              <h6 class="btn-dropdown tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">NFT Stories</h6>
             </div>
+
+            <!--Tabs-->
             <div class="cards-header" data-controller="tabs">
-              <h4 class="cards-header-item tab-index active" data-tabs-target="tab" data-action="click->tabs#changeTab">
+              <h5 class="cards-header-item tab-index active" data-tabs-target="tab" data-action="click->tabs#changeTab">
+              For you
+              </h5>
+              <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
+              Following
+              </h5>
+              <h5 class="cards-header-item tab-index " data-tabs-target="tab" data-action="click->tabs#changeTab">
               Highest quality
-              </h4>
-              <h4 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
+              </h5>
+              <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
               Most likable
-              </h4>
+              </h5>
             </div>
+
+            <!--cards-->
                 <div class="cards">
                     <% @posts.each do |post| %>
                     <%= link_to post_path(post)  do %>

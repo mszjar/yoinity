@@ -1,5 +1,5 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
-  <div class="container-fluid">
+<div class="navbar navbar-expand navbar-light navbar-lewagon fixed-top" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
+  <div class="container-fluid" style="height: 70px" >
     <ul class="navbar-brand d-flex align-items-center">
     <%= link_to "/", class: "navbar-brand" do %>
       <%= image_tag "yoinity_logo.png" %>
@@ -20,13 +20,13 @@
           </li>
           <% end %>
           <div class= "menu-container">
-            <li class="nav-item all-text-white">
-              <%= link_to "Surf", "/posts", class: "nav-link" %>
+            <li class="nav-item all-text-grey">
+              <%= link_to "Explore", "/posts", class: "nav-link" %>
             </li>
-            <li class="nav-item active all-text-white">
+            <li class="nav-item active all-text-grey">
               <%= link_to "Write", "/posts/new", class: "nav-link" %>
             </li>
-            <li class="d-flex nav-item active all-text-white">
+            <li class="d-flex nav-item active all-text-grey">
               <%= link_to "About", about_path, class: "nav-link" %>
             </li>
             <li class="nav-item dropdown all-text-black">
@@ -45,10 +45,10 @@
           </div>
         <% else %>
           <div class= "menu-container">
-            <li class="nav-item all-text-white">
+            <li class="nav-item all-text-grey">
               <%= link_to "Login", new_user_session_path, class: "nav-link" %>
             </li>
-            <li class="nav-item active all-text-white">
+            <li class="nav-item active all-text-grey">
               <%= link_to "About", about_path, class: "nav-link" %>
             </li>
           </div>
