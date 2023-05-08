@@ -1,10 +1,10 @@
 .post-card-small {
   margin-bottom: 15px;
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  transform: scale(1);
-  transition: transform 0.05s ease;
+  // transform: scale(1);
+  // transition: transform 0.05s ease;
   height: 250px;
   max-width: 100%;
   min-width: 375px;
@@ -12,6 +12,7 @@
   z-index: 1;
   background-size: cover;
   background-position: center;
+  // border: 1px solid rgba(125, 125, 125, 1);
 }
 
 .post-card-small .infos {
@@ -225,5 +226,5 @@
 }
 
 .post-card-small:hover {
-  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
