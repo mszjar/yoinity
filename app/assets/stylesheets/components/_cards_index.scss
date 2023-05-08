@@ -1,9 +1,15 @@
 .cards {
-  margin-top: 50px;
+  margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 48px;
+  grid-gap: 15px;
+}
 
+.cards > *:not(:last-child)::after {
+  content: '';
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  /* you can adjust the color, style, and thickness of the border as needed */
 }
 
 .main-card {

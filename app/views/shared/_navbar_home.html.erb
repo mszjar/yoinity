@@ -6,7 +6,11 @@
                     <%= image_tag "yoinity_logo.png" %>
                   <% end %>
                   <p class="all-text-white mt-4", style="font-size: 28px">
-                    <%= link_to "Yoinity", "/", class: "" %>
+                    <% if user_signed_in? %>
+                    <%= link_to "Yoinity", "/posts", class: "navbar-link"%>
+                    <% else %>
+                    <%= link_to "Yoinity", "/", class: "navbar-link"%>
+                    <% end %>
                   </p>
                 </ul>
               </div>
@@ -16,13 +20,13 @@
                       <% if user_signed_in? %>
                         <div class= "menu-container">
                           <li class="nav-item all-text-grey">
-                            <%= link_to "Explore", "/posts", class: "nav-link" %>
+                            <%= link_to "Explore", "/posts", class: "navbar-link" %>
                           </li>
-                          <li class="nav-item active all-text-grey">
-                            <%= link_to "Write", "/posts/new", class: "nav-link" %>
+                          <li class="nav-item all-text-grey">
+                            <%= link_to "Write", "/posts/new", class: "navbar-link" %>
                           </li>
-                          <li class="d-flex nav-item active all-text-grey">
-                            <%= link_to "About", about_path, class: "nav-link" %>
+                          <li class="nav-item all-text-grey">
+                            <%= link_to "About", about_path, class: "navbar-link" %>
                           </li>
                           <li class="nav-item dropdown all-text-black">
                             <% if current_user.photo.key == nil %>
@@ -41,10 +45,10 @@
                       <% else %>
                         <div class= "menu-container">
                           <li class="nav-item all-text-grey">
-                            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+                            <%= link_to "Login", new_user_session_path, class: "navbar-link" %>
                           </li>
-                          <li class="nav-item active all-text-grey">
-                            <%= link_to "About", about_path, class: "nav-link" %>
+                          <li class="nav-item all-text-grey">
+                            <%= link_to "About", about_path, class: "navbar-link" %>
                           </li>
                         </div>
                       <% end %>
