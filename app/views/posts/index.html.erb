@@ -46,7 +46,7 @@
                 <div class="cards">
                     <% @posts.each do |post| %>
                     <%= link_to post_path(post)  do %>
-                        <div  class="post-card-small" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9) 50%, rgba(255, 255, 255, 0.1) 70%), url('<%= cl_image_path post.photo.key %>')" >
+                        <div  class="post-card-small" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.95) 25%, rgba(255, 255, 255, 0.1) 85%), url('<%= cl_image_path post.photo.key %>')" >
                           <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
                           <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>
                           <h5 class="language"><%= post.language %> from </h5>
