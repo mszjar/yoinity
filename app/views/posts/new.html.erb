@@ -3,7 +3,7 @@
   <div class="form-back">
     <div class="form-group">
       <div class="form-container">
-        <%= simple_form_for [@post] do |f| %>
+        <%= simple_form_for [@post], data: { controller: "post-form"} do |f| %>
             <div class= "header" style="text-align: right">
             <a href="/posts" class="exit-button"><i class="fa-sharp fa-regular fa-circle-xmark"></i></a>
               <%= f.submit "Publish", class: "form-button", input_html: { class: 'form-button' } %>

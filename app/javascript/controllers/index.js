@@ -13,5 +13,8 @@ application.register("disable-button", DisableButtonController)
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
+import PostFormController from "./post_form_controller"
+application.register("post-form", PostFormController)
+
 import TabsController from "./tabs_controller"
 application.register("tabs", TabsController)

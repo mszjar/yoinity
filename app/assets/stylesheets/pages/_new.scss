@@ -31,7 +31,7 @@
 .form-border {
   border-style: none;
   text-align: left;
-  background-color: #444654;
+  background-color: #343541;
 }
 
 .form-button {
@@ -55,12 +55,12 @@
 
 .form-back {
   justify-content: center;
-  background-color: #444654;
+  background-color: #343541;
 }
 
 .form-control:focus {
   color: #ECECF1;
-  background-color: #444654;
+  background-color: #343541;
   border-color: transparent;
   outline: 0;
   box-shadow: 0 0 0 0.25rem transparent;
@@ -83,7 +83,7 @@
 .form-image {
   border-style: none;
   text-align: left;
-  background-color: #444654;
+  background-color: #343541;
   text-decoration: none;
 }
 
@@ -98,6 +98,8 @@
 .hyperlink-container {
   display: flex;
   flex-direction: row;
+  color: #6C7570;
+
   //align-items: center;
 
   //background-color: gray;
@@ -112,6 +114,8 @@
 .imagelink-container {
   display: flex;
   flex-direction: row;
+  color: #6C7570;
+
   //background-color: blue;
 }
 

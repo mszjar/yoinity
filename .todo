@@ -1,1 +1,2 @@
 to get a random post on the html.erb <%= link_to "Read", "/posts/#{Post.all.sample.id}", class: "nav-link" %>
+<!--<p><%= f.label :code %><%= f.text_area :code, class: "form-control" %><code><%= f.object.code %></code></p>-->
