@@ -27,7 +27,11 @@
                           <% end %>
                           <div class="infos">
                             <h3 class="post-avatar"> <%= cl_image_tag post.user.photo.key, class: "avatar-small" %></h3>
-                            <h3 class="post-image"> <%= cl_image_tag post.photo.key, class: "avatar-post" %></h3>
+                            <% if post.photo.key.nil? %>
+                                <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post" %></h3>
+                                <% else %>
+                                <h3 class="post-image"> <%= cl_image_tag post.photo.key, class: "avatar-post" %></h3>
+                            <% end %>
                             <h2 class="title"><%=post.title%></h2>
                             <h3 class="nickname"> By <%=post.user.nickname%></h3>
                             <h3 class="nickname"><i class="fa-solid fa-badge-check" style="color: #ffffff;"></i></h3>
