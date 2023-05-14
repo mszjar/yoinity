@@ -8,9 +8,9 @@ class CommentRepliesController < ApplicationController
     authorize @comment_reply
 
     if @comment_reply.save
-      redirect_to @comment.post, notice: 'Reply was successfully created.'
+      redirect_to post_path(@comment.post), notice: 'Reply was successfully created.'
     else
-      redirect_to @comment.post, alert: 'Error creating reply.'
+      redirect_to post_path(@comment.post), alert: 'Error creating reply.'
     end
   end
 
