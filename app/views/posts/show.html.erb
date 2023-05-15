@@ -28,54 +28,58 @@
                               <% end %>
                             </div>
                           </div>
+
+                          <!--categories-->
+                          <div class="category">
+                            <% @post.categories.each do |category| %>
+                              <p><%= category.name %></p>
+                            <% end %>
+                          </div>
+                          <!--like, quality buttons-->
+                          <div class="d-flex justify-content-center mb-5">
+                            <div>
+                              <% if user_signed_in? %>
+                                <% post_like = current_user.post_likes.find_by(post: @post) %>
+                                <% if post_like.nil? %>
+                                  <%= button_to "🤍", post_likes_path, class: "btn btn-like", params: { post_like: { post_id: @post.id }}, method: :post %>
+                                <% else %>
+                                  <%= button_to "💖", post_like_path(post_like), class: "btn btn-like", method: :delete %>
+                                <% end %>
+                              <% end %>
+                              <p><%= @post.post_likes.count %> Likes</p>
+                            </div>
+                            <div>
+                              <% if user_signed_in? %>
+                                <% post_quality = current_user.post_qualities.find_by(post: @post) %>
+                                <% if post_quality.nil? %>
+                                  <%= button_to "✨", post_qualities_path, class: "btn btn-like", params: { post_quality: { post_id: @post.id }}, method: :post %>
+                                <% else %>
+                                  <%= button_to "✨", post_quality_path(post_quality), class: "btn btn-like", method: :delete %>
+                                <% end %>
+                              <% end %>
+                              <p><%= @post.post_qualities.count %> Quality</p>
+                            </div>
+                            <div>
+                              <% if user_signed_in? %>
+                                <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
+                                <% if saved_for_later.nil? %>
+                                  <%= button_to "🕔", saved_for_laters_path, class: "btn btn-like", params: { saved_for_later: { post_id: @post.id }}, method: :post %>
+                                  <p>Save for later</p>
+                                <% else %>
+                                  <%= button_to "🕔", saved_for_later_path(saved_for_later), class: "btn btn-like", method: :delete %>
+                                  <p>✅ Saved for later</p>
+                                <% end %>
+                              <% end %>
+                            </div>
+                          </div>
+
+
                           <p class="show-content"><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>
                   </div>
 
               <!-- reviews -->
                   <div class="notification reviews d-none" data-tabs-target="notification">
-                              <!--categories-->
-                              <div class="category">
-                                <% @post.categories.each do |category| %>
-                                  <p><%= category.name %></p>
-                                <% end %>
-                              </div>
-                              <!--like, quality buttons-->
-                              <div class="d-flex justify-content-center mb-5">
-                                <div>
-                                  <% if user_signed_in? %>
-                                    <% post_like = current_user.post_likes.find_by(post: @post) %>
-                                    <% if post_like.nil? %>
-                                      <%= button_to "🤍", post_likes_path, class: "btn btn-like", params: { post_like: { post_id: @post.id }}, method: :post %>
-                                    <% else %>
-                                      <%= button_to "💖", post_like_path(post_like), class: "btn btn-like", method: :delete %>
-                                    <% end %>
-                                  <% end %>
-                                  <p><%= @post.post_likes.count %> Likes</p>
-                                </div>
-                                <div>
-                                  <% if user_signed_in? %>
-                                    <% post_quality = current_user.post_qualities.find_by(post: @post) %>
-                                    <% if post_quality.nil? %>
-                                      <%= button_to "✨", post_qualities_path, class: "btn btn-like", params: { post_quality: { post_id: @post.id }}, method: :post %>
-                                    <% else %>
-                                      <%= button_to "✨", post_quality_path(post_quality), class: "btn btn-like", method: :delete %>
-                                    <% end %>
-                                  <% end %>
-                                  <p><%= @post.post_qualities.count %> Quality</p>
-                                </div>
-                                <div>
-                                  <% if user_signed_in? %>
-                                    <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
-                                    <% if saved_for_later.nil? %>
-                                      <%= button_to "🕔", saved_for_laters_path, class: "btn btn-like", params: { saved_for_later: { post_id: @post.id }}, method: :post %>
-                                      <p>Save for later</p>
-                                    <% else %>
-                                      <%= button_to "🕔", saved_for_later_path(saved_for_later), class: "btn btn-like", method: :delete %>
-                                      <p>✅ Saved for later</p>
-                                    <% end %>
-                                  <% end %>
-                                </div>
-                              </div>
+
 
                               <!--comments-->
                               <div class="form-group">
@@ -87,8 +91,43 @@
                                   <% end %>
                                   <% @post.comments.reverse.each do |comment|%>
                                     <div class="comment">
+                                      <div class="d-flex justify-content-center mb-5">
                                       <%= render partial: "user_avatar", locals: { user_id: comment.user_id } %>
                                       <p><%= comment.content %></p>
+                                      <!--comment likes-->
+                                      <div>
+                                        <% if user_signed_in? %>
+                                          <% comment_like = current_user.comment_likes.find_by(comment: comment) %>
+                                          <% if comment_like.nil? %>
+                                            <%= button_to "⬆", comment_likes_path, class: "btn btn-like", params: { comment_like: { comment_id: comment.id }}, method: :post %>
+                                          <% else %>
+                                            <%= button_to "⬆", comment_like_path(comment_like), class: "btn btn-like", method: :delete %>
+                                          <% end %>
+                                        <% end %>
+                                        <% if comment.nil? %>
+                                          <p>0 Upvotes</p>
+                                        <% else %>
+                                          <p><%= comment.comment_likes.count %> Upvotes</p>
+                                        <% end %>
+                                      </div>
+                                      <!--comment dislikes-->
+                                      <div>
+                                        <% if user_signed_in? %>
+                                          <% comment_dislike = current_user.comment_dislikes.find_by(comment: comment) %>
+                                          <% if comment_dislike.nil? %>
+                                            <%= button_to "⬇", comment_dislikes_path, class: "btn btn-like", params: { comment_dislike: { comment_id: comment.id }}, method: :post %>
+                                          <% else %>
+                                            <%= button_to "⬇", comment_dislike_path(comment_dislike), class: "btn btn-like", method: :delete %>
+                                          <% end %>
+                                        <% end %>
+                                        <% if comment.nil? %>
+                                          <p>0 Upvotes</p>
+                                        <% else %>
+                                          <p><%= comment.comment_dislikes.count %> Upvotes</p>
+                                        <% end %>
+                                      </div>
+                                      </div>
+
 
                                       <!-- Comment Replies -->
                                       <% if comment.comment_replies.any? %>
