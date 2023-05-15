@@ -18,13 +18,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  max-width: calc(100%-100px);
   padding-top: 75px;
 }
-
-.post-container > * {
-  position: absolute;
-}
-
 // .post-container::before {
 //   content: "";
 //   position: absolute;
@@ -305,7 +301,6 @@ body {
   transform: scale(1.03);
 }
 
-
 /* chatGPT */
 .avatar {
   width: 40px;
@@ -331,7 +326,8 @@ body {
   padding-left: 1em;
 }
 
-.show-comment-btn, .show-comment-reply-btn {
+.show-comment-btn,
+.show-comment-reply-btn {
   margin: 10px 0;
 }
 
