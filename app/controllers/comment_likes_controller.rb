@@ -8,7 +8,7 @@ class CommentLikesController < ApplicationController
       if @comment_like.save
         redirect_to comment_path(@comment)
       else
-        flash[:alert] = "You already liked this review"
+        flash[:alert] = "You already upvote this review"
         redirect_to comment_path(@comment)
       end
     else

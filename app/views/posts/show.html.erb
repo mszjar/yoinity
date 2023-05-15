@@ -91,6 +91,7 @@
                                   <% end %>
                                   <% @post.comments.reverse.each do |comment|%>
                                     <div class="comment">
+                                      <div class="d-flex justify-content-center mb-5">
                                       <%= render partial: "user_avatar", locals: { user_id: comment.user_id } %>
                                       <p><%= comment.content %></p>
                                       <!--comment likes-->
@@ -109,6 +110,24 @@
                                           <p><%= comment.comment_likes.count %> Upvotes</p>
                                         <% end %>
                                       </div>
+                                      <!--comment dislikes-->
+                                      <div>
+                                        <% if user_signed_in? %>
+                                          <% comment_dislike = current_user.comment_dislikes.find_by(comment: comment) %>
+                                          <% if comment_dislike.nil? %>
+                                            <%= button_to "⬇", comment_dislikes_path, class: "btn btn-like", params: { comment_dislike: { comment_id: comment.id }}, method: :post %>
+                                          <% else %>
+                                            <%= button_to "⬇", comment_dislike_path(comment_dislike), class: "btn btn-like", method: :delete %>
+                                          <% end %>
+                                        <% end %>
+                                        <% if comment.nil? %>
+                                          <p>0 Upvotes</p>
+                                        <% else %>
+                                          <p><%= comment.comment_dislikes.count %> Upvotes</p>
+                                        <% end %>
+                                      </div>
+                                      </div>
+
 
                                       <!-- Comment Replies -->
                                       <% if comment.comment_replies.any? %>
