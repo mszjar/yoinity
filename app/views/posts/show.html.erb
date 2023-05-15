@@ -1,35 +1,34 @@
   <div class="post-container" style="background-color: #343541">
-  <div class="post" >
-
-        <div class="mb-3 mt-3" data-controller="tabs">
-              <div class="tabs" >
-                <a href="/posts/" class="tab">Explore</a>
+    <div class="post" >
+      <div class="mb-3 mt-3" data-controller="tabs">
+        <div class="tabs" >
+          <a href="/posts/" class="tab">Explore</a>
                 <a href="" class="tab active" data-tabs-target="tab" data-action="click->tabs#changeTab">Story</a>
                 <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Reviews</a>
                 <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Author</a>
-              </div>
+        </div>
 
-              <div class="notifications">
-              <!-- story -->
-                  <div class="notification story" data-tabs-target="notification">
-                          <h1 class="title"> <%= @post.title %></h1>
-                          <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
-                          <div class="d-flex align-items-center mb-3">
-                            <h3 class="post-avatar"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
-                            <p style="margin-left: 16px"> by <%= @post.user.nickname %> </p>
-                            <div>
-                              <% if user_signed_in? %>
-                                <% user_follow = current_user.following?(User.find(@post.user_id)) %>
-                                <% if user_follow %>
-                                  <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
-                                <% else %>
-                                  <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
-                                <% end %>
-                              <% end %>
-                            </div>
-                          </div>
-                          <p class="show-content"><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>
-                  </div>
+        <div class="notifications">
+        <!-- story -->
+          <div class="notification story" data-tabs-target="notification">
+            <h1 class="title"> <%= @post.title %></h1>
+              <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
+              <div class="d-flex align-items-center mb-3">
+                <h3 class="post-avatar"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
+                <p style="margin-left: 16px"> by <%= @post.user.nickname %> </p>
+                <div>
+                  <% if user_signed_in? %>
+                  <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+                  <% if user_follow %>
+                  <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
+                  <% else %>
+                  <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
+                  <% end %>
+                  <% end %>
+                </div>
+              </div>
+              <p class="show-content"><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>
+            </div>
 
               <!-- reviews -->
                   <div class="notification reviews d-none" data-tabs-target="notification">
@@ -162,5 +161,5 @@
                   </div>
               </div>
         </div>
-  </div>
+    </div>
   </div>
