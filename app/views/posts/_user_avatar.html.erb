@@ -1,0 +1,5 @@
+<% if User.find(user_id).photo.key.nil? %>
+  <%= image_tag "default_image.png", class:"avatar" %>
+<% else %>
+  <%= cl_image_tag(User.find(user_id).photo.key, class:"avatar") %>
+<% end %>

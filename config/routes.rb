@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :show, :new, :create, :destroy]
   end
 
+  resources :comments do
+    resources :comment_replies, only: [:create, :destroy]
+  end
+
+
+
   resources :post_likes, only: [:create, :destroy]
   resources :post_qualities, only: [:create, :destroy]
   resources :saved_for_laters, only: [:index, :create, :destroy]
