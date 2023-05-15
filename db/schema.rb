@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_14_182656) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_15_091149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_182656) do
     t.bigint "post_id", null: false
     t.index ["category_id", "post_id"], name: "index_categories_posts_on_category_id_and_post_id"
     t.index ["post_id", "category_id"], name: "index_categories_posts_on_post_id_and_category_id"
+  end
+
+  create_table "comment_dislikes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "comment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_comment_dislikes_on_comment_id"
+    t.index ["user_id", "comment_id"], name: "index_comment_dislikes_on_user_id_and_comment_id", unique: true
+    t.index ["user_id"], name: "index_comment_dislikes_on_user_id"
+  end
+
+  create_table "comment_likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "comment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_comment_likes_on_comment_id"
+    t.index ["user_id", "comment_id"], name: "index_comment_likes_on_user_id_and_comment_id", unique: true
+    t.index ["user_id"], name: "index_comment_likes_on_user_id"
   end
 
   create_table "comment_replies", force: :cascade do |t|
@@ -147,6 +167,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_182656) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comment_dislikes", "comments"
+  add_foreign_key "comment_dislikes", "users"
+  add_foreign_key "comment_likes", "comments"
+  add_foreign_key "comment_likes", "users"
   add_foreign_key "comment_replies", "comments"
   add_foreign_key "comment_replies", "users"
   add_foreign_key "comments", "posts"
