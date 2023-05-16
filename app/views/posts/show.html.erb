@@ -99,53 +99,15 @@
                               <% end %>
                             </div>
                             <div>
-                              <h2><i class="far fa-message"></i></h2>
+                              <% if @post.comments.count == 0 %>
+                                  <i class="far fa-comment"></i>
+                              <% else %>
+                                  <i class="fas fa-comment"></i>
+                              <% end %>
                               <a href="" data-tabs-target="tab" data-action="click->tabs#changeTab">Reviews</a>
                             </div>
                           </div>
 
-                          <!--
-                          <div class="d-flex justify-content-center mb-5">
-                            <div>
-                              <% if user_signed_in? %>
-                                <% post_like = current_user.post_likes.find_by(post: @post) %>
-                                <% if post_like.nil? %>
-                                  <%= button_to "🤍", post_likes_path, class: "btn btn-like", params: { post_like: { post_id: @post.id }}, method: :post %>
-                                <% else %>
-                                  <%= button_to "💖", post_like_path(post_like), class: "btn btn-like", method: :delete %>
-                                <% end %>
-                              <% end %>
-                              <p><%= @post.post_likes.count %></p>
-                            </div>
-                            <div>
-                              <% if user_signed_in? %>
-                                <% post_quality = current_user.post_qualities.find_by(post: @post) %>
-                                <% if post_quality.nil? %>
-                                  <%= button_to "✨", post_qualities_path, class: "btn btn-like", params: { post_quality: { post_id: @post.id }}, method: :post %>
-                                <% else %>
-                                  <%= button_to "✨", post_quality_path(post_quality), class: "btn btn-like", method: :delete %>
-                                <% end %>
-                              <% end %>
-                              <p><%= @post.post_qualities.count %></p>
-                            </div>
-                            <div>
-                              <% if user_signed_in? %>
-                                <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
-                                <% if saved_for_later.nil? %>
-                                  <%= button_to "🕔", saved_for_laters_path, class: "btn btn-like", params: { saved_for_later: { post_id: @post.id }}, method: :post %>
-                                  <p>Save for later</p>
-                                <% else %>
-                                  <%= button_to "🕔", saved_for_later_path(saved_for_later), class: "btn btn-like", method: :delete %>
-                                  <p>✅ Saved for later</p>
-                                <% end %>
-                              <% end %>
-                            </div>
-                            <div>
-                              <h2><i class="fa-solid fa-message" style="color: white"></i></h2>
-                              <a href="" data-tabs-target="tab" data-action="click->tabs#changeTab">Reviews</a>
-                            </div>
-                          </div>
-                          -->
 
                           <p class="show-content"><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>
                   </div>
