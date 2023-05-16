@@ -20,20 +20,12 @@ export default class extends Controller {
     const notifications = Array.from(this.notificationTargets)
     notifications.forEach((notification) => {
       notification.classList.add("d-none")
-      if (event.currentTarget.innerHTML === "Cover") {
-        if (notification.classList[1] === "cover") {
-          notification.classList.remove("d-none")
-        }
-      } else if (event.currentTarget.innerHTML === "Story") {
+      if (event.currentTarget.innerHTML === "X") {
         if (notification.classList[1] === "story") {
           notification.classList.remove("d-none")
         }
       } else if (event.currentTarget.innerHTML === "Reviews") {
         if (notification.classList[1] === "reviews") {
-          notification.classList.remove("d-none")
-        }
-      } else if (event.currentTarget.innerHTML === "Author") {
-        if (notification.classList[1] === "author") {
           notification.classList.remove("d-none")
         }
       } else {

@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   get "dashboard/show", to: "dashboard#show"
   get "dashboard/saved", to: "dashboard#saved"
+  get '/@:nickname', to: 'profiles#show', as: 'profile'
   get 'about', to: 'pages#about'
   get 'web3', to: 'pages#web3'
 end

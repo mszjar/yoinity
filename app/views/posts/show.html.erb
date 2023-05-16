@@ -1,12 +1,25 @@
   <div class="post-container" style="background-color: #343541">
   <div class="post" >
 
-        <div class="mb-3 mt-3" data-controller="tabs">
+          <!--Tabs-->
+        <div class="cards-header" data-controller="tabs">
+          <h5 class="cards-header-item tab-index active" data-tabs-target="tab" data-action="click->tabs#changeTab">
+          For you
+          </h5>
+          <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
+          Following
+          </h5>
+          <h5 class="cards-header-item tab-index " data-tabs-target="tab" data-action="click->tabs#changeTab">
+          Highest quality
+          </h5>
+          <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
+          Most likable
+          </h5>
+        </div>
+
+        <div class="mt-3" data-controller="tabs">
               <div class="tabs" >
-                <a href="/posts/" class="tab">Explore</a>
-                <a href="" class="tab active" data-tabs-target="tab" data-action="click->tabs#changeTab">Story</a>
-                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Reviews</a>
-                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Author</a>
+                <a href="/posts/" class="tab">Back to feed</a>
               </div>
 
               <div class="notifications">
@@ -15,7 +28,11 @@
                           <h1 class="title"> <%= @post.title %></h1>
                           <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
                           <div class="d-flex align-items-center mb-3">
-                            <h3 class="post-avatar"> <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %></h3>
+                            <h3 class="post-avatar">
+                              <%= link_to profile_path(@post.user.nickname) do %>
+                                <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %>
+                              <% end %>
+                            </h3>
                             <p style="margin-left: 16px"> by <%= @post.user.nickname %> </p>
                             <div>
                               <% if user_signed_in? %>
@@ -46,7 +63,7 @@
                                   <%= button_to "💖", post_like_path(post_like), class: "btn btn-like", method: :delete %>
                                 <% end %>
                               <% end %>
-                              <p><%= @post.post_likes.count %> Likes</p>
+                              <p><%= @post.post_likes.count %></p>
                             </div>
                             <div>
                               <% if user_signed_in? %>
@@ -57,7 +74,7 @@
                                   <%= button_to "✨", post_quality_path(post_quality), class: "btn btn-like", method: :delete %>
                                 <% end %>
                               <% end %>
-                              <p><%= @post.post_qualities.count %> Quality</p>
+                              <p><%= @post.post_qualities.count %></p>
                             </div>
                             <div>
                               <% if user_signed_in? %>
@@ -71,6 +88,10 @@
                                 <% end %>
                               <% end %>
                             </div>
+                            <div>
+                              <h2><i class="fa-solid fa-message" style="color: white"></i></h2>
+                              <a href="" data-tabs-target="tab" data-action="click->tabs#changeTab">Reviews</a>
+                            </div>
                           </div>
 
 
@@ -79,8 +100,7 @@
 
               <!-- reviews -->
                   <div class="notification reviews d-none" data-tabs-target="notification">
-
-
+                              <a href="" data-tabs-target="tab" data-action="click->tabs#changeTab">X</a>
                               <!--comments-->
                               <div class="form-group">
                                 <div class="text">
@@ -168,64 +188,6 @@
                               </div>
 
                   </div>
-
-              <!-- author -->
-                  <div class="notification author d-none" data-tabs-target="notification">
-                            <div class="profile">
-                                    <div  class="mb-2"><%= render partial: "user_avatar", locals: { user_id: @post.user_id } %></div>
-                                    <div class="d-flex justify-content-center">
-                                          <p  class="mb-2"><%= @post.user.nickname %></p>
-                                          <div>
-                                            <% if user_signed_in? %>
-                                              <% user_follow = current_user.following?(User.find(@post.user_id)) %>
-                                              <% if user_follow %>
-                                                <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
-                                              <% else %>
-                                                <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
-                                              <% end %>
-                                            <% end %>
-                                          </div>
-                                    </div>
-                                      <div class="d-flex justify-content-center">
-                                        <p  class="mb-5", style="margin-right: 30px"><%= @post.user.posts.count %> Stories</p>
-                                        <p  class="mb-5"><%= @post.user.followers_count %> Followers</p>
-                                      </div>
-                            </div>
-
-                            <!-- official site -->
-                            <a href=<%= @post.url %> target= "_blank">Official site🔗</a>
-                            <p>More stories from <%= @post.user.nickname %></p>
-                            <div class="cards">
-                                <% @post.user.posts.each do |post| %>
-                                <%= link_to post_path(post)  do %>
-                                    <div  class="post-card-small">
-                                      <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
-                                      <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>
-                                      <h5 class="language"><%= post.language %> from </h5>
-                                      <% if post.language == "English" %>
-                                        <div class= "england-flag"></div>
-                                      <% elsif post.language == "French" %>
-                                        <div class= "france-flag"></div>
-                                      <% elsif post.language == "Spanish" %>
-                                        <div class= "spain-flag"></div>
-                                      <% end %>
-                                      <div class="infos">
-                                        <h3 class="post-avatar"> <%= cl_image_tag post.user.photo.key, class: "avatar-small" %></h3>
-                                        <% if post.photo.key.nil? %>
-                                            <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post" %></h3>
-                                            <% else %>
-                                            <h3 class="post-image"> <%= cl_image_tag post.photo.key, class: "avatar-post" %></h3>
-                                        <% end %>
-                                        <h2 class="title"><%=post.title%></h2>
-                                        <h3 class="nickname"> By <%=post.user.nickname%></h3>
-                                        <h3 class="nickname"><i class="fa-solid fa-badge-check" style="color: #ffffff;"></i></h3>
-                                        <h3 class="date"><%= post.created_at.strftime("%-d %B %Y") %></h3>
-                                        <p class="content"><%= post.content %></p>
-                                      </div>
-                                    </div>
-                                <%end%>
-                                <%end%>
-                            </div>
 
                   </div>
               </div>
