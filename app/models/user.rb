@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_save :downcase_nickname
+
   has_one_attached :photo
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -23,4 +25,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  # Downcase nickname before saving to database
+  private
+
+  def downcase_nickname
+    self.nickname.downcase!
+  end
 end
