@@ -1,4 +1,8 @@
+require 'securerandom'
+
 class Post < ApplicationRecord
+  before_create :generate_token
+
   has_one_attached :photo
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -18,5 +22,10 @@ class Post < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
-    
+
+  private
+
+  def generate_token
+    self.token = SecureRandom.urlsafe_base64(15)
+  end
 end

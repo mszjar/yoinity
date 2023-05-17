@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :posts do
+  resources :posts, param: :token, path: 'p', as: :posts do
     resources :comments, only: [:index, :show, :new, :create, :destroy]
   end
 
