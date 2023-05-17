@@ -35,7 +35,6 @@ post = Post.create!(
 post.photo.attach(io: file, filename: "post1.jpg", content_type: "image/jpg")
 post.save
 
-file = URI.open("app/assets/images/tezos_wallpaper.jpg")
 post = Post.create!(
   title: "Tezos, a blockchain that counts in the French crypto ecosystem.",
   content: "According to Deloitte's Web3 panorama, Tezos ranks 2nd in terms of usage among French blockchain infrastructure providers, behind the queen Ethereum. The French Web3 ecosystem is clearly dynamic. This explains the interest of multinationals in this industry in France, including Circle, which hopes to establish itself in 2023. But what exactly does this ecosystem look like? Deloitte and the Village by Crédit Agricole have taken an interest in this area, producing a panorama of French Web3 startups. This one focuses on the analysis of 205 startups, providers of blockchain infrastructure or financial services - and others as well. French Web3 covers the entire value chain The study, published earlier this month, thus finds that \"the proposed solutions cover the entire Web3 value chain.\" As in other countries, finance plays an important role. This has been and remains one of the most promising areas for crypto technologies. Deloitte notes that the ecosystem \"of French Web3 startups offering solutions related to financial services is very rich\". This is not the only French specialty, however. Infrastructure is another. Startups in this segment design, for example, essential products for exchanging digital assets between different blockchains, creating a digital identity, or enabling the tokenization of assets. Tezos 2nd behind Ethereum, but ahead of Bitcoin Web3 startups are leveraging different blockchain networks. The majority (80%) rely on the use of a single blockchain. The remaining 20% (mostly finance) have chosen to use multi-chain. Ethereum, the reference for decentralized applications and programmable contracts, has the lion's share in France. Of the twenty or so blockchains in use, Ethereum concerns 31% of Web3 projects. At 13%, Tezos is not just a figurehead, however, and is in second place. Entertainment (sports, gaming and art) constitutes a third pole within the French Web3 ecosystem. And if its first startups were born in 2010, the peak of creation is between 2020 and 2022, notes the study. 36% of NSPs, 44% of which are less than 3 years old In terms of targets, they stand out from the more traditional software sector in France, which is very focused on businesses (B2B). In fact, almost all of them are aimed at individuals (83%), compared with 17% for B2B. The separation between the two worlds is not totally watertight, however. 64% of startups target individuals directly and 36% do so via companies (B2B2C). Moreover, 30% of them target both individuals and companies. This dual positioning concerns more specifically investment solutions on or with digital assets. Simply put, these are essentially crypto finance startups. A promising crypto ecosystem Among the financial services providers, 36% are registered as PSANs with the AMF. Another interesting fact is that among PSANs: About one in two [companies] (44%) were founded less than 3 years ago. This demonstrates the dynamics of the ecosystem that has been initiated over the past few years,\" the authors comment. Finance is not the only outlet for French players. Deloitte reminds us that the ecosystem \"is in full development\". Thus, fundraising is concentrated on startups in early-stage. As a result, France has a \"pool of startups with significant development potential. 23% of startups in the study have 23% of the startups in the study have raised seed capital, while 51% have not raised any funds. More generally, the country \"leads the way in Web3 in Europe and has assets to play with on a global level. These include incubators, investors and a pool of talent.",
@@ -43,11 +42,8 @@ post = Post.create!(
   language: "English",
   user: user2
 )
-
-post.photo.attach(io: file, filename: "post2.jpg", content_type: "image/jpg")
 post.save
 
-file = URI.open("app/assets/images/chatgpt_wallpaper.gif")
 post = Post.create!(
   title: "Yoinity Growth 101: Skyrocket Your Following with These 10 Easy Steps",
   content: "Learn how I gained 200+ followers in just a week and how you can do it too!
@@ -120,11 +116,8 @@ post = Post.create!(
   language: "English",
   user: user2
 )
-
-post.photo.attach(io: file, filename: "post3.jpg", content_type: "image/jpg")
 post.save
 
-file = URI.open("app/assets/images/twitter_wallpaper.jpg")
 post = Post.create!(
   title: "Cómo conseguir seguidores en Twitter?",
   content: "En este post primero empezaremos cambiando el chip sobre la red social “Twitter” y como conseguir de manera legal uno a uno seguidores, contaré un poco mi experiencia utilizando varias herramientas que surgieron y dieron un buen resultado.
@@ -163,11 +156,8 @@ post = Post.create!(
   language: "Spanish",
   user: user2
 )
-
-post.photo.attach(io: file, filename: "post4.jpg", content_type: "image/jpg")
 post.save
 
-file = URI.open("app/assets/images/hacker.gif")
 post = Post.create!(
   title: "Comment générer un revenu en développant seul son produit",
   content: "Indie hacker français, Jérôme Gangneux nous raconte comment il a développé et monétisé son produit “Thread Reader” en quelques semaines.
@@ -295,8 +285,6 @@ post = Post.create!(
   language: "French",
   user: user3
 )
-
-post.photo.attach(io: file, filename: "post5.jpg", content_type: "image/jpg")
 post.save
 
 puts "Finished!"
