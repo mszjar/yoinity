@@ -36,7 +36,7 @@
                                 <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %>
                               <% end %>
                             </div>
-                              <p class="d-flex align-items-center"> by <%= @post.user.nickname %> </p>
+                              <p class="d-flex align-items-center" style="font-size: 16px" >By <%= @post.user.nickname %> </p>
                             <div class="d-flex align-items-center" >
                               <% if user_signed_in? %>
                                 <% user_follow = current_user.following?(User.find(@post.user_id)) %>

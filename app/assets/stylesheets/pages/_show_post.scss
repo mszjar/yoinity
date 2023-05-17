@@ -12,7 +12,8 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content:center;
-  margin-bottom: 15px;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 .show-icons-item {
@@ -20,8 +21,8 @@
   flex-direction: row-reverse;
   align-items: center; /* Optional: Aligns the items horizontally */
   justify-content: center; /* Optional: Aligns the items vertically */
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   p {
     // font-family: arial-black, sans-serif;
     font-size: 16px;
