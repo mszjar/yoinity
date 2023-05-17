@@ -21,7 +21,7 @@ export default class extends Controller {
     const notifications = Array.from(this.notificationTargets)
     notifications.forEach((notification) => {
       notification.classList.add("d-none")
-      if (event.currentTarget.innerHTML === "X") {
+      if (event.currentTarget.dataset.tabsValue === "story") {
         if (notification.classList[1] === "story") {
           notification.classList.remove("d-none")
         }
