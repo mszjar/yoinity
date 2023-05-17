@@ -25,7 +25,7 @@ export default class extends Controller {
         if (notification.classList[1] === "story") {
           notification.classList.remove("d-none")
         }
-      } else if (event.currentTarget.innerHTML === "Reviews") {
+      } else if (event.currentTarget.dataset.tabsValue === "reviews") {
         if (notification.classList[1] === "reviews") {
           notification.classList.remove("d-none")
         }
