@@ -54,6 +54,7 @@
                           </div>
                           <!--like, quality, reviews buttons-->
                           <div class="d-flex justify-content-center mb-5">
+                            <!--icon like-->
                             <div>
                               <% if user_signed_in? %>
                                 <% post_like = current_user.post_likes.find_by(post: @post) %>
@@ -69,6 +70,7 @@
                               <% end %>
                               <p><%= @post.post_likes.count %></p>
                             </div>
+                            <!--icon quality-->
                             <div>
                               <% if user_signed_in? %>
                                 <% post_quality = current_user.post_qualities.find_by(post: @post) %>
@@ -84,6 +86,17 @@
                               <% end %>
                               <p><%= @post.post_qualities.count %></p>
                             </div>
+                            <!--icon reviews-->
+                            <div>
+                              <% if @post.comments.count == 0 %>
+                                 <i class="far fa-comment btn btn-like"></i>
+                              <% else %>
+                                 <i class="fas fa-comment btn btn-like"></i>
+                              <% end %>
+                              <a href="" data-tabs-target="tab" data-action="click->tabs#changeTab">Reviews</a>
+                              <p><%= @post.comments.count %></p>
+                            </div>
+                            <!--icon save for later-->
                             <div>
                               <% if user_signed_in? %>
                                 <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
@@ -98,14 +111,8 @@
                                 <% end %>
                               <% end %>
                             </div>
-                            <div>
-                              <% if @post.comments.count == 0 %>
-                                  <i class="far fa-comment"></i>
-                              <% else %>
-                                  <i class="fas fa-comment"></i>
-                              <% end %>
-                              <a href="" data-tabs-target="tab" data-action="click->tabs#changeTab">Reviews</a>
-                            </div>
+
+
                           </div>
 
 

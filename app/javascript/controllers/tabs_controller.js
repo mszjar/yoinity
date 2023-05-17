@@ -16,6 +16,7 @@ export default class extends Controller {
     })
     event.currentTarget.classList.add("active")
     console.log(event.currentTarget.innerHTML)
+    console.log(event.currentTarget.dataset)
 
     const notifications = Array.from(this.notificationTargets)
     notifications.forEach((notification) => {
