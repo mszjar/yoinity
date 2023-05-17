@@ -53,59 +53,68 @@
                             <% end %>
                           </div>
                           <!--like, quality, reviews buttons-->
-                          <div class="d-flex justify-content-center mb-5">
-                            <div>
+                          <div class="show-icons">
+                            <!--icon like-->
+                            <div class="show-icons-item">
                               <% if user_signed_in? %>
                                 <% post_like = current_user.post_likes.find_by(post: @post) %>
                                 <% if post_like.nil? %>
-                                  <%= button_to post_likes_path, class: "btn btn-like", params: { post_like: { post_id: @post.id }}, method: :post do %>
+                                  <%= button_to post_likes_path, class: "btn icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
                                     <i class="far fa-heart"></i>
                                   <% end %>
                                 <% else %>
-                                  <%= button_to post_like_path(post_like), class: "btn btn-like", method: :delete do %>
-                                    <i class="fas fa-heart"></i>
+                                  <%= button_to post_like_path(post_like), class: "btn icon-button", method: :delete do %>
+                                    <i class="fas fa-heart" style="color: #FF3040"></i>
                                   <% end %>
                                 <% end %>
                               <% end %>
                               <p><%= @post.post_likes.count %></p>
                             </div>
-                            <div>
+                            <!--icon quality-->
+                            <div class="show-icons-item">
                               <% if user_signed_in? %>
                                 <% post_quality = current_user.post_qualities.find_by(post: @post) %>
                                 <% if post_quality.nil? %>
-                                  <%= button_to post_qualities_path, class: "btn btn-like", params: { post_quality: { post_id: @post.id }}, method: :post do %>
+                                  <%= button_to post_qualities_path, class: "btn icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
                                     <i class="far fa-star"></i>
                                   <% end %>
                                 <% else %>
-                                  <%= button_to post_quality_path(post_quality), class: "btn btn-like", method: :delete do %>
-                                    <i class="fas fa-star"></i>
+                                  <%= button_to post_quality_path(post_quality), class: "btn icon-button", method: :delete do %>
+                                    <i class="fas fa-star" style="color: #FFD43B"></i>
                                   <% end %>
                                 <% end %>
                               <% end %>
                               <p><%= @post.post_qualities.count %></p>
                             </div>
-                            <div>
+                            <!--icon reviews-->
+                            <div class="show-icons-item">
+                              <% if @post.comments.count == 0 %>
+                                <button class="btn icon-button"><i class="far fa-comment" data-tabs-target="tab" data-action="click->tabs#changeTab" data-tabs-value="reviews"></i></button>
+                              <% else %>
+                                <button class="btn icon-button"><i class="fas fa-comment" data-tabs-target="tab" data-action="click->tabs#changeTab" data-tabs-value="reviews"></i></button>
+                              <% end %>
+                              <p><%= @post.comments.count %></p>
+                            </div>
+
+                            <!--icon save for later-->
+                            <div class="show-icons-item show-icons-item-end">
                               <% if user_signed_in? %>
                                 <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
                                 <% if saved_for_later.nil? %>
-                                  <%= button_to saved_for_laters_path, class: "btn btn-like", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
+                                  <%= button_to saved_for_laters_path, class: "btn icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
                                     <i class="far fa-clock"></i>
                                   <% end %>
+                                    <p>Save</p>
                                 <% else %>
-                                  <%= button_to saved_for_later_path(saved_for_later), class: "btn btn-like", method: :delete do %>
+                                  <%= button_to saved_for_later_path(saved_for_later), class: "btn icon-button", method: :delete do %>
                                     <i class="fas fa-clock"></i>
                                   <% end %>
+                                    <p>Saved</p>
                                 <% end %>
                               <% end %>
                             </div>
-                            <div>
-                              <% if @post.comments.count == 0 %>
-                                  <i class="far fa-comment"></i>
-                              <% else %>
-                                  <i class="fas fa-comment"></i>
-                              <% end %>
-                              <a href="" data-tabs-target="tab" data-action="click->tabs#changeTab">Reviews</a>
-                            </div>
+
+
                           </div>
 
 

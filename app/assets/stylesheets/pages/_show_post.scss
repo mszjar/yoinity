@@ -6,6 +6,30 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.1)
 }
 
+.show-icons {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: start;
+  margin-bottom: 15px;
+}
+
+.show-icons-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Optional: Aligns the items horizontally */
+  justify-content: center; /* Optional: Aligns the items vertically */
+  padding-bottom: 5px;
+}
+
+.show-icons-item-end {
+  margin-left: auto;
+}
+
+.show-icons-item p {
+  font-size: 12px;
+}
+
 .post-photo {
   object-fit: cover;
   height: 400px;
