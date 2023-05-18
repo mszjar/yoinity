@@ -1,9 +1,8 @@
-  <div class="post-container">
-          <div class="post" >
-
-            <!-- TO PUT FILTERS ON A DIFFERENT COLUMN ON THE LEFT SIDE OF THE MAIN INDEX_VIEW-->
-            <!--Button filters-->
-            <!--
+<div class="post-container">
+  <div class="post" >
+    <!-- TO PUT FILTERS ON A DIFFERENT COLUMN ON THE LEFT SIDE OF THE MAIN INDEX_VIEW-->
+    <!--Button filters-->
+    <!--
             <div class="dropdown filters">
               <button class="btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Advanced Filters
@@ -15,8 +14,8 @@
               </ul>
             </div>
             -->
-            <!--Button categories-->
-            <!--
+    <!--Button categories-->
+    <!--
             <div class="mb-3 mt-3" data-controller="tabs">
               <div class="tabs" >
                 <a href="" class="tab active" data-tabs-target="tab" data-action="click->tabs#changeTab">All</a>
@@ -28,24 +27,22 @@
               </div>
             </div>
             -->
-
-            <!--Tabs-->
-            <div class="cards-header" data-controller="tabs">
-              <h5 class="cards-header-item tab-index active" data-tabs-target="tab" data-action="click->tabs#changeTab">
-              For you
-              </h5>
-              <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
-              Following
-              </h5>
-              <h5 class="cards-header-item tab-index " data-tabs-target="tab" data-action="click->tabs#changeTab">
-              Highest quality
-              </h5>
-              <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
-              Most likable
-              </h5>
-            </div>
-
-            <!--cards-->
+    <!--Tabs-->
+    <div class="cards-header" data-controller="tabs">
+      <h5 class="cards-header-item tab-index active" data-tabs-target="tab" data-action="click->tabs#changeTab">
+        For you
+      </h5>
+      <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
+        Following
+      </h5>
+      <h5 class="cards-header-item tab-index " data-tabs-target="tab" data-action="click->tabs#changeTab">
+        Highest quality
+      </h5>
+      <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
+        Most likable
+      </h5>
+    </div>
+    <!--cards
                 <div class="cards">
                     <% @posts.each do |post| %>
                     <%= link_to post_path(post)  do %>
@@ -76,6 +73,14 @@
                         </div>
                     <%end%>
                     <%end%>
-                </div>
-            </div>
+                </div>-->
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
 </div>
