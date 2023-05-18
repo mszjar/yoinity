@@ -6,6 +6,34 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.1)
 }
 
+.show-icons {
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content:center;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.show-icons-item {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center; /* Optional: Aligns the items horizontally */
+  justify-content: center; /* Optional: Aligns the items vertically */
+  padding-top: 8px;
+  padding-bottom: 8px;
+  p {
+    // font-family: arial-black, sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+  }
+}
+
+.show-icons-item-end {
+  margin-left: auto;
+}
+
 .post-photo {
   object-fit: cover;
   height: 400px;
@@ -70,5 +98,5 @@
 }
 
 .show-content {
-  margin-top: 12px;
+  margin-top: 34px;
 }

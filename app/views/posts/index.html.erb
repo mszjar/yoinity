@@ -44,8 +44,8 @@
     </div>
     <!--cards
                 <div class="cards">
-                    <% @posts.each do |post| %>
-                    <%= link_to post_path(post)  do %>
+                    <% @posts.reverse.each do |post| %>
+                    <%= link_to post_path(post.token)  do %>
                         <div  class="post-card-small">
                           <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
                           <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>

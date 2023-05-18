@@ -21,7 +21,6 @@ class PostsController < ApplicationController
     @post.user = current_user
     authorize @post
     if @post.save
-      # sleep 3
       redirect_to post_path(@post)
     else
       render :new, status: :unprocessable_entity
@@ -52,7 +51,7 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by!(token: params[:token])
   end
 
   def params_post

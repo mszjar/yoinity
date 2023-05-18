@@ -1,8 +1,9 @@
 /* Your tabs CSS code here */
 .tabs {
   list-style: none;
-  margin-bottom: 16px;
+  // margin-bottom: 16px;
   display: flex;
+  justify-content: end;
 }
 
 .tab {
