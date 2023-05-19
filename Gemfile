@@ -86,3 +86,4 @@ gem "cloudinary"
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem "font-awesome-sass", "~> 6.4.0"
 gem 'htmlbeautifier'
+gem 'aws-sdk-polly'

@@ -23,6 +23,10 @@ class Post < ApplicationRecord
       tsearch: { prefix: true }
     }
 
+  def speech_duration
+    content.split.size / 150.0
+  end
+
   private
 
   def generate_token

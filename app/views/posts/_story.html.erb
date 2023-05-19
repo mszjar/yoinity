@@ -1,6 +1,9 @@
 <!--title-->
 <h1 class="title"> <%= @post.title %></h1>
 
+<!--duration-->
+<p><%= @post.speech_duration.round(0) %> minutes</p>
+
 <!--like, quality, reviews buttons-->
 <div class="show-icons">
   <!--author avatar-->

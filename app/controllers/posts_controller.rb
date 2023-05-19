@@ -48,6 +48,23 @@ class PostsController < ApplicationController
   def edit
   end
 
+  # def speech
+  #   set_post
+  #   authorize @post, :show?
+  #   polly_client = PollyClient.new
+  #   file_path = polly_client.synthesize_speech(@post.content)
+  #   send_file file_path, filename: 'speech.mp3', type: 'audio/mpeg'
+  # end
+
+  def speech
+    set_post
+    authorize @post, :show?
+    polly_client = PollyClient.new
+    file_path = polly_client.synthesize_speech(@post.content)
+    send_file file_path, filename: 'speech.mp3', type: 'audio/mpeg', disposition: 'inline' # inline will play the audio in the browser
+  end
+
+
   private
 
   def set_post
