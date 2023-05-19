@@ -36,12 +36,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :posts, param: :token do
-  #   member do
-  #     get 'speech'
-  #   end
-  # end
-
   resources :posts, param: :token do
     member do
       get 'speech', to: 'posts#speech', defaults: { format: 'mp3' }

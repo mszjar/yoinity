@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by!(token: params[:token])
     authorize @comment
   end
 
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     authorize @comment
     if @comment.save
-      redirect_to post_path(@post)
+      redirect_to post_path(@post.token)
     else
       render "posts/show", status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by!(token: params[:token])
   end
 
   def params_comment
