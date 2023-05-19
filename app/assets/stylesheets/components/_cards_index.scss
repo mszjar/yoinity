@@ -17,6 +17,18 @@
   width: 50%;
 }
 
+.card {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+}
+
+.card-images {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .container-index {
   margin: 0 auto;
   padding: 30px;
