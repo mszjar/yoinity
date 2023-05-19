@@ -16,39 +16,48 @@
   left: 1px;
   right: 25px;
   top: 1px;
-  padding: 280px;
+  //padding: 280px;
 }
 
-.post-card-small .title {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  position: absolute;
+.card-body .infos .title {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  //position: absolute;
   text-decoration: none;
   font-size: 30px;
   font-weight: bold;
   color: white;
-  left: 1px;
-  top: 70px;
-  width: 450px;
+  //left: 1px;
+  //top: 70px;
+  width: 100%;
 }
 
-.post-card-small .nickname {
-  position: absolute;
+.card-body .infos .info-mini {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-body .infos .nickname {
+  //position: absolute;
   text-decoration: none;
   font-size: 12px;
   font-weight: bold;
+  //color: black;
   color: rgba(255, 255, 255, 0.5);
-  left: 80px;
-  top: 30px;
+  //left: 80px;
+  //top: 30px;
 }
 
-.post-card-small .date {
-  position: absolute;
+.card-body .infos .date {
+  //position: absolute;
   text-decoration: none;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
+  //color: black;
   color: rgba(173, 173, 173, 0.4);
-  left: 170px;
-  top: 30px;
+  //left: 170px;
+  //top: 30px;
 }
 
 .post-card-small .post-avatar {
@@ -71,22 +80,22 @@
   top: 70px;
 }
 
-.post-card-small .like {
-  font-size: 25px;
-  position: absolute;
+.card-body .infos .like {
+  font-size: 15px;
+  //position: absolute;
   color: white;
   text-decoration: none;
   right: 15px;
-  top: 80px;
+  //top: 80px;
 }
 
-.post-card-small .quality {
-  font-size: 25px;
-  position: absolute;
+.card-body .infos .quality {
+  font-size: 15px;
+  //position: absolute;
   color: white;
   text-decoration: none;
   right: 15px;
-  top: 130px;
+  //top: 130px;
 }
 
 .post-card-small .trend {
@@ -141,65 +150,66 @@
   top: 68px;
 }
 
-.post-card-small .language {
-  position: absolute;
+.card-body .infos .language {
+  //position: absolute;
   color: white;
   font-weight: lighter !important;
   text-decoration: none;
   font-size: 10px;
-  left: 300px;
-  top: 30px;
+  //left: 300px;
+  //top: 30px;
 }
 
-.post-card-small .england-flag {
+.card-body .infos .england-flag {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/320px-Flag_of_the_United_Kingdom_%283-5%29.svg.png");
   width: 25px;
   height: 15px;
   background-size: cover;
-  position: absolute;
+  //position: absolute;
   text-decoration: none;
   left: 380px;
   top: 30px;
 }
 
-.post-card-small .france-flag {
+.card-body .infos .france-flag {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/320px-Flag_of_France.svg.png");
   width: 25px;
   height: 15px;
   background-size: cover;
-  position: absolute;
+  //position: absolute;
   text-decoration: none;
   left: 380px;
   top: 30px;
 }
 
-.post-card-small .spain-flag {
+.card-body .infos .spain-flag {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png");
   width: 25px;
   height: 15px;
   background-size: contain;
-  position: absolute;
+  //position: absolute;
   text-decoration: none;
   left: 380px;
   top: 30px;
 }
 
-.post-card-small .content {
+.card-body .infos .content {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.5em; /* Set line height to match height of a single line of text */
   max-height: 3.5em; /* Set max height to match 2 lines of text (2 * line-height) */
-  position: absolute;
+  //position: absolute;
   text-decoration: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 16px;
   font-weight: lighter !important;
   color: white;
-  left: 1px;
-  top: 150px;
-  width: 450px;
+  //left: 1px;
+  //top: 150px;
+  width: 80%;
 }
 
 .post-card-small .read {

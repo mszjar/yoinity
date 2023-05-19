@@ -1,7 +1,8 @@
 .text {
   margin-bottom: 100px;
   font-size: 18px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: lighter;
   color: white;
 }
@@ -14,9 +15,10 @@
 .form-container {
   max-width: calc(100% - 100px);
   min-width: 375px;
-  width: 80%;
+  width: 35%;
   font-size: 24px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .header {
@@ -36,12 +38,13 @@
 
 .form-button {
   font-size: 18px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 400;
-  color: #6C7570;
+  color: #6c7570;
   border: 0;
   border-radius: 4px;
-  background-color: #DDE0E3;
+  background-color: #dde0e3;
   border-color: transparent;
   padding-left: 6px;
   padding-right: 6px;
@@ -59,7 +62,7 @@
 }
 
 .form-control:focus {
-  color: #ECECF1;
+  color: #ececf1;
   background-color: #343541;
   border-color: transparent;
   outline: 0;
@@ -68,10 +71,11 @@
 
 .form-title {
   margin-top: 15px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 24px;
   font-weight: 500;
-  color: #ECECF1;
+  color: #ececf1;
   line-height: 43.7333px;
 }
 
@@ -88,7 +92,7 @@
 }
 
 .exit-button {
-  color: #6C7570;
+  color: #6c7570;
 }
 
 .exit-button:hover {
@@ -98,7 +102,7 @@
 .hyperlink-container {
   display: flex;
   flex-direction: row;
-  color: #6C7570;
+  color: #6c7570;
 
   //align-items: center;
 
@@ -114,12 +118,13 @@
 .imagelink-container {
   display: flex;
   flex-direction: row;
-  color: #6C7570;
+  color: #6c7570;
 
   //background-color: blue;
 }
 
 .form-label {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 24px;
 }
