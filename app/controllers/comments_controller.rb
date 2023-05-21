@@ -12,7 +12,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    raise
     @comment = Comment.new(params_comment)
     @comment.post = @post
     @comment.user = current_user
@@ -20,10 +19,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post.token)
     else
-      raise
       render "posts/show", status: :unprocessable_entity
     end
-
   end
 
   def show
@@ -38,10 +35,11 @@ class CommentsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find_by!(token: params[:token])
+    @post = Post.find_by!(token: params[:comment][:post_token])
   end
 
+
   def params_comment
-    params.require(:comment).permit(:content, :user_id)
+    params.require(:comment).permit(:content)
   end
 end

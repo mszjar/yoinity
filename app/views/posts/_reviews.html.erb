@@ -7,8 +7,10 @@
 
     <%= simple_form_for [@post, @comment] do |f| %>
       <%= f.input :content, class: "form-control", placeholder: "Type your review here...", label: false %>
+      <%= f.input :post_token, as: :hidden, input_html: { value: @post.token } %>
       <%= f.submit "Submit", class: "btn btn-flat show-comment-btn" %>
     <% end %>
+
 
     <% @post.comments.reverse.each do |comment|%>
       <div class="comment">
