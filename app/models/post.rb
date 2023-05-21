@@ -14,6 +14,7 @@ class Post < ApplicationRecord
 
   validates :title, :content, :language, presence: true
   validates :title, length: { maximum: 80 }
+  validates :content, length: { maximum: 1000 }
 
 
   include PgSearch::Model
