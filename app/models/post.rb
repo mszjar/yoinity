@@ -14,7 +14,7 @@ class Post < ApplicationRecord
 
   validates :title, :content, :language, presence: true
   validates :title, length: { maximum: 80 }
-  validates :content, length: { maximum: 1000 }
+  validates :content, length: { maximum: 4999 }
 
 
   include PgSearch::Model
@@ -25,12 +25,12 @@ class Post < ApplicationRecord
     }
 
   def speech_duration
-    content.split.size / 150.0
+    content.split.size / 150.0 # 150 words per minute
   end
 
   private
 
   def generate_token
-    self.token = SecureRandom.urlsafe_base64(15)
+    self.token = SecureRandom.urlsafe_base64(15) # secured roots for posts
   end
 end
