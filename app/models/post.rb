@@ -28,6 +28,10 @@ class Post < ApplicationRecord
     content.split.size / 150.0
   end
 
+  def to_param
+    token
+  end
+
   private
 
   def generate_token
