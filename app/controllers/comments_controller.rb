@@ -17,8 +17,10 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     authorize @comment
     if @comment.save
+      flash[:notice] = 'Your review was successfully created.'
       redirect_to post_path(@post.token)
     else
+      flash.now[:alert] = 'There was a problem creating your review.'
       render "posts/show", status: :unprocessable_entity
     end
   end
@@ -29,7 +31,13 @@ class CommentsController < ApplicationController
   def delete
     authorize @comment
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    if @comment.destroy
+      flash[:notice] = 'Your review was successfully deleted.'
+      redirect_to posts_path
+    else
+      flash.now[:alert] = 'There was a problem deleting your review.'
+      render :edit
+    end
   end
 
   private
