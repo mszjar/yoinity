@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: %i[show destroy create new]
+  before_action :set_post, only: %i[destroy create new]
 
   def index
     @comments = Comment.all
@@ -26,9 +26,12 @@ class CommentsController < ApplicationController
   end
 
   def show
+    @post = Post.find_by!(token: params[:token])
+    @comment = Comment.find(params[:id])
+    authorize @comment
   end
 
-  def delete
+  def destroy
     authorize @comment
     @comment = Comment.find(params[:id])
     if @comment.destroy
@@ -45,7 +48,6 @@ class CommentsController < ApplicationController
   def set_post
     @post = Post.find_by!(token: params[:comment][:post_token])
   end
-
 
   def params_comment
     params.require(:comment).permit(:content)
