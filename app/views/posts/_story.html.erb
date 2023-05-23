@@ -1,6 +1,9 @@
 <!--title-->
 <h1 class="title"> <%= @post.title %></h1>
 
+<!--duration-->
+<p><%= @post.speech_duration.round(0) %>min read</p>
+
 <!--like, quality, reviews buttons-->
 <div class="show-icons">
   <!--author avatar-->
@@ -96,6 +99,13 @@
   <% end %>
 </div>
 
+<!--audio control-->
+<div class="d-flex justify-content-center">
+<audio controls>
+  <source src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+</div>
 
 <!--content-->
 <div class="show-content">

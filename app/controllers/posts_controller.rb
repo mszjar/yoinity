@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post.user = current_user
     authorize @post
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to post_path(@post.token)
     else
       render :new, status: :unprocessable_entity
     end
@@ -47,6 +47,15 @@ class PostsController < ApplicationController
 
   def edit
   end
+
+  def speech
+    set_post
+    authorize @post, :show?
+    polly_client = PollyClient.new
+    file_path = polly_client.synthesize_speech(@post.content)
+    send_file file_path, filename: 'speech.mp3', type: 'audio/mpeg', disposition: 'inline' # inline will play the audio in the browser
+  end
+
 
   private
 
