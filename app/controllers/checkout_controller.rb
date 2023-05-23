@@ -1,0 +1,27 @@
+class CheckoutController < ApplicationController
+
+  def create
+    @session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      line_items: [{
+        price: 'price_1NAoLvJmS8EflGBbq7JyVV5P', # replace 'price_id' with the actual id of the Price object
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: checkout_cancel_url,
+    )
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  def success
+    current_user.create_subscription(stripe_subscription_id: params[:session_id])
+  end
+
+  def cancel
+  end
+end

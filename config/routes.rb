@@ -39,4 +39,8 @@ Rails.application.routes.draw do
   get '/@:nickname', to: 'profiles#show', as: 'profile'
   get 'about', to: 'pages#about'
   get 'web3', to: 'pages#web3'
+  post 'checkout', to: 'checkout#create'
+  get 'checkout/success', to: 'checkout#success'
+  get 'checkout/cancel', to: 'checkout#cancel'
+
 end
