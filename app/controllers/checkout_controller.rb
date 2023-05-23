@@ -1,6 +1,8 @@
 class CheckoutController < ApplicationController
+  skip_after_action :verify_authorized,  only: %i[success cancel]
 
   def create
+    skip_authorization
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
@@ -14,6 +16,7 @@ class CheckoutController < ApplicationController
 
     respond_to do |format|
       format.js
+      format.json { render json: @session, status: :created }
     end
   end
 

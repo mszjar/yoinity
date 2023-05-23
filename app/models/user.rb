@@ -26,6 +26,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # Stripe subscription
+  def create_subscription(stripe_subscription_id:)
+    self.stripe_subscription_id = stripe_subscription_id
+    self.subscription_status = 'active'
+    save
+  end
+
   # Downcase nickname before saving to database
   private
 

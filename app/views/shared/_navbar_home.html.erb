@@ -25,6 +25,9 @@
                           <li class="nav-item all-text-grey">
                             <%= link_to "Write", "/p/new", class: "navbar-link" %>
                           </li>
+                          <li class="nav-item">
+                            <%= link_to "Subscribe", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link" %>
+                          </li>
                           <li class="nav-item dropdown all-text-black">
                             <% if current_user.photo.key == nil %>
                               <%= image_tag "default_image.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
