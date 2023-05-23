@@ -7,6 +7,9 @@ import { application } from "./application"
 import AlertController from "./alert_controller"
 application.register("alert", AlertController)
 
+import CheckoutController from "./checkout_controller"
+application.register("checkout", CheckoutController)
+
 import DisableButtonController from "./disable_button_controller"
 application.register("disable-button", DisableButtonController)
 
