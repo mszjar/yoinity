@@ -62,6 +62,12 @@
     <% end %>
     <p><%= @post.post_qualities.count %></p>
   </div>
+  <!--Remix button-->
+  <div class="show-icons-item">
+    <button data-controller="recording" data-action="click->recording#startRecording" data-recording-target="start">Remix</button>
+    <button data-controller="recording" data-action="click->recording#stopRecording" data-recording-target="stop" disabled>Stop</button>
+  </div>
+
   <!--icon save for later-->
   <div class="show-icons-item show-icons-item-end">
     <% if user_signed_in? %>

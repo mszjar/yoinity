@@ -19,5 +19,8 @@ application.register("navbar", NavbarController)
 import PostFormController from "./post_form_controller"
 application.register("post-form", PostFormController)
 
+import RecordingController from "./recording_controller"
+application.register("recording", RecordingController)
+
 import TabsController from "./tabs_controller"
 application.register("tabs", TabsController)
