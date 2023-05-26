@@ -62,11 +62,33 @@
     <% end %>
     <p><%= @post.post_qualities.count %></p>
   </div>
-  <!--Remix button-->
+  <!--Remix button
   <div class="show-icons-item">
     <button data-controller="recording" data-action="click->recording#startRecording" data-recording-target="start">Remix</button>
     <button data-controller="recording" data-action="click->recording#stopRecording" data-recording-target="stop" disabled>Stop</button>
+  </div> -->
+  <div data-controller="recording" >
+    <div data-recording-target="form">
+    <%= simple_form_for @remix, url: remixes_path, defaults: { input_html: { data: { controller: "recording" } } } do |f| %>
+      <%= f.input :post_id, as: :hidden, input_html: { value: @post.id } %>
+      <%= f.input :language, placeholder: "Enter language", input_html: { data: { recording_target: "language" } } %>
+      <%= button_tag "Start recording", type: "button", data: { action: "recording#startRecording", recording_target: "start" } %>
+      <%= button_tag "Stop recording", type: "button", data: { action: "recording#stopRecording", recording_target: "stop" } %>
+      <%= f.submit "Submit Remix", data: { action: "recording#submitForm" } %>
+    <% end %>
+    </div>
   </div>
+
+
+  <% if @remix.present? && @remix.audio.attached? %>
+  <%= link_to "Download Remix", rails_blob_url(@remix.audio) %>
+<% else %>
+  <p>No remix available for download.</p>
+<% end %>
+
+
+
+
 
   <!--icon save for later-->
   <div class="show-icons-item show-icons-item-end">

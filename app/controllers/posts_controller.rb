@@ -31,6 +31,7 @@ class PostsController < ApplicationController
     authorize @post
     @comment = Comment.new
     @comments = @post.comments
+    @remix = current_user.remixes.build(post: @post) if user_signed_in?
   end
 
   def destroy

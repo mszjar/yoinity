@@ -4,6 +4,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Forms generated with `form_with` will submit with AJAX by default.
+  config.action_view.form_with_generates_remote_forms = true
+
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
