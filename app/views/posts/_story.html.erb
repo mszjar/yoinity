@@ -2,7 +2,7 @@
 <h1 class="title"> <%= @post.title %></h1>
 <!--duration-->
 <div class="subtitle-info">
-  <div><p><%= button_to "Remix", "#", class: "btn btn-remix", method: :post %></p></div>
+  <div><p><%= button_to "Remix", "#", class: "btn btn-classic", method: :post %></p></div>
   <% if @post.photo.key.nil? %>
     <div> <%= image_tag "default_image.png", class: "avatar-post" %></div>
   <% else %>
