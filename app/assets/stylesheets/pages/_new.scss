@@ -8,9 +8,7 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: lighter;
   color: white;
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+  background-color: #343541;
 }
 
 .input-review {
@@ -95,9 +93,9 @@
 }
 
 .form-control:focus {
-  color: #ececf1;
+  color: white;
   background-color: #343541;
-  border-color: transparent;
+  // border-color: transparent;
   outline: 0;
   box-shadow: 0 0 0 0.25rem transparent;
 }

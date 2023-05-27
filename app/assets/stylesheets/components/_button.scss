@@ -123,6 +123,23 @@ a {
   border: none;
 }
 
+.btn-remix {
+  margin-right: 40px;
+  font-size: 12px;
+  background-color: #f69400;
+  color: black;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-remix:hover {
+  margin-right: 40px;
+  background-color: #f68300;
+  color: black;
+  text-decoration: none;
+  border: none;
+}
+
 .btn-new {
   border-radius: 8%;
   padding-left: 2px;

@@ -1,7 +1,14 @@
 <!--title-->
 <h1 class="title"> <%= @post.title %></h1>
 <!--duration-->
-<p><%= @post.speech_duration.round(0) %>min read</p>
+<div class="subtitle-info">
+  <div><p><%= button_to "Remix", "#", class: "btn btn-classic", method: :post %></p></div>
+  <% if @post.photo.key.nil? %>
+    <div> <%= image_tag "default_image.png", class: "avatar-post" %></div>
+  <% else %>
+    <div> <%= cl_image_tag @post.photo.key, class: "avatar-post" %></div>
+  <% end %>
+</div>
 <!--like, quality, reviews buttons-->
 <div class="show-icons">
   <!--author avatar-->
@@ -135,8 +142,11 @@
     <% end %>
   </div>
 </div>
-<!--date-->
-<div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
+<!--date & duration-->
+<div class="subtitle-info">
+  <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
+  <div class="show-date"><%= @post.speech_duration.round(0) %> min read</div>
+</div>
 <!--categories-->
 <div class="category">
   <% @post.categories.each do |category| %>
@@ -144,11 +154,14 @@
   <% end %>
 </div>
 <!--audio control-->
-<div class="d-flex justify-content-center">
-  <audio controls>
-    <source src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+<div class="show-date">Listen to remixes</div>
+<div>
+  <div class="d-flex justify-content-center">
+    <audio controls>
+      <source src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 </div>
 <!--content-->
 <div class="show-content">
