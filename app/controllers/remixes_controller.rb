@@ -1,4 +1,5 @@
 class RemixesController < ApplicationController
+
   def create
     skip_authorization
     @remix = Remix.new(remix_params)
@@ -29,6 +30,10 @@ class RemixesController < ApplicationController
     end
   end
 
+  def audio
+    @remix = Remix.find(params[:id])
+    send_file rails_blob_path(remix.audio)
+  end
 
 
   private

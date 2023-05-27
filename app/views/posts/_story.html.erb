@@ -101,17 +101,16 @@
   </div>
 <% end %>
 
-
-
-
-
-
-
-
-  <% if @remix.present? && @remix.audio.attached? %>
-  <%= link_to "Download Remix", rails_blob_url(@remix.audio) %>
-  <% else %>
-    <p>No remix available for download.</p>
+  <% @remixes.each do |remix| %>
+    <% if remix.present? && remix.audio.attached? %>
+      <%= link_to "Download Remix", rails_blob_url(remix.audio) %>
+      <audio controls>
+      <source src="<%= remix_path(remix.audio) %>" type="audio/webm">
+      Your browser does not support the audio element.
+      </audio>
+    <% else %>
+      <p>No remix available for download.</p>
+    <% end %>
   <% end %>
 
 

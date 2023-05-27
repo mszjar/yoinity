@@ -26,7 +26,12 @@ Rails.application.routes.draw do
   resources :post_likes, only: [:create, :destroy]
   resources :post_qualities, only: [:create, :destroy]
   resources :saved_for_laters, only: [:index, :create, :destroy]
-  resources :remixes, only: [:create, :show]
+
+  resources :remixes, only: [:create, :show] do
+    member do
+      get :audio
+    end
+  end
 
 
   resources :followers do
