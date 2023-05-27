@@ -32,6 +32,13 @@
   width: 100%;
 }
 
+.subtitle-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .card-body .infos .info-mini {
   display: flex;
   flex-direction: row;
