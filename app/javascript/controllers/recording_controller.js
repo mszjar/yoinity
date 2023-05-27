@@ -19,6 +19,7 @@ export default class extends Controller {
     console.log('startRecording called');
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       this.recorder = RecordRTC(stream, { type: 'audio' });
+      // this.recorder = RecordRTC(stream, { type: 'audio', mimeType: 'audio/webm;codecs=opus' });
       this.recorder.startRecording();
       this.stopButton.disabled = false;
       this.startButton.disabled = true;
@@ -30,15 +31,18 @@ export default class extends Controller {
   stopRecording() {
     console.log('stopRecording called');
     if (this.recorder) {
-      this.stopButton.disabled = true;
-      this.recorder.stopRecording(() => {
-        this.audioBlob = this.recorder.getBlob();
-        this.recorder = null;
-        this.startButton.disabled = false;
-        console.log('Recording stopped, audioBlob:', this.audioBlob);
-      });
+        console.log('Recording blob before stopping:', this.recorder.getBlob());
+        this.stopButton.disabled = true;
+        this.recorder.stopRecording(() => {
+            this.audioBlob = this.recorder.getBlob();
+            this.recorder = null;
+            this.startButton.disabled = false;
+            console.log('Recording stopped, audioBlob:', this.audioBlob);
+        });
+        console.log('Recording blob after stopping:', this.recorder.getBlob());
     }
   }
+
 
   submitForm(event) {
     console.log('submitForm called');
