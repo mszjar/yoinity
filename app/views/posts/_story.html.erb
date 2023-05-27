@@ -1,7 +1,14 @@
 <!--title-->
 <h1 class="title"> <%= @post.title %></h1>
 <!--duration-->
-<p><%= @post.speech_duration.round(0) %> min read</p>
+<div class="subtitle-info">
+  <div><p><%= @post.speech_duration.round(0) %> min read</p></div>
+  <% if @post.photo.key.nil? %>
+    <div> <%= image_tag "default_image.png", class: "avatar-post" %></div>
+  <% else %>
+    <div> <%= cl_image_tag @post.photo.key, class: "avatar-post" %></div>
+  <% end %>
+</div>
 <!--like, quality, reviews buttons-->
 <div class="show-icons">
   <!--author avatar-->
