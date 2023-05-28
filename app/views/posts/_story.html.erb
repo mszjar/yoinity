@@ -1,14 +1,5 @@
 <!--title-->
 <h1 class="title"> <%= @post.title %></h1>
-<!--duration-->
-<div class="subtitle-info">
-  <div><p><%= button_to "Remix", "#", class: "btn btn-classic", method: :post %></p></div>
-  <% if @post.photo.key.nil? %>
-    <div> <%= image_tag "default_image.png", class: "avatar-post" %></div>
-  <% else %>
-    <div> <%= cl_image_tag @post.photo.key, class: "avatar-post" %></div>
-  <% end %>
-</div>
 <!--like, quality, reviews buttons-->
 <div class="show-icons">
   <!--author avatar-->
@@ -69,22 +60,17 @@
     <% end %>
     <p><%= @post.post_qualities.count %></p>
   </div>
-  <!--icon save for later-->
+  <!--remix button-->
+  <div class="show-icons-item">
+    <p><%= button_to "Remix", "#", class: "btn btn-remix", method: :post %></p>
+  </div>
+  <!--post image-->
   <div class="show-icons-item show-icons-item-end">
-    <% if user_signed_in? %>
-      <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
-      <% if saved_for_later.nil? %>
-        <%= button_to saved_for_laters_path, class: "btn icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
-          <i class="far fa-clock"></i>
-        <% end %>
-        <p>Save</p>
+      <% if @post.photo.key.nil? %>
+        <div> <%= image_tag "default_image.png", class: "avatar-small" %></div>
       <% else %>
-        <%= button_to saved_for_later_path(saved_for_later), class: "btn icon-button", method: :delete do %>
-          <i class="fas fa-clock"></i>
-        <% end %>
-        <p>Saved</p>
+        <div> <%= cl_image_tag @post.photo.key, class: "avatar-small" %></div>
       <% end %>
-    <% end %>
   </div>
 </div>
 <!--date & duration-->
@@ -99,7 +85,28 @@
   <% end %>
 </div>
 <!--audio control-->
-<div class="show-date">Listen to remixes</div>
+<div class="subtitle-info">
+  <div class="show-date">Listen to remixes</div>
+  <!--icon save for later-->
+  <div class="save-item">
+    <% if user_signed_in? %>
+      <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
+      <% if saved_for_later.nil? %>
+        <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
+          <i class="far fa-clock"></i>
+        <% end %>
+        <p>Save for later</p>
+      <% else %>
+        <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
+          <i class="fas fa-clock"></i>
+        <% end %>
+        <p>Saved</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<!--audio control-->
 <div>
   <div class="d-flex justify-content-center">
     <audio controls>
@@ -108,6 +115,7 @@
     </audio>
   </div>
 </div>
+
 <!--content-->
 <div class="show-content">
   <p><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>

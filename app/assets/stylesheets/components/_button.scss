@@ -80,7 +80,9 @@ a {
   font-size: 24px;
   color: white;
   text-decoration: none;
+  background-color: transparent;
   border: none;
+  margin-bottom: 8px;
 }
 
 .icon-button:hover {
@@ -90,7 +92,7 @@ a {
 }
 
 .btn-follow {
-  margin-right: 40px;
+  margin-right: 20px;
   font-size: 12px;
   background-color: #0095f6;
   color: white;
@@ -99,7 +101,7 @@ a {
 }
 
 .btn-follow:hover {
-  margin-right: 40px;
+  margin-right: 20px;
   background-color: #1877f2;
   color: white;
   text-decoration: none;
@@ -124,20 +126,29 @@ a {
 }
 
 .btn-remix {
-  margin-right: 40px;
-  font-size: 12px;
-  background-color: #f69400;
-  color: black;
+  margin-left: 40px;
+  color: white;
+  border-radius: 8px;
+  background-color: rgba(
+    177,
+    176,
+    176,
+    0.5
+  ); /* Use rgba value with opacity (0.8 in this example) */
+  transition: background 0.3s ease;
   text-decoration: none;
   border: none;
 }
 
 .btn-remix:hover {
-  margin-right: 40px;
-  background-color: #f68300;
-  color: black;
-  text-decoration: none;
-  border: none;
+  margin-left: 40px;
+  background-color: rgba(
+    226,
+    226,
+    226,
+    0.945
+  ); /* Use rgba value with opacity (0.8 in this example) */
+  color: black !important;
 }
 
 .btn-new {
