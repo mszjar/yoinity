@@ -7,6 +7,9 @@ import { application } from "./application"
 import AlertController from "./alert_controller"
 application.register("alert", AlertController)
 
+import AudioController from "./audio_controller"
+application.register("audio", AudioController)
+
 import CheckoutController from "./checkout_controller"
 application.register("checkout", CheckoutController)
 
@@ -18,6 +21,9 @@ application.register("navbar", NavbarController)
 
 import PostFormController from "./post_form_controller"
 application.register("post-form", PostFormController)
+
+import RecordingController from "./recording_controller"
+application.register("recording", RecordingController)
 
 import TabsController from "./tabs_controller"
 application.register("tabs", TabsController)
