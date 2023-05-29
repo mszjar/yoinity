@@ -105,7 +105,7 @@
   <div class="audio-player" data-controller="audio">
     <div class="custom-controls">
       <div class="play-button" data-action="click->audio#togglePlay">
-        <img class="avatar" src='<%= cl_image_tag @post.photo.key, class: "avatar-small" %>'>
+        <%= cl_image_tag @post.photo.key, class: "avatar" %>
       </div>
     </div>
     <audio data-audio-target="audio">
@@ -118,7 +118,7 @@
   <% @remixes.each do |remix| %>
   <div class="audio-player" data-controller="audio">
     <% if remix.present? && remix.audio.attached? %>
-        <div data-action="click->audio#togglePlay"><img class="avatar" src='<%= cl_image_tag @remix.user.photo.key, class: "avatar-small" %>'></div>
+        <div data-action="click->audio#togglePlay"><%= cl_image_tag @remix.user.photo.key, class: "avatar" %></div>
         <audio data-audio-target="audio">
           <source src="<%= audio_remix_path(remix) %>" type="<%= remix.audio.blob.content_type %>">
         </audio>
