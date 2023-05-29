@@ -38,12 +38,13 @@
   <!--icon reviews-->
   <div class="show-icons-item">
     <% if @post.comments.count == 0 %>
-      <button class="btn icon-button"><i class="far fa-comment" data-tabs-target="tab" data-action="click->tabs#changeTab" data-tabs-value="reviews"></i></button>
+      <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="far fa-comment"></i></button>
     <% else %>
-      <button class="btn icon-button"><i class="fas fa-comment" data-tabs-target="tab" data-action="click->tabs#changeTab" data-tabs-value="reviews"></i></button>
+      <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="fas fa-comment"></i></button>
     <% end %>
     <p><%= @post.comments.count %></p>
   </div>
+
   <!--icon quality-->
   <div class="show-icons-item">
     <% if user_signed_in? %>
