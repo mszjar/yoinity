@@ -105,7 +105,11 @@
   <div class="audio-player" data-controller="audio">
     <div class="custom-controls">
       <div class="play-button" data-action="click->audio#togglePlay">
-        <%= cl_image_tag @post.photo.key, class: "avatar" %>
+        <% if @post.photo.key.nil? %>
+          <div> <%= image_tag "default_image.png", class: "avatar" %></div>
+        <% else %>
+          <div> <%= cl_image_tag @post.photo.key, class: "avatar" %></div>
+        <% end %>
       </div>
     </div>
     <audio data-audio-target="audio">
