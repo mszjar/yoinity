@@ -100,3 +100,13 @@
 .show-content {
   margin-top: 34px;
 }
+
+.remixes {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.remixes-bar {
+  display: flex;
+  justify-content: space-between;
+}

@@ -7,6 +7,9 @@ import { application } from "./application"
 import AlertController from "./alert_controller"
 application.register("alert", AlertController)
 
+import AudioController from "./audio_controller"
+application.register("audio", AudioController)
+
 import CheckoutController from "./checkout_controller"
 application.register("checkout", CheckoutController)
 

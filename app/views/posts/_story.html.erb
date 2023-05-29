@@ -2,7 +2,6 @@
 <h1 class="title"> <%= @post.title %></h1>
 <!--duration-->
 <div class="subtitle-info">
-  <div><p><%= button_to "Remix", "#", class: "btn btn-classic", method: :post %></p></div>
   <% if @post.photo.key.nil? %>
     <div> <%= image_tag "default_image.png", class: "avatar-post" %></div>
   <% else %>
@@ -113,25 +112,39 @@
     <p><%= category.name %></p>
   <% end %>
 </div>
-<!--audio control-->
+<!--listen to remixes-->
 <div class="show-date">Listen to remixes</div>
-<div>
-  <div class="d-flex justify-content-center">
-    <audio controls>
+<!--remixes bar-->
+<div class="remixes-bar" >
+  <!--amazon polly-->
+  <div class="audio-player" data-controller="audio">
+    <div class="custom-controls">
+      <div class="play-button" data-action="click->audio#togglePlay">
+        <img class="avatar" src='<%= cl_image_tag @post.photo.key, class: "avatar-small" %>'>
+      </div>
+    </div>
+    <audio data-audio-target="audio">
       <source src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
-      Your browser does not support the audio element.
     </audio>
   </div>
-</div>
-<!--remixes-->
+
+  <!--remixes-->
+  <div class="remixes" >
   <% @remixes.each do |remix| %>
+  <div class="audio-player" data-controller="audio">
     <% if remix.present? && remix.audio.attached? %>
-      <audio controls>
-      <source src="<%= audio_remix_path(remix) %>" type="<%= remix.audio.blob.content_type %>">
-      Your browser does not support the audio element.
-      </audio>
+        <div data-action="click->audio#togglePlay"><img class="avatar" src='<%= cl_image_tag @remix.user.photo.key, class: "avatar-small" %>'></div>
+        <audio data-audio-target="audio">
+          <source src="<%= audio_remix_path(remix) %>" type="<%= remix.audio.blob.content_type %>">
+        </audio>
     <% end %>
+  </div>
   <% end %>
+  </div>
+  <!--remix button-->
+  <div><p><%= button_to "Remix", "#", class: "btn btn-classic", method: :post %></p></div>
+
+</div>
 <!--content-->
 <div class="show-content">
   <p><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>
