@@ -1,89 +1,95 @@
-<button class="btn icon-button"><i class="fa-sharp fa-regular fa-circle-xmark" data-tabs-target="tab" data-action="click->tabs#changeTab" data-tabs-value="story"></i></button>
-<!--title "Reviews(count)"-->
-<div class="form-group">
-  <div class="text">
-    <h3 style="color: white">Reviews (<%= @post.comments.count %>)</h3>
-    <!--Review form-->
-    <%= simple_form_for [@post, @comment] do |f| %>
-      <%= f.input :content, class: "form-control input-review", placeholder: "Type your review here...", label: false %>
-      <%= f.input :post_token, as: :hidden, input_html: { value: @post.token } %>
-      <div class="btn-container">
-        <%= f.submit "Submit", class: "btn btn-flat show-comment-btn review-btn" %>
-      </div>
-    <% end %>
-    <!--comments-->
-    <% @post.comments.reverse.each do |comment|%>
-      <div class="comment">
-        <div class="d-flex justify-content-center mb-5">
-          <%= render partial: "user_avatar", locals: { user_id: comment.user_id } %>
-          <p><%= comment.content %></p>
-          <!--comment likes-->
-          <div class="upvote">
-            <% if user_signed_in? %>
-              <% comment_like = current_user.comment_likes.find_by(comment: comment) %>
-              <% if comment_like.nil? %>
-                <%= button_to "⬆", comment_likes_path, class: "btn btn-like", params: { comment_like: { comment_id: comment.id }}, method: :post %>
-              <% else %>
-                <%= button_to "⬆", comment_like_path(comment_like), class: "btn btn-like", method: :delete %>
-              <% end %>
-            <% end %>
-            <% if comment.nil? %>
-              <p>0</p>
-            <% else %>
-              <p><%= comment.comment_likes.count %></p>
-            <% end %>
+<div class="modal-header">
+  <h5 class="modal-title" id="reviewsModalLabel">Reviews (<%= @post.comments.count %>)</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+
+      <div class="text">
+        <!--Review form-->
+        <%= simple_form_for [@post, @comment] do |f| %>
+          <%= f.input :content, class: "form-control input-review", placeholder: "Type your review here...", label: false %>
+          <%= f.input :post_token, as: :hidden, input_html: { value: @post.token } %>
+          <div class="btn-container">
+            <%= f.submit "Submit", class: "btn btn-flat show-comment-btn review-btn" %>
           </div>
-          <!--comment dislikes-->
-          <div class="downvote">
-            <% if user_signed_in? %>
-              <% comment_dislike = current_user.comment_dislikes.find_by(comment: comment) %>
-              <% if comment_dislike.nil? %>
-                <%= button_to "⬇", comment_dislikes_path, class: "btn btn-like", params: { comment_dislike: { comment_id: comment.id }}, method: :post %>
-              <% else %>
-                <%= button_to "⬇", comment_dislike_path(comment_dislike), class: "btn btn-like", method: :delete %>
-              <% end %>
-            <% end %>
-            <% if comment.nil? %>
-              <p>0</p>
-            <% else %>
-              <p><%= comment.comment_dislikes.count %></p>
-            <% end %>
-          </div>
-        </div>
-        <!-- Comment Replies -->
-        <% if comment.comment_replies.any? %>
-          <div class="replies">
-            <% comment.comment_replies.reverse.each do |comment_reply|%>
-              <div class="reply">
-                <div class="d-flex justify-content-center mb-5">
-                  <%= render partial: "user_avatar", locals: { user_id: comment_reply.user_id } %>
-                  <p><%= comment_reply.content %></p>
-                  <!--comment reply likes-->
-                  <div>
-                    <% if user_signed_in? %>
-                      <% comment_reply_like = current_user.comment_reply_likes.find_by(comment_reply: comment_reply) %>
-                      <% if comment_reply_like.nil? %>
-                        <%= button_to "🤍", comment_reply_likes_path, class: "btn btn-like", params: { comment_reply_like: { comment_reply_id: comment_reply.id }}, method: :post %>
-                      <% else %>
-                        <%= button_to "💖", comment_reply_like_path(comment_reply_like), class: "btn btn-like", method: :delete %>
-                      <% end %>
-                    <% end %>
-                    <% if comment_reply.nil? %>
-                      <p>0</p>
-                    <% else %>
-                      <p><%= comment_reply.comment_reply_likes.count %></p>
-                    <% end %>
+        <% end %>
+        <!--comments-->
+        <% @post.comments.reverse.each do |comment|%>
+          <div class="comment">
+            <div class="d-flex justify-content-center mb-5">
+              <%= render partial: "user_avatar", locals: { user_id: comment.user_id } %>
+              <p><%= comment.content %></p>
+              <!--comment likes-->
+              <div class="upvote">
+                <% if user_signed_in? %>
+                  <% comment_like = current_user.comment_likes.find_by(comment: comment) %>
+                  <% if comment_like.nil? %>
+                    <%= button_to "⬆", comment_likes_path, class: "btn btn-like", params: { comment_like: { comment_id: comment.id }}, method: :post %>
+                  <% else %>
+                    <%= button_to "⬆", comment_like_path(comment_like), class: "btn btn-like", method: :delete %>
+                  <% end %>
+                <% end %>
+                <% if comment.nil? %>
+                  <p>0</p>
+                <% else %>
+                  <p><%= comment.comment_likes.count %></p>
+                <% end %>
+              </div>
+              <!--comment dislikes-->
+              <div class="downvote">
+                <% if user_signed_in? %>
+                  <% comment_dislike = current_user.comment_dislikes.find_by(comment: comment) %>
+                  <% if comment_dislike.nil? %>
+                    <%= button_to "⬇", comment_dislikes_path, class: "btn btn-like", params: { comment_dislike: { comment_id: comment.id }}, method: :post %>
+                  <% else %>
+                    <%= button_to "⬇", comment_dislike_path(comment_dislike), class: "btn btn-like", method: :delete %>
+                  <% end %>
+                <% end %>
+                <% if comment.nil? %>
+                  <p>0</p>
+                <% else %>
+                  <p><%= comment.comment_dislikes.count %></p>
+                <% end %>
+              </div>
+            </div>
+            <!-- Comment Replies -->
+            <% if comment.comment_replies.any? %>
+              <div class="replies">
+                <% comment.comment_replies.reverse.each do |comment_reply|%>
+                  <div class="reply">
+                    <div class="d-flex justify-content-center mb-5">
+                      <%= render partial: "user_avatar", locals: { user_id: comment_reply.user_id } %>
+                      <p><%= comment_reply.content %></p>
+                      <!--comment reply likes-->
+                      <div>
+                        <% if user_signed_in? %>
+                          <% comment_reply_like = current_user.comment_reply_likes.find_by(comment_reply: comment_reply) %>
+                          <% if comment_reply_like.nil? %>
+                            <%= button_to "🤍", comment_reply_likes_path, class: "btn btn-like", params: { comment_reply_like: { comment_reply_id: comment_reply.id }}, method: :post %>
+                          <% else %>
+                            <%= button_to "💖", comment_reply_like_path(comment_reply_like), class: "btn btn-like", method: :delete %>
+                          <% end %>
+                        <% end %>
+                        <% if comment_reply.nil? %>
+                          <p>0</p>
+                        <% else %>
+                          <p><%= comment_reply.comment_reply_likes.count %></p>
+                        <% end %>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                <% end %>
               </div>
             <% end %>
+            <%= simple_form_for [comment, CommentReply.new] do |f| %>
+              <%= f.input :content, class: "form-control", placeholder: "Type your reply here...", label: false %>
+              <%= f.submit "Submit", class: "btn btn-flat show-comment-reply-btn" %>
+            <% end %>
           </div>
         <% end %>
-        <%= simple_form_for [comment, CommentReply.new] do |f| %>
-          <%= f.input :content, class: "form-control", placeholder: "Type your reply here...", label: false %>
-          <%= f.submit "Submit", class: "btn btn-flat show-comment-reply-btn" %>
-        <% end %>
       </div>
-    <% end %>
-  </div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 </div>

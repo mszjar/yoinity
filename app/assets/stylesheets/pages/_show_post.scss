@@ -12,8 +12,8 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content:center;
-  margin-top: 24px;
-  margin-bottom: 24px;
+  margin-top: 14px;
+  margin-bottom: 14px;
 }
 
 .show-icons-item {
@@ -32,6 +32,18 @@
 
 .show-icons-item-end {
   margin-left: auto;
+}
+
+.save-item {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center; /* Optional: Aligns the items horizontally */
+  justify-content: center; /* Optional: Aligns the items vertically */
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: $body-font;
+    font-size: 12px;
+  }
 }
 
 .post-photo {
@@ -99,4 +111,14 @@
 
 .show-content {
   margin-top: 34px;
+}
+
+.remixes {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.remixes-bar {
+  display: flex;
+  justify-content: space-between;
 }
