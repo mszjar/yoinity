@@ -62,7 +62,23 @@
   </div>
   <!--remix button-->
   <div class="show-icons-item">
-    <p><%= button_to "Remix", "#", class: "btn btn-remix", method: :post %></p>
+    <!--icon save for later-->
+    <div class="save-item">
+      <% if user_signed_in? %>
+        <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
+        <% if saved_for_later.nil? %>
+          <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
+            <i class="far fa-clock"></i>
+          <% end %>
+          <p>Save for later</p>
+        <% else %>
+          <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
+            <i class="fas fa-clock"></i>
+          <% end %>
+          <p>Saved</p>
+        <% end %>
+      <% end %>
+    </div>
   </div>
   <!--post image-->
   <div class="show-icons-item show-icons-item-end">
@@ -88,23 +104,6 @@
 <!--listen to remixes-->
 <div class="subtitle-info">
   <div class="show-date">Listen to remixes</div>
-  <!--icon save for later-->
-  <div class="save-item">
-    <% if user_signed_in? %>
-      <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
-      <% if saved_for_later.nil? %>
-        <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
-          <i class="far fa-clock"></i>
-        <% end %>
-        <p>Save for later</p>
-      <% else %>
-        <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
-          <i class="fas fa-clock"></i>
-        <% end %>
-        <p>Saved</p>
-      <% end %>
-    <% end %>
-  </div>
 </div>
 <!--remixes bar-->
 <div class="remixes-bar" >
