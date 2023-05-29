@@ -81,8 +81,8 @@
           </div>
         <% end %>
         <%= simple_form_for [comment, CommentReply.new] do |f| %>
-          <%= f.input :content, class: "form-control", placeholder: "Type your reply here...", label: false %>
-          <%= f.submit "Submit", class: "btn btn-flat show-comment-reply-btn" %>
+          <%= f.input :content, class: "form-control", placeholder: "Type your reply here...", label: false, input_html: { class: 'new-reply' } %>
+          <%= f.submit "Submit", class: "btn btn-flat show-comment-reply-btn reply-btn" %>
         <% end %>
       </div>
     <% end %>

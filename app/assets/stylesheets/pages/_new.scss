@@ -11,6 +11,12 @@
   background-color: #343541;
 }
 
+.reply-text {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .input-review {
   display: flex;
   flex-direction: column;
@@ -34,6 +40,11 @@
 }
 
 .downvote {
+  display: flex;
+  flex-direction: row;
+}
+
+.reply-likes {
   display: flex;
   flex-direction: row;
 }

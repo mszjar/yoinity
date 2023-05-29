@@ -335,6 +335,8 @@ body {
 }
 
 .reply {
+  display: flex;
+  flex-direction: row;
   margin-left: 50px;
   font-size: 0.9em;
   margin-left: 2em;
@@ -350,4 +352,19 @@ body {
 .replies {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: start;
+  padding-bottom: 20px;
+}
+
+.new_comment_reply {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  align-self: center;
+}
+
+.reply-btn {
+  align-self: flex-end;
+  color: #fff;
 }
