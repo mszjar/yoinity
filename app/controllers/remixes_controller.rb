@@ -31,8 +31,9 @@ class RemixesController < ApplicationController
   end
 
   def audio
+    skip_authorization
     @remix = Remix.find(params[:id])
-    send_file rails_blob_path(remix.audio)
+    redirect_to rails_blob_url(@remix.audio)
   end
 
 

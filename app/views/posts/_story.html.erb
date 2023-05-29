@@ -69,14 +69,8 @@
     <% end %>
     <p><%= @post.post_qualities.count %></p>
   </div>
-  <!--Remix button
-  <div class="show-icons-item">
-    <button data-controller="recording" data-action="click->recording#startRecording" data-recording-target="start">Remix</button>
-    <button data-controller="recording" data-action="click->recording#stopRecording" data-recording-target="stop" disabled>Stop</button>
-  </div> -->
-<!--
-<div data-controller="recording">
-  <%= simple_form_for @remix,  url: remixes_path, html: { multipart: true } do |f| %>
+  <!--Remix button -->
+  <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
     <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
     <%= f.input :language, placeholder: "Enter language", input_html: { data: { recording_target: "language" } } %>
 
@@ -86,44 +80,10 @@
     <div data-action="click->recording#stopRecording" data-recording-target="stop">
       <%= button_tag "Stop recording", type: "button" %>
     </div>
-    <div data-action= "click->recording#submitForm" data-recording-target="form">
-    <%= f.submit "Submit Remix" %>
+    <div data-action= "click->recording#submitForm">
+      <%= f.submit "Submit Remix" %>
     </div>
   <% end %>
-</div>
--->
-
-<%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
-  <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
-  <%= f.input :language, placeholder: "Enter language", input_html: { data: { recording_target: "language" } } %>
-
-  <div data-action="click->recording#startRecording" data-recording-target="start">
-    <%= button_tag "Start recording", type: "button" %>
-  </div>
-  <div data-action="click->recording#stopRecording" data-recording-target="stop">
-    <%= button_tag "Stop recording", type: "button" %>
-  </div>
-  <div data-action= "click->recording#submitForm">
-    <%= f.submit "Submit Remix" %>
-  </div>
-<% end %>
-
-  <% @remixes.each do |remix| %>
-    <% if remix.present? && remix.audio.attached? %>
-      <%= link_to "Download Remix", rails_blob_url(remix.audio) %>
-      <audio controls>
-      <source src="<%= remix_path(remix.audio) %>" type="audio/webm">
-      Your browser does not support the audio element.
-      </audio>
-    <% else %>
-      <p>No remix available for download.</p>
-    <% end %>
-  <% end %>
-
-
-
-
-
   <!--icon save for later-->
   <div class="show-icons-item show-icons-item-end">
     <% if user_signed_in? %>
@@ -163,6 +123,15 @@
     </audio>
   </div>
 </div>
+<!--remixes-->
+  <% @remixes.each do |remix| %>
+    <% if remix.present? && remix.audio.attached? %>
+      <audio controls>
+      <source src="<%= audio_remix_path(remix) %>" type="<%= remix.audio.blob.content_type %>">
+      Your browser does not support the audio element.
+      </audio>
+    <% end %>
+  <% end %>
 <!--content-->
 <div class="show-content">
   <p><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>
