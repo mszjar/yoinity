@@ -14,7 +14,7 @@
     <!--comments-->
     <% @post.comments.reverse.each do |comment|%>
       <div class="comment">
-        <div class="d-flex justify-content-center mb-5">
+        <div class="d-flex justify-content-center mb-3">
           <%= render partial: "user_avatar", locals: { user_id: comment.user_id } %>
           <p><%= comment.content %></p>
           <!--comment likes-->
@@ -55,11 +55,11 @@
           <div class="replies">
             <% comment.comment_replies.reverse.each do |comment_reply|%>
               <div class="reply">
-                <div class="d-flex justify-content-center mb-5">
+                <div class="d-flex justify-content-center mb-3 reply-text">
                   <%= render partial: "user_avatar", locals: { user_id: comment_reply.user_id } %>
                   <p><%= comment_reply.content %></p>
                   <!--comment reply likes-->
-                  <div>
+                  <div class='reply-likes'>
                     <% if user_signed_in? %>
                       <% comment_reply_like = current_user.comment_reply_likes.find_by(comment_reply: comment_reply) %>
                       <% if comment_reply_like.nil? %>
@@ -80,8 +80,8 @@
           </div>
         <% end %>
         <%= simple_form_for [comment, CommentReply.new] do |f| %>
-          <%= f.input :content, class: "form-control", placeholder: "Type your reply here...", label: false %>
-          <%= f.submit "Submit", class: "btn btn-flat show-comment-reply-btn" %>
+          <%= f.input :content, class: "form-control", placeholder: "Type your reply here...", label: false, input_html: { class: 'new-reply' } %>
+          <%= f.submit "Submit", class: "btn btn-flat show-comment-reply-btn reply-btn" %>
         <% end %>
       </div>
     <% end %>
