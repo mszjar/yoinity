@@ -34,6 +34,19 @@
   margin-left: auto;
 }
 
+.save-item {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center; /* Optional: Aligns the items horizontally */
+  justify-content: center; /* Optional: Aligns the items vertically */
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: $body-font;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+
 .post-photo {
   object-fit: cover;
   height: 400px;
