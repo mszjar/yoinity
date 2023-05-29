@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :comment_likes, dependent: :destroy
   has_many :comment_dislikes, dependent: :destroy
   has_many :comment_reply_likes, dependent: :destroy
+  has_many :remixes, dependent: :destroy
 
 
   has_many :saved_for_laters, dependent: :destroy

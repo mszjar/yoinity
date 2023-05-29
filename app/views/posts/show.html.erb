@@ -26,9 +26,14 @@
           <%= render partial: "story" %>
         </div>
         <!-- reviews -->
-        <div class="notification reviews d-none" data-tabs-target="notification">
-          <%= render partial: "reviews" %>
+        <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <%= render partial: "reviews" %>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
