@@ -1,6 +1,6 @@
 <!--title-->
 <h1 class="title"> <%= @post.title %></h1>
-<!--duration-->
+<!--post image-->
 <div class="subtitle-info">
   <% if @post.photo.key.nil? %>
     <div> <%= image_tag "default_image.png", class: "avatar-post" %></div>
@@ -68,21 +68,6 @@
     <% end %>
     <p><%= @post.post_qualities.count %></p>
   </div>
-  <!--Remix button -->
-  <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
-    <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
-    <%= f.input :language, placeholder: "Enter language", input_html: { data: { recording_target: "language" } } %>
-
-    <div data-action="click->recording#startRecording" data-recording-target="start">
-      <%= button_tag "Start recording", type: "button" %>
-    </div>
-    <div data-action="click->recording#stopRecording" data-recording-target="stop">
-      <%= button_tag "Stop recording", type: "button" %>
-    </div>
-    <div data-action= "click->recording#submitForm">
-      <%= f.submit "Submit Remix" %>
-    </div>
-  <% end %>
   <!--icon save for later-->
   <div class="show-icons-item show-icons-item-end">
     <% if user_signed_in? %>
@@ -141,8 +126,45 @@
   </div>
   <% end %>
   </div>
-  <!--remix button-->
-  <div><p><%= button_to "Remix", "#", class: "btn btn-classic", method: :post %></p></div>
+
+  <!-- Remix button -->
+<div>
+  <button type="button" class="btn btn-classic" data-bs-toggle="modal" data-bs-target="#remixModal">
+    Remix
+  </button>
+</div>
+
+<!-- Remix form (Modal) -->
+<div class="modal fade" id="remixModal" tabindex="-1" aria-labelledby="remixModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="remixModalLabel">Remix</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
+          <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
+          <%= f.input :language, placeholder: "Enter language", input_html: { data: { recording_target: "language" } } %>
+
+          <div data-action="click->recording#startRecording" data-recording-target="start">
+            <%= button_tag "Start recording", type: "button" %>
+          </div>
+          <div data-action="click->recording#stopRecording" data-recording-target="stop">
+            <%= button_tag "Stop recording", type: "button" %>
+          </div>
+          <div data-action= "click->recording#submitForm">
+            <%= f.submit "Submit Remix" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </div>
 <!--content-->
