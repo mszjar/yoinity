@@ -13,9 +13,6 @@ application.register("audio", AudioController)
 import CheckoutController from "./checkout_controller"
 application.register("checkout", CheckoutController)
 
-import DisableButtonController from "./disable_button_controller"
-application.register("disable-button", DisableButtonController)
-
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
