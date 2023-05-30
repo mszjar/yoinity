@@ -88,3 +88,4 @@ gem "font-awesome-sass", "~> 6.4.0"
 gem 'htmlbeautifier'
 gem 'aws-sdk-polly'
 gem 'stripe'
+gem 'aws-sdk-s3', require: false
