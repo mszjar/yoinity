@@ -81,15 +81,38 @@
       <% end %>
     </div>
   </div>
+
   <!--post image-->
   <div class="show-icons-item show-icons-item-end">
-      <% if @post.photo.key.nil? %>
-        <div> <%= image_tag "default_image.png", class: "avatar-small" %></div>
-      <% else %>
-        <div> <%= cl_image_tag @post.photo.key, class: "avatar-small" %></div>
+    <% if @post.photo.key.nil? %>
+      <%= link_to "#imageModal", "data-bs-toggle" => "modal", "data-bs-target" => "#imageModal" do %>
+        <%= image_tag "default_image.png", class: "avatar-small" %>
       <% end %>
+    <% else %>
+      <%= link_to "#imageModal", "data-bs-toggle" => "modal", "data-bs-target" => "#imageModal" do %>
+        <%= cl_image_tag @post.photo.key, class: "avatar-small" %>
+      <% end %>
+    <% end %>
   </div>
+
+  <!-- Image Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body d-flex align-items-center justify-content-center p-0">
+          <% if @post.photo.key.nil? %>
+            <%= image_tag "default_image.png" %>
+          <% else %>
+            <%= cl_image_tag @post.photo.key %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
+
 <!--date & duration-->
 <div class="subtitle-info">
   <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
