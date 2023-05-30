@@ -6,10 +6,6 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-# cloudinary:
-#   service: Cloudinary
-#   folder: <%= Rails.env %>
-
 amazon:
   service: S3
   access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
@@ -17,6 +13,9 @@ amazon:
   region: <%= ENV['AWS_REGION'] %>
   bucket: <%= ENV['AWS_BUCKET'] %>
 
+# cloudinary:
+#   service: Cloudinary
+#   folder: <%= Rails.env %>
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
