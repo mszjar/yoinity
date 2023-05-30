@@ -5,6 +5,9 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_controller.default_url_options = { host: 'https://www.yoinity.com' }
 
+  # 
+  config.action_controller.asset_host = 'https://www.yoinity.com'
+
   # Forms generated with `form_with` will submit with AJAX by default.
   config.action_view.form_with_generates_remote_forms = true
 
