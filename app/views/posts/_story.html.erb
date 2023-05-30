@@ -111,6 +111,7 @@
   </div>
 
 
+
 </div>
 
 <!--date & duration-->
@@ -179,7 +180,7 @@
       <div class="modal-body">
         <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
           <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
-          <%= f.input :language, placeholder: "Enter language", input_html: { data: { recording_target: "language" } } %>
+          <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
 
           <div data-action="click->recording#startRecording" data-recording-target="start">
             <%= button_tag "Start recording", type: "button" %>
