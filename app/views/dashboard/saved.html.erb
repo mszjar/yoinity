@@ -1,38 +1,45 @@
 <div class="web3" >
-    <div class="banner" >
-        <div class="container" style="width: 40%">
-          <h2>Saved for later</h2>
-          <div class="cards mt-5">
-            <% current_user.saved_posts.each do |post| %>
+  <div class="banner" >
+    <div class="container" style="width: 40%">
+      <h2>Saved for later</h2>
+      <div class="cards mt-5">
+        <div class="cards">
+          <% current_user.saved_posts.each do |post| %>
             <%= link_to post_path(post.token)  do %>
-                        <div  class="post-card-small">
-                          <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
-                          <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>
-                          <h5 class="language"><%= post.language %> from </h5>
-                          <% if post.language == "English" %>
-                            <div class= "england-flag"></div>
-                          <% elsif post.language == "French" %>
-                            <div class= "france-flag"></div>
-                          <% elsif post.language == "Spanish" %>
-                            <div class= "spain-flag"></div>
-                          <% end %>
-                          <div class="infos">
-                            <h3 class="post-avatar"> <%= cl_image_tag post.user.photo.key, class: "avatar-small" %></h3>
-                            <% if post.photo.key.nil? %>
-                                <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post" %></h3>
-                                <% else %>
-                                <h3 class="post-image"> <%= cl_image_tag post.photo.key, class: "avatar-post" %></h3>
-                            <% end %>
-                            <h2 class="title"><%=post.title%></h2>
-                            <h3 class="nickname"> By <%=post.user.nickname%></h3>
-                            <h3 class="nickname"><i class="fa-solid fa-badge-check" style="color: #ffffff;"></i></h3>
-                            <h3 class="date"><%= post.created_at.strftime("%-d %B %Y") %></h3>
-                            <p class="content"><%= post.content %></p>
-                          </div>
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-images">
+                    <%= cl_image_tag post.user.photo.key, class: "avatar-small" %>
+                    <% if post.photo.key.nil? %>
+                      <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post" %></h3>
+                    <% else %>
+                      <h3 class="post-image"> <%= cl_image_tag post.photo.key, class: "avatar-post" %></h3>
+                    <% end %>
+                  </div>
+                  <div class="infos">
+                    <h5 class="card-title title"><%=post.title%></h5>
+                    <div class= "info-mini">
+                      <h3 class="nickname"> By <%=post.user.nickname%></h3>
+                      <h3 class="date"><%= post.created_at.strftime("%-d %B %Y") %></h3>
+                      <h5 class="language"><%= post.language %> from </h5>
+                      <% if post.language == "English" %>
+                        <div class= "england-flag"></div>
+                      <% elsif post.language == "French" %>
+                        <div class= "france-flag"></div>
+                      <% elsif post.language == "Spanish" %>
+                        <div class= "spain-flag"></div>
+                      <% end %>
+                      <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
+                      <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>
+                    </div>
+                    <p class="content"><%= post.content %></p>
+                  </div>
                 </div>
-            <%end%>
+              </div>
             <% end %>
-          </div>
+          <% end %>
         </div>
-     </div>
+      </div>
+    </div>
+  </div>
 </div>
