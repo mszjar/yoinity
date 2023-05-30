@@ -16,14 +16,26 @@ class RemixesController < ApplicationController
   end
 
 
+  # def show
+  #   skip_authorization
+  #   @remix = Remix.find(params[:id])
+
+  #   if @remix.audio.attached?
+  #     send_file @remix.audio.path,
+  #               type: @remix.audio.content_type,
+  #               disposition: "attachment"
+  #   else
+  #     flash[:alert] = 'No audio file attached to this remix.'
+  #     redirect_to remixes_path
+  #   end
+  # end
+
   def show
     skip_authorization
     @remix = Remix.find(params[:id])
 
     if @remix.audio.attached?
-      send_file @remix.audio.path,
-                type: @remix.audio.content_type,
-                disposition: "attachment"
+      redirect_to rails_blob_url(@remix.audio)
     else
       flash[:alert] = 'No audio file attached to this remix.'
       redirect_to remixes_path

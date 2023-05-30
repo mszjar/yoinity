@@ -5,7 +5,7 @@
   <!--author avatar-->
   <div class="show-icons-item">
     <%= link_to profile_path(@post.user.nickname) do %>
-      <%= cl_image_tag @post.user.photo.key, class: "avatar-small" %>
+      <%= image_tag url_for(@post.user.photo), class: "avatar-small" %>
     <% end %>
   </div>
   <p class="d-flex align-items-center" style="font-size: 16px" >By <%= @post.user.nickname %> </p>
@@ -90,7 +90,7 @@
       <% end %>
     <% else %>
       <%= link_to "#imageModal", "data-bs-toggle" => "modal", "data-bs-target" => "#imageModal" do %>
-        <%= cl_image_tag @post.photo.key, class: "avatar-small" %>
+        <%= image_tag url_for(@post.photo), class: "avatar-small" %>
       <% end %>
     <% end %>
   </div>
@@ -103,7 +103,7 @@
           <% if @post.photo.key.nil? %>
             <%= image_tag "default_image.png" %>
           <% else %>
-            <%= cl_image_tag @post.photo.key %>
+            <%= image_tag url_for(@post.photo) %>
           <% end %>
         </div>
       </div>
@@ -139,7 +139,7 @@
         <% if @post.photo.key.nil? %>
           <div> <%= image_tag "default_image.png", class: "avatar" %></div>
         <% else %>
-          <div> <%= cl_image_tag @post.photo.key, class: "avatar" %></div>
+          <div> <%= image_tag url_for(@post.photo), class: "avatar" %></div>
         <% end %>
       </div>
     </div>
@@ -153,7 +153,7 @@
   <% @remixes.each do |remix| %>
   <div class="audio-player" data-controller="audio">
     <% if remix.present? && remix.audio.attached? %>
-        <div data-action="click->audio#togglePlay"><%= cl_image_tag remix.user.photo.key, class: "avatar" %></div>
+        <div data-action="click->audio#togglePlay"><%= image_tag url_for(remix.user.photo), class: "avatar" %></div>
         <audio data-audio-target="audio">
           <source src="<%= audio_remix_path(remix) %>" type="<%= remix.audio.blob.content_type %>">
         </audio>
