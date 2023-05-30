@@ -1,5 +1,4 @@
 class RemixesController < ApplicationController
-
   def create
     skip_authorization
     @remix = Remix.new(remix_params)
@@ -15,27 +14,12 @@ class RemixesController < ApplicationController
     end
   end
 
-
-  # def show
-  #   skip_authorization
-  #   @remix = Remix.find(params[:id])
-
-  #   if @remix.audio.attached?
-  #     send_file @remix.audio.path,
-  #               type: @remix.audio.content_type,
-  #               disposition: "attachment"
-  #   else
-  #     flash[:alert] = 'No audio file attached to this remix.'
-  #     redirect_to remixes_path
-  #   end
-  # end
-
   def show
     skip_authorization
     @remix = Remix.find(params[:id])
 
     if @remix.audio.attached?
-      redirect_to rails_blob_url(@remix.audio)
+      redirect_to url_for(@remix.audio)
     else
       flash[:alert] = 'No audio file attached to this remix.'
       redirect_to remixes_path
@@ -45,9 +29,8 @@ class RemixesController < ApplicationController
   def audio
     skip_authorization
     @remix = Remix.find(params[:id])
-    redirect_to rails_blob_url(@remix.audio)
+    redirect_to url_for(@remix.audio)
   end
-
 
   private
 
