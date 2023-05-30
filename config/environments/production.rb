@@ -1,11 +1,13 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "https://www.yoinity.com" }
+  config.action_mailer.default_url_options = { host: 'https://www.yoinity.com' }
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_controller.default_url_options = { host: 'https://www.yoinity.com' }
 
-  # 
+  # config for storage
+  config.active_storage.default_url_options = { host: 'https://www.yoinity.com' }
+  #
   config.action_controller.asset_host = 'https://www.yoinity.com'
 
   # Forms generated with `form_with` will submit with AJAX by default.
