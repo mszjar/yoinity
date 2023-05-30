@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+
+  authenticated :user do
+    root to: 'posts#index', as: :authenticated_root
+  end
+
   root to: "pages#home"
 
   resources :categories do
@@ -33,7 +38,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   resources :followers do
     member do
       post 'follow'
@@ -44,8 +48,6 @@ Rails.application.routes.draw do
   get "dashboard/show", to: "dashboard#show"
   get "dashboard/saved", to: "dashboard#saved"
   get '/@:nickname', to: 'profiles#show', as: 'profile'
-  get 'about', to: 'pages#about'
-  get 'web3', to: 'pages#web3'
   post 'checkout', to: 'checkout#create'
   get 'checkout/success', to: 'checkout#success'
   get 'checkout/cancel', to: 'checkout#cancel'

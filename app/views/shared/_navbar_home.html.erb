@@ -6,11 +6,7 @@
                     <%= image_tag "yoinity_logo.png" %>
                   <% end %>
                   <p class="all-text-white mt-4", style="font-size: 28px">
-                    <% if user_signed_in? %>
-                    <%= link_to "Yoinity", "/p", class: "yoinity-logo"%>
-                    <% else %>
                     <%= link_to "Yoinity", "/", class: "yoinity-logo"%>
-                    <% end %>
                   </p>
                 </ul>
               </div>
@@ -19,10 +15,7 @@
                     <ul class="navbar-nav" style="width: 100%">
                       <% if user_signed_in? %>
                         <div class= "menu-container">
-                          <li class="nav-item all-text-grey">
-                            <%= link_to "Feed", "/p", class: "navbar-link" %>
-                          </li>
-                          <li class="nav-item all-text-grey">
+                          <li class="nav-item all-text-grey btn-create">
                             <%= link_to "Create", "/p/new", class: "navbar-link" %>
                           </li>
                           <% unless current_user.subscription_status == 'active' %>
