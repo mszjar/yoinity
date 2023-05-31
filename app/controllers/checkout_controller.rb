@@ -14,8 +14,8 @@ class CheckoutController < ApplicationController
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: checkout_cancel_url,
+      success_url: checkout_success_path + '?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: checkout_cancel_path,
     )
 
     respond_to do |format|
@@ -26,14 +26,17 @@ class CheckoutController < ApplicationController
 
   def success
     skip_authorization
-    flash[:notice] = "Your payment was successfully accepted."
-    current_user.create_subscription(stripe_subscription_id: params[:session_id])
-    redirect_to "/checkout/success"
+    subscription = current_user.create_subscription(stripe_subscription_id: params[:session_id])
+    if subscription.persisted?
+      flash[:notice] = "Your payment was successfully accepted."
+    else
+      flash[:error] = "There was a problem creating your subscription. Please try again."
+    end
+    # Redirect to a page or render a view, depending on your application flow
   end
 
   def cancel
     skip_authorization
     flash[:notice] = "Your payment was cancelled."
-    redirect_to root_path
   end
 end

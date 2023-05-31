@@ -18,6 +18,7 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :nickname, length: { maximum: 25 }
+  validates :stripe_subscription_id, presence: true, if: -> { subscription_status == 'active' }
 
   acts_as_followable
   acts_as_follower
@@ -28,10 +29,19 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Stripe subscription
-  def create_subscription(stripe_subscription_id:)
-    self.stripe_subscription_id = stripe_subscription_id
-    self.subscription_status = 'active'
-    save
+  # def create_subscription(stripe_subscription_id:)
+  #   self.stripe_subscription_id = stripe_subscription_id
+  #   self.subscription_status = 'active'
+  #   save
+  # end
+  def create_subscription(stripe_subscription_id)
+    subscription = Subscription.create(user: self, stripe_subscription_id: stripe_subscription_id)
+    if subscription.persisted?
+      self.stripe_subscription_id = stripe_subscription_id
+      self.subscription_status = 'active'
+      save
+    end
+    subscription
   end
 
   # Downcase nickname before saving to database
