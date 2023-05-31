@@ -7,7 +7,7 @@ class CheckoutController < ApplicationController
     # Set default_url_options directly in the controller for testing purposes.
     default_url_options[:host] = Rails.env.production? ? 'www.yoinity.com' : 'localhost:3000'
 
-    
+
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
@@ -27,9 +27,15 @@ class CheckoutController < ApplicationController
 
 
   def success
+    skip_authorization
+    flash[:notice] = "Your payment successfully accepted."
     current_user.create_subscription(stripe_subscription_id: params[:session_id])
+    redirect_to "/checkout/success"
   end
 
   def cancel
+    skip_authorization
+    flash[:notice] = "Your payment was cancelled."
+    redirect_to "/checkout/cancel"
   end
 end
