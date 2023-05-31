@@ -36,6 +36,6 @@ class CheckoutController < ApplicationController
   def cancel
     skip_authorization
     flash[:notice] = "Your payment was cancelled."
-    redirect_to "/checkout/cancel"
+    redirect_to root_path
   end
 end
