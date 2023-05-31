@@ -3,6 +3,11 @@ class CheckoutController < ApplicationController
 
   def create
     skip_authorization
+
+    # Set default_url_options directly in the controller for testing purposes.
+    default_url_options[:host] = Rails.env.production? ? 'www.yoinity.com' : 'localhost:3000'
+
+    
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
