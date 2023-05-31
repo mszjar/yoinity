@@ -156,7 +156,6 @@
           <div data-action="click->audio#togglePlay"><%= image_tag url_for(remix.user.photo), class: "avatar" %></div>
           <audio data-audio-target="audio">
             <source src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
-            <!-- <source src="<%= remix.audio.service_url %>" type="<%= remix.audio.blob.content_type %>"> -->
           </audio>
       <% end %>
     </div>

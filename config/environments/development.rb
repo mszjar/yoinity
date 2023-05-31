@@ -4,6 +4,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_controller.default_url_options = { host: "localhost", port: 3000, protocol: 'http' }
+
   # Forms generated with `form_with` will submit with AJAX by default.
   config.action_view.form_with_generates_remote_forms = true
 
