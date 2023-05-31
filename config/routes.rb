@@ -49,8 +49,8 @@ Rails.application.routes.draw do
   get "dashboard/saved", to: "dashboard#saved"
   get '/@:nickname', to: 'profiles#show', as: 'profile'
   post 'checkout', to: 'checkout#create'
-  get 'checkout/success', to: 'checkout#success'
-  get 'checkout/cancel', to: 'checkout#cancel'
+  get '/checkout/success', to: 'checkout#success', as: 'checkout_success'
+  get '/checkout/cancel', to: 'checkout#cancel', as: 'checkout_cancel'
   post 'stripe_webhooks', to: 'stripe_webhooks#receive', as: 'stripe_webhooks'
 
 end

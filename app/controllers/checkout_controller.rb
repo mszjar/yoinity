@@ -14,8 +14,8 @@ class CheckoutController < ApplicationController
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: url_for(controller: 'checkout', action: 'success', only_path: false) + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: url_for(controller: 'checkout', action: 'cancel', only_path: false),
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: checkout_cancel_url,
     )
 
     respond_to do |format|
