@@ -26,23 +26,6 @@ class RemixesController < ApplicationController
     end
   end
 
-  # def audio
-  #   skip_authorization
-  #   @remix = Remix.find(params[:id])
-  #   redirect_to url_for(@remix.audio)
-  # end
-  # def audio
-  #   skip_authorization
-  #   @remix = Remix.find(params[:id])
-
-  #   if @remix.audio.attached?
-  #     Rails.logger.info("Redirecting to: #{rails_blob_url(@remix.audio)}")
-  #     redirect_to rails_blob_url(@remix.audio)
-  #   else
-  #     flash[:alert] = 'No audio file attached to this remix.'
-  #     redirect_to remixes_path
-  #   end
-  # end
   def audio
     skip_authorization
     @remix = Remix.find(params[:id])
