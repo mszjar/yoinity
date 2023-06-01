@@ -182,6 +182,9 @@
           <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
           <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
 
+          <!-- Added feedback div -->
+          <div data-recording-target="messages" style="height: 30px; color: white;"></div>
+
           <div data-action="click->recording#startRecording" data-recording-target="start">
             <%= button_tag "Start recording", type: "button" %>
           </div>
@@ -199,6 +202,7 @@
     </div>
   </div>
 </div>
+
 
 
 </div>
