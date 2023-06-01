@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   has_and_belongs_to_many :categories, limit: 6
   has_many :remixes
 
-  validates :title, :content, :language, presence: true
+  validates :title, :content, presence: true
   validates :title, length: { maximum: 120 }
   validates :content, length: { maximum: 8999 }
 
