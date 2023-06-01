@@ -19,7 +19,6 @@ export default class extends Controller {
     console.log('startRecording called');
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       this.recorder = RecordRTC(stream, { type: 'audio' });
-      // this.recorder = RecordRTC(stream, { type: 'audio', mimeType: 'audio/webm;codecs=opus' });
       this.recorder.startRecording();
       this.stopButton.disabled = false;
       this.startButton.disabled = true;

@@ -5,7 +5,7 @@
   <!--author avatar-->
   <div class="show-icons-item">
     <%= link_to profile_path(@post.user.nickname) do %>
-      <%= image_tag url_for(@post.user.photo), class: "avatar-small" %>
+      <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
     <% end %>
   </div>
   <p class="d-flex align-items-center" style="font-size: 16px" >By <%= @post.user.nickname %> </p>
@@ -86,11 +86,11 @@
   <div class="show-icons-item show-icons-item-end">
     <% if @post.photo.key.nil? %>
       <%= link_to "#imageModal", "data-bs-toggle" => "modal", "data-bs-target" => "#imageModal" do %>
-        <%= image_tag "default_image.png", class: "avatar-small" %>
+        <%= image_tag "default_image.png", class: "avatar-small", loading: "lazy" %>
       <% end %>
     <% else %>
       <%= link_to "#imageModal", "data-bs-toggle" => "modal", "data-bs-target" => "#imageModal" do %>
-        <%= image_tag url_for(@post.photo), class: "avatar-small" %>
+        <%= image_tag url_for(@post.photo), class: "avatar-small", loading: "lazy" %>
       <% end %>
     <% end %>
   </div>
@@ -101,9 +101,9 @@
       <div class="modal-content bg-transparent border-0">
         <div class="modal-body d-flex align-items-center justify-content-center p-0">
           <% if @post.photo.key.nil? %>
-            <%= image_tag "default_image.png" %>
+            <%= image_tag "default_image.png", loading: "lazy" %>
           <% else %>
-            <%= image_tag url_for(@post.photo) %>
+            <%= image_tag url_for(@post.photo), loading: "lazy" %>
           <% end %>
         </div>
       </div>
@@ -137,30 +137,30 @@
     <div class="custom-controls">
       <div class="play-button" data-action="click->audio#togglePlay">
         <% if @post.photo.key.nil? %>
-          <div> <%= image_tag "default_image.png", class: "avatar" %></div>
+          <div> <%= image_tag "default_image.png", class: "avatar", loading: "lazy" %></div>
         <% else %>
-          <div> <%= image_tag url_for(@post.photo), class: "avatar" %></div>
+          <div> <%= image_tag url_for(@post.photo), class: "avatar", loading: "lazy" %></div>
         <% end %>
       </div>
     </div>
-    <audio data-audio-target="audio">
-      <source src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
+    <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
     </audio>
   </div>
 
-  <!--remixes-->
-  <div class="remixes" >
-  <% @remixes.each do |remix| %>
-    <div class="audio-player" data-controller="audio">
-      <% if remix.present? && remix.audio.attached? %>
-          <div data-action="click->audio#togglePlay"><%= image_tag url_for(remix.user.photo), class: "avatar" %></div>
-          <audio data-audio-target="audio">
-            <source src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
-          </audio>
-      <% end %>
-    </div>
-  <% end %>
+
+<!--remixes-->
+<div class="remixes">
+<% @remixes.each do |remix| %>
+  <div class="audio-player" data-controller="audio">
+    <% if remix.present? && remix.audio.attached? %>
+        <div data-action="click->audio#togglePlay"><%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %></div>
+        <audio data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
+        </audio>
+    <% end %>
   </div>
+<% end %>
+</div>
+
 
   <!-- Remix button -->
 <div>

@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ["tab", "notification"];
 
   connect() {
-    console.log("The stimulus controller is OK")
   }
 
   changeTab(event) {
