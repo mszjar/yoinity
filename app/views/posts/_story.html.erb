@@ -47,37 +47,82 @@
 
 <!--listen to remixes-->
 <div class="subtitle-info">
-  <div class="show-date">Listen to remixes</div>
+  <div class="show-date">Written & read by</div>
 </div>
 <!--remixes bar-->
 <div class="remixes-bar" >
-  <!--amazon polly-->
-  <div class="audio-player" data-controller="audio">
-    <div class="custom-controls">
-      <div class="play-button" data-action="click->audio#togglePlay">
-        <% if @post.photo.key.nil? %>
-          <div> <%= image_tag "default_image.png", class: "avatar", loading: "lazy" %></div>
-        <% else %>
-          <div> <%= image_tag url_for(@post.photo), class: "avatar", loading: "lazy" %></div>
-        <% end %>
-      </div>
+  <!--author avatar-->
+  <div class="show-avatar">
+    <div class="show-avatar-item">
+      <%= link_to profile_path(@post.user.nickname) do %>
+        <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
+      <% end %>
     </div>
-    <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
-    </audio>
+    <p class="d-flex align-items-center" style="font-size: 16px" ><%= @post.user.nickname %></p>
+    <div class="d-flex align-items-center" >
+      <% if user_signed_in? %>
+        <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+        <% if user_follow %>
+          <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-following", method: :post %></p>
+        <% else %>
+          <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-follow", method: :post %></p>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
 
-  <!--remixes-->
+
+  <!--remixes bar-->
   <div class="remixes">
-  <% @remixes.each do |remix| %>
+    <!--amazon polly-->
     <div class="audio-player" data-controller="audio">
-      <% if remix.present? && remix.audio.attached? %>
-          <div data-action="click->audio#togglePlay"><%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %></div>
-          <audio data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
-          </audio>
-      <% end %>
+        <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
+            <div> <%= image_tag "robot.png", class: "avatar", loading: "lazy" %></div>
+            <div class="avatar-overlay">
+                <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
+                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
+                <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
+            </div>
+        </div>
+      <div class="d-flex justify-content-center"><p style="font-size: 9px" >Polly AI</p></div>
+      <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
+      </audio>
     </div>
-  <% end %>
+
+    <!--remixes-->
+    <div class="remixes" data-controller="play-all">
+      <% @remixes.each do |remix| %>
+        <div class="audio-player" data-controller="audio">
+          <% if remix.present? && remix.audio.attached? %>
+            <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
+              <%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %>
+              <div class="avatar-overlay">
+                <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
+                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
+                <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
+            <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
+            </audio>
+          <% end %>
+        </div>
+      <% end %>
+      <!--play all button-->
+      <div class="audio-player" data-controller="audio">
+          <div data-action="click->play-all#togglePlayAll" class="avatar-container show-avatar-item">
+            <%= image_tag "yoinity_logo.png", class: "avatar", loading: "lazy" %>
+            <div class="avatar-overlay">
+              <i class="play-icon fas fa-play" data-play-all-target="playAllIcon"></i>
+              <i class="pause-icon fas fa-pause" data-play-all-target="pauseAllIcon" style="display: none;"></i>
+              <div class="green-overlay" data-play-all-target="greenAllOverlay"></div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center"><p style="font-size: 9px" >Play all</p></div>
+        </div>
+      </div>
+
   </div>
 
 
@@ -148,39 +193,13 @@
 
   <div class="content-bar" >
     <div class="post-content">
-    <div class="d-flex justify-content-center" style="color: grey"><%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %></div>
       <% @content_pages.each do |line| %>
         <p><%= line.gsub(/\n/, '<br>').html_safe %></p>
       <% end %>
+
     </div>
     <!--like, quality, reviews buttons-->
     <div class="show-icons">
-      <!--icon like-->
-      <div class="show-icons-item">
-        <% if user_signed_in? %>
-          <% post_like = current_user.post_likes.find_by(post: @post) %>
-          <% if post_like.nil? %>
-            <%= button_to post_likes_path, class: "btn icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
-              <i class="far fa-heart"></i>
-            <% end %>
-          <% else %>
-            <%= button_to post_like_path(post_like), class: "btn icon-button", method: :delete do %>
-              <i class="fas fa-heart" style="color: #FF3040"></i>
-            <% end %>
-          <% end %>
-        <% end %>
-        <p><%= @post.post_likes.count %></p>
-      </div>
-      <!--icon reviews-->
-      <div class="show-icons-item">
-        <% if @post.comments.count == 0 %>
-          <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="far fa-comment"></i></button>
-        <% else %>
-          <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="fas fa-comment"></i></button>
-        <% end %>
-        <p><%= @post.comments.count %></p>
-      </div>
-
       <!--icon quality-->
       <div class="show-icons-item">
         <% if user_signed_in? %>
@@ -198,24 +217,48 @@
         <p><%= @post.post_qualities.count %></p>
       </div>
 
+      <!--icon reviews-->
+      <div class="show-icons-item">
+        <% if @post.comments.count == 0 %>
+          <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="far fa-comment"></i></button>
+        <% else %>
+          <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="fas fa-comment"></i></button>
+        <% end %>
+        <p><%= @post.comments.count %></p>
+      </div>
+
+      <!--icon like-->
+      <div class="show-icons-item">
+        <% if user_signed_in? %>
+          <% post_like = current_user.post_likes.find_by(post: @post) %>
+          <% if post_like.nil? %>
+            <%= button_to post_likes_path, class: "btn icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
+              <i class="far fa-heart"></i>
+            <% end %>
+          <% else %>
+            <%= button_to post_like_path(post_like), class: "btn icon-button", method: :delete do %>
+              <i class="fas fa-heart" style="color: #FF3040"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+        <p><%= @post.post_likes.count %></p>
+      </div>
+
       <div class="show-icons-item">
         <!--icon save for later-->
-        <div class="save-item">
           <% if user_signed_in? %>
             <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
             <% if saved_for_later.nil? %>
-              <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
-                <i class="far fa-clock"></i>
+              <%= button_to saved_for_laters_path, class: "btn icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
+                <i class="far fa-bookmark"></i>
               <% end %>
-              <p>Save for later</p>
             <% else %>
-              <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
-                <i class="fas fa-clock"></i>
+              <%= button_to saved_for_later_path(saved_for_later), class: "btn icon-button", method: :delete do %>
+                <i class="fas fa-bookmark"></i>
               <% end %>
-              <p>Saved</p>
             <% end %>
           <% end %>
-        </div>
+        <p><%= @post.saved_for_laters.count %></p>
       </div>
 
     </div>
@@ -232,24 +275,6 @@
       <%= link_to '→', post_path(@post.token, page: @content_pages.next_page), class: 'pagination-link' %>
     </div>
   <% end %>
-</div>
 
-  <!--author avatar-->
-<div class="show-avatar">
-  <div class="show-avatar-item">
-    <%= link_to profile_path(@post.user.nickname) do %>
-      <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
-    <% end %>
-  </div>
-  <p class="d-flex align-items-center" style="font-size: 16px" >By <%= @post.user.nickname %> </p>
-  <div class="d-flex align-items-center" >
-    <% if user_signed_in? %>
-      <% user_follow = current_user.following?(User.find(@post.user_id)) %>
-      <% if user_follow %>
-        <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
-      <% else %>
-        <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
-      <% end %>
-    <% end %>
-  </div>
 </div>
+    <div class="d-flex justify-content-center" style="color: grey"><%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %></div>

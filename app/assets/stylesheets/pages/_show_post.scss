@@ -13,6 +13,8 @@
   justify-content:center;
   margin-top: 14px;
   margin-bottom: 14px;
+  margin-left: 32px;
+  font-weight: bolder;
 }
 
 .show-icons-item {
@@ -25,28 +27,20 @@
   padding-bottom: 8px;
   p {
     // font-family: arial-black, sans-serif;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bolder;
   }
 }
 
 .show-avatar {
   gap: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
-  justify-content:center;
-  margin-top: 14px;
-  margin-bottom: 14px;
 }
 
 .show-avatar-item {
   display: flex;
-  flex-direction: row-reverse;
   align-items: center; /* Optional: Aligns the items horizontally */
   justify-content: center; /* Optional: Aligns the items vertically */
-  padding-top: 8px;
-  padding-bottom: 8px;
   p {
     // font-family: arial-black, sans-serif;
     font-size: 16px;
@@ -145,6 +139,8 @@
 .remixes-bar {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 42px;
+  align-items: center;
 }
 
 .title-bar {
@@ -156,4 +152,35 @@
 .content-bar {
   display: flex;
   justify-content: space-between;
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.avatar-overlay {
+  position: absolute;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0); /* Transparent background */
+}
+
+.play-icon,
+.pause-icon {
+  z-index: 2;
+  display: none;
+  /* Adjust as needed */
+}
+
+.green-overlay {
+  position: absolute;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background: #1FDF64; /* Replace with the exact green color you want */
+  z-index: 1;
 }
