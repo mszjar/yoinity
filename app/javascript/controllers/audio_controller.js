@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "playIcon", "pauseIcon"];
+  static targets = ["audio", "playIcon", "pauseIcon", "greenOverlay"];
 
   connect() {
     this.hideIcons(); // Ensure icons are hidden initially
@@ -11,6 +11,7 @@ export default class extends Controller {
     const audio = this.audioTarget;
     if (audio.paused) {
       this.playIconTarget.style.display = 'block';
+      this.greenOverlayTarget.style.display = 'block';
     } else {
       this.pauseIconTarget.style.display = 'block';
     }
@@ -18,6 +19,7 @@ export default class extends Controller {
 
   hideIcons() {
     this.playIconTarget.style.display = 'none';
+    this.greenOverlayTarget.style.display = 'none';
     if (this.audioTarget.paused) {
       this.pauseIconTarget.style.display = 'none';
     }
@@ -33,10 +35,12 @@ export default class extends Controller {
     if (audio.paused) {
       audio.play();
       this.playIconTarget.style.display = 'none';
+      this.greenOverlayTarget.style.display = 'none';
       this.pauseIconTarget.style.display = 'block';
     } else {
       audio.pause();
       this.playIconTarget.style.display = 'block';
+      this.greenOverlayTarget.style.display = 'block';
       this.pauseIconTarget.style.display = 'none';
     }
   }

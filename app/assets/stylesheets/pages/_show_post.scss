@@ -160,10 +160,9 @@
 
 .avatar-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,6 +171,16 @@
 
 .play-icon,
 .pause-icon {
+  z-index: 2;
   display: none;
   /* Adjust as needed */
+}
+
+.green-overlay {
+  position: absolute;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background: #1FDF64; /* Replace with the exact green color you want */
+  z-index: 1;
 }
