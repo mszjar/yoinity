@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update show destroy]
 
   # Constants
-  LINES_PER_PAGE = 8
+  LINES_PER_PAGE = 4
 
   def index
     @post = policy_scope(Post)

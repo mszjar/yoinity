@@ -1,96 +1,16 @@
-<!--title-->
-<h1 class="title"> <%= @post.title %></h1>
-<!--like, quality, reviews buttons-->
-<div class="show-icons">
-  <!--author avatar-->
-  <div class="show-icons-item">
-    <%= link_to profile_path(@post.user.nickname) do %>
-      <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
-    <% end %>
-  </div>
-  <p class="d-flex align-items-center" style="font-size: 16px" >By <%= @post.user.nickname %> </p>
-  <div class="d-flex align-items-center" >
-    <% if user_signed_in? %>
-      <% user_follow = current_user.following?(User.find(@post.user_id)) %>
-      <% if user_follow %>
-        <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
-      <% else %>
-        <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
-      <% end %>
-    <% end %>
-  </div>
-  <!--icon like-->
-  <div class="show-icons-item">
-    <% if user_signed_in? %>
-      <% post_like = current_user.post_likes.find_by(post: @post) %>
-      <% if post_like.nil? %>
-        <%= button_to post_likes_path, class: "btn icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
-          <i class="far fa-heart"></i>
-        <% end %>
-      <% else %>
-        <%= button_to post_like_path(post_like), class: "btn icon-button", method: :delete do %>
-          <i class="fas fa-heart" style="color: #FF3040"></i>
-        <% end %>
-      <% end %>
-    <% end %>
-    <p><%= @post.post_likes.count %></p>
-  </div>
-  <!--icon reviews-->
-  <div class="show-icons-item">
-    <% if @post.comments.count == 0 %>
-      <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="far fa-comment"></i></button>
-    <% else %>
-      <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="fas fa-comment"></i></button>
-    <% end %>
-    <p><%= @post.comments.count %></p>
-  </div>
-
-  <!--icon quality-->
-  <div class="show-icons-item">
-    <% if user_signed_in? %>
-      <% post_quality = current_user.post_qualities.find_by(post: @post) %>
-      <% if post_quality.nil? %>
-        <%= button_to post_qualities_path, class: "btn icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
-          <i class="far fa-star"></i>
-        <% end %>
-      <% else %>
-        <%= button_to post_quality_path(post_quality), class: "btn icon-button", method: :delete do %>
-          <i class="fas fa-star" style="color: #FFD43B"></i>
-        <% end %>
-      <% end %>
-    <% end %>
-    <p><%= @post.post_qualities.count %></p>
-  </div>
-
-  <div class="show-icons-item">
-    <!--icon save for later-->
-    <div class="save-item">
-      <% if user_signed_in? %>
-        <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
-        <% if saved_for_later.nil? %>
-          <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
-            <i class="far fa-clock"></i>
-          <% end %>
-          <p>Save for later</p>
-        <% else %>
-          <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
-            <i class="fas fa-clock"></i>
-          <% end %>
-          <p>Saved</p>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-
+<!--title bar-->
+<div class="title-bar" >
+  <!--title-->
+  <h1 class="title"> <%= @post.title %></h1>
   <!--post image-->
   <div class="show-icons-item show-icons-item-end">
     <% if @post.photo.key.nil? %>
       <%= link_to "#imageModal", "data-bs-toggle" => "modal", "data-bs-target" => "#imageModal" do %>
-        <%= image_tag "default_image.png", class: "avatar-small", loading: "lazy" %>
+        <%= image_tag "default_image.png", class: "avatar-post", loading: "lazy" %>
       <% end %>
     <% else %>
       <%= link_to "#imageModal", "data-bs-toggle" => "modal", "data-bs-target" => "#imageModal" do %>
-        <%= image_tag url_for(@post.photo), class: "avatar-small", loading: "lazy" %>
+        <%= image_tag url_for(@post.photo), class: "avatar-post", loading: "lazy" %>
       <% end %>
     <% end %>
   </div>
@@ -110,9 +30,8 @@
     </div>
   </div>
 
-
-
 </div>
+
 
 <!--date & duration-->
 <div class="subtitle-info">
@@ -148,83 +67,189 @@
   </div>
 
 
-<!--remixes-->
-<div class="remixes">
-<% @remixes.each do |remix| %>
-  <div class="audio-player" data-controller="audio">
-    <% if remix.present? && remix.audio.attached? %>
-        <div data-action="click->audio#togglePlay"><%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %></div>
-        <audio data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
-        </audio>
+  <!--remixes-->
+  <div class="remixes">
+  <% @remixes.each do |remix| %>
+    <div class="audio-player" data-controller="audio">
+      <% if remix.present? && remix.audio.attached? %>
+          <div data-action="click->audio#togglePlay"><%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %></div>
+          <audio data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
+          </audio>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+
+
+  <!-- Remix button -->
+  <div>
+    <% if Remix.exists?(user: current_user, post: @post) %>
+      <button type="button" class="btn btn-classic" disabled>
+        Remix
+      </button>
+    <% else %>
+      <button type="button" class="btn btn-classic" data-bs-toggle="modal" data-bs-target="#remixModal">
+        Remix
+      </button>
     <% end %>
   </div>
-<% end %>
-</div>
 
 
-<!-- Remix button -->
-<div>
-  <% if Remix.exists?(user: current_user, post: @post) %>
-    <button type="button" class="btn btn-classic" disabled>
-      Remix
-    </button>
-  <% else %>
-    <button type="button" class="btn btn-classic" data-bs-toggle="modal" data-bs-target="#remixModal">
-      Remix
-    </button>
-  <% end %>
-</div>
+  <!-- Remix form (Modal) -->
+  <div class="modal fade" id="remixModal" tabindex="-1" aria-labelledby="remixModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="remixModalLabel">Remix</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
+            <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
+            <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
 
+            <!-- Added feedback div -->
+            <div data-recording-target="messages" style="height: 30px; color: white;"></div>
 
-<!-- Remix form (Modal) -->
-<div class="modal fade" id="remixModal" tabindex="-1" aria-labelledby="remixModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="remixModalLabel">Remix</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
-          <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
-          <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
-
-          <!-- Added feedback div -->
-          <div data-recording-target="messages" style="height: 30px; color: white;"></div>
-
-          <div data-action="click->recording#startRecording" data-recording-target="start">
-            <%= button_tag "Start recording", type: "button" %>
-          </div>
-          <div data-action="click->recording#stopRecording" data-recording-target="stop">
-            <%= button_tag "Stop recording", type: "button" %>
-          </div>
-          <div data-action= "click->recording#submitForm">
-            <%= f.submit "Submit Remix" %>
-          </div>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div data-action="click->recording#startRecording" data-recording-target="start">
+              <%= button_tag "Start recording", type: "button" %>
+            </div>
+            <div data-action="click->recording#stopRecording" data-recording-target="stop">
+              <%= button_tag "Stop recording", type: "button" %>
+            </div>
+            <div data-action= "click->recording#submitForm">
+              <%= f.submit "Submit Remix" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
 </div>
 
 <!--content-->
-<% if @content_pages.prev_page %>
-  <%= link_to '←', post_path(@post.token, page: @content_pages.prev_page), class: 'prev-page-icon' %>
-<% end %>
+<div class="post-content-pagination-wrapper">
+  <% if @content_pages.first_page? %>
+    <div class="empty-pagination-element"></div>
+  <% else %>
+    <div class="pagination-element">
+      <%= link_to '←', post_path(@post.token, page: @content_pages.prev_page), class: 'pagination-link' %>
+    </div>
+    <div class="pagination-element-fixed prev">
+      <%= link_to '←', post_path(@post.token, page: @content_pages.prev_page), class: 'pagination-link' %>
+    </div>
+  <% end %>
 
+  <div class="content-bar" >
+    <div class="post-content">
+    <div class="d-flex justify-content-center" style="color: grey"><%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %></div>
+      <% @content_pages.each do |line| %>
+        <p><%= line.gsub(/\n/, '<br>').html_safe %></p>
+      <% end %>
+    </div>
+    <!--like, quality, reviews buttons-->
+    <div class="show-icons">
+      <!--icon like-->
+      <div class="show-icons-item">
+        <% if user_signed_in? %>
+          <% post_like = current_user.post_likes.find_by(post: @post) %>
+          <% if post_like.nil? %>
+            <%= button_to post_likes_path, class: "btn icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
+              <i class="far fa-heart"></i>
+            <% end %>
+          <% else %>
+            <%= button_to post_like_path(post_like), class: "btn icon-button", method: :delete do %>
+              <i class="fas fa-heart" style="color: #FF3040"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+        <p><%= @post.post_likes.count %></p>
+      </div>
+      <!--icon reviews-->
+      <div class="show-icons-item">
+        <% if @post.comments.count == 0 %>
+          <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="far fa-comment"></i></button>
+        <% else %>
+          <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="fas fa-comment"></i></button>
+        <% end %>
+        <p><%= @post.comments.count %></p>
+      </div>
 
-<%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %>
-<% @content_pages.each do |line| %>
-  <p><%= line.gsub(/\n/, '<br>').html_safe %></p>
-<% end %>
+      <!--icon quality-->
+      <div class="show-icons-item">
+        <% if user_signed_in? %>
+          <% post_quality = current_user.post_qualities.find_by(post: @post) %>
+          <% if post_quality.nil? %>
+            <%= button_to post_qualities_path, class: "btn icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
+              <i class="far fa-star"></i>
+            <% end %>
+          <% else %>
+            <%= button_to post_quality_path(post_quality), class: "btn icon-button", method: :delete do %>
+              <i class="fas fa-star" style="color: #FFD43B"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+        <p><%= @post.post_qualities.count %></p>
+      </div>
 
-<% if @content_pages.next_page %>
-  <%= link_to '→', post_path(@post.token, page: @content_pages.next_page), class: 'next-page-icon' %>
-<% end %>
+      <div class="show-icons-item">
+        <!--icon save for later-->
+        <div class="save-item">
+          <% if user_signed_in? %>
+            <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
+            <% if saved_for_later.nil? %>
+              <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
+                <i class="far fa-clock"></i>
+              <% end %>
+              <p>Save for later</p>
+            <% else %>
+              <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
+                <i class="fas fa-clock"></i>
+              <% end %>
+              <p>Saved</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <% if @content_pages.last_page? %>
+    <div class="empty-pagination-element"></div>
+  <% else %>
+    <div class="pagination-element">
+      <%= link_to '→', post_path(@post.token, page: @content_pages.next_page), class: 'pagination-link' %>
+    </div>
+    <div class="pagination-element-fixed next">
+      <%= link_to '→', post_path(@post.token, page: @content_pages.next_page), class: 'pagination-link' %>
+    </div>
+  <% end %>
+</div>
+
+  <!--author avatar-->
+<div class="show-avatar">
+  <div class="show-avatar-item">
+    <%= link_to profile_path(@post.user.nickname) do %>
+      <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
+    <% end %>
+  </div>
+  <p class="d-flex align-items-center" style="font-size: 16px" >By <%= @post.user.nickname %> </p>
+  <div class="d-flex align-items-center" >
+    <% if user_signed_in? %>
+      <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+      <% if user_follow %>
+        <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-following", method: :post %></p>
+      <% else %>
+        <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-follow", method: :post %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
