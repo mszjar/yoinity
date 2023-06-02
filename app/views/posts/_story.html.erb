@@ -162,12 +162,19 @@
 </div>
 
 
-  <!-- Remix button -->
+<!-- Remix button -->
 <div>
-  <button type="button" class="btn btn-classic" data-bs-toggle="modal" data-bs-target="#remixModal">
-    Remix
-  </button>
+  <% if Remix.exists?(user: current_user, post: @post) %>
+    <button type="button" class="btn btn-classic" disabled>
+      Remix
+    </button>
+  <% else %>
+    <button type="button" class="btn btn-classic" data-bs-toggle="modal" data-bs-target="#remixModal">
+      Remix
+    </button>
+  <% end %>
 </div>
+
 
 <!-- Remix form (Modal) -->
 <div class="modal fade" id="remixModal" tabindex="-1" aria-labelledby="remixModalLabel" aria-hidden="true">
