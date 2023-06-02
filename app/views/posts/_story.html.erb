@@ -77,12 +77,14 @@
   <div class="remixes">
     <!--amazon polly-->
     <div class="audio-player" data-controller="audio">
-      <div class="custom-controls">
-        <div class="play-button" data-action="click->audio#togglePlay">
+        <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
             <div> <%= image_tag "robot.png", class: "avatar", loading: "lazy" %></div>
-            <div class="d-flex justify-content-center"><p style="font-size: 9px" >Polly AI</p></div>
+            <div class="avatar-overlay">
+                <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
+                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
+            </div>
         </div>
-      </div>
+      <div class="d-flex justify-content-center"><p style="font-size: 9px" >Polly AI</p></div>
       <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
       </audio>
     </div>
@@ -90,7 +92,7 @@
     <% @remixes.each do |remix| %>
       <div class="audio-player" data-controller="audio">
         <% if remix.present? && remix.audio.attached? %>
-            <div data-action="mouseenter->audio#showControls mouseleave->audio#hideControls click->audio#togglePlay" class="avatar-container show-avatar-item">
+            <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
               <%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %>
               <div class="avatar-overlay">
                 <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>

@@ -4,20 +4,23 @@ export default class extends Controller {
   static targets = ["audio", "playIcon", "pauseIcon"];
 
   connect() {
-    this.hideControls();
+    this.hideIcons(); // Ensure icons are hidden initially
   }
 
   showControls() {
-    if (this.audioTarget.paused) {
+    const audio = this.audioTarget;
+    if (audio.paused) {
       this.playIconTarget.style.display = 'block';
     } else {
       this.pauseIconTarget.style.display = 'block';
     }
   }
 
-  hideControls() {
+  hideIcons() {
     this.playIconTarget.style.display = 'none';
-    this.pauseIconTarget.style.display = 'none';
+    if (this.audioTarget.paused) {
+      this.pauseIconTarget.style.display = 'none';
+    }
   }
 
   togglePlay() {
