@@ -22,7 +22,7 @@
           </li>
           <% unless current_user.subscription_status == 'active' %>
             <li class="nav-item all-text-grey">
-              <%= link_to "Subscribe", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link" %>
+              <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link" %>
             </li>
           <% end %>
           <li class="nav-item dropdown">
