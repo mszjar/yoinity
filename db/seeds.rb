@@ -7,7 +7,7 @@ User.destroy_all
 puts "All posts and users destroyed!"
 
 puts "Creating users..."
-user1 = User.create!(email: "mario@email.com", password: "mario1234", nickname: "Mario", admin: true)
+user1 = User.create!(email: "mario@email.com", password: "mario1234", nickname: "Mario", admin: false)
 file =  URI.open("app/assets/images/avatar.png")
 user1.photo.attach(io: file, filename: "avatar-mario.png", content_type: "image/png")
 user1.save
