@@ -90,13 +90,20 @@
     <% @remixes.each do |remix| %>
       <div class="audio-player" data-controller="audio">
         <% if remix.present? && remix.audio.attached? %>
-            <div data-action="click->audio#togglePlay"><%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %></div>
+            <div data-action="mouseenter->audio#showControls mouseleave->audio#hideControls click->audio#togglePlay" class="avatar-container show-avatar-item">
+              <%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %>
+              <div class="avatar-overlay">
+                <i class="play-icon" data-audio-target="playIcon">Play</i>
+                <i class="pause-icon" data-audio-target="pauseIcon" style="display: none;">Pause</i>
+              </div>
+            </div>
             <div class="d-flex justify-content-center"><p style="font-size: 9px" ><%= remix.user.nickname %></p></div>
             <audio data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
             </audio>
         <% end %>
       </div>
     <% end %>
+
   </div>
 
 
