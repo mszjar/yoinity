@@ -3,8 +3,16 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["audio", "playIcon", "pauseIcon"];
 
+  connect() {
+    this.hideControls();
+  }
+
   showControls() {
-    this.playIconTarget.style.display = 'block';
+    if (this.audioTarget.paused) {
+      this.playIconTarget.style.display = 'block';
+    } else {
+      this.pauseIconTarget.style.display = 'block';
+    }
   }
 
   hideControls() {
