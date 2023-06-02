@@ -147,7 +147,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_203506) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "language"
-    t.string "country"
     t.string "token"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
