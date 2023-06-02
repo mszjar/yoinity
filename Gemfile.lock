@@ -323,6 +323,7 @@ DEPENDENCIES
   htmlbeautifier
   jbuilder
   jsbundling-rails
+  kaminari
   pg (~> 1.1)
   pg_search
   puma (~> 5.0)

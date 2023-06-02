@@ -8,6 +8,30 @@
 
 .show-icons {
   gap: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.show-icons-item {
+  display: flex;
+  flex-direction: column;
+  flex-direction: row-reverse;
+  align-items: center; /* Optional: Aligns the items horizontally */
+  justify-content: center; /* Optional: Aligns the items vertically */
+  padding-top: 8px;
+  padding-bottom: 8px;
+  p {
+    // font-family: arial-black, sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+  }
+}
+
+.show-avatar {
+  gap: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
@@ -16,7 +40,7 @@
   margin-bottom: 14px;
 }
 
-.show-icons-item {
+.show-avatar-item {
   display: flex;
   flex-direction: row-reverse;
   align-items: center; /* Optional: Aligns the items horizontally */
@@ -119,6 +143,17 @@
 }
 
 .remixes-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-bar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-bar {
   display: flex;
   justify-content: space-between;
 }
