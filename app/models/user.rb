@@ -1,5 +1,9 @@
+require 'faker'
+require "open-uri"
+
 class User < ApplicationRecord
   before_save :downcase_nickname
+  before_save :add_default_avatar, if: Proc.new { |user| !user.photo.attached? }
 
   has_one_attached :photo
   has_many :posts, dependent: :destroy
@@ -23,17 +27,10 @@ class User < ApplicationRecord
   acts_as_followable
   acts_as_follower
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # Stripe subscription
-  # def create_subscription(stripe_subscription_id:)
-  #   self.stripe_subscription_id = stripe_subscription_id
-  #   self.subscription_status = 'active'
-  #   save
-  # end
+
   def create_subscription(stripe_subscription_id)
     subscription = Subscription.create(user: self, stripe_subscription_id: stripe_subscription_id)
     if subscription.persisted?
@@ -44,10 +41,17 @@ class User < ApplicationRecord
     subscription
   end
 
-  # Downcase nickname before saving to database
   private
 
   def downcase_nickname
     self.nickname.downcase!
   end
+
+  def add_default_avatar
+    puts "add_default_avatar is being called"
+    file = URI.open(Faker::Avatar.image)
+    self.photo.attach(io: file, filename: "avatar-#{SecureRandom.hex}.png", content_type: 'image/png')
+    puts "photo attached? #{self.photo.attached?}"
+  end
+
 end

@@ -2,11 +2,7 @@
   <div class="banner" >
     <div class="container  mt-5" style="width: 40%">
       <div class="profile">
-            <% if current_user.photo.key == nil %>
-              <div  class="mb-2"> <%= image_tag "default_image.png", class: "avatar-large" %></div>
-            <% else %>
-              <div  class="mb-2"><%=  image_tag url_for(current_user.photo), class: "avatar-large" %></div>
-            <% end %>
+        <div  class="mb-2"><%=  image_tag url_for(current_user.photo), class: "avatar-large" %></div>
         <h2  class="mb-5"><%= current_user.nickname %></h2>
         <div class="d-flex justify-content-center">
           <h3  class="mb-5", style="margin-right: 30px"><%= current_user.posts.count %> Stories</h3>
