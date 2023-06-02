@@ -215,6 +215,7 @@
 </div>
 
 <!--content-->
-<div class="show-content">
-  <p><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>
-</div>
+<%= paginate @content_pages %>
+<% @content_pages.each do |line| %>
+  <p><%= line.gsub(/\n/, '<br>').html_safe %></p>
+<% end %>
