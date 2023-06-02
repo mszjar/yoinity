@@ -215,7 +215,16 @@
 </div>
 
 <!--content-->
-<%= paginate @content_pages %>
+<% if @content_pages.prev_page %>
+  <%= link_to '←', post_path(@post.token, page: @content_pages.prev_page), class: 'prev-page-icon' %>
+<% end %>
+
+
+<%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %>
 <% @content_pages.each do |line| %>
   <p><%= line.gsub(/\n/, '<br>').html_safe %></p>
+<% end %>
+
+<% if @content_pages.next_page %>
+  <%= link_to '→', post_path(@post.token, page: @content_pages.next_page), class: 'next-page-icon' %>
 <% end %>
