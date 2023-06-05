@@ -103,7 +103,7 @@ a {
 }
 
 .icon-button {
-  font-size: 24px;
+  font-size: 32px;
   color: white;
   text-decoration: none;
   background-color: transparent;
@@ -117,7 +117,6 @@ a {
 }
 
 .btn-follow {
-  margin-right: 20px;
   font-size: 12px;
   background-color: #0095f6;
   color: white;
@@ -260,4 +259,34 @@ a {
   ); /* Use rgba value with opacity (0.8 in this example) */
   right: 34px;
   top: 88px;
+}
+
+.btn-mini-follow {
+  font-size: 8px;
+  background-color: #0095f6;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-mini-follow:hover {
+  background-color: #1877f2;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-mini-following {
+  font-size: 8px;
+  background-color: #efefef;
+  color: grey;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-mini-following:hover {
+  background-color: #dbdbdb;
+  color: grey;
+  text-decoration: none;
+  border: none;
 }

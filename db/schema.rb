@@ -78,9 +78,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_194942) do
   create_table "comment_replies", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "comment_id", null: false
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "content"
     t.index ["comment_id"], name: "index_comment_replies_on_comment_id"
     t.index ["user_id"], name: "index_comment_replies_on_user_id"
   end
@@ -143,12 +143,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_194942) do
     t.string "title"
     t.string "content"
     t.string "url"
+    t.string "language"
+    t.string "token"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "language"
-    t.string "country"
-    t.string "token"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -159,6 +158,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_194942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_remixes_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_remixes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_remixes_on_user_id"
   end
 

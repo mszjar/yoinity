@@ -50,9 +50,9 @@
               <div class="card-images">
                 <%= image_tag url_for(post.user.photo), class: "avatar-small" %>
                 <% if post.photo.key.nil? %>
-                  <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post" %></h3>
+                  <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post", loading: "lazy" %></h3>
                 <% else %>
-                  <h3 class="post-image"> <%= image_tag url_for(post.photo), class: "avatar-post" %></h3>
+                  <h3 class="post-image"> <%= image_tag url_for(post.photo), class: "avatar-post", loading: "lazy" %></h3>
                 <% end %>
               </div>
               <div class="infos">

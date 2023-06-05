@@ -16,6 +16,9 @@ application.register("checkout", CheckoutController)
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
+import PlayAllController from "./play_all_controller"
+application.register("play-all", PlayAllController)
+
 import PostFormController from "./post_form_controller"
 application.register("post-form", PostFormController)
 

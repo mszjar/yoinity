@@ -82,10 +82,10 @@ gem "pundit"
 gem "pg_search"
 gem "faker"
 gem "dotenv-rails", groups: [:development, :test]
-# gem "cloudinary"
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem "font-awesome-sass", "~> 6.4.0"
 gem 'htmlbeautifier'
 gem 'aws-sdk-polly'
 gem 'stripe'
 gem 'aws-sdk-s3', require: false
+gem 'kaminari'
