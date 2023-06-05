@@ -14,11 +14,11 @@
       <ul class="navbar-nav" style="width: 100%">
         <% if user_signed_in? %>
           <div class= "menu-container">
-            <li class="nav-item all-text-grey btn-create">
+            <li class="nav-item active">
               <%= link_to "Create", "/p/new", class: "navbar-link" %>
             </li>
             <% unless current_user.subscription_status == 'active' %>
-              <li class="nav-item all-text-grey">
+              <li class="nav-item active">
                 <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link" %>
               </li>
             <% end %>

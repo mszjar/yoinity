@@ -30,17 +30,20 @@
     <!--Tabs-->
     <div class="cards-header" data-controller="tabs">
       <h5 class="cards-header-item tab-index active" data-tabs-target="tab" data-action="click->tabs#changeTab">
+        <%= link_to 'Explore', "/", class: "tabs" %>
+      </h5>
+      <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
+        <%= link_to 'Following', "#", class: "tabs" %>
+      </h5>
+      <!-- <h5 class="cards-header-item tab-index " data-tabs-target="tab" data-action="click->tabs#changeTab">
         For you
       </h5>
       <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
-        Following
-      </h5>
-      <h5 class="cards-header-item tab-index " data-tabs-target="tab" data-action="click->tabs#changeTab">
         Highest quality
       </h5>
       <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
         Most likable
-      </h5>
+      </h5> -->
     </div>
     <div class="cards">
       <% @posts.reverse.each do |post| %>
