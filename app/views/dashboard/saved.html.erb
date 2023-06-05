@@ -1,4 +1,4 @@
-<div class="web3" >
+<div class="" >
   <div class="banner" >
     <div class="container" style="width: 40%">
       <h2>Saved for later</h2>
@@ -9,11 +9,11 @@
               <div class="card">
                 <div class="card-body">
                   <div class="card-images">
-                    <%= cl_image_tag post.user.photo.key, class: "avatar-small" %>
+                    <%= image_tag url_for(post.user.photo), class: "avatar-small" %>
                     <% if post.photo.key.nil? %>
                       <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post" %></h3>
                     <% else %>
-                      <h3 class="post-image"> <%= cl_image_tag post.photo.key, class: "avatar-post" %></h3>
+                      <h3 class="post-image"> <%= image_tag url_for(post.photo), class: "avatar-post" %></h3>
                     <% end %>
                   </div>
                   <div class="infos">

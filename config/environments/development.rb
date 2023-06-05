@@ -4,6 +4,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_controller.default_url_options = { host: "localhost", port: 3000, protocol: 'http' }
+
   # Forms generated with `form_with` will submit with AJAX by default.
   config.action_view.form_with_generates_remote_forms = true
 
@@ -38,7 +40,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :cloudinary
+  config.active_storage.service = :amazon
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

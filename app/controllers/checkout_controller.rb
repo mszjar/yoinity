@@ -1,8 +1,12 @@
 class CheckoutController < ApplicationController
-  skip_after_action :verify_authorized,  only: %i[success cancel]
+  skip_after_action :verify_authorized, only: %i[success cancel]
 
   def create
     skip_authorization
+
+    # Set default_url_options directly in the controller for testing purposes.
+    default_url_options[:host] = Rails.env.production? ? 'www.yoinity.com' : 'localhost:3000'
+
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
@@ -10,8 +14,8 @@ class CheckoutController < ApplicationController
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: url_for(controller: 'checkout', action: 'success', only_path: false) + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: url_for(controller: 'checkout', action: 'cancel', only_path: false),
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: checkout_cancel_url,
     )
 
     respond_to do |format|
@@ -20,11 +24,19 @@ class CheckoutController < ApplicationController
     end
   end
 
-
   def success
-    current_user.create_subscription(stripe_subscription_id: params[:session_id])
+    skip_authorization
+    subscription = current_user.create_subscription(stripe_subscription_id: params[:session_id])
+    if subscription.persisted?
+      flash[:notice] = "Your payment was successfully accepted."
+    else
+      flash[:error] = "There was a problem creating your subscription. Please try again."
+    end
+    # Redirect to a page or render a view, depending on your application flow
   end
 
   def cancel
+    skip_authorization
+    flash[:notice] = "Your payment was cancelled."
   end
 end

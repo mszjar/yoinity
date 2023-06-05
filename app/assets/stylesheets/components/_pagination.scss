@@ -1,0 +1,95 @@
+.post-content-pagination-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .empty-pagination-element,
+  .pagination-element {
+    display: none; // Hide the original pagination elements
+  }
+
+  .pagination-element-fixed {
+    position: fixed;
+    top: 60%; // Position in the middle vertically
+    z-index: 999; // Ensure the elements are above the other content
+    width: 30px;
+    height: 30px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%); // Offset for the element height
+
+    &.prev {
+      left: 10px; // Position to the left
+    }
+
+    &.next {
+      right: 10px; // Position to the right
+    }
+
+    // Small devices (landscape phones, 576px and up)
+  @media (min-width: 576px) {
+    &.prev {
+      left: 20px;
+    }
+
+    &.next {
+      right: 20px;
+    }
+  }
+
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    &.prev {
+      left: 150px;
+    }
+
+    &.next {
+      right: 150px;
+    }
+  }
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    &.prev {
+      left: 350px;
+    }
+
+    &.next {
+      right: 350px;
+    }
+  }
+
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+    &.prev {
+      left: 550px;
+    }
+
+    &.next {
+      right: 550px;
+    }
+  }
+
+  }
+
+  .pagination-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #007BFF;
+    }
+  }
+
+  .post-content {
+    max-width: 800px;
+    line-height: 1.5;
+    font-size: 16px;
+    margin: 0 auto; // Center the content
+  }
+}

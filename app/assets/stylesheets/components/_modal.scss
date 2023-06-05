@@ -5,3 +5,13 @@
 .modal-title {
   color: white !important;
 }
+
+.modal img {
+  max-width: 800px;
+  max-height: 800px;
+}
+
+#imageModal .modal-content {
+  background: transparent !important;
+  border: none !important;
+}

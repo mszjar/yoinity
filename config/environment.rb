@@ -4,5 +4,6 @@ require_relative "application"
 # Initialize the Rails application.
 Rails.application.initialize!
 
-# redirection
-Rails.application.routes.default_url_options[:host] = 'https://www.yoinity.com'
+# Redirection
+Rails.application.routes.default_url_options[:host] = 'www.yoinity.com'
+Rails.application.routes.default_url_options[:protocol] = 'https'

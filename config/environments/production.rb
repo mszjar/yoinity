@@ -1,9 +1,14 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "https://www.yoinity.com" }
+  config.action_mailer.default_url_options = { host: 'https://www.yoinity.com' }
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_controller.default_url_options = { host: 'https://www.yoinity.com' }
+  config.action_controller.default_url_options = { host: "https://www.yoinity.com", protocol: 'https' }
+
+  # config for storage
+  config.active_storage.default_url_options = { host: 'https://www.yoinity.com' }
+  #
+  config.action_controller.asset_host = 'https://www.yoinity.com'
 
   # Forms generated with `form_with` will submit with AJAX by default.
   config.action_view.form_with_generates_remote_forms = true
@@ -43,7 +48,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :cloudinary
+  config.active_storage.service = :amazon
 
 
   # Mount Action Cable outside main process or domain.

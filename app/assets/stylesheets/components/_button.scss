@@ -34,6 +34,32 @@ a {
   color: black !important;
 }
 
+.btn-create {
+  color: white;
+  border-radius: 8px;
+  background-color: rgba(
+    177,
+    176,
+    176,
+    0.5
+  ); /* Use rgba value with opacity (0.8 in this example) */
+  transition: background 0.3s ease;
+  text-decoration: none;
+  border: none;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.btn-create:hover {
+  background-color: rgba(
+    226,
+    226,
+    226,
+    0.945
+  ); /* Use rgba value with opacity (0.8 in this example) */
+  color: black !important;
+}
+
 .btn-dropdown {
   color: rgba(255, 255, 255, 0.5);
   padding: 8px 8px 8px 8px;
@@ -77,7 +103,7 @@ a {
 }
 
 .icon-button {
-  font-size: 24px;
+  font-size: 32px;
   color: white;
   text-decoration: none;
   background-color: transparent;
@@ -91,7 +117,6 @@ a {
 }
 
 .btn-follow {
-  margin-right: 20px;
   font-size: 12px;
   background-color: #0095f6;
   color: white;
@@ -234,4 +259,34 @@ a {
   ); /* Use rgba value with opacity (0.8 in this example) */
   right: 34px;
   top: 88px;
+}
+
+.btn-mini-follow {
+  font-size: 8px;
+  background-color: #0095f6;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-mini-follow:hover {
+  background-color: #1877f2;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-mini-following {
+  font-size: 8px;
+  background-color: #efefef;
+  color: grey;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-mini-following:hover {
+  background-color: #dbdbdb;
+  color: grey;
+  text-decoration: none;
+  border: none;
 }

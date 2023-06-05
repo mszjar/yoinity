@@ -5,11 +5,7 @@
       <%= image_tag "yoinity_logo.png" %>
     <% end %>
       <p class="all-text-white mt-4", style="font-size: 28px">
-        <% if user_signed_in? %>
-        <%= link_to "Yoinity", "/p", class: "yoinity-logo"%>
-        <% else %>
         <%= link_to "Yoinity", "/", class: "yoinity-logo"%>
-        <% end %>
       </p>
     </ul>
 
@@ -24,23 +20,16 @@
           </li>
           <% end %>
           <div class= "menu-container">
-            <li class="nav-item all-text-grey">
-              <%= link_to "Feed", "/p", class: "navbar-link" %>
-            </li>
-            <li class="nav-item active all-text-grey">
-              <%= link_to "Write", "/p/new", class: "navbar-link" %>
+            <li class="nav-item active all-text-grey btn-create">
+              <%= link_to "Create", "/p/new", class: "navbar-link" %>
             </li>
             <% unless current_user.subscription_status == 'active' %>
               <li class="nav-item all-text-grey">
-                <%= link_to "Subscribe", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link" %>
+                <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link" %>
               </li>
             <% end %>
             <li class="nav-item dropdown all-text-black">
-              <% if current_user.photo.key == nil %>
-                <%= image_tag "default_image.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-              <% else %>
-                <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-              <% end %>
+                <%= image_tag url_for(current_user.photo), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "My stories", "/dashboard/show", class: "dropdown-item" %>
                 <%= link_to "Saved for later", "/dashboard/saved", class: "dropdown-item" %>
