@@ -60,7 +60,7 @@
                   <%= render partial: "user_avatar", locals: { user_id: comment_reply.user_id } %>
                   <p><%= comment_reply.content %></p>
                   <!--comment reply likes-->
-                  <div>
+                  <div class = "reply-likes">
                     <% if user_signed_in? %>
                       <% comment_reply_like = current_user.comment_reply_likes.find_by(comment_reply: comment_reply) %>
                       <% if comment_reply_like.nil? %>

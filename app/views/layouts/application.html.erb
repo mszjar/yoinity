@@ -5,25 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <!-- PWA -->
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= render 'shared/ios_pwa_links' %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application.js", "data-turbo-track": "reload", defer: true %>
     <%= favicon_link_tag asset_path('yoinity_logo.png') %>
-
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
-
     <!-- PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-
     <!-- Google Verification -->
     <meta name="google-site-verification" content="nGYx0L4kN50C7WBwn9COYSrHf5PBdNXCqC6j37IoYLk" />
-
     <!-- Facebook Open Graph data -->
     <meta property="og:title" content="<%= meta_title %>">
     <meta property="og:type" content="website">
@@ -31,7 +25,6 @@
     <meta property="og:image" content="<%= meta_image %>">
     <meta property="og:description" content="<%= meta_description %>">
     <meta property="og:site_name" content="<%= meta_title %>">
-
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="<%= DEFAULT_META["twitter_account"] %>">
@@ -39,24 +32,20 @@
     <meta name="twitter:description" content="<%= meta_description %>">
     <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
     <meta name="twitter:image:src" content="<%= meta_image %>">
-
     <!-- Hotjar Tracking Code for Yoinity -->
     <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:3462569,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+      (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+          h._hjSettings={hjid:3462569,hjsv:6};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
-
     <!--Stripe-->
     <script src="https://js.stripe.com/v3/"></script>
-
   </head>
-
   <body>
     <div class="maintain_height">
       <% if controller_name == "pages" %>
@@ -79,7 +68,7 @@
         <%= render "shared/flashes" %>
       <% end %>
       <%= render "shared/flashes" %>
-    <%= yield %>
+      <%= yield %>
     </div>
   </body>
 </html>
