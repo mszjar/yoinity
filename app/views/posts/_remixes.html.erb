@@ -3,6 +3,7 @@
 
   <!--remixes-->
   <div class="remixes">
+
     <!--amazon polly-->
     <div class="audio-player" data-controller="audio">
         <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
@@ -17,6 +18,23 @@
       <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
       </audio>
     </div>
+
+    <!-- Remix button -->
+    <div class="audio-player">
+      <div class="avatar-container show-avatar-item">
+        <% if Remix.exists?(user: current_user, post: @post) %>
+          <div class="image-button" style="pointer-events: none;">
+            <i class="fas fa-plus avatar"></i> <!-- Font Awesome 'add' icon -->
+          </div>
+        <% else %>
+          <%= link_to "#remixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#remixModal", class: "" do %>
+            <i class="fas fa-plus avatar"></i> <!-- Font Awesome 'add' icon -->
+          <% end %>
+        <% end %>
+      </div>
+      <div class="d-flex justify-content-center"><p style="font-size: 9px" >Add new</p></div>
+    </div>
+
 
     <!--remixes-->
     <div class="remixes" data-controller="play-all">
@@ -54,18 +72,6 @@
   </div>
 
 
-  <!-- Remix button -->
-  <div>
-    <% if Remix.exists?(user: current_user, post: @post) %>
-      <button type="button" class="btn btn-classic" disabled>
-        Remix
-      </button>
-    <% else %>
-      <button type="button" class="btn btn-classic" data-bs-toggle="modal" data-bs-target="#remixModal">
-        Remix
-      </button>
-    <% end %>
-  </div>
 
 
   <!-- Remix form (Modal) -->
