@@ -1,3 +1,5 @@
+<!--remixes-->
+<%= render partial: "remixes"%>
 <!--title bar-->
 <div class="title-bar" >
   <!--title-->
@@ -47,10 +49,6 @@
 
 <!--listen to remixes-->
 <div class="subtitle-info">
-  <div class="show-date">Written & read by</div>
-</div>
-<!--remixes bar-->
-<div class="remixes-bar" >
   <!--author avatar-->
   <div class="show-avatar">
     <div class="show-avatar-item">
@@ -70,113 +68,8 @@
       <% end %>
     </div>
   </div>
-
-
-
-  <!--remixes bar-->
-  <div class="remixes">
-    <!--amazon polly-->
-    <div class="audio-player" data-controller="audio">
-        <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
-            <div> <%= image_tag "robot.png", class: "avatar", loading: "lazy" %></div>
-            <div class="avatar-overlay">
-                <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
-                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
-                <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
-            </div>
-        </div>
-      <div class="d-flex justify-content-center"><p style="font-size: 9px" >Polly AI</p></div>
-      <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
-      </audio>
-    </div>
-
-    <!--remixes-->
-    <div class="remixes" data-controller="play-all">
-      <% @remixes.each do |remix| %>
-        <div class="audio-player" data-controller="audio">
-          <% if remix.present? && remix.audio.attached? %>
-            <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
-              <%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %>
-              <div class="avatar-overlay">
-                <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
-                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
-                <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
-            <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
-            </audio>
-          <% end %>
-        </div>
-      <% end %>
-      <!--play all button-->
-      <div class="audio-player" data-controller="audio">
-          <div data-action="click->play-all#togglePlayAll" class="avatar-container show-avatar-item">
-            <%= image_tag "yoinity_logo.png", class: "avatar", loading: "lazy" %>
-            <div class="avatar-overlay">
-              <i class="play-icon fas fa-play" data-play-all-target="playAllIcon"></i>
-              <i class="pause-icon fas fa-pause" data-play-all-target="pauseAllIcon" style="display: none;"></i>
-              <div class="green-overlay" data-play-all-target="greenAllOverlay"></div>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center"><p style="font-size: 9px" >Play all</p></div>
-        </div>
-      </div>
-
-  </div>
-
-
-  <!-- Remix button -->
-  <div>
-    <% if Remix.exists?(user: current_user, post: @post) %>
-      <button type="button" class="btn btn-classic" disabled>
-        Remix
-      </button>
-    <% else %>
-      <button type="button" class="btn btn-classic" data-bs-toggle="modal" data-bs-target="#remixModal">
-        Remix
-      </button>
-    <% end %>
-  </div>
-
-
-  <!-- Remix form (Modal) -->
-  <div class="modal fade" id="remixModal" tabindex="-1" aria-labelledby="remixModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="remixModalLabel">Remix</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
-            <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
-            <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
-
-            <!-- Added feedback div -->
-            <div data-recording-target="messages" style="height: 30px; color: white;"></div>
-
-            <div data-action="click->recording#startRecording" data-recording-target="start">
-              <%= button_tag "Start recording", type: "button" %>
-            </div>
-            <div data-action="click->recording#stopRecording" data-recording-target="stop">
-              <%= button_tag "Stop recording", type: "button" %>
-            </div>
-            <div data-action= "click->recording#submitForm">
-              <%= f.submit "Submit Remix" %>
-            </div>
-          <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
 </div>
+
 
 <!--content-->
 <div class="post-content-pagination-wrapper">
