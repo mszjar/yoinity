@@ -47,28 +47,7 @@
   <% end %>
 </div>
 
-<!--listen to remixes-->
-<div class="subtitle-info">
-  <!--author avatar-->
-  <div class="show-avatar">
-    <div class="show-avatar-item">
-      <%= link_to profile_path(@post.user.nickname) do %>
-        <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
-      <% end %>
-    </div>
-    <p class="d-flex align-items-center" style="font-size: 16px" ><%= @post.user.nickname %></p>
-    <div class="d-flex align-items-center" >
-      <% if user_signed_in? %>
-        <% user_follow = current_user.following?(User.find(@post.user_id)) %>
-        <% if user_follow %>
-          <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-following", method: :post %></p>
-        <% else %>
-          <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-follow", method: :post %></p>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
+
 
 
 <!--content-->
@@ -170,4 +149,27 @@
   <% end %>
 
 </div>
-    <div class="d-flex justify-content-center" style="color: grey"><%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %></div>
+
+<div class="subtitle-info">
+  <!--author avatar-->
+  <div class="show-avatar">
+    <div class="show-avatar-item">
+      <%= link_to profile_path(@post.user.nickname) do %>
+        <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
+      <% end %>
+    </div>
+    <p class="d-flex align-items-center" style="font-size: 16px" ><%= @post.user.nickname %></p>
+    <div class="d-flex align-items-center" >
+      <% if user_signed_in? %>
+        <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+        <% if user_follow %>
+          <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-following", method: :post %></p>
+        <% else %>
+          <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-follow", method: :post %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!--pagination-->
+<div class="d-flex justify-content-center" style="color: grey"><%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %></div>
