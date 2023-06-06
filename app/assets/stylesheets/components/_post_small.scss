@@ -32,6 +32,12 @@
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .card-body .infos .title {
+    font-size: 20px; /* or whatever size you want */
+  }
+}
+
 .subtitle-info {
   margin-top: 8px;
   display: flex;

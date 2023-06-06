@@ -1,32 +1,5 @@
 <div class="post-container">
   <div class="post" >
-    <!-- TO PUT FILTERS ON A DIFFERENT COLUMN ON THE LEFT SIDE OF THE MAIN INDEX_VIEW-->
-    <!--Button filters-->
-    <!--
-            <div class="dropdown filters">
-              <button class="btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                Advanced Filters
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: grey">
-                <li><a class="dropdown-item" style="font-size: 12px"  href="#">Language: All</a></li>
-                <li><a class="dropdown-item" style="font-size: 12px" href="#">Country: All</a></li>
-                <li><a class="dropdown-item" style="font-size: 12px" href="#">Duration: 8min</a></li>
-              </ul>
-            </div>
-            -->
-    <!--Button categories-->
-    <!--
-            <div class="mb-3 mt-3" data-controller="tabs">
-              <div class="tabs" >
-                <a href="" class="tab active" data-tabs-target="tab" data-action="click->tabs#changeTab">All</a>
-                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Technology</a>
-                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Health</a>
-                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Entrepreneurship</a>
-                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">StartUp</a>
-                <a href="" class="tab" data-tabs-target="tab" data-action="click->tabs#changeTab">Literary</a>
-              </div>
-            </div>
-            -->
     <!--Tabs-->
     <div class="cards-header" data-controller="tabs">
       <h5 class="cards-header-item tab-index active" data-tabs-target="tab" data-action="click->tabs#changeTab">
@@ -35,46 +8,31 @@
       <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
         <%= link_to 'Following', "#", class: "tabs" %>
       </h5>
-      <!-- <h5 class="cards-header-item tab-index " data-tabs-target="tab" data-action="click->tabs#changeTab">
-        For you
-      </h5>
-      <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
-        Highest quality
-      </h5>
-      <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
-        Most likable
-      </h5> -->
     </div>
     <div class="cards">
       <% @posts.reverse.each do |post| %>
         <%= link_to post_path(post.token)  do %>
           <div class="card">
             <div class="card-body">
+              <div class="infos">
               <div class="card-images">
-                <%= image_tag url_for(post.user.photo), class: "avatar-small" %>
+                <h5 class="card-title title"><%=post.title%></h5>
                 <% if post.photo.key.nil? %>
                   <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post", loading: "lazy" %></h3>
                 <% else %>
                   <h3 class="post-image"> <%= image_tag url_for(post.photo), class: "avatar-post", loading: "lazy" %></h3>
                 <% end %>
               </div>
-              <div class="infos">
-                <h5 class="card-title title"><%=post.title%></h5>
+              <div class="card-images">
+                <%= image_tag url_for(post.user.photo), class: "avatar-small" %>
+                <p class="content"><%= post.content %></p>
+              </div>
                 <div class= "info-mini">
                   <h3 class="nickname"> By <%=post.user.nickname%></h3>
                   <h3 class="date"><%= post.created_at.strftime("%-d %B %Y") %></h3>
-                  <h5 class="language"><%= post.language %> from </h5>
-                  <% if post.language == "English" %>
-                    <div class= "england-flag"></div>
-                  <% elsif post.language == "French" %>
-                    <div class= "france-flag"></div>
-                  <% elsif post.language == "Spanish" %>
-                    <div class= "spain-flag"></div>
-                  <% end %>
                   <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
                   <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>
                 </div>
-                <p class="content"><%= post.content %></p>
               </div>
             </div>
           </div>
