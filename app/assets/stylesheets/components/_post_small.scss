@@ -16,19 +16,16 @@
   left: 1px;
   right: 25px;
   top: 1px;
-  //padding: 280px;
 }
 
 .card-body .infos .title {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  //position: absolute;
   text-decoration: none;
   font-size: 30px;
   font-weight: bold;
   color: white;
-  //left: 1px;
-  //top: 70px;
+
   width: 100%;
 }
 
@@ -40,10 +37,13 @@
 
 .subtitle-info {
   margin-top: 8px;
+  margin-bottom: 8px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card-body .infos .info-mini {
@@ -53,25 +53,17 @@
 }
 
 .card-body .infos .nickname {
-  //position: absolute;
   text-decoration: none;
   font-size: 12px;
   font-weight: bold;
-  //color: black;
   color: rgba(255, 255, 255, 0.5);
-  //left: 80px;
-  //top: 30px;
 }
 
 .card-body .infos .date {
-  //position: absolute;
   text-decoration: none;
   font-size: 12px;
   font-weight: bold;
-  //color: black;
   color: rgba(173, 173, 173, 0.4);
-  //left: 170px;
-  //top: 30px;
 }
 
 .post-card-small .post-avatar {
@@ -96,20 +88,16 @@
 
 .card-body .infos .like {
   font-size: 15px;
-  //position: absolute;
   color: white;
   text-decoration: none;
   right: 15px;
-  //top: 80px;
 }
 
 .card-body .infos .quality {
   font-size: 15px;
-  //position: absolute;
   color: white;
   text-decoration: none;
   right: 15px;
-  //top: 130px;
 }
 
 .post-card-small .trend {

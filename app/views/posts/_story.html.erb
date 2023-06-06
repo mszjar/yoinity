@@ -37,126 +37,14 @@
 
 <!--date & duration-->
 <div class="subtitle-info">
-  <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
-  <div class="show-date"><%= @post.speech_duration.round(0) %> min read</div>
-</div>
-<!--categories-->
-<div class="category">
-  <% @post.categories.each do |category| %>
-    <p><%= category.name %></p>
-  <% end %>
-</div>
-
-
-<!--content-->
-<div class="post-content-pagination-wrapper">
-  <% if @content_pages.first_page? %>
-    <div class="empty-pagination-element"></div>
-  <% else %>
-    <div class="pagination-element">
-      <%= link_to '←', post_path(@post.token, page: @content_pages.prev_page), class: 'pagination-link' %>
-    </div>
-    <div class="pagination-element-fixed prev">
-      <%= link_to '←', post_path(@post.token, page: @content_pages.prev_page), class: 'pagination-link' %>
-    </div>
-  <% end %>
-
-  <div class="content-bar" >
-    <div class="post-content">
-      <% @content_pages.each do |line| %>
-        <p><%= line.gsub(/\n/, '<br>').html_safe %></p>
-      <% end %>
-
-    </div>
-    <!--like, quality, reviews buttons-->
-    <div class="show-icons">
-      <!--icon quality-->
-      <div class="show-icons-item">
-        <% if user_signed_in? %>
-          <% post_quality = current_user.post_qualities.find_by(post: @post) %>
-          <% if post_quality.nil? %>
-            <%= button_to post_qualities_path, class: "btn icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
-              <i class="far fa-star"></i>
-            <% end %>
-          <% else %>
-            <%= button_to post_quality_path(post_quality), class: "btn icon-button", method: :delete do %>
-              <i class="fas fa-star" style="color: #FFD43B"></i>
-            <% end %>
-          <% end %>
-        <% end %>
-        <p><%= @post.post_qualities.count %></p>
-      </div>
-
-      <!--icon reviews-->
-      <div class="show-icons-item">
-        <% if @post.comments.count == 0 %>
-          <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="far fa-comment"></i></button>
-        <% else %>
-          <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="fas fa-comment"></i></button>
-        <% end %>
-        <p><%= @post.comments.count %></p>
-      </div>
-
-      <!--icon like-->
-      <div class="show-icons-item">
-        <% if user_signed_in? %>
-          <% post_like = current_user.post_likes.find_by(post: @post) %>
-          <% if post_like.nil? %>
-            <%= button_to post_likes_path, class: "btn icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
-              <i class="far fa-heart"></i>
-            <% end %>
-          <% else %>
-            <%= button_to post_like_path(post_like), class: "btn icon-button", method: :delete do %>
-              <i class="fas fa-heart" style="color: #FF3040"></i>
-            <% end %>
-          <% end %>
-        <% end %>
-        <p><%= @post.post_likes.count %></p>
-      </div>
-
-      <div class="show-icons-item">
-        <!--icon save for later-->
-          <% if user_signed_in? %>
-            <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
-            <% if saved_for_later.nil? %>
-              <%= button_to saved_for_laters_path, class: "btn icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
-                <i class="far fa-bookmark"></i>
-              <% end %>
-            <% else %>
-              <%= button_to saved_for_later_path(saved_for_later), class: "btn icon-button", method: :delete do %>
-                <i class="fas fa-bookmark"></i>
-              <% end %>
-            <% end %>
-          <% end %>
-        <p><%= @post.saved_for_laters.count %></p>
-      </div>
-
-    </div>
-
-  </div>
-
-  <% if @content_pages.last_page? %>
-    <div class="empty-pagination-element"></div>
-  <% else %>
-    <div class="pagination-element">
-      <%= link_to '→', post_path(@post.token, page: @content_pages.next_page), class: 'pagination-link' %>
-    </div>
-    <div class="pagination-element-fixed next">
-      <%= link_to '→', post_path(@post.token, page: @content_pages.next_page), class: 'pagination-link' %>
-    </div>
-  <% end %>
-
-</div>
-
-<div class="subtitle-info">
   <!--author avatar-->
   <div class="show-avatar">
     <div class="show-avatar-item">
       <%= link_to profile_path(@post.user.nickname) do %>
-        <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
+        <%= image_tag url_for(@post.user.photo), class: "avatar-xxs", loading: "lazy" %>
       <% end %>
     </div>
-    <p class="d-flex align-items-center" style="font-size: 16px" ><%= @post.user.nickname %></p>
+    <p class="d-flex align-items-center"><%= @post.user.nickname %></p>
     <div class="d-flex align-items-center" >
       <% if user_signed_in? %>
         <% user_follow = current_user.following?(User.find(@post.user_id)) %>
@@ -168,6 +56,103 @@
       <% end %>
     </div>
   </div>
+  <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
+  <div class="show-date"><%= @post.speech_duration.round(0) %> min read</div>
 </div>
+<!--categories-->
+<div class="category">
+  <% @post.categories.each do |category| %>
+    <p><%= category.name %></p>
+  <% end %>
+</div>
+
+
+
 <!--pagination-->
-<div class="d-flex justify-content-center" style="color: grey"><%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %></div>
+<div class="pagination">
+<% if @content_pages.current_page > 1 %>
+  <%= link_to '← Prev', post_path(@post.token, page: @content_pages.current_page - 1) %>
+<% end %>
+
+<%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %>
+
+<% if @content_pages.current_page < @content_pages.total_pages %>
+  <%= link_to 'Next →', post_path(@post.token, page: @content_pages.current_page + 1) %>
+<% end %>
+</div>
+
+
+<!--content-->
+<div class="content-bar" >
+  <div class="post-content">
+    <% @content_pages.each do |line| %>
+      <p><%= line.gsub(/\n/, '<br>').html_safe %></p>
+    <% end %>
+  </div>
+
+  <!--like, quality, reviews buttons-->
+  <div class="show-icons">
+    <!--icon quality-->
+    <div class="show-icons-item">
+      <% if user_signed_in? %>
+        <% post_quality = current_user.post_qualities.find_by(post: @post) %>
+        <% if post_quality.nil? %>
+          <%= button_to post_qualities_path, class: "btn icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
+            <i class="far fa-star"></i>
+          <% end %>
+        <% else %>
+          <%= button_to post_quality_path(post_quality), class: "btn icon-button", method: :delete do %>
+            <i class="fas fa-star" style="color: #FFD43B"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+      <p><%= @post.post_qualities.count %></p>
+    </div>
+
+    <!--icon reviews-->
+    <div class="show-icons-item">
+      <% if @post.comments.count == 0 %>
+        <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="far fa-comment"></i></button>
+      <% else %>
+        <button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="fas fa-comment"></i></button>
+      <% end %>
+      <p><%= @post.comments.count %></p>
+    </div>
+
+    <!--icon like-->
+    <div class="show-icons-item">
+      <% if user_signed_in? %>
+        <% post_like = current_user.post_likes.find_by(post: @post) %>
+        <% if post_like.nil? %>
+          <%= button_to post_likes_path, class: "btn icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
+            <i class="far fa-heart"></i>
+          <% end %>
+        <% else %>
+          <%= button_to post_like_path(post_like), class: "btn icon-button", method: :delete do %>
+            <i class="fas fa-heart" style="color: #FF3040"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+      <p><%= @post.post_likes.count %></p>
+    </div>
+
+    <div class="show-icons-item">
+      <!--icon save for later-->
+        <% if user_signed_in? %>
+          <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
+          <% if saved_for_later.nil? %>
+            <%= button_to saved_for_laters_path, class: "btn icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
+              <i class="far fa-bookmark"></i>
+            <% end %>
+          <% else %>
+            <%= button_to saved_for_later_path(saved_for_later), class: "btn icon-button", method: :delete do %>
+              <i class="fas fa-bookmark"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      <p><%= @post.saved_for_laters.count %></p>
+    </div>
+
+  </div>
+
+</div>
