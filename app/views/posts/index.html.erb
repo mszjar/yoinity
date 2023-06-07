@@ -30,8 +30,7 @@
                 <div class= "info-mini">
                   <h3 class="nickname"> By <%=post.user.nickname%></h3>
                   <h3 class="date"><%= post.created_at.strftime("%-d %B %Y") %></h3>
-                  <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
-                  <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>
+                  <h4 class="quality"><%= post.post_qualities.count %> <i class="fa-solid fa-star" style="color: #ffd43b;"></i></h4>
                 </div>
               </div>
             </div>
