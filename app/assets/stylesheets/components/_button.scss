@@ -89,29 +89,17 @@ a {
   align-self: end;
 }
 
-.btn-like {
-  font-size: 30px;
-  text-decoration: none;
-  border: none;
-  line-height: 0%;
-  color: white;
-}
-
-.btn-like:hover {
-  text-decoration: none;
-  border: none;
-}
-
 .icon-button {
-  font-size: 32px;
-  color: white;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   background-color: transparent;
   border: none;
+  padding: 0 2 2 0;
 }
 
 .icon-button:hover {
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   border: none;
 }

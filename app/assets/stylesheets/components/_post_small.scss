@@ -35,15 +35,22 @@
   }
 }
 
+.subtitle-interactive {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .subtitle-info {
-  margin-top: 8px;
+  // margin-top: 8px;
   margin-bottom: 8px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card-body .infos .info-mini {

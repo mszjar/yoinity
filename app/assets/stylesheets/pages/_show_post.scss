@@ -22,8 +22,9 @@
   justify-content: center; /* Optional: Aligns the items vertically */
 
   p {
-    font-size: 24px;
-    font-weight: bolder;
+    font-size: 12px;
+    font-weight: bolder !important;
+    color: rgba(255, 255, 255, 0.7);
   }
 }
 
