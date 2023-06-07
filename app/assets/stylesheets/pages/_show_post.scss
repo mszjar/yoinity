@@ -19,11 +19,9 @@
   flex-direction: row-reverse;
   align-items: center; /* Optional: Aligns the items horizontally */
   justify-content: center; /* Optional: Aligns the items vertically */
-  gap: 1px;
 
   p {
-    font-size: 12px;
-    font-weight: bolder !important;
+    font-size: 9px;
     color: rgba(255, 255, 255, 0.7);
   }
 }
@@ -119,7 +117,7 @@
 .show-date {
   color: rgba(255, 255, 255, 0.7);
   font-family: $body-font;
-  font-size: 12px;
+  font-size: 9px;
 }
 
 .show-content {
