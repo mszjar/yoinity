@@ -8,10 +8,7 @@
 
 .show-icons {
   display: flex;
-  flex-direction: column;
-  justify-content:center;
-  margin-left: 10px;
-  font-weight: bolder;
+  gap: 8px;
 }
 
 .show-icons-item {
@@ -196,7 +193,6 @@
 }
 
 .toggle-bar .dots {
-  // float: right;
   color: rgba(255, 255, 255, 0.7);
   font-size:28px;
 }
