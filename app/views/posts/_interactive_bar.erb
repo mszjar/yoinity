@@ -68,12 +68,13 @@
 <div class="subtitle-info">
   <!--amazon polly-->
   <div class="audio-player" data-controller="audio">
-      <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
-          <div class="avatar" style="background-color:#1FDF64; border-radius:50%; height: 22px; width: 22px;"></div>
-          <div class="avatar-overlay">
+      <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar">
+          <div class="avatar-xxs" style="background-color:#1FDF64; border-radius:50%; height: 22px; width: 22px;"></div>
+          <div class="avatar-overlay-little">
               <i class="play-icon fas fa-play" data-audio-target="playIcon"></i>
               <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon"></i>
           </div>
+          <div class="d-flex align-items-center"><p data-audio-target="nickname" style="font-size: 9px" >Auto-read</p></div>
       </div>
     <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
     </audio>
