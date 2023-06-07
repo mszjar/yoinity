@@ -1,44 +1,37 @@
-<div class="" >
-  <div class="banner" >
-    <div class="container" style="width: 40%">
-      <h2>Saved for later</h2>
-      <div class="cards mt-5">
-        <div class="cards">
-          <% current_user.saved_posts.each do |post| %>
-            <%= link_to post_path(post.token)  do %>
-              <div class="card">
-                <div class="card-body">
-                  <div class="card-images">
+<div class="post-container">
+  <div class="post" >
+    <h2>Saved for later</h2>
+    <div class="cards mt-5">
+      <div class="cards">
+        <% current_user.saved_posts.each do |post| %>
+          <%= link_to post_path(post.token)  do %>
+            <div class="card">
+              <div class="card-body">
+                <div class="infos">
+                <div class="card-images">
+                  <h5 class="card-title title"><%=post.title%></h5>
+                  <% if post.photo.key.nil? %>
+                    <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post", loading: "lazy" %></h3>
+                  <% else %>
+                    <h3 class="post-image"> <%= image_tag url_for(post.photo), class: "avatar-post", loading: "lazy" %></h3>
+                  <% end %>
+                </div>
+                <div class="card-images">
+                  <div>
                     <%= image_tag url_for(post.user.photo), class: "avatar-small" %>
-                    <% if post.photo.key.nil? %>
-                      <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post" %></h3>
-                    <% else %>
-                      <h3 class="post-image"> <%= image_tag url_for(post.photo), class: "avatar-post" %></h3>
-                    <% end %>
+                    <h3 class="nickname">@<%=post.user.nickname%></h3>
                   </div>
-                  <div class="infos">
-                    <h5 class="card-title title"><%=post.title%></h5>
-                    <div class= "info-mini">
-                      <h3 class="nickname"> By <%=post.user.nickname%></h3>
-                      <h3 class="date"><%= post.created_at.strftime("%-d %B %Y") %></h3>
-                      <h5 class="language"><%= post.language %> from </h5>
-                      <% if post.language == "English" %>
-                        <div class= "england-flag"></div>
-                      <% elsif post.language == "French" %>
-                        <div class= "france-flag"></div>
-                      <% elsif post.language == "Spanish" %>
-                        <div class= "spain-flag"></div>
-                      <% end %>
-                      <h4 class="like"><i class="fa-solid fa-heart" style="color: #FF3040;"></i> <%= post.post_likes.count %></h4>
-                      <h4 class="quality"><i class="fa-solid fa-star" style="color: #ffd43b;"></i> <%= post.post_qualities.count %></h4>
-                    </div>
-                    <p class="content"><%= post.content %></p>
+                  <p class="content"><%= post.content %></p>
+                  <div class= "info-mini">
+                    <p class="date"><%= post.created_at.strftime("%-d %B %Y") %></p>
+                    <p class="quality"><%= post.post_qualities.count %> <i class="fa-solid fa-star" style="color: #ffd43b;"></i></p>
                   </div>
                 </div>
+                </div>
               </div>
-            <% end %>
+            </div>
           <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

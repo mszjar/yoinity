@@ -72,6 +72,12 @@
   color: rgba(173, 173, 173, 0.4);
 }
 
+@media (max-width: 768px) {
+  .card-body .infos .date {
+    font-size: 9px;
+  }
+}
+
 .post-card-small .post-avatar {
   position: absolute;
   text-decoration: none;
