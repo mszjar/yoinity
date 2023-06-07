@@ -16,10 +16,10 @@
 
 .show-icons-item {
   display: flex;
-  flex-direction: column;
   flex-direction: row-reverse;
   align-items: center; /* Optional: Aligns the items horizontally */
   justify-content: center; /* Optional: Aligns the items vertically */
+  gap: 1px;
 
   p {
     font-size: 12px;
