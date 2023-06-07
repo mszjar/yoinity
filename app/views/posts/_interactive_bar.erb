@@ -1,0 +1,109 @@
+<!--interactive-bar-->
+<div class="subtitle-interactive">
+  <!--author avatar-->
+  <div class="show-avatar">
+    <div class="show-avatar-item">
+      <%= link_to profile_path(@post.user.nickname) do %>
+        <%= image_tag url_for(@post.user.photo), class: "avatar-xxs", loading: "lazy" %>
+      <% end %>
+    </div>
+    <p class="d-flex align-items-center"><%= @post.user.nickname %></p>
+    <div class="d-flex align-items-center" >
+      <% if user_signed_in? %>
+        <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+        <% if user_follow %>
+          <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-following", method: :post %></p>
+        <% else %>
+          <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-follow", method: :post %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <!--icon reviews-->
+  <div class="show-icons-item">
+    <% if @post.comments.count == 0 %>
+      <button type="button" class="icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="far fa-comment"></i></button>
+    <% else %>
+      <button type="button" class="icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="fas fa-comment"></i></button>
+    <% end %>
+    <p><%= @post.comments.count %></p>
+  </div>
+  <!--icon save for later-->
+  <div class="show-icons-item">
+    <% if user_signed_in? %>
+      <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
+      <% if saved_for_later.nil? %>
+        <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
+          <i class="far fa-bookmark"></i>
+        <% end %>
+      <% else %>
+        <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
+          <i class="fas fa-bookmark"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+    <p><%= @post.saved_for_laters.count %></p>
+  </div>
+  <!--icon quality-->
+  <div class="show-icons-item">
+    <% if user_signed_in? %>
+      <% post_quality = current_user.post_qualities.find_by(post: @post) %>
+      <% if post_quality.nil? %>
+        <%= button_to post_qualities_path, class: "icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
+          <i class="far fa-star"></i>
+        <% end %>
+      <% else %>
+        <%= button_to post_quality_path(post_quality), class: "icon-button", method: :delete do %>
+          <i class="fas fa-star" style="color: #FFD43B"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+    <p><%= @post.post_qualities.count %></p>
+  </div>
+
+</div>
+
+
+<!--infos-bar-->
+<div class="subtitle-info">
+  <!--amazon polly-->
+  <div class="audio-player" data-controller="audio">
+      <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar">
+          <div class="avatar-xxs" style="background-color:#1FDF64; border-radius:50%; height: 22px; width: 22px;"></div>
+          <div class="avatar-overlay-little">
+              <i class="play-icon fas fa-play" data-audio-target="playIcon"></i>
+              <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon"></i>
+          </div>
+          <div class="d-flex align-items-center"><p data-audio-target="nickname" style="font-size: 9px" >Auto-read</p></div>
+      </div>
+    <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
+    </audio>
+  </div>
+    <!--icon like-->
+  <div class="show-icons-item">
+    <% if user_signed_in? %>
+      <% post_like = current_user.post_likes.find_by(post: @post) %>
+      <% if post_like.nil? %>
+        <%= button_to post_likes_path, class: "icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
+          <i class="far fa-heart" style="font-size: 24px"></i>
+        <% end %>
+      <% else %>
+        <%= button_to post_like_path(post_like), class: "icon-button", method: :delete do %>
+          <i class="fas fa-heart" style="color: #FF3040; font-size: 24px"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <!--date-->
+  <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
+  <!--duration-->
+  <div class="show-date"><%= @post.speech_duration.round(0) %> min read</div>
+</div>
+
+
+<!--categories-->
+<div class="category">
+  <% @post.categories.each do |category| %>
+    <p><%= category.name %></p>
+  <% end %>
+</div>
