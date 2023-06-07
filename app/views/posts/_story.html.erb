@@ -38,7 +38,10 @@
 <div data-controller="toggle">
   <!--dots-icon-->
   <div class="toggle-bar" data-action="click->toggle#toggle">
+    <div class="d-flex justify-content-between">
     <i class="dots fas fa-ellipsis-h"></i>
+    <p class="quality"><%= @post.post_qualities.count %> <i class="fa-solid fa-star" style="color: #ffd43b;"></i></p>
+    </div>
   </div>
   <!--interactive-bar-->
   <div class="d-none" data-toggle-target="display">
