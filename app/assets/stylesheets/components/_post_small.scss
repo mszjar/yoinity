@@ -44,7 +44,6 @@
 }
 
 .subtitle-info {
-  // margin-top: 8px;
   margin-bottom: 8px;
   display: flex;
   flex-direction: row;
@@ -55,8 +54,8 @@
 
 .card-body .infos .info-mini {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: end;
 }
 
 .card-body .infos .nickname {
@@ -209,7 +208,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.5em; /* Set line height to match height of a single line of text */
-  max-height: 3.5em; /* Set max height to match 2 lines of text (2 * line-height) */
+  max-height: 3em; /* Set max height to match 2 lines of text (2 * line-height) */
   //position: absolute;
   text-decoration: none;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -219,7 +218,7 @@
   color: white;
   //left: 1px;
   //top: 150px;
-  width: 80%;
+  width: 65%;
 }
 
 .post-card-small .read {
