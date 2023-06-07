@@ -181,3 +181,14 @@
   background: #1FDF64; /* Replace with the exact green color you want */
   z-index: 1;
 }
+
+.toggle-bar {
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.toggle-bar .dots {
+  // float: right;
+  color: rgba(255, 255, 255, 0.7);
+  font-size:28px;
+}
