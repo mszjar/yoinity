@@ -4,20 +4,7 @@
   <!--remixes-->
   <div class="remixes">
 
-    <!--amazon polly-->
-    <div class="audio-player" data-controller="audio">
-        <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
-            <div> <%= image_tag "robot.png", class: "avatar", loading: "lazy" %></div>
-            <div class="avatar-overlay">
-                <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
-                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
-                <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
-            </div>
-        </div>
-      <div class="d-flex justify-content-center"><p style="font-size: 9px" >Polly AI</p></div>
-      <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
-      </audio>
-    </div>
+
 
     <!-- Remix button -->
     <div class="audio-player">
@@ -58,7 +45,7 @@
       <!--play all button-->
       <div class="audio-player" data-controller="audio">
           <div data-action="click->play-all#togglePlayAll" class="avatar-container show-avatar-item">
-            <%= image_tag "yoinity_logo.png", class: "avatar", loading: "lazy" %>
+            <div class="avatar" style="background-color:#1FDF64; border-radius:50%;"></div>
             <div class="avatar-overlay">
               <i class="play-icon fas fa-play" data-play-all-target="playAllIcon"></i>
               <i class="pause-icon fas fa-pause" data-play-all-target="pauseAllIcon" style="display: none;"></i>
