@@ -11,6 +11,15 @@
       <h2>My stories</h2>
       <div class="cards">
         <% @posts.reverse.each do |post| %>
+        <% if current_user == post.user %>
+          <div class="dropdown">
+            <i class="fas fa-ellipsis-h" style="float: right; color: white;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Other Option</a></li>
+              <li><%= link_to 'Delete', post_path(post.token), data: { turbo_method: :delete, turbo_confirm: 'Delete this post?' }, class: 'dropdown-item' %></li>
+            </ul>
+          </div>
+        <% end %>
           <%= link_to post_path(post.token)  do %>
             <div class="card">
               <div class="card-body">

@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   def destroy
     authorize @post
     @post.destroy
-    redirect_to posts_path, status: :see_other
+    redirect_to '/dashboard/show', status: :see_other
   end
 
   def update
