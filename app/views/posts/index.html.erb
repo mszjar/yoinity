@@ -12,31 +12,8 @@
     <div class="cards">
       <% @posts.reverse.each do |post| %>
         <%= link_to post_path(post.token)  do %>
-          <div class="card">
-            <div class="card-body">
-              <div class="infos">
-              <div class="card-images">
-                <h5 class="card-title title"><%=post.title%></h5>
-                <% if post.photo.key.nil? %>
-                  <h3 class="post-image"> <%= image_tag "default_image.png", class: "avatar-post", loading: "lazy" %></h3>
-                <% else %>
-                  <h3 class="post-image"> <%= image_tag url_for(post.photo), class: "avatar-post", loading: "lazy" %></h3>
-                <% end %>
-              </div>
-              <div class="card-images">
-                <div>
-                  <%= image_tag url_for(post.user.photo), class: "avatar-small" %>
-                  <h3 class="nickname">@<%=post.user.nickname%></h3>
-                </div>
-                <p class="content"><%= post.content %></p>
-                <div class= "info-mini">
-                  <p class="date"><%= post.created_at.strftime("%-d %B %Y") %></p>
-                  <p class="quality"><%= post.post_qualities.count %> <i class="fa-solid fa-star" style="color: #ffd43b;"></i></p>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
+          <!--cards-->
+          <%= render partial: "card", locals: { post: post }%>
         <% end %>
       <% end %>
     </div>
