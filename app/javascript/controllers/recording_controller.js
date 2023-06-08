@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import RecordRTC from "recordrtc"
 
 export default class extends Controller {
-  static targets = ["start", "stop", "form", "language", "messages"]
+  static targets = ["start", "stop", "form", "language", "messages", "fileUpload"]
 
   connect() {
     this.startButton = this.startTarget
@@ -10,6 +10,7 @@ export default class extends Controller {
     this.form = this.formTarget
     this.languageInput = this.languageTarget
     this.messages = this.messagesTarget
+    this.fileUpload = this.fileUploadTarget
     this.recorder = null
     this.stopButton.disabled = true
     this.audioBlob = null
@@ -46,30 +47,41 @@ export default class extends Controller {
     }
   }
 
-
   submitForm(event) {
     console.log('submitForm called');
     this.messages.innerHTML = 'Submitting form...';
-    if (this.audioBlob) {
-      let formData = new FormData(this.form);
-      formData.append('audio', this.audioBlob);
-      formData.set('language', this.languageInput.value);
+    let formData = new FormData(this.form);
 
-      fetch(this.form.action, {
-          method: 'POST',
-          body: formData
-      }).then(response => {
-          if (response.ok) {
-              console.log('Audio uploaded successfully');
-              this.messages.innerHTML = 'Audio uploaded successfully.';
-              this.startButton.disabled = false;
-          } else {
-              console.log('Error uploading audio');
-              this.messages.innerHTML = 'Error uploading audio.';
-          }
-      });
-
+    // Check if file was uploaded
+    if (this.fileUpload.files.length > 0) {
+      let file = this.fileUpload.files[0];
+      formData.append('audio', file, file.name);
+    } else if (this.audioBlob) {
+      // If no file uploaded, add audioBlob (recorded audio) to form data
+      formData.append('audio', this.audioBlob, 'recorded_audio.wav');
+    } else {
+      // If no file uploaded and no audio recorded, do not submit form
+      this.messages.innerHTML = 'Please record or upload audio.';
       event.preventDefault();
+      return;
     }
+
+    formData.set('language', this.languageInput.value);
+
+    fetch(this.form.action, {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+        if (response.ok) {
+            console.log('Audio uploaded successfully');
+            this.messages.innerHTML = 'Audio uploaded successfully.';
+            this.startButton.disabled = false;
+        } else {
+            console.log('Error uploading audio');
+            this.messages.innerHTML = 'Error uploading audio.';
+        }
+    });
+
+    event.preventDefault();
   }
 }
