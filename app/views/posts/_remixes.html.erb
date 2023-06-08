@@ -74,6 +74,9 @@
             <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
             <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
 
+            <!-- File upload input -->
+            <%= f.input :audio, as: :file, label: 'Or upload audio:', input_html: { data: { recording_target: "fileUpload" } } %>
+
             <!-- Added feedback div -->
             <div data-recording-target="messages" style="height: 30px; color: white;"></div>
 
