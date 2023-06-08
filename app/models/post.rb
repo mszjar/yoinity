@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   has_many :saved_for_laters, dependent: :destroy
   has_many :users_who_saved, through: :saved_for_laters, source: :user
   has_and_belongs_to_many :categories, limit: 6
-  has_many :remixes
+  has_many :remixes, dependent: :nullify
 
   validates :title, :content, presence: true
   validates :title, length: { maximum: 120 }
@@ -34,4 +34,5 @@ class Post < ApplicationRecord
   def generate_token
     self.token = SecureRandom.urlsafe_base64(15) # secured roots for posts
   end
+
 end
