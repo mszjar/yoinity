@@ -1,4 +1,5 @@
 .text {
+  //height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,10 +72,16 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+.text-area {
+  height: 65vh;
+}
+
 .form-border {
+  height: 100%;
   border-style: none;
   text-align: left;
   background-color: #343541;
+  resize: none;
 }
 
 .form-button {
@@ -120,7 +127,7 @@
 }
 
 .post_content textarea {
-  max-height: calc(80vh - 260px);
+  max-height: calc(80vh - 140px);
   scrollbar-width: none;
 }
 
@@ -162,19 +169,19 @@
 }
 
 @media (max-width: 1480px) {
-  .form-container  {
+  .form-container {
     width: 45%;
   }
 }
 
 @media (max-width: 1135px) {
-  .form-container  {
+  .form-container {
     width: 75%;
   }
 }
 
 @media (max-width: 604px) {
-  .form-container  {
+  .form-container {
     width: 85%;
   }
 }

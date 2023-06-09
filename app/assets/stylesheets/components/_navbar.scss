@@ -5,6 +5,10 @@
   // transition: 0.5s background-color ease;
 }
 
+.navbar-nav {
+  padding-right: 10px;
+}
+
 .navbar-home {
   justify-content: space-between;
   background-color: transparent;
@@ -85,7 +89,7 @@
 .navbar-link {
   color: white;
   margin-left: 10px;
-  margin-top: 10px;
+  //margin-top: 10px;
   margin-right: 10px;
 }
 
