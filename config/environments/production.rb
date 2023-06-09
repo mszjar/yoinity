@@ -13,6 +13,18 @@ Rails.application.configure do
   # Forms generated with `form_with` will submit with AJAX by default.
   config.action_view.form_with_generates_remote_forms = true
 
+  # Action Mailer Configuration for Namecheap
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'mail.privateemail.com', # Namecheap SMTP server
+    port:                 587,
+    domain:               'www.yoinity.com', # your domain here
+    user_name:            ENV['NAMECHEAP_USERNAME'], # your Namecheap email here
+    password:             ENV['NAMECHEAP_PASSWORD'], # your Namecheap password here
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
