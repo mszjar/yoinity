@@ -17,7 +17,7 @@
       <p class="content"><%= post.content %></p>
       <div class= "info-mini">
         <p class="date"><%= post.created_at.strftime("%-d %B %Y") %></p>
-        <div class="d-flex justify-content-between" style="gap:14px;">
+        <div class="play-quality">
           <!--play-icon-->
           <%= render partial: 'shared/play_icon' if post.remixes.present? %>
           <!--quality-icon-->
