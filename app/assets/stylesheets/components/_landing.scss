@@ -1,5 +1,5 @@
 .banner3 {
-  background-color: #ffc900;
+  //background-color: #ffc900;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -55,7 +55,7 @@
       }
     }
     & p {
-      color: #12141d;
+      color: rgba(255, 253, 253, 0.65);
       font-size: 20px;
       line-height: 32px;
       padding-top: 8px;
@@ -90,7 +90,7 @@
           padding-left: 52px;
           font-size: 14px;
           font-weight: 400;
-          border-radius: 10px;
+          border-radius: 50px;
           @media #{$desktop-device} {
             width: 300px;
           }
@@ -99,7 +99,7 @@
           }
           &::placeholder {
             opacity: 1;
-            color: #88898e;
+            color: #464646;
           }
         }
         & button {
@@ -125,53 +125,30 @@
         }
       }
     }
-    & .trust-user {
-      padding-top: 88px;
-      & span {
-        font-size: 18px;
-        color: #6a656c;
-        line-height: 32px;
-        display: inline-block;
+  }
+}
 
-        & img {
-          padding-right: 9px;
-        }
-        & span {
-          color: #12141d;
-          font-weight: 700;
-          padding-right: 10px;
-          padding-left: 12px;
-          background-image: url(../images/user-line.png);
-          background-position: center;
-          background-repeat: no-repeat;
-          margin-left: -10px;
-        }
-      }
-      & > img {
-        padding: 16px 0 0;
-      }
-    }
-  }
-  &__thumb {
-    position: absolute;
-    right: 90px;
-    bottom: 40px;
-    @media #{$laptop-device} {
-      text-align: right;
-    }
-    @media #{$desktop-device} {
-      position: static;
-    }
-    @media #{$tablet-device} {
-      position: static;
-    }
-    @media #{$large-mobile} {
-      position: static;
-    }
-    & img {
-      @media #{$laptop-device} {
-        width: 67%;
-      }
-    }
-  }
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.diagonal-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 100%;
+}
+.diagonal-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform-origin: bottom right;
+  transform: skewY(-45deg);
+  border-radius: 0 0 0 50px;
 }

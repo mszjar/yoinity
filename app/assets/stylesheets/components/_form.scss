@@ -1,15 +1,14 @@
-.img-formulaire{
-  width:1000px;
-
+.img-formulaire {
+  width: 1000px;
 }
 
-.border{
+.border {
   padding-top: 5ch;
-  padding-bottom:5ch;
+  padding-bottom: 5ch;
   padding-right: 5ch;
   padding-left: 5ch;
   border-radius: 20%;
-  background-color:burlywood;
+  background-color: burlywood;
 }
 .banner {
   background-size: cover;
@@ -17,5 +16,39 @@
   padding: 150px 0;
 }
 .text {
-  font-weight:bold;
+  font-weight: bold;
+}
+//login inputs
+.email-input {
+  border-color: rgba(177, 176, 176, 0.5);
+  background-color: rgba(177, 176, 176, 0.5);
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.email-input:hover {
+  background-color: rgba(226, 226, 226, 0.945);
+  color: black;
+}
+
+.email-input:focus {
+  background-color: rgba(226, 226, 226, 0.945) !important;
+  color: black !important;
+}
+
+.password-input {
+  border-color: rgba(177, 176, 176, 0.5);
+  background-color: rgba(177, 176, 176, 0.5);
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.password-input:hover {
+  background-color: rgba(226, 226, 226, 0.945);
+  color: black;
+}
+
+.password-input:focus {
+  background-color: rgba(226, 226, 226, 0.945) !important;
+  color: black !important;
 }
