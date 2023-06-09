@@ -18,7 +18,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'mail.privateemail.com', # Namecheap SMTP server
     port:                 587,
-    domain:               'www.yoinity.com', # your domain here
+    domain:               'https://www.yoinity.com', # your domain here
     user_name:            ENV['NAMECHEAP_USERNAME'], # your Namecheap email here
     password:             ENV['NAMECHEAP_PASSWORD'], # your Namecheap password here
     authentication:       'plain',
