@@ -6,6 +6,7 @@ class PotentialUsersController < ApplicationController
     authorize @potential_user
 
     if @potential_user.save
+      reset_session  # This line resets the session.
       session[:potential_user_email] = @potential_user.email
       redirect_to posts_path, notice: 'Thank you for your interest!'
     else
