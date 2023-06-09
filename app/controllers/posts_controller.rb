@@ -1,9 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update show destroy]
 
-  # Constants
-  LINES_PER_PAGE = 4
-
   def index
     @post = policy_scope(Post)
 
@@ -36,14 +33,12 @@ class PostsController < ApplicationController
     @comments = @post.comments
     @remix = current_user.remixes.build(post: @post) if user_signed_in?
     @remixes = @post.remixes
-    # Pagination
-    @content_pages = Kaminari.paginate_array(@post.content.split("\n")).page(params[:page]).per(LINES_PER_PAGE)
   end
 
   def destroy
     authorize @post
     @post.destroy
-    redirect_to posts_path, status: :see_other
+    redirect_to '/dashboard/show', status: :see_other
   end
 
   def update

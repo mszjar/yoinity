@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   changeTab(event) {
-    event.preventDefault()
+    // event.preventDefault()
     const tabs = Array.from(this.tabTargets)
     tabs.forEach((tab) => {
       tab.classList.remove("active")

@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand navbar-light navbar-lewagon fixed-top" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
-  <div class="container-fluid" style="height: 70px" >
+  <div class="container-fluid" style="height: 70px; --bs-gutter-x: 0px !important;">
     <ul class="navbar-brand d-flex align-items-center">
     <%= link_to "/", class: "navbar-brand" do %>
       <%= image_tag "yoinity_logo.png" %>
@@ -20,11 +20,11 @@
           </li>
           <% end %>
           <div class= "menu-container">
-            <li class="nav-item active all-text-grey btn-create">
+            <li class="nav-item active">
               <%= link_to "Create", "/p/new", class: "navbar-link" %>
             </li>
             <% unless current_user.subscription_status == 'active' %>
-              <li class="nav-item all-text-grey">
+              <li class="nav-item active">
                 <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link" %>
               </li>
             <% end %>

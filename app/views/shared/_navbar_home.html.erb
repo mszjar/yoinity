@@ -1,11 +1,11 @@
 <div class="navbar navbar-expand navbar-home fixed-top" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
-  <div class="container-fluid" style="height: 70px" >
+    <div class="container-fluid" style="height: 70px; --bs-gutter-x: 0px !important;">
     <div>
       <ul class="navbar-brand d-flex align-items-center">
         <%= link_to "/", class: "navbar-brand" do %>
           <%= image_tag "yoinity_logo.png" %>
         <% end %>
-        <p class="all-text-white mt-4", style="font-size: 28px">
+        <p class="all-text-black mt-4", style="font-size: 28px">
           <%= link_to "Yoinity", "/", class: "yoinity-logo"%>
         </p>
       </ul>
@@ -14,11 +14,11 @@
       <ul class="navbar-nav" style="width: 100%">
         <% if user_signed_in? %>
           <div class= "menu-container">
-            <li class="nav-item all-text-grey btn-create">
+            <li class="nav-item active">
               <%= link_to "Create", "/p/new", class: "navbar-link" %>
             </li>
             <% unless current_user.subscription_status == 'active' %>
-              <li class="nav-item all-text-grey">
+              <li class="nav-item active">
                 <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link" %>
               </li>
             <% end %>
@@ -34,12 +34,12 @@
           </div>
         <% else %>
           <div class= "menu-container">
-            <li class="nav-item all-text-grey">
+            <li class="nav-item all-text-black">
               <%= link_to "Login", new_user_session_path, class: "navbar-link" %>
             </li>
-            <li class="nav-item all-text-grey">
+            <!-- <li class="nav-item all-text-black">
               <%= link_to "Sign up", new_user_registration_path, class: "navbar-link" %>
-            </li>
+            </li> -->
           </div>
         <% end %>
       </ul>
