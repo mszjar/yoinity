@@ -1,22 +1,24 @@
 <!--interactive-bar-->
 <div class="subtitle-interactive">
-  <!--author avatar-->
-  <div class="show-avatar">
-    <div class="show-avatar-item">
-      <%= link_to profile_path(@post.user.nickname) do %>
-        <%= image_tag url_for(@post.user.photo), class: "avatar-xxs", loading: "lazy" %>
-      <% end %>
-    </div>
-    <p class="d-flex align-items-center"><%= @post.user.nickname %></p>
-    <div class="d-flex align-items-center" >
-      <% if user_signed_in? %>
-        <% user_follow = current_user.following?(User.find(@post.user_id)) %>
-        <% if user_follow %>
-          <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-following", method: :post %></p>
-        <% else %>
-          <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-follow", method: :post %></p>
+  <div style="padding-bottom: 8px;">
+    <!--author avatar-->
+    <div class="show-avatar">
+      <div class="show-avatar-item">
+        <%= link_to profile_path(@post.user.nickname) do %>
+          <%= image_tag url_for(@post.user.photo), class: "avatar-xxs", loading: "lazy" %>
         <% end %>
-      <% end %>
+      </div>
+      <p class="d-flex align-items-center"><%= @post.user.nickname %></p>
+      <div class="d-flex align-items-center" >
+        <% if user_signed_in? %>
+          <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+          <% if user_follow %>
+            <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-following", method: :post %></p>
+          <% else %>
+            <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-follow", method: :post %></p>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
