@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     member do
       get 'speech', to: 'posts#speech', defaults: { format: 'mp3' }
     end
+    collection do
+      get :followed
+    end
   end
 
   resources :comments do

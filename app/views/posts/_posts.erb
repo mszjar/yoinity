@@ -1,0 +1,8 @@
+<div class="cards">
+  <% posts.reverse.each do |post| %>
+    <%= link_to post_path(post.token) do %>
+      <!--cards-->
+      <%= render partial: "card", locals: { post: post }%>
+    <% end %>
+  <% end %>
+</div>
