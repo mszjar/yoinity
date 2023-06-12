@@ -60,11 +60,10 @@ class PostsController < ApplicationController
     send_file file_path, filename: 'speech.mp3', type: 'audio/mpeg', disposition: 'inline' # inline will play the audio in the browser
   end
 
-  def followed
+  def following
     skip_authorization
-    puts "followed action called"
-    @followed_posts = current_user.following_by_type('User').map(&:posts).flatten
-    render partial: 'posts', locals: { posts: @followed_posts }
+    @following_posts = current_user.following_by_type('User').map(&:posts).flatten
+    render partial: 'posts', locals: { posts: @following_posts }
   end
 
 

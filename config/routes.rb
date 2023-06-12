@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get 'speech', to: 'posts#speech', defaults: { format: 'mp3' }
     end
     collection do
-      get :followed
+      get :following
     end
   end
 

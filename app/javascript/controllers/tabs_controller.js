@@ -24,7 +24,7 @@ export default class extends Controller {
     console.log(anchorTagInnerHTML); // Debugging to make sure you're getting "Following"
 
     if(anchorTagInnerHTML === 'Following'){
-      fetch('/p/followed')
+      fetch('/p/following')
         .then(response => {
           if (!response.ok) { // Debugging Step 3
             throw new Error(`HTTP error! status: ${response.status}`);
