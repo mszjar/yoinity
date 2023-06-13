@@ -61,7 +61,7 @@ class PostsController < ApplicationController
   end
 
   def following
-    skip_authorization
+    authorize @following_posts, policy_class: FollowingPolicy
     @following_posts = current_user.following_by_type('User').map(&:posts).flatten
     render partial: 'posts', locals: { posts: @following_posts }
   end

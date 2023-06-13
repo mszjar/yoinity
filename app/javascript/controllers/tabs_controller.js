@@ -32,10 +32,25 @@ export default class extends Controller {
           return response.text();
         })
         .then(html => {
-          document.querySelector('#posts').innerHTML = html;
+          this.insertHtml('#posts', html);
         })
         .catch(e => {
           console.log('There was an error with fetch!', e); // Debugging Step 3
+        });
+    } else if (anchorTagInnerHTML === 'Explore') {
+      // fetch code for 'Explore'
+      fetch('/p')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then(html => {
+          this.insertHtml('#posts', html);
+        })
+        .catch(e => {
+          console.log('There was an error with fetch!', e);
         });
     }
 
@@ -55,4 +70,19 @@ export default class extends Controller {
       }
     })
   }
+
+  insertHtml(selector, html) {
+    const target = document.querySelector(selector);
+    target.innerHTML = '';
+    let parser = new DOMParser();
+    let htmlDocument = parser.parseFromString(html, "text/html");
+    let postsHtml = htmlDocument.querySelector('#posts');
+    if (postsHtml) {
+      postsHtml = postsHtml.innerHTML;
+    } else {
+      postsHtml = html; // use the full html if no '#posts' is found
+    }
+    target.innerHTML = postsHtml;
+  }
+
 }
