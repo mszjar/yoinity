@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :followed]
   before_action :set_post, only: %i[edit update show destroy]
   before_action :check_view_limit, only: [:show]
 
@@ -58,6 +58,12 @@ class PostsController < ApplicationController
     polly_client = PollyClient.new
     file_path = polly_client.synthesize_speech(@post.content)
     send_file file_path, filename: 'speech.mp3', type: 'audio/mpeg', disposition: 'inline' # inline will play the audio in the browser
+  end
+
+  def following
+    authorize @following_posts, policy_class: FollowingPolicy
+    @following_posts = current_user.following_by_type('User').map(&:posts).flatten
+    render partial: 'posts', locals: { posts: @following_posts }
   end
 
 

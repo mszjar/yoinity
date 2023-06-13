@@ -1,21 +1,16 @@
 <div class="post-container">
-  <div class="post" >
+  <div class="post">
     <!--Tabs-->
     <div class="cards-header" data-controller="tabs">
       <h5 class="cards-header-item tab-index active" data-tabs-target="tab" data-action="click->tabs#changeTab">
         <%= link_to 'Explore', "/p", class: "tabs" %>
       </h5>
       <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
-        <%= link_to 'Following', "#", class: "tabs" %>
+        <%= link_to 'Following', following_posts_path, class: "tabs", remote: true %>
       </h5>
     </div>
-    <div class="cards">
-      <% @posts.reverse.each do |post| %>
-        <%= link_to post_path(post.token)  do %>
-          <!--cards-->
-          <%= render partial: "card", locals: { post: post }%>
-        <% end %>
-      <% end %>
+    <div id="posts">
+      <%= render partial: 'posts', locals: { posts: @posts } %>
     </div>
   </div>
 </div>
