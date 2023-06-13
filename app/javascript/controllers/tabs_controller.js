@@ -5,13 +5,10 @@ export default class extends Controller {
   static targets = ["tab", "notification"];
 
   connect() {
-    // any code you want to run when the controller instance connects to the DOM
   }
 
   changeTab(event) {
-    event.preventDefault();
 
-    console.log("changeTab method triggered"); // Debugging Step 1
 
     const tabs = Array.from(this.tabTargets);
     tabs.forEach((tab) => {
@@ -24,6 +21,7 @@ export default class extends Controller {
     console.log(anchorTagInnerHTML); // Debugging to make sure you're getting "Following"
 
     if(anchorTagInnerHTML === 'Following'){
+      event.preventDefault();
       fetch('/p/following')
         .then(response => {
           if (!response.ok) { // Debugging Step 3
