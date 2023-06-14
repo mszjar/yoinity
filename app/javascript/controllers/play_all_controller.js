@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ["audio", "nickname", "playIcon", "pauseIcon", "greenOverlay", "playAllIcon", "pauseAllIcon", "greenAllOverlay"];
 
   connect() {
+    this.playAll();
     if (!this.audioTargets.some(audio => !audio.paused)) {
       this.playAllIconTarget.style.display = 'block';
       this.greenAllOverlayTarget.style.display = 'block';

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'potential_users/create'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
@@ -19,6 +20,9 @@ Rails.application.routes.draw do
     member do
       get 'speech', to: 'posts#speech', defaults: { format: 'mp3' }
     end
+    collection do
+      get :following
+    end
   end
 
   resources :comments do
@@ -31,6 +35,8 @@ Rails.application.routes.draw do
   resources :post_likes, only: [:create, :destroy]
   resources :post_qualities, only: [:create, :destroy]
   resources :saved_for_laters, only: [:index, :create, :destroy]
+  resources :potential_users, only: [:create]
+
 
   resources :remixes, only: [:create, :show] do
     member do

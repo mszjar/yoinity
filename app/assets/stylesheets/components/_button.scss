@@ -277,3 +277,15 @@ a {
   text-decoration: none;
   border: none;
 }
+
+.play-quality {
+  display: flex;
+  justify-content: space-between;
+  gap:14px;
+}
+
+@media (max-width: 768px) {
+  .play-quality {
+    gap: 8px;
+  }
+}

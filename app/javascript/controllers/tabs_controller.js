@@ -8,14 +8,49 @@ export default class extends Controller {
   }
 
   changeTab(event) {
-    // event.preventDefault()
-    const tabs = Array.from(this.tabTargets)
+
+
+    const tabs = Array.from(this.tabTargets);
     tabs.forEach((tab) => {
-      tab.classList.remove("active")
-    })
-    event.currentTarget.classList.add("active")
-    console.log(event.currentTarget.innerHTML)
-    console.log(event.currentTarget.dataset)
+      tab.classList.remove("active");
+    });
+
+    event.currentTarget.classList.add("active");
+
+    let anchorTagInnerHTML = event.currentTarget.querySelector('a').innerHTML.trim();
+    console.log(anchorTagInnerHTML); // Debugging to make sure you're getting "Following"
+
+    if(anchorTagInnerHTML === 'Following'){
+      event.preventDefault();
+      fetch('/p/following')
+        .then(response => {
+          if (!response.ok) { // Debugging Step 3
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then(html => {
+          this.insertHtml('#posts', html);
+        })
+        .catch(e => {
+          console.log('There was an error with fetch!', e); // Debugging Step 3
+        });
+    } else if (anchorTagInnerHTML === 'Explore') {
+      // fetch code for 'Explore'
+      fetch('/p')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then(html => {
+          this.insertHtml('#posts', html);
+        })
+        .catch(e => {
+          console.log('There was an error with fetch!', e);
+        });
+    }
 
     const notifications = Array.from(this.notificationTargets)
     notifications.forEach((notification) => {
@@ -29,10 +64,23 @@ export default class extends Controller {
           notification.classList.remove("d-none")
         }
       } else {
-          notification.classList.remove("d-none")
+        notification.classList.remove("d-none")
       }
-
     })
+  }
+
+  insertHtml(selector, html) {
+    const target = document.querySelector(selector);
+    target.innerHTML = '';
+    let parser = new DOMParser();
+    let htmlDocument = parser.parseFromString(html, "text/html");
+    let postsHtml = htmlDocument.querySelector('#posts');
+    if (postsHtml) {
+      postsHtml = postsHtml.innerHTML;
+    } else {
+      postsHtml = html; // use the full html if no '#posts' is found
+    }
+    target.innerHTML = postsHtml;
   }
 
 }

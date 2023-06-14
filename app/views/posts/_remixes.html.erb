@@ -43,7 +43,7 @@
         </div>
       <% end %>
       <!--play all button-->
-      <div class="audio-player" data-controller="audio">
+      <div class="audio-player">
           <div data-action="click->play-all#togglePlayAll" class="avatar-container show-avatar-item">
             <div class="avatar" style="background-color:#1FDF64; border-radius:50%;"></div>
             <div class="avatar-overlay">
@@ -56,10 +56,8 @@
         </div>
       </div>
 
+
   </div>
-
-
-
 
   <!-- Remix form (Modal) -->
   <div class="modal fade" id="remixModal" tabindex="-1" aria-labelledby="remixModalLabel" aria-hidden="true">
@@ -70,25 +68,29 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
-            <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
-            <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
+          <% if user_signed_in?%>
+            <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
+              <%= f.input :post_id, as: :hidden, input_html: { value: @post.id, data: { recording_target: "post_id" } } %>
+              <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
 
-            <!-- File upload input -->
-            <%= f.input :audio, as: :file, label: 'Or upload audio:', input_html: { data: { recording_target: "fileUpload" } } %>
+              <!-- File upload input -->
+              <%= f.input :audio, as: :file, label: 'Or upload audio:', input_html: { data: { recording_target: "fileUpload" } } %>
 
-            <!-- Added feedback div -->
-            <div data-recording-target="messages" style="height: 30px; color: white;"></div>
+              <!-- Added feedback div -->
+              <div data-recording-target="messages" style="height: 30px; color: white;"></div>
 
-            <div data-action="click->recording#startRecording" data-recording-target="start">
-              <%= button_tag "Start recording", type: "button" %>
-            </div>
-            <div data-action="click->recording#stopRecording" data-recording-target="stop">
-              <%= button_tag "Stop recording", type: "button" %>
-            </div>
-            <div data-action= "click->recording#submitForm">
-              <%= f.submit "Submit Remix" %>
-            </div>
+              <div data-action="click->recording#startRecording" data-recording-target="start">
+                <%= button_tag "Start recording", type: "button" %>
+              </div>
+              <div data-action="click->recording#stopRecording" data-recording-target="stop">
+                <%= button_tag "Stop recording", type: "button" %>
+              </div>
+              <div data-action= "click->recording#submitForm">
+                <%= f.submit "Submit Remix" %>
+              </div>
+            <% end %>
+          <% else %>
+            <p>You must be signed in to remix.</p>
           <% end %>
         </div>
         <div class="modal-footer">

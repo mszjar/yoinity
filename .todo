@@ -1,26 +1,43 @@
-to get a random post on the html.erb <%= link_to "Read", "/posts/#{Post.all.sample.id}", class: "nav-link" %>
-<!--<p><%= f.label :code %><%= f.text_area :code, class: "form-control" %><code><%= f.object.code %></code></p>-->
 si jamais, pour changer la maniere d'appeler un audio. <!-- <source src="<%= remix.audio.service_url %>" type="<%= remix.audio.blob.content_type %>"> -->
 
+chatgpt start prompt:
 
-<!--pagination
-<div class="pagination">
-<% if @content_pages.current_page > 1 %>
-  <%= link_to '← Prev', post_path(@post.token, page: @content_pages.current_page - 1) %>
-<% end %>
+in my rails 7 app, i have posts, with remixes, like this:
+require 'securerandom'
 
-<%= "#{@content_pages.current_page}/#{@content_pages.total_pages}" %>
+class Post < ApplicationRecord
+  before_create :generate_token
 
-<% if @content_pages.current_page < @content_pages.total_pages %>
-  <%= link_to 'Next →', post_path(@post.token, page: @content_pages.current_page + 1) %>
-<% end %>
-</div> -->
+  has_one_attached :photo
+  belongs_to :user
+  has_many :comments, dependent: :destroy
+  has_many :post_likes, dependent: :destroy
+  has_many :post_qualities, dependent: :destroy
+  has_many :saved_for_laters, dependent: :destroy
+  has_many :users_who_saved, through: :saved_for_laters, source: :user
+  has_and_belongs_to_many :categories, limit: 6
+  has_many :remixes, dependent: :nullify
+
+  validates :title, :content, presence: true
+  validates :title, length: { maximum: 120 }
+  validates :content, length: { maximum: 8999 }
 
 
-<!--content
-<div class="content-bar" >
-  <div class="post-content">
-    <% @content_pages.each do |line| %>
-      <p><%= line.gsub(/\n/, '<br>').html_safe %></p>
-    <% end %>
-  </div> -->
+  include PgSearch::Model
+  pg_search_scope :search, against: [ :title, :content, :language ],
+    associated_against: { categories: [ :name ] },
+    using: {
+      tsearch: { prefix: true }
+    }
+
+  def speech_duration
+    content.split.size / 150.0 # 150 words per minute
+  end
+
+  private
+
+  def generate_token
+    self.token = SecureRandom.urlsafe_base64(15) # secured roots for posts
+  end
+
+end
