@@ -66,11 +66,19 @@ class PostsController < ApplicationController
   end
 
   def following
-    authorize @following_posts, policy_class: FollowingPolicy
-    @following_posts = current_user.following_by_type('User').map(&:posts).flatten
-    render partial: 'posts', locals: { posts: @following_posts }
-  end
+    # Getting list of following user IDs
+    following_ids = current_user.following_by_type('User').map(&:id)
 
+    # Fetching posts from followed users and paginating
+    @following_posts = Post.where(user_id: following_ids).order('created_at DESC').paginate(page: params[:page], per_page: 4)
+
+    authorize @following_posts, policy_class: FollowingPolicy
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   private
 

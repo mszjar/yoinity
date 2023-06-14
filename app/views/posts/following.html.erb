@@ -1,1 +1,8 @@
-<%= render partial: 'posts', locals: { posts: posts } %>
+<div id="posts">
+  <%= render partial: 'posts', locals: { posts: @following_posts } %>
+  <% if @following_posts.next_page %>
+    <div id="load-more" data-controller="load-more">
+      <a href="<%= following_posts_path(page: @following_posts.next_page) %>" data-action="click->load-more#loadMore" data-load-more-target="link" class="show-more">Show More</a>
+    </div>
+  <% end %>
+</div>
