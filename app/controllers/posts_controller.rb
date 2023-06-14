@@ -4,14 +4,19 @@ class PostsController < ApplicationController
   before_action :check_view_limit, only: [:show]
 
   def index
-    @post = policy_scope(Post)
-
     if params[:query].present?
-      @posts = Post.search(params[:query])
+      @posts = policy_scope(Post).search(params[:query]).paginate(page: params[:page], per_page: 4)
     else
-      @posts = Post.all
+      @posts = policy_scope(Post).order('created_at DESC').paginate(page: params[:page], per_page: 4)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
+
+
 
   def new
     @post = Post.new
