@@ -16,8 +16,6 @@ class PostsController < ApplicationController
     end
   end
 
-
-
   def new
     @post = Post.new
     authorize @post
@@ -66,12 +64,8 @@ class PostsController < ApplicationController
   end
 
   def following
-    # Getting list of following user IDs
     following_ids = current_user.following_by_type('User').map(&:id)
-
-    # Fetching posts from followed users and paginating
     @following_posts = Post.where(user_id: following_ids).order('created_at DESC').paginate(page: params[:page], per_page: 4)
-
     authorize @following_posts, policy_class: FollowingPolicy
 
     respond_to do |format|

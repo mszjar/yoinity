@@ -1,11 +1,17 @@
 class RemixesController < ApplicationController
+
+  def index
+    @remixes = policy_scope(Remix).order('created_at DESC')
+  end
+
   def create
-    skip_authorization
     @remix = Remix.new(remix_params)
     @remix.user = current_user
     if params[:audio]
       @remix.audio.attach(params[:audio])
     end
+
+    authorize @remix
 
     if @remix.save
       render json: { message: 'Audio file saved successfully' }, status: :ok
@@ -15,8 +21,8 @@ class RemixesController < ApplicationController
   end
 
   def show
-    skip_authorization
     @remix = Remix.find(params[:id])
+    authorize @remix
 
     if @remix.audio.attached?
       redirect_to url_for(@remix.audio)
@@ -27,8 +33,8 @@ class RemixesController < ApplicationController
   end
 
   def audio
-    skip_authorization
     @remix = Remix.find(params[:id])
+    authorize @remix
     redirect_to @remix.audio.service_url
   end
 
