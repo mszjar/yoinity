@@ -20,4 +20,8 @@ class RemixPolicy < ApplicationPolicy
   def audio?
     show? # Only the owner can access the audio
   end
+  
+  def destroy?
+    record.user == user || user.admin
+  end
 end

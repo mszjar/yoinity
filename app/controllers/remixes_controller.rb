@@ -38,6 +38,14 @@ class RemixesController < ApplicationController
     redirect_to @remix.audio.service_url
   end
 
+  def destroy
+    @remix = Remix.find(params[:id])
+    authorize @remix
+    @remix.destroy
+
+    redirect_to remixes_path, notice: 'Remix was successfully deleted.'
+  end
+
 
   private
 
