@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   resources :potential_users, only: [:create]
 
 
-  resources :remixes, only: [:create, :show] do
+  resources :remixes, only: [:index, :create, :show, :destroy] do
     member do
       get :audio
     end

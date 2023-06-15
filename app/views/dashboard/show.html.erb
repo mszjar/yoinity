@@ -12,6 +12,7 @@
       <div class="cards">
         <% @posts.reverse.each do |post| %>
           <% if current_user == post.user %>
+            <!--three dots button-->
             <div class="dropdown">
               <i class="fas fa-ellipsis-h" style="float: right; color: white;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
