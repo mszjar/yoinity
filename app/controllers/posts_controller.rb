@@ -5,9 +5,9 @@ class PostsController < ApplicationController
 
   def index
     if params[:query].present?
-      @posts = policy_scope(Post).search(params[:query]).paginate(page: params[:page], per_page: 4)
+      @posts = policy_scope(Post).search(params[:query]).paginate(page: params[:page], per_page: 6)
     else
-      @posts = policy_scope(Post).order('created_at DESC').paginate(page: params[:page], per_page: 4)
+      @posts = policy_scope(Post).order('created_at DESC').paginate(page: params[:page], per_page: 6)
     end
 
     @remix = Remix.new if user_signed_in?

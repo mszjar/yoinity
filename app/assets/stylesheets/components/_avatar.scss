@@ -28,8 +28,8 @@
 
 @media (max-width: 768px) {
   .avatar-small {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -43,15 +43,15 @@
 
 .avatar-post {
   object-fit: cover;
-  width: 85px;
-  height: 85px;
+  width: 65px;
+  height: 65px;
   border-radius: 2px;
 }
 
 @media (max-width: 768px) {
   .avatar-post {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
   }
 }
 
