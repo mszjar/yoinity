@@ -42,7 +42,7 @@ export default class extends Controller {
             console.log('Recording stopped, audioBlob:', this.audioBlob);
             this.messages.innerHTML = 'Recording stopped.';
 
-            // Add these lines
+            // Added these lines - Convert the audioBlob to a URL and set it as the source for the audioPlayer
             let audioURL = URL.createObjectURL(this.audioBlob);
             this.audioPlayer.src = audioURL;
 
@@ -50,7 +50,7 @@ export default class extends Controller {
             this.startButton.disabled = false;
         });
         console.log('Recording blob after stopping:', this.recorder.getBlob());
-    }
+      }
   }
 
   submitForm(event) {
@@ -79,9 +79,16 @@ export default class extends Controller {
         body: formData
     }).then(response => {
         if (response.ok) {
-            console.log('Audio uploaded successfully');
-            this.messages.innerHTML = 'Audio uploaded successfully.';
-            this.startButton.disabled = false;
+            response.json().then(data => {
+              if (data.next_url) {
+                // Added this line - If server responds with a URL for the next page, redirect to that page
+                window.location.href = data.next_url;
+              } else {
+                console.log('Audio uploaded successfully');
+                this.messages.innerHTML = 'Audio uploaded successfully.';
+                this.startButton.disabled = false;
+              }
+            });
         } else {
             console.log('Error uploading audio');
             this.messages.innerHTML = 'Error uploading audio.';

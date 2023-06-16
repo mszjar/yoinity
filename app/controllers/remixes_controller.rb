@@ -19,9 +19,8 @@ class RemixesController < ApplicationController
     authorize @remix
 
     if @remix.save
-      # If remix is created independently, redirect to the new post path, otherwise, return the success message.
       if params[:post_id].blank?
-        redirect_to new_post_path(remix_id: @remix.id)
+        render json: { next_url: new_post_path(remix_id: @remix.id) }, status: :ok
       else
         render json: { message: 'Audio file saved successfully' }, status: :ok
       end
@@ -30,6 +29,7 @@ class RemixesController < ApplicationController
       render json: { errors: @remix.errors.full_messages }, status: :unprocessable_entity
     end
   end
+
 
   def show
     @remix = Remix.find(params[:id])
