@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import RecordRTC from "recordrtc"
 
 export default class extends Controller {
-  static targets = ["start", "stop", "form", "language", "messages", "fileUpload"]
+  static targets = ["start", "stop", "form", "language", "messages", "fileUpload", "audioPlayer"]
 
   connect() {
     this.startButton = this.startTarget
@@ -11,6 +11,7 @@ export default class extends Controller {
     this.languageInput = this.languageTarget
     this.messages = this.messagesTarget
     this.fileUpload = this.fileUploadTarget
+    this.audioPlayer = this.audioPlayerTarget
     this.recorder = null
     this.stopButton.disabled = true
     this.audioBlob = null
@@ -38,10 +39,15 @@ export default class extends Controller {
         this.stopButton.disabled = true;
         this.recorder.stopRecording(() => {
             this.audioBlob = this.recorder.getBlob();
-            this.recorder = null;
-            this.startButton.disabled = false;
             console.log('Recording stopped, audioBlob:', this.audioBlob);
             this.messages.innerHTML = 'Recording stopped.';
+
+            // Add these lines
+            let audioURL = URL.createObjectURL(this.audioBlob);
+            this.audioPlayer.src = audioURL;
+
+            this.recorder = null;
+            this.startButton.disabled = false;
         });
         console.log('Recording blob after stopping:', this.recorder.getBlob());
     }

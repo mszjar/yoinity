@@ -12,6 +12,10 @@
             <%= f.input :audio, as: :file, label: 'Or upload audio:', input_html: { data: { recording_target: "fileUpload" } } %>
             <%= f.input :post_id, as: :hidden, input_html: { id: 'remix_post_id' } %>
             <div data-recording-target="messages" style="height: 30px; color: white;"></div>
+
+            <!-- Add the audio player -->
+            <audio controls data-recording-target="audioPlayer"></audio>
+
             <div data-action="click->recording#startRecording" data-recording-target="start">
               <%= button_tag "Start recording", type: "button" %>
             </div>
@@ -19,7 +23,7 @@
               <%= button_tag "Stop recording", type: "button" %>
             </div>
             <div data-action= "click->recording#submitForm">
-              <%= f.submit "Submit Remix" %>
+              <%= button_tag "Next", type: "button" %>
             </div>
           <% end %>
         <% else %>
