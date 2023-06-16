@@ -10,6 +10,8 @@ class PostsController < ApplicationController
       @posts = policy_scope(Post).order('created_at DESC').paginate(page: params[:page], per_page: 4)
     end
 
+    @remix = Remix.new if user_signed_in?
+
     respond_to do |format|
       format.html
       format.js
@@ -17,7 +19,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if params[:remix_id]
+      @remix = Remix.find(params[:remix_id])
+      @post = Post.new(remix: @remix)
+    else
+      @post = Post.new
+    end
     authorize @post
   end
 
@@ -26,11 +33,15 @@ class PostsController < ApplicationController
     @post.user = current_user
     authorize @post
     if @post.save
+      if @post.remix.present?
+        @post.remix.update!(post_id: @post.id)
+      end
       redirect_to post_path(@post.token)
     else
       render :new, status: :unprocessable_entity
     end
   end
+
 
   def show
     authorize @post
@@ -48,9 +59,16 @@ class PostsController < ApplicationController
 
   def update
     @post.user = current_user
-    @post.update(params_post)
-    redirect_to post_path(@post)
+    if @post.update(params_post)
+      if @post.remix.present?
+        @post.remix.update!(post_id: @post.id)
+      end
+      redirect_to post_path(@post.token)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
+
 
   def edit
   end
@@ -81,7 +99,7 @@ class PostsController < ApplicationController
   end
 
   def params_post
-    params.require(:post).permit(:title, :content, :url, :language, :photo)
+    params.require(:post).permit(:title, :content, :url, :language, :photo, :remix_id)
   end
 
   def check_view_limit

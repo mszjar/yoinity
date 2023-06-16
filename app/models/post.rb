@@ -12,6 +12,7 @@ class Post < ApplicationRecord
   has_many :users_who_saved, through: :saved_for_laters, source: :user
   has_and_belongs_to_many :categories, limit: 6
   has_many :remixes, dependent: :nullify
+  belongs_to :remix, optional: true
 
   validates :title, :content, presence: true
   validates :title, length: { maximum: 120 }

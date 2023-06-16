@@ -1,8 +1,18 @@
 class Remix < ApplicationRecord
   belongs_to :user
-  belongs_to :post
+  belongs_to :post, optional: true
 
   has_one_attached :audio
 
-  validates :user_id, uniqueness: { scope: :post_id }
+  validate :remixes_limit, on: :create
+
+  private
+
+  def remixes_limit
+    if self.post && self.post.remixes.count >= 3
+      errors.add(:base, 'A post can have 3 remixes maximum')
+    end
+  end
+
+
 end
