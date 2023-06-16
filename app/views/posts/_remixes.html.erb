@@ -9,7 +9,7 @@
     <!-- Remix button -->
     <div class="audio-player">
       <div class="avatar-container show-avatar-item">
-        <% if Remix.exists?(user: current_user, post: @post) %>
+        <% if @post.remixes.count >= 3 %>
           <div class="image-button" style="pointer-events: none;">
             <i class="fas fa-plus avatar"></i> <!-- Font Awesome 'add' icon -->
           </div>
@@ -21,6 +21,8 @@
       </div>
       <div class="d-flex justify-content-center"><p style="font-size: 9px" >Add new</p></div>
     </div>
+
+
 
 
     <!--remixes-->

@@ -19,14 +19,16 @@ class RemixesController < ApplicationController
     authorize @remix
 
     if @remix.save
-      if params[:post_id].blank?
-        render json: { next_url: new_post_path(remix_id: @remix.id) }, status: :ok
+      if @remix.post
+        # If the remix is associated with a post, respond with a JSON containing the URL to that post.
+        render json: { next_url: post_path(@remix.post.token) }, status: :ok
       else
-        render json: { message: 'Audio file saved successfully' }, status: :ok
+        # If the remix is not associated with a post, respond with a JSON containing the URL to new post page.
+        render json: { next_url: new_post_path(remix_id: @remix.id) }, status: :ok
       end
     else
       puts @remix.errors.inspect
-      render json: { errors: @remix.errors.full_messages }, status: :unprocessable_entity
+      flash[:alert] = @remix.errors.full_messages.join(", ")
     end
   end
 
