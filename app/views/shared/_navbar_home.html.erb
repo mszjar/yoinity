@@ -15,7 +15,7 @@
         <% if user_signed_in? %>
           <div class= "menu-container">
             <li class="nav-item active">
-              <%= link_to "Create", "/p/new", class: "navbar-link" %>
+              <%= link_to "Create", "/remixes/new", class: "navbar-link" %>
             </li>
             <% unless current_user.subscription_status == 'active' %>
               <li class="nav-item active">
@@ -25,9 +25,10 @@
             <li class="nav-item dropdown all-text-black">
               <%= image_tag url_for(current_user.photo), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Profile", "/dashboard/show", class: "dropdown-item" %>
+                <%= link_to "Home", "/", class: "dropdown-item" %>
                 <%= link_to "Bookmarks", "/dashboard/saved", class: "dropdown-item" %>
                 <%= link_to "Remixes", "/remixes", class: "dropdown-item" %>
+                <%= link_to "Profile", "/dashboard/show", class: "dropdown-item" %>
                 <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
                 <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
               </div>
@@ -38,9 +39,6 @@
             <li class="nav-item">
               <%= link_to "Login", new_user_session_path, class: "navbar-link" %>
             </li>
-            <!-- <li class="nav-item all-text-black">
-              <%= link_to "Sign up", new_user_registration_path, class: "navbar-link" %>
-            </li> -->
           </div>
         <% end %>
       </ul>
