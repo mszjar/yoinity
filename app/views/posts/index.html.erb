@@ -19,3 +19,39 @@
     </div>
   </div>
 </div>
+
+<!-- Create a New Remix Modal -->
+<div class="modal fade" id="remixModal" tabindex="-1" aria-labelledby="remixModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="remixModalLabel">Create a new remix</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <% if user_signed_in? %>
+          <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
+            <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
+            <%= f.input :audio, as: :file, label: 'Or upload audio:', input_html: { data: { recording_target: "fileUpload" } } %>
+            <%= f.input :post_id, as: :hidden, input_html: { id: 'remix_post_id' } %>
+            <div data-recording-target="messages" style="height: 30px; color: white;"></div>
+            <div data-action="click->recording#startRecording" data-recording-target="start">
+              <%= button_tag "Start recording", type: "button" %>
+            </div>
+            <div data-action="click->recording#stopRecording" data-recording-target="stop">
+              <%= button_tag "Stop recording", type: "button" %>
+            </div>
+            <div data-action= "click->recording#submitForm">
+              <%= f.submit "Submit Remix" %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>You must be signed in to create a remix.</p>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

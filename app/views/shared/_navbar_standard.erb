@@ -21,7 +21,7 @@
           <% end %>
           <div class= "menu-container">
             <li class="nav-item active">
-              <%= link_to "Create", "/p/new", class: "navbar-link" %>
+              <%= link_to "Create", "#remixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#remixModal", class: "navbar-link" %>
             </li>
             <% unless current_user.subscription_status == 'active' %>
               <li class="nav-item active">

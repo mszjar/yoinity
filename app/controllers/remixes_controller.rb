@@ -4,6 +4,11 @@ class RemixesController < ApplicationController
     @remixes = policy_scope(Remix).order('created_at DESC')
   end
 
+  def new
+    @remix = Remix.new
+    authorize @remix
+  end
+
   def create
     @remix = Remix.new(remix_params)
     @remix.user = current_user
@@ -14,7 +19,12 @@ class RemixesController < ApplicationController
     authorize @remix
 
     if @remix.save
-      render json: { message: 'Audio file saved successfully' }, status: :ok
+      # If remix is created independently, redirect to the new post path, otherwise, return the success message.
+      if params[:post_id].blank?
+        redirect_to new_post_path(remix_id: @remix.id)
+      else
+        render json: { message: 'Audio file saved successfully' }, status: :ok
+      end
     else
       render json: { errors: @remix.errors.full_messages }, status: :unprocessable_entity
     end

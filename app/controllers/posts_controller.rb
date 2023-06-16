@@ -10,6 +10,8 @@ class PostsController < ApplicationController
       @posts = policy_scope(Post).order('created_at DESC').paginate(page: params[:page], per_page: 4)
     end
 
+    @remix = Remix.new if user_signed_in?
+    
     respond_to do |format|
       format.html
       format.js
@@ -17,7 +19,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if params[:remix_id]
+      @remix = Remix.find(params[:remix_id])
+      @post = Post.new(remix: @remix)
+    else
+      @post = Post.new
+    end
     authorize @post
   end
 
@@ -81,7 +88,7 @@ class PostsController < ApplicationController
   end
 
   def params_post
-    params.require(:post).permit(:title, :content, :url, :language, :photo)
+    params.require(:post).permit(:title, :content, :url, :language, :photo, :remix_id)
   end
 
   def check_view_limit
