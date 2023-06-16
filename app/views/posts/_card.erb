@@ -6,7 +6,7 @@
         <%= image_tag url_for(post.user.photo), class: "avatar-small" %>
         <h3 class="nickname">@<%=post.user.nickname%></h3>
       </div>
-      <div>
+      <div style="width:100%">
         <h5 class="card-title title"><%=post.title%></h5>
         <p class="content"><%= post.content %></p>
       </div>
