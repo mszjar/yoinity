@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_064122) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_090826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -167,7 +167,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_064122) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_remixes_on_post_id"
-    t.index ["user_id", "post_id"], name: "index_remixes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_remixes_on_user_id"
   end
 

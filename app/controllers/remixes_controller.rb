@@ -26,6 +26,7 @@ class RemixesController < ApplicationController
         render json: { message: 'Audio file saved successfully' }, status: :ok
       end
     else
+      puts @remix.errors.inspect
       render json: { errors: @remix.errors.full_messages }, status: :unprocessable_entity
     end
   end
