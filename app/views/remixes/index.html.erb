@@ -36,6 +36,7 @@
       <% end %>
     </div>
     <h4 style="color: white; margin-top: 30px; margin-bottom:30px;">My Ephemeral Remixes</h4>
+    <p style="color: white; margin-top: 30px; margin-bottom:30px;">Only you can see them once they expire.</p>
     <!--ephemeral remixes-->
     <div class="remixes" style="gap: 8px;">
       <% current_user.ephemeral_remixes.reverse.each do |remix| %>
@@ -68,6 +69,7 @@
               <div class="dropdown d-flex justify-content-center">
                 <i class="fas fa-ellipsis-h" style="float: right; color: white;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><%= link_to 'Delete', ephemeral_remix_path(remix), data: { turbo_method: :delete, turbo_confirm: 'Delete this ephemeral remix?' }, class: 'dropdown-item' %></li>
                 </ul>
               </div>
               <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">

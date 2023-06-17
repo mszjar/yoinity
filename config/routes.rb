@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   resources :post_qualities, only: [:create, :destroy]
   resources :saved_for_laters, only: [:index, :create, :destroy]
   resources :potential_users, only: [:create]
-  resources :ephemeral_remixes, only: [:index, :new, :create]
+  resources :ephemeral_remixes, only: [:index, :new, :create, :destroy]
 
 
   resources :remixes, only: [:new, :create, :index, :show, :destroy] do
