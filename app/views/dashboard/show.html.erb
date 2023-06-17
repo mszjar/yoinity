@@ -49,11 +49,11 @@
           <% end %>
           <div style= "color:white" ><%= follower.nickname %></div>
             <% if user_signed_in? %>
-              <% user_follow = current_user.following?(follower.user_id) %>
+              <% user_follow = current_user.following?(follower) %>
               <% if user_follow %>
-                <p><%= button_to "Following ✔", unfollow_follower_path(follower.user_id), class: "btn btn-mini-following", method: :post %></p>
+                <p><%= button_to "Following ✔", unfollow_follower_path(follower), class: "btn btn-mini-following", method: :post %></p>
               <% else %>
-                <p><%= button_to "Follow", follow_follower_path(follower.user_id), class: "btn btn-mini-follow", method: :post %></p>
+                <p><%= button_to "Follow", follow_follower_path(follower), class: "btn btn-mini-follow", method: :post %></p>
               <% end %>
             <% end %>
           </div>
