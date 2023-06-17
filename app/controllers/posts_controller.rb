@@ -12,6 +12,8 @@ class PostsController < ApplicationController
 
     @remix = Remix.new if user_signed_in?
 
+    @ephemeral_remixes = EphemeralRemix.available
+
     respond_to do |format|
       format.html
       format.js

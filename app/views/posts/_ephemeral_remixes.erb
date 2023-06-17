@@ -1,0 +1,86 @@
+<!--remixes bar-->
+<div class="remixes-bar" >
+
+  <!--remixes-->
+  <div class="remixes">
+
+
+
+    <!-- Ephemeral_Remix button -->
+    <div class="audio-player">
+      <div class="avatar-container show-avatar-item">
+        <%= link_to "#ephemeralRemixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#ephemeralRemixModal", class: "" do %>
+          <i class="fas fa-plus avatar"></i> <!-- Font Awesome 'add' icon -->
+        <% end %>
+      </div>
+      <div class="d-flex justify-content-center"><p style="font-size: 9px" >Add new</p></div>
+    </div>
+
+
+
+
+    <!--remixes-->
+    <div class="remixes">
+      <% @ephemeral_remixes.reverse.each do |remix| %>
+        <div class="audio-player" data-controller="audio">
+          <% if remix.present? && remix.audio.attached? && remix.available? %>
+            <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
+              <%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %>
+              <div class="avatar-overlay">
+                <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
+                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
+                <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
+            <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
+            </audio>
+          <% end %>
+        </div>
+      <% end %>
+
+  </div>
+
+  <!-- Remix form (Modal) -->
+  <div class="modal fade" id="ephemeralRemixModal" tabindex="-1" aria-labelledby="ephemeralRemixModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ephemeralRemixModalLabel">Ephemeral Remix</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <% if user_signed_in?%>
+            <%= simple_form_for EphemeralRemix.new, url: ephemeral_remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
+            <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
+            <%= f.input :audio, as: :file, label: 'Or upload audio:', input_html: { data: { recording_target: "fileUpload" } } %>
+            <%= f.input :post_id, as: :hidden, input_html: { id: 'remix_post_id' } %>
+            <div data-recording-target="messages" style="height: 30px; color: white;"></div>
+
+            <!-- Add the audio player -->
+            <audio controls data-recording-target="audioPlayer"></audio>
+
+            <div data-action="click->recording#startRecording" data-recording-target="start">
+              <%= button_tag "Start recording", type: "button" %>
+            </div>
+            <div data-action="click->recording#stopRecording" data-recording-target="stop">
+              <%= button_tag "Stop recording", type: "button" %>
+            </div>
+            <div data-action= "click->recording#submitForm">
+              <%= button_tag "Submit", type: "button" %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>You must be signed in to create a remix.</p>
+        <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
