@@ -2,7 +2,7 @@ si jamais, pour changer la maniere d'appeler un audio. <!-- <source src="<%= rem
 
 chatgpt start prompt:
 
-in my rails 7 app, i have posts, with remixes, like this:
+in my rails 7 app, using stimulus, i have posts, with remixes, like this:
 require 'securerandom'
 
 class Post < ApplicationRecord
@@ -40,4 +40,23 @@ class Post < ApplicationRecord
     self.token = SecureRandom.urlsafe_base64(15) # secured roots for posts
   end
 
+end
+
+and i have the remix model, like this:
+class Remix < ApplicationRecord
+  belongs_to :user
+  belongs_to :post, optional: true
+  has_one :origin_post, class_name: "Post", foreign_key: "remix_id", dependent: :nullify
+
+  has_one_attached :audio
+
+  validate :remixes_limit, on: :create
+
+  private
+
+  def remixes_limit
+    if self.post && self.post.remixes.count >= 3
+      errors.add(:base, 'A post can have 3 remixes maximum')
+    end
+  end
 end
