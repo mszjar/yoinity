@@ -14,6 +14,6 @@ class EphemeralRemix < ApplicationRecord
   private
 
   def set_expiration
-    self.expires_at = 24.hours.from_now
+    self.expires_at = 1.minute.from_now
   end
 end
