@@ -38,8 +38,7 @@
     <h4 style="color: white; margin-top: 30px; margin-bottom:30px;">My Ephemeral Remixes</h4>
     <!--ephemeral remixes-->
     <div class="remixes" style="gap: 8px;">
-      <% current_user.ephemeral_remixes.each do |remix| %>
-        <% if remix.available? %> <!-- make sure this remix is available -->
+      <% current_user.ephemeral_remixes.reverse.each do |remix| %>
           <div class="audio-player" data-controller="audio">
             <% if remix.audio.attached? %>
               <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
@@ -55,6 +54,16 @@
               <div class="d-flex justify-content-center" style="font-size:12px;">
                 <small style="color: white;"><%= remix.created_at.strftime('%b %d, %Y') %></small>
               </div>
+              <!--available?-->
+              <% if remix.available? %>
+                <div class="d-flex justify-content-center" style="font-size:12px;">
+                  <small style="color: white;">Available</small>
+                </div>
+              <% else %>
+                <div class="d-flex justify-content-center" style="font-size:12px;">
+                  <small style="color: white;">Expired</small>
+                </div>
+              <% end %>
               <!--three dots button-->
               <div class="dropdown d-flex justify-content-center">
                 <i class="fas fa-ellipsis-h" style="float: right; color: white;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
@@ -65,7 +74,6 @@
               </audio>
             <% end %>
           </div>
-        <% end %>
       <% end %>
     </div>
   </div>

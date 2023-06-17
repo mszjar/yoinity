@@ -21,9 +21,9 @@
 
     <!--remixes-->
     <div class="remixes">
-      <% @ephemeral_remixes.each do |remix| %>
+      <% @ephemeral_remixes.reverse.each do |remix| %>
         <div class="audio-player" data-controller="audio">
-          <% if remix.present? && remix.audio.attached? %>
+          <% if remix.present? && remix.audio.attached? && remix.available? %>
             <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
               <%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %>
               <div class="avatar-overlay">
