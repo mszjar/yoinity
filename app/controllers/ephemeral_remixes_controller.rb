@@ -21,12 +21,12 @@ class EphemeralRemixesController < ApplicationController
     authorize @ephemeral_remix
 
     if @ephemeral_remix.save
-      redirect_to '/', notice: 'Ephemeral Remix was successfully added.'
+      render json: { next_url: '/' }, status: :created
     else
-      puts @ephemeral_remix.errors.inspect
-      flash[:alert] = @ephemeral_remix.errors.full_messages.join(", ")
+      render json: { error: "Failed to create ephemeral remix." }, status: :unprocessable_entity
     end
   end
+
 
   def destroy
     @ephemeral_remix = EphemeralRemix.find(params[:id])
@@ -43,7 +43,7 @@ class EphemeralRemixesController < ApplicationController
   end
 
   def ephemeral_remix_params
-    params.require(:ephemeral_remix).permit(:audio)
+    params.require(:ephemeral_remix).permit(:audio, :language, :post_id)
   end
 
   private

@@ -1,5 +1,7 @@
 class EphemeralRemix < ApplicationRecord
   belongs_to :user
+  belongs_to :post, optional: true
+
   has_one_attached :audio
 
   before_create :set_expiration
@@ -14,6 +16,6 @@ class EphemeralRemix < ApplicationRecord
   private
 
   def set_expiration
-    self.expires_at = 3.minute.from_now
+    self.expires_at = 24.hours.from_now
   end
 end
