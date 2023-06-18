@@ -85,8 +85,6 @@
               <% user_follow = current_user.following?(followed_user) %>
               <% if user_follow %>
                 <p><%= button_to "Remove", unfollow_follower_path(followed_user), class: "btn btn-mini-following", method: :post %></p>
-              <% else %>
-                <p><%= button_to "Follow", follow_follower_path(followed_user), class: "btn btn-mini-follow", method: :post %></p>
               <% end %>
             <% end %>
           </div>
