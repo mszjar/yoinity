@@ -208,39 +208,6 @@ body {
   top: 16px;
 }
 
-.post-card .england-flag {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/320px-Flag_of_the_United_Kingdom_%283-5%29.svg.png");
-  width: 50px;
-  height: 30px;
-  background-size: cover;
-  position: absolute;
-  text-decoration: none;
-  left: 190px;
-  top: 16px;
-}
-
-.post-card .france-flag {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/320px-Flag_of_France.svg.png");
-  width: 50px;
-  height: 30px;
-  background-size: cover;
-  position: absolute;
-  text-decoration: none;
-  left: 190px;
-  top: 16px;
-}
-
-.post-card .spain-flag {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png");
-  width: 50px;
-  height: 30px;
-  background-size: contain;
-  position: absolute;
-  text-decoration: none;
-  left: 190px;
-  top: 16px;
-}
-
 .post-card .content {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -297,17 +264,6 @@ body {
 
 .post-card:hover {
   transform: scale(1.03);
-}
-
-.avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  margin-right: 10px;
-  margin-left: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .comment {
