@@ -23,7 +23,7 @@ class EphemeralRemixesController < ApplicationController
     if @ephemeral_remix.save
       render json: { next_url: '/' }, status: :created
     else
-      render json: { error: "Failed to create ephemeral remix." }, status: :unprocessable_entity
+      render json: { error: "Failed to create ephemeral remix.", errors: @ephemeral_remix.errors.to_hash(true) }, status: :unprocessable_entity
     end
   end
 

@@ -7,11 +7,11 @@
         <div class="audio-player" data-controller="audio">
           <% if remix.present? && remix.audio.attached? %>
             <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
-              <%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %>
+              <%= image_tag url_for(remix.user.photo), class: "avatar-medium", loading: "lazy" %>
               <div class="avatar-overlay">
                 <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
                 <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
-                <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
+                <div class="green-overlay-medium" data-audio-target="greenOverlay" style="display: none;"></div>
               </div>
             </div>
             <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
@@ -43,11 +43,11 @@
           <div class="audio-player" data-controller="audio">
             <% if remix.audio.attached? %>
               <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
-                <%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %>
+                <%= image_tag url_for(remix.user.photo), class: "avatar-medium", loading: "lazy" %>
                 <div class="avatar-overlay">
                   <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
                   <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
-                  <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
+                  <div class="green-overlay-medium" data-audio-target="greenOverlay" style="display: none;"></div>
                 </div>
               </div>
               <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
@@ -58,11 +58,11 @@
               <!--available?-->
               <% if remix.available? %>
                 <div class="d-flex justify-content-center" style="font-size:12px;">
-                  <small style="color: white;">Available</small>
+                  <small style="color: #1FDF64;">Available</small>
                 </div>
               <% else %>
                 <div class="d-flex justify-content-center" style="font-size:12px;">
-                  <small style="color: white;">Expired</small>
+                  <small style="color: #AEAEB3;">Expired</small>
                 </div>
               <% end %>
               <!--three dots button-->

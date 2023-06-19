@@ -90,11 +90,19 @@ export default class extends Controller {
               }
             });
         } else {
-            console.log('Error uploading audio');
-            this.messages.innerHTML = 'Error uploading audio.';
+            // handle error response
+            response.json().then(data => {
+                console.log('Error uploading audio: ', data);
+                if (data.errors && data.errors.audio) {
+                    this.messages.innerHTML = 'Error uploading audio: ' + data.errors.audio;
+                } else {
+                    this.messages.innerHTML = 'Error uploading audio.';
+                }
+            });
         }
     });
 
     event.preventDefault();
   }
+
 }
