@@ -14,18 +14,19 @@
       <ul class="navbar-nav" style="width: 100%">
         <% if user_signed_in? %>
           <div class= "menu-container">
-            <li class="nav-item active">
+          	<li class="btn btn-clone">
               <%= link_to "Create", "/remixes/new", class: "navbar-link" %>
             </li>
-            <% unless current_user.subscription_status == 'active' %>
-              <li class="nav-item active">
-                <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link" %>
-              </li>
-            <% end %>
+            <li class="nav-item active">
+              <%= link_to "Clone your voice", "/remixes" %>
+            </li>
             <li class="nav-item dropdown all-text-black">
               <%= image_tag url_for(current_user.photo), class: "avatar-navbar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Home", "/", class: "dropdown-item" %>
+                <% unless current_user.subscription_status == 'active' %>
+                <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "dropdown-item" %>
+                <% end %>
                 <%= link_to "Bookmarks", "/dashboard/saved", class: "dropdown-item" %>
                 <%= link_to "Remixes", "/remixes", class: "dropdown-item" %>
                 <%= link_to "Profile", "/dashboard/show", class: "dropdown-item" %>
