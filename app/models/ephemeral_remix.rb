@@ -5,6 +5,7 @@ class EphemeralRemix < ApplicationRecord
   has_one_attached :audio
 
   before_create :set_expiration
+  validate :audio_size_under_limit, on: :create
 
   # Check if the ephemeral remix is still available
   def available?
@@ -17,5 +18,12 @@ class EphemeralRemix < ApplicationRecord
 
   def set_expiration
     self.expires_at = 24.hours.from_now
+  end
+
+  def audio_size_under_limit
+    if audio.attached? && audio.blob.byte_size > 5.gigabytes
+      audio.purge
+      errors.add(:audio, 'Size should be less than 5GB')
+    end
   end
 end
