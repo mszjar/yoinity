@@ -88,20 +88,19 @@
       </audio>
     </div>
       <!--icon like-->
-    <div class="show-icons-item">
-      <% if user_signed_in? %>
-        <% post_like = current_user.post_likes.find_by(post: @post) %>
-        <% if post_like.nil? %>
-          <%= button_to post_likes_path, class: "icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
-            <i class="far fa-heart" style="font-size: 24px"></i>
-          <% end %>
-        <% else %>
-          <%= button_to post_like_path(post_like), class: "icon-button", method: :delete do %>
-            <i class="fas fa-heart" style="color: #FF3040; font-size: 24px"></i>
-          <% end %>
+    <turbo-frame id="like_button_<%= @post.id %>">
+      <% post_like = current_user.post_likes.find_by(post: @post) %>
+      <% if post_like.nil? %>
+        <%= button_to post_likes_path, class: "icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
+          <i class="far fa-heart" style="font-size: 24px"></i>
+        <% end %>
+      <% else %>
+        <%= button_to post_like_path(post_like), class: "icon-button", method: :delete do %>
+          <i class="fas fa-heart" style="color: #FF3040; font-size: 24px"></i>
         <% end %>
       <% end %>
-    </div>
+    </turbo-frame>
+
     <!--date-->
     <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
     <!--duration-->
