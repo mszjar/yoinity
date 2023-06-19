@@ -27,8 +27,7 @@ class RemixesController < ApplicationController
         render json: { next_url: new_post_path(remix_id: @remix.id) }, status: :ok
       end
     else
-      puts @remix.errors.inspect
-      flash[:alert] = @remix.errors.full_messages.join(", ")
+      render json: { error: "Failed to create remix.", errors: @remix.errors.to_hash(true) }, status: :unprocessable_entity
     end
   end
 

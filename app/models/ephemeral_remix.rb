@@ -21,9 +21,9 @@ class EphemeralRemix < ApplicationRecord
   end
 
   def audio_size_under_limit
-    if audio.attached? && audio.blob.byte_size > 5.gigabytes
+    if audio.attached? && audio.blob.byte_size > 5.megabytes
       audio.purge
-      errors.add(:audio, 'Size should be less than 5GB')
+      errors.add(:audio, 'Size should be less than 5mb')
     end
   end
 end
