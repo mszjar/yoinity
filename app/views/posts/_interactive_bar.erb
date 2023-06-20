@@ -38,19 +38,22 @@
     <!--icon save for later-->
     <div class="show-icons-item">
       <% if user_signed_in? %>
-        <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
-        <% if saved_for_later.nil? %>
-          <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
-            <i class="far fa-bookmark"></i>
+        <turbo-frame id="save_button_<%= @post.id %>">
+          <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
+          <% if saved_for_later.nil? %>
+            <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
+              <i class="far fa-bookmark"></i>
+            <% end %>
+          <% else %>
+            <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
+              <i class="fas fa-bookmark"></i>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
-            <i class="fas fa-bookmark"></i>
-          <% end %>
-        <% end %>
+        </turbo-frame>
       <% end %>
       <p><%= @post.saved_for_laters.count %></p>
     </div>
+
     <!--icon quality-->
     <div class="show-icons-item">
       <% if user_signed_in? %>
