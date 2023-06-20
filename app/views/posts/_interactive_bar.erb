@@ -11,12 +11,14 @@
       <p class="d-flex align-items-center"><%= @post.user.nickname %></p>
       <div class="d-flex align-items-center" >
         <% if user_signed_in? && current_user.id != @post.user_id %>
-          <% user_follow = current_user.following?(User.find(@post.user_id)) %>
-          <% if user_follow %>
-            <p><%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-following", method: :post %></p>
-          <% else %>
-            <p><%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-follow", method: :post %></p>
-          <% end %>
+          <turbo-frame id="follow_button_<%= @post.user_id %>">
+            <% user_follow = current_user.following?(User.find(@post.user_id)) %>
+            <% if user_follow %>
+              <%= button_to "Following ✔", unfollow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-following", method: :post, remote: true %>
+            <% else %>
+              <%= button_to "Follow", follow_follower_path(User.find(@post.user_id)), class: "btn btn-mini-follow", method: :post, remote: true %>
+            <% end %>
+          </turbo-frame>
         <% end %>
       </div>
     </div>
