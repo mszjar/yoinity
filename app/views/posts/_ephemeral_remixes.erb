@@ -52,7 +52,7 @@
         <div class="modal-body">
           <% if user_signed_in?%>
             <%= simple_form_for EphemeralRemix.new, url: ephemeral_remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
-            <%= f.input :language, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
+            <%= f.input :language, as: :hidden, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
             <%= f.input :audio, as: :file, label: 'Or upload audio:', input_html: { data: { recording_target: "fileUpload" } } %>
             <%= f.input :post_id, as: :hidden, input_html: { id: 'remix_post_id' } %>
             <div data-recording-target="messages" style="height: 30px; color: white;"></div>
