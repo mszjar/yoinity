@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_09_115645) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_103651) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,6 +105,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_115645) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "ephemeral_remixes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "expires_at"
+    t.string "language"
+    t.integer "post_id"
+    t.index ["user_id"], name: "index_ephemeral_remixes_on_user_id"
+  end
+
   create_table "follows", force: :cascade do |t|
     t.string "followable_type", null: false
     t.bigint "followable_id", null: false
@@ -148,6 +158,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_115645) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "remix_id"
+    t.index ["remix_id"], name: "index_posts_on_remix_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -165,7 +177,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_115645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_remixes_on_post_id"
-    t.index ["user_id", "post_id"], name: "index_remixes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_remixes_on_user_id"
   end
 
@@ -200,6 +211,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_115645) do
     t.string "stripe_subscription_id"
     t.string "subscription_status"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["nickname"], name: "index_users_on_nickname", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -215,10 +227,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_115645) do
   add_foreign_key "comment_reply_likes", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "ephemeral_remixes", "users"
   add_foreign_key "post_likes", "posts"
   add_foreign_key "post_likes", "users"
   add_foreign_key "post_qualities", "posts"
   add_foreign_key "post_qualities", "users"
+  add_foreign_key "posts", "remixes"
   add_foreign_key "posts", "users"
   add_foreign_key "remixes", "posts"
   add_foreign_key "remixes", "users"

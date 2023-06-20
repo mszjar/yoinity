@@ -1,0 +1,8 @@
+<% user_follow = current_user.following?(User.find(params[:id])) %>
+<%= turbo_stream.replace "follow_button_#{params[:id]}" do %>
+  <% if user_follow %>
+    <div class = "d-flex align-items-center"><%= button_to "Following ✔", unfollow_follower_path(User.find(params[:id])), class: "btn btn-mini-following", method: :post, remote: true, data: { turbo_action: 'replace' } %></div>
+  <% else %>
+    <div class = "d-flex align-items-center"><%= button_to "Follow", follow_follower_path(User.find(params[:id])), class: "btn btn-mini-follow", method: :post, remote: true, data: { turbo_action: 'replace' } %></div>
+  <% end %>
+<% end %>

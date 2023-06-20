@@ -13,6 +13,9 @@ application.register("audio", AudioController)
 import CheckoutController from "./checkout_controller"
 application.register("checkout", CheckoutController)
 
+import LoadMoreController from "./load_more_controller"
+application.register("load-more", LoadMoreController)
+
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 

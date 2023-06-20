@@ -1,0 +1,51 @@
+<div class="post-container">
+  <div class="post" >
+      <div class="col-md-6 offset-md-3">
+        <h4 class="d-flex justify-content-center" style="color: white; margin-top: 30px;">Create a new remix</h4>
+        <% if user_signed_in? %>
+          <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
+            <%= f.input :language, as: :hidden, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
+            <%= f.input :post_id, as: :hidden, input_html: { id: 'remix_post_id' } %>
+
+            <div class="create-form" data-controller="toggle">
+              <!--messages-->
+              <div data-recording-target="messages" style="height: 30px; color: white; font-size:14px"></div>
+
+              <!--start button-->
+              <div class="mt-3 mb-5" data-action="click->toggle#toggle" data-toggle-target="display">
+                  <div data-action="click->recording#startRecording" data-recording-target="start">
+                    <%= button_tag "Start recording", type: "button", class: "btn btn-create" %>
+                  </div>
+              </div>
+
+               <!-- Timer -->
+              <div data-recording-target="timer" style="height: 30px; color: white; font-size:14px"></div>
+
+              <!--stop button-->
+              <div class="d-none mt-3 mb-3" data-toggle-target="display">
+                <div data-action="click->recording#stopRecording" data-recording-target="stop">
+                  <%= button_tag "Stop recording", type: "button", class: "btn btn-create" %>
+                </div>
+              </div>
+              <!-- Add the audio player -->
+              <div class="d-none mb-3" data-toggle-target="display">
+                <audio controls data-recording-target="audioPlayer"></audio>
+              </div>
+
+              <!--upload file-->
+              <p class="d-flex mt-5" style="color:white">or upload an audio file:</p>
+              <%= f.input :audio, as: :file, label: false, input_html: { data: { recording_target: "fileUpload" }, style:"font-size:10px;" } %>
+            </div>
+
+            <!--Next button-->
+            <div class="mt-5 d-flex justify-content-center" data-action= "click->recording#submitForm">
+              <%= button_tag "Next", type: "button", class: "btn btn-classic" %>
+            </div>
+
+          <% end %>
+        <% else %>
+          <p>You must be signed in to create a remix.</p>
+        <% end %>
+      </div>
+  </div>
+</div>

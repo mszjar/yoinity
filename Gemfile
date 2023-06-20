@@ -88,3 +88,4 @@ gem 'htmlbeautifier'
 gem 'aws-sdk-polly'
 gem 'stripe'
 gem 'aws-sdk-s3', require: false
+gem 'will_paginate', '~> 4.0'

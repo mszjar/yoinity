@@ -4,17 +4,29 @@ class PostsController < ApplicationController
   before_action :check_view_limit, only: [:show]
 
   def index
-    @post = policy_scope(Post)
-
     if params[:query].present?
-      @posts = Post.search(params[:query])
+      @posts = policy_scope(Post).search(params[:query]).paginate(page: params[:page], per_page: 9)
     else
-      @posts = Post.all
+      @posts = policy_scope(Post).order('created_at DESC').paginate(page: params[:page], per_page: 9)
+    end
+
+    @remix = Remix.new if user_signed_in?
+
+    @ephemeral_remixes = EphemeralRemix.available
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
   def new
-    @post = Post.new
+    if params[:remix_id]
+      @remix = Remix.find(params[:remix_id])
+      @post = Post.new(remix: @remix)
+    else
+      @post = Post.new
+    end
     authorize @post
   end
 
@@ -23,11 +35,15 @@ class PostsController < ApplicationController
     @post.user = current_user
     authorize @post
     if @post.save
+      if @post.remix.present?
+        @post.remix.update!(post_id: @post.id)
+      end
       redirect_to post_path(@post.token)
     else
       render :new, status: :unprocessable_entity
     end
   end
+
 
   def show
     authorize @post
@@ -45,9 +61,16 @@ class PostsController < ApplicationController
 
   def update
     @post.user = current_user
-    @post.update(params_post)
-    redirect_to post_path(@post)
+    if @post.update(params_post)
+      if @post.remix.present?
+        @post.remix.update!(post_id: @post.id)
+      end
+      redirect_to post_path(@post.token)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
+
 
   def edit
   end
@@ -61,11 +84,15 @@ class PostsController < ApplicationController
   end
 
   def following
+    following_ids = current_user.following_by_type('User').map(&:id)
+    @following_posts = Post.where(user_id: following_ids).order('created_at DESC').paginate(page: params[:page], per_page: 4)
     authorize @following_posts, policy_class: FollowingPolicy
-    @following_posts = current_user.following_by_type('User').map(&:posts).flatten
-    render partial: 'posts', locals: { posts: @following_posts }
-  end
 
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   private
 
@@ -74,7 +101,7 @@ class PostsController < ApplicationController
   end
 
   def params_post
-    params.require(:post).permit(:title, :content, :url, :language, :photo)
+    params.require(:post).permit(:title, :content, :url, :language, :photo, :remix_id)
   end
 
   def check_view_limit

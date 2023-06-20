@@ -15,12 +15,13 @@ class User < ApplicationRecord
   has_many :comment_dislikes, dependent: :destroy
   has_many :comment_reply_likes, dependent: :destroy
   has_many :remixes, dependent: :destroy
+  has_many :ephemeral_remixes, dependent: :destroy
 
 
   has_many :saved_for_laters, dependent: :destroy
   has_many :saved_posts, through: :saved_for_laters, source: :post
 
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: { case_sensitive: false }
   validates :nickname, length: { maximum: 25 }
   validates :stripe_subscription_id, presence: true, if: -> { subscription_status == 'active' }
 

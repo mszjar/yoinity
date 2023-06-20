@@ -1,2 +1,6 @@
-<h1>PostLikes#destroy</h1>
-<p>Find me in app/views/post_likes/destroy.html.erb</p>
+<!-- app/views/post_likes/destroy.html.erb -->
+<turbo-frame id="like_button_<%= @post.id %>">
+  <%= button_to post_likes_path, class: "icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
+    <i class="far fa-heart" style="font-size: 24px"></i>
+  <% end %>
+</turbo-frame>
