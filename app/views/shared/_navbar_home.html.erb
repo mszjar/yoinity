@@ -14,8 +14,8 @@
       <ul class="navbar-nav" style="width: 100%">
         <% if user_signed_in? %>
           <div class= "menu-container">
-          	<li class="btn btn-clone">
-              <%= link_to "Create", "/remixes/new", class: "navbar-link" %>
+          	<li>
+              <%= link_to "Create", "/remixes/new", class: "btn btn-create" %>
             </li>
             <li class="nav-item active">
               <%= link_to "Voice design", "/remixes" %>

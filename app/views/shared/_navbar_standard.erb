@@ -20,10 +20,10 @@
           </li>
           <% end %>
           <div class= "menu-container">
-          	<li class="btn btn-clone">
-              <%= link_to "Create", "#remixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#remixModal" %>
+          	<li>
+              <%= link_to "Create", "#remixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#remixModal", class: "btn btn-create" %>
             </li>
-            <li class="nav-item active">
+            <li>
               <%= link_to "Voice design", "/remixes", class: "navbar-link dropdown-item" %>
             </li>
             <li class="nav-item dropdown all-text-black">

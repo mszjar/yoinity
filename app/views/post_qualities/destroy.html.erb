@@ -1,0 +1,5 @@
+<turbo-frame id="quality_button_<%= @post.id %>">
+  <%= button_to post_qualities_path, class: "icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
+    <i class="far fa-star"></i>
+  <% end %>
+</turbo-frame>

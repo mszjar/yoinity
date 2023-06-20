@@ -1,2 +1,5 @@
-<h1>SavedForLaters#destroy</h1>
-<p>Find me in app/views/saved_for_laters/destroy.html.erb</p>
+<turbo-frame id="save_button_<%= @post.id %>">
+  <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
+    <i class="far fa-bookmark"></i>
+  <% end %>
+</turbo-frame>

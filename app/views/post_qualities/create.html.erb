@@ -1,0 +1,6 @@
+<!-- app/views/post_qualities/create.html.erb -->
+<turbo-frame id="quality_button_<%= @post.id %>">
+  <%= button_to post_quality_path(@post_quality), class: "icon-button", method: :delete do %>
+    <i class="fas fa-star" style="color: #FFD43B"></i>
+  <% end %>
+</turbo-frame>
