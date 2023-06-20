@@ -18,7 +18,7 @@
               <%= link_to "Create", "/remixes/new", class: "btn btn-create" %>
             </li>
             <li class="nav-item active">
-              <%= link_to "Voice design", "/remixes" %>
+              <%= link_to "Voice design", "/remixes", class: "navbar-link dropdown-item" %>
             </li>
             <li class="nav-item dropdown all-text-black">
               <%= image_tag url_for(current_user.photo), class: "avatar-navbar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
