@@ -52,30 +52,48 @@
         <div class="modal-body">
           <% if user_signed_in?%>
             <%= simple_form_for EphemeralRemix.new, url: ephemeral_remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
+            <!--publish button-->
+            <div class="d-flex justify-content-end" data-action= "click->recording#submitForm">
+              <%= button_tag "Publish", type: "button", class: "btn btn-create", style:"font-size:12px" %>
+            </div>
             <%= f.input :language, as: :hidden, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
-            <%= f.input :audio, as: :file, label: 'Or upload audio:', input_html: { data: { recording_target: "fileUpload" } } %>
             <%= f.input :post_id, as: :hidden, input_html: { id: 'remix_post_id' } %>
-            <div data-recording-target="messages" style="height: 30px; color: white;"></div>
 
-            <!-- Add the audio player -->
-            <audio controls data-recording-target="audioPlayer"></audio>
+            <div class="create-form" data-controller="toggle">
+              <!--messages-->
+              <div data-recording-target="messages" style="height: 30px; color: white;"></div>
 
-            <div data-action="click->recording#startRecording" data-recording-target="start">
-              <%= button_tag "Start recording", type: "button" %>
+              <!--start button-->
+              <div class="mt-3 mb-5" data-action="click->toggle#toggle" data-toggle-target="display">
+                  <div data-action="click->recording#startRecording" data-recording-target="start">
+                    <%= button_tag "Start recording", type: "button", class: "btn btn-create" %>
+                  </div>
+              </div>
+              <!--stop button-->
+              <div class="d-none mt-3 mb-3" data-toggle-target="display">
+                <div data-action="click->recording#stopRecording" data-recording-target="stop">
+                  <%= button_tag "Stop recording", type: "button", class: "btn btn-create" %>
+                </div>
+              </div>
+              <!-- Add the audio player -->
+              <div class="d-none mb-3" data-toggle-target="display">
+                <audio controls data-recording-target="audioPlayer"></audio>
+              </div>
+
+              <!--upload file-->
+              <p class="d-flex mt-5" style="color:white">or upload an audio file:</p>
+              <%= f.input :audio, as: :file, label: false, input_html: { data: { recording_target: "fileUpload" }, style:"font-size:10px;" } %>
             </div>
-            <div data-action="click->recording#stopRecording" data-recording-target="stop">
-              <%= button_tag "Stop recording", type: "button" %>
-            </div>
-            <div data-action= "click->recording#submitForm">
-              <%= button_tag "Submit", type: "button" %>
-            </div>
+
+
+
           <% end %>
         <% else %>
           <p>You must be signed in to create a remix.</p>
         <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>

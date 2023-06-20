@@ -4,7 +4,7 @@
       <%= simple_form_for [@post], data: { controller: "post-form"} do |f| %>
         <div class= "header" style="text-align: right">
           <a href="/" class="exit-button"><i class="fa-sharp fa-regular fa-circle-xmark"></i></a>
-          <%= f.submit "Publish", class: "form-button", input_html: { class: 'form-button' } %>
+          <%= f.submit "Publish", class: "btn btn-create", input_html: { class: 'form-button' } %>
         </div>
         <% if @post.remix %>
           <%= f.hidden_field :remix_id, value: @post.remix.id %>
