@@ -21,7 +21,6 @@
           <h3  class="mb-5", style="margin-left: 30px"><%= @user.follow_count %> Following</h3>
         </div>
       </div>
-      <h4 style="color: white">Stories</h4>
       <div class="cards">
         <% @user.posts.each do |post| %>
           <%= link_to post_path(post.token)  do %>

@@ -12,7 +12,6 @@
           <%= link_to "#{current_user.follow_count} Following", "#followingModal", "data-bs-toggle" => "modal", "data-bs-target" => "#followingModal" %>
         </h3>
       </div>
-      <h4 style="color: white">My stories</h4>
       <div class="cards">
         <% @posts.reverse.each do |post| %>
           <% if current_user == post.user %>
