@@ -10,8 +10,8 @@ class Remix < ApplicationRecord
   private
 
   def remixes_limit
-    if self.post && self.post.remixes.count >= 3
-      errors.add(:base, 'A post can have 3 remixes maximum')
+    if self.post && self.post.remixes.count >= 1
+      errors.add(:base, 'A post can have 1 remix only')
     end
   end
 
