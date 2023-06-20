@@ -10,7 +10,7 @@
           <%= simple_form_for @remix, url: remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
             <!--Next button-->
             <div class="d-flex justify-content-end" data-action= "click->recording#submitForm">
-              <%= button_tag "Next", type: "button", class: "btn btn-create", style:"font-size:12px" %>
+              <%= button_tag "Next", type: "button", class: "btn btn-classic", style:"font-size:12px" %>
             </div>
             <%= f.input :language, as: :hidden, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
             <%= f.input :post_id, as: :hidden, input_html: { id: 'remix_post_id' } %>
@@ -28,7 +28,7 @@
 
                <!-- Timer -->
               <div data-recording-target="timer" style="height: 30px; color: white; font-size:14px"></div>
-              
+
               <!--stop button-->
               <div class="d-none mt-3 mb-3" data-toggle-target="display">
                 <div data-action="click->recording#stopRecording" data-recording-target="stop">

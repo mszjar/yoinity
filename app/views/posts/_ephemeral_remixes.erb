@@ -54,7 +54,7 @@
             <%= simple_form_for EphemeralRemix.new, url: ephemeral_remixes_path, html: { data: { controller: "recording", recording_target: "form" } } do |f| %>
             <!--publish button-->
             <div class="d-flex justify-content-end" data-action= "click->recording#submitForm">
-              <%= button_tag "Publish", type: "button", class: "btn btn-create", style:"font-size:12px" %>
+              <%= button_tag "Publish", type: "button", class: "btn btn-classic", style:"font-size:12px" %>
             </div>
             <%= f.input :language, as: :hidden, placeholder: "Enter language", label: false, input_html: { data: { recording_target: "language" } } %>
             <%= f.input :post_id, as: :hidden, input_html: { id: 'remix_post_id' } %>
