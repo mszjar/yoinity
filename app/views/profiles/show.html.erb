@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-center" style="gap: 10px; color:white;" >
           <h2  class="mb-5"><%= @user.nickname %></h2>
           <div style="color:white;">
-            <% if user_signed_in? %>
+            <% if user_signed_in? && current_user.id != @user.id %>
               <% user_follow = current_user.following?(@user) %>
               <% if user_follow %>
                 <h2><%= button_to "Following ✔", unfollow_follower_path(@user), class: "btn btn-following", method: :post %></h2>
