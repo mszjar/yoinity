@@ -8,7 +8,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  border: 1px solid white;
+  border: 1px solid grey;
 }
 
 .avatar-navbar {
@@ -21,7 +21,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  border: 1px solid white;
+  border: 1px solid grey;
 }
 
 .avatar-medium {
@@ -34,7 +34,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  border: 1px solid white;
+  border: 1px solid grey;
 }
 
 .avatar-small {
@@ -53,7 +53,7 @@
   height: 24px;
   border-radius: 50%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  border: white 1px solid;
+  border: #2df75c 1px solid;
 }
 
 @media (max-width: 768px) {
@@ -88,14 +88,14 @@
   width: 60px;
   border-radius: 50%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  border: white 1px solid;
+  border: grey 1px solid;
 }
 
 .avatar-square {
   width: 40px;
   border-radius: 0px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  border: white 1px solid;
+  border: grey 1px solid;
 }
 
 .profile {
@@ -126,6 +126,8 @@
   align-items: center;
   justify-content: center;
   font-size: 12px;
+  background: #26CD4D;
+  border: #2df75c 1px solid;
 }
 
 .play-icon,
