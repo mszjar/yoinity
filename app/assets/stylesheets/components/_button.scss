@@ -210,16 +210,19 @@ a {
   }
 }
 
-.btn-clone {
-  color: rgba(0, 0, 0, 0.849) !important;
+.btn-create {
+  color: rgba(0, 0, 0, 0.849);
+  font-weight: bold;
   border-radius: 8px;
-  background: linear-gradient(to right, #1FDF64, #1FDF64); /* Gradient from dark green to specific green */
-  transition: background 0.3s ease;
+  background: #26CD4D;
   text-decoration: none;
-  border: none;
+  border: 1px solid #2df75c;
+
 }
 
-.btn-clone:hover {
-  background: linear-gradient(to right, #029e02, #45f585); /* On hover, start the gradient from a darker green */
-  color: black  !important;
+.btn-create:hover {
+  background: #29e956;
+  color: black;
+  font-weight: bold;
+  border: 1px solid #2df75c;
 }
