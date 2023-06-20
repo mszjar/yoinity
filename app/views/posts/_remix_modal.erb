@@ -25,6 +25,10 @@
                     <%= button_tag "Start recording", type: "button", class: "btn btn-create" %>
                   </div>
               </div>
+
+               <!-- Timer -->
+              <div data-recording-target="timer" style="height: 30px; color: white; font-size:14px"></div>
+              
               <!--stop button-->
               <div class="d-none mt-3 mb-3" data-toggle-target="display">
                 <div data-action="click->recording#stopRecording" data-recording-target="stop">

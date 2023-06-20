@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import RecordRTC from "recordrtc"
 
 export default class extends Controller {
-  static targets = ["start", "stop", "form", "language", "messages", "fileUpload", "audioPlayer"]
+  static targets = ["start", "stop", "form", "language", "messages", "fileUpload", "audioPlayer", "timer"]
 
   connect() {
     this.startButton = this.startTarget
@@ -15,6 +15,8 @@ export default class extends Controller {
     this.recorder = null
     this.stopButton.disabled = true
     this.audioBlob = null
+    this.timer = this.timerTarget;
+    this.startTime = null;
   }
 
   startRecording() {
@@ -23,6 +25,7 @@ export default class extends Controller {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       this.recorder = RecordRTC(stream, { type: 'audio' });
       this.recorder.startRecording();
+      this.startTimer();
       this.stopButton.disabled = false;
       this.startButton.disabled = true;
     }).catch((error) => {
@@ -31,12 +34,37 @@ export default class extends Controller {
     });
   }
 
+  startTimer() {
+    this.startTime = Date.now();
+    this.timerInterval = setInterval(() => {
+      let elapsedTime = Date.now() - this.startTime;
+      this.timer.innerHTML = this.formatTime(elapsedTime);
+    }, 1000);
+  }
+
+  stopTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }
+  }
+
+  formatTime(timeInMilliseconds) {
+    let totalSeconds = Math.floor(timeInMilliseconds / 1000);
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
+
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
+
+
   stopRecording() {
     console.log('stopRecording called');
     this.messages.innerHTML = 'Stop recording...';
     if (this.recorder) {
         console.log('Recording blob before stopping:', this.recorder.getBlob());
         this.stopButton.disabled = true;
+        this.stopTimer();
         this.recorder.stopRecording(() => {
             this.audioBlob = this.recorder.getBlob();
             console.log('Recording stopped, audioBlob:', this.audioBlob);
@@ -57,7 +85,8 @@ export default class extends Controller {
     console.log('submitForm called');
     this.messages.innerHTML = 'Submitting form...';
     let formData = new FormData(this.form);
-
+    //stop timer
+    this.stopTimer();
     // Check if file was uploaded
     if (this.fileUpload.files.length > 0) {
       let file = this.fileUpload.files[0];
