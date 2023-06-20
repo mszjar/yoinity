@@ -52,8 +52,8 @@
             <% end %>
           <% end %>
         </turbo-frame>
-      <% end %>
       <p><%= @post.saved_for_laters.count %></p>
+      <% end %>
     </div>
 
     <!--icon quality-->
@@ -71,8 +71,8 @@
             <% end %>
           <% end %>
         </turbo-frame>
-      <% end %>
       <p><%= @post.post_qualities.count %></p>
+      <% end %>
     </div>
   </div>
 </div>
@@ -82,31 +82,35 @@
 <div class="subtitle-interactive">
   <div class="d-flex align-items-center" style="gap:8px;">
     <!--amazon polly-->
-    <div class="audio-player" data-controller="audio">
-        <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar">
-            <div class="avatar-xxs" style="background-color:#1FDF64; border-radius:50%; height: 22px; width: 22px;"></div>
-            <div class="avatar-overlay-little">
-                <i class="play-icon fas fa-play" data-audio-target="playIcon"></i>
-                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon"></i>
-            </div>
-            <div class="d-flex align-items-center"><p data-audio-target="nickname" style="font-size: 9px" >Auto-read</p></div>
-        </div>
-      <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
-      </audio>
-    </div>
+    <% if user_signed_in? %>
+      <div class="audio-player" data-controller="audio">
+          <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar">
+              <div class="avatar-xxs" style="background-color:#1FDF64; border-radius:50%; height: 22px; width: 22px;"></div>
+              <div class="avatar-overlay-little">
+                  <i class="play-icon fas fa-play" data-audio-target="playIcon"></i>
+                  <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon"></i>
+              </div>
+              <div class="d-flex align-items-center"><p data-audio-target="nickname" style="font-size: 9px" >Auto-read</p></div>
+          </div>
+        <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
+        </audio>
+      </div>
+    <% end %>
       <!--icon like-->
-    <turbo-frame id="like_button_<%= @post.id %>">
-      <% post_like = current_user.post_likes.find_by(post: @post) %>
-      <% if post_like.nil? %>
-        <%= button_to post_likes_path, class: "icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
-          <i class="far fa-heart" style="font-size: 24px"></i>
+    <% if user_signed_in? %>
+      <turbo-frame id="like_button_<%= @post.id %>">
+        <% post_like = current_user.post_likes.find_by(post: @post) %>
+        <% if post_like.nil? %>
+          <%= button_to post_likes_path, class: "icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
+            <i class="far fa-heart" style="font-size: 24px"></i>
+          <% end %>
+        <% else %>
+          <%= button_to post_like_path(post_like), class: "icon-button", method: :delete do %>
+            <i class="fas fa-heart" style="color: #FF3040; font-size: 24px"></i>
+          <% end %>
         <% end %>
-      <% else %>
-        <%= button_to post_like_path(post_like), class: "icon-button", method: :delete do %>
-          <i class="fas fa-heart" style="color: #FF3040; font-size: 24px"></i>
-        <% end %>
-      <% end %>
-    </turbo-frame>
+      </turbo-frame>
+    <% end %>
 
     <!--date-->
     <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
