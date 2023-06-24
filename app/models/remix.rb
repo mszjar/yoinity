@@ -16,7 +16,7 @@ class Remix < ApplicationRecord
   end
 
   def audio_size_under_limit
-    if audio.attached? && audio.blob.byte_size > 10.megabytes
+    if audio.attached? && audio.blob.byte_size > 20.megabytes
       audio.purge
       errors.add(:audio, 'Size should be less than 20MB')
     end
