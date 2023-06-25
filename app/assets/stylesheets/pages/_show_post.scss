@@ -124,6 +124,7 @@
 .remixes {
   display: flex;
   flex-direction: row;
+  gap: 8px;
 }
 
 .remixes-bar {
@@ -156,4 +157,33 @@
 .toggle-bar .dots {
   color: rgba(255, 255, 255, 0.7);
   font-size:28px;
+}
+
+.avatar-audio-player {
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 5px;
+  background-color: #ddd;
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: #2df75c;
+  width: 0;
+}
+
+.current-time {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 9px;
+  margin-right: 4px;
+}
+
+.duration {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 9px;
+  margin-left: 4px;
 }
