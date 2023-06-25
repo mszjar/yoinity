@@ -1,12 +1,43 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "playIcon", "pauseIcon", "greenOverlay", "nickname"];
+  static targets = ["audio", "playIcon", "pauseIcon", "greenOverlay", "nickname", "progressBar", "duration", "progressContainer"];
 
   connect() {
     this.hideIcons(); // Ensure icons are hidden initially
+
+    this.audio = this.audioTarget;
+    this.progressBar = this.progressBarTarget;
+    this.durationLabel = this.durationTarget;
+    this.progressContainer = this.progressContainerTarget;
+
+    this.audio.addEventListener('timeupdate', this.updateProgressBar.bind(this));
+    this.audio.addEventListener('loadedmetadata', this.updateDuration.bind(this));
+    this.progressContainer.addEventListener('click', this.seek.bind(this));
   }
 
+  disconnect() {
+    this.audio.removeEventListener('timeupdate', this.updateProgressBar.bind(this));
+    this.audio.removeEventListener('loadedmetadata', this.updateDuration.bind(this));
+    this.progressContainer.removeEventListener('click', this.seek.bind(this));
+  }
+
+  updateProgressBar() {
+    const percentage = (this.audio.currentTime / this.audio.duration) * 100;
+    this.progressBar.style.width = `${percentage}%`;
+  }
+
+  updateDuration() {
+    const minutes = Math.floor(this.audio.duration / 60);
+    const seconds = Math.floor(this.audio.duration - minutes * 60);
+    this.durationLabel.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+  seek(event) {
+    const percent = event.offsetX / this.progressContainer.offsetWidth;
+    this.audio.currentTime = percent * this.audio.duration;
+  }
+  
   showControls() {
     const audio = this.audioTarget;
     if (audio.paused) {

@@ -41,6 +41,10 @@
             <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
             <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
             </audio>
+            <div data-audio-target="progressContainer" class="progress-bar-container">
+              <div class="progress-bar" data-audio-target="progressBar"></div>
+            </div>
+            <span class="duration" data-audio-target="duration"></span>
           <% end %>
         </div>
       <% end %>
