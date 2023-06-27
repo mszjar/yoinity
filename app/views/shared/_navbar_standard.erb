@@ -1,6 +1,6 @@
-<div class="navbar navbar-expand navbar-light navbar-lewagon fixed-top" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
-  <div class="container-fluid" style="height: 70px; --bs-gutter-x: 0px !important;">
-    <ul class="navbar-brand d-flex align-items-center">
+<div class="navbar-expand side-fixed" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
+  <div>
+    <ul class="d-flex align-items-center">
     <%= link_to "/", class: "navbar-brand" do %>
       <%= image_tag "yoinity_logo.png" %>
     <% end %>
@@ -12,13 +12,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto" style="width: 100%">
         <% if user_signed_in? %>
-          <li style="width: 100%">
-            <div class="search-form-control form-group">
-              <%= simple_form_for :search, url: posts_path, method: :get, html:{class: 'search-bar'} do |f|  %>
-              <input placeholder="Search any topic" class="form-control string required" type="text" name="query" id="search_query"/>
-            </div>
-          </li>
-          <% end %>
           <div class= "menu-container">
           	<li>
               <%= link_to "Create", "#remixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#remixModal", class: "btn btn-create" %>
