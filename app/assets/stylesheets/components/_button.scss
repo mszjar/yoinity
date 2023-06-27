@@ -170,14 +170,12 @@ a {
   background-color: #0095f6;
   color: white;
   border: 1px solid #2aaaff;
-
 }
 
 .btn-mini-follow:hover {
   background-color: #1877f2;
   color: white;
   border: 1px solid #2aaaff;
-
 }
 
 .btn-mini-following {
@@ -198,7 +196,7 @@ a {
 .play-quality {
   display: flex;
   justify-content: space-between;
-  gap:14px;
+  gap: 14px;
 }
 
 @media (max-width: 768px) {
@@ -208,18 +206,20 @@ a {
 }
 
 .btn-create {
+  width: 100%;
   color: rgba(0, 0, 0, 0.849);
   font-weight: bold;
   border-radius: 8px;
-  background: #26CD4D;
+  background: #26cd4d;
   text-decoration: none;
-  border: 1px solid #2df75c;
-
+  //border: 1px solid #2df75c;
+  border-radius: 20px;
 }
 
 .btn-create:hover {
   background: #29e956;
   color: black;
   font-weight: bold;
-  border: 1px solid #2df75c;
+  border-radius: 20px;
+  //border: 1px solid #2df75c;
 }

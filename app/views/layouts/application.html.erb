@@ -48,23 +48,27 @@
   </head>
   <body>
     <div class="maintain_height">
-      <% if controller_name == "pages" %>
-        <%= render "shared/navbar_home" %>
-      <% elsif ["dashboard", "remixes", "profiles"].include?(controller_name) %>
-        <%= render "shared/navbar" %>
-      <% elsif ["registrations", "sessions"].include?(controller_name) %>
-        <%= render "shared/navbar_home" %>
-      <% elsif action_name == "new" && controller_name == "posts" %>
-        <%= render "shared/flashes" %>
-      <% elsif action_name == "show" && controller_name == "posts" %>
-        <%= render "shared/navbar" %>
-      <% elsif action_name == "index" && controller_name == "posts" %>
-        <%= render "shared/navbar_standard" %>
-      <% else %>
-        <%= render "shared/flashes" %>
-      <% end %>
-      <%= render "shared/flashes" %>
-      <%= yield %>
+      <div class="container-fluid">
+        <div class="row">
+          <% if controller_name == "pages" %>
+            <%= render "shared/navbar_home" %>
+          <% elsif ["dashboard", "remixes", "profiles"].include?(controller_name) %>
+            <%= render "shared/navbar" %>
+          <% elsif ["registrations", "sessions"].include?(controller_name) %>
+            <%= render "shared/navbar_home" %>
+          <% elsif action_name == "new" && controller_name == "posts" %>
+            <%= render "shared/flashes" %>
+          <% elsif action_name == "show" && controller_name == "posts" %>
+            <%= render "shared/navbar" %>
+          <% elsif action_name == "index" && controller_name == "posts" %>
+            <%= render "shared/navbar_standard" %>
+          <% else %>
+            <%= render "shared/flashes" %>
+          <% end %>
+          <%= render "shared/flashes" %>
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>
