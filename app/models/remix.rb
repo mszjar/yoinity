@@ -10,13 +10,13 @@ class Remix < ApplicationRecord
   private
 
   def remixes_limit
-    if self.post && self.post.remixes.count >= 3
-      errors.add(:base, 'A post can have 3 remixes maximum')
+    if self.post && self.post.remixes.count >= 1
+      errors.add(:base, 'A post can have 1 remix only')
     end
   end
 
   def audio_size_under_limit
-    if audio.attached? && audio.blob.byte_size > 2.megabytes
+    if audio.attached? && audio.blob.byte_size > 20.megabytes
       audio.purge
       errors.add(:audio, 'Size should be less than 20MB')
     end

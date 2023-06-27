@@ -1,5 +1,8 @@
 <div class="post-container">
   <div class="post" >
+    <!--search-bar-->
+    <%= render partial: "shared/search_bar" %>
+    <!--title-->
     <div class="profile" style="color:white;">
       <div class="mb-2" style="margin-top: 30px"><%= image_tag url_for(current_user.photo), class: "avatar-large" %></div>
       <h2 class="mb-5"><%= current_user.nickname %></h2>
