@@ -37,9 +37,13 @@ export default class extends Controller {
   }
 
   updateDuration() {
-    const minutes = Math.floor(this.audio.duration / 60);
-    const seconds = Math.floor(this.audio.duration - minutes * 60);
-    this.durationLabel.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    if (isFinite(this.audio.duration)) {
+      const minutes = Math.floor(this.audio.duration / 60);
+      const seconds = Math.floor(this.audio.duration - minutes * 60);
+      this.durationLabel.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    } else {
+      this.durationLabel.textContent = 'Live';
+    }
   }
 
   seek(event) {
