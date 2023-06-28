@@ -6,8 +6,35 @@
 }
 
 .navbar-nav {
-  padding-right: 10px;
+  flex-direction: column;
 }
+
+.nav-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 15px;
+}
+
+.nav-link i {
+  margin-right: 0.5rem;
+}
+
+.nav-link:hover {
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.col-lg-2 {
+  min-height: 100vh;
+  position: fixed;
+}
+
+// .navbar-nav {
+//   padding-right: 10px;
+// }
 
 .navbar-home {
   justify-content: space-between;

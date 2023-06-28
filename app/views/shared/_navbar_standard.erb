@@ -1,5 +1,5 @@
-<div class="col-lg-2">
-  <div class="navbar navbar-expand-lg navbar-light" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
+<div class="col-lg-2 d-flex flex-column">
+  <nav class="navbar navbar-expand-lg navbar-light" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
     <div class="container-fluid">
       <ul class="navbar-nav flex-column">
         <li class="nav-item">
@@ -10,35 +10,47 @@
             <%= link_to "Yoinity", "/", class: "yoinity-logo"%>
           </p>
         </li>
-        <li class="nav-item">
-          <%= link_to "Create", "#remixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#remixModal", class: "btn btn-create" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Voice design", "/remixes", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Home", "/", class: "nav-link" %>
-        </li>
-        <% unless current_user.subscription_status == 'active' %>
+        <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "nav-link" %>
+            <%= link_to "Voice design", "/remixes", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Home", "/", class: "nav-link" %>
+          </li>
+          <% unless current_user.subscription_status == 'active' %>
+            <li class="nav-item">
+              <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "nav-link" %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to "Bookmarks", "/dashboard/saved", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Remixes", "/remixes", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Profile", "/dashboard/show", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Settings", edit_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Create", "#remixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#remixModal", class: "btn btn-create" %>
+          </li>
+          <li class="nav-item mt-auto">
+            <%= image_tag url_for(current_user.photo), class: "avatar-navbar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          </li>
+        <% else %>
+          <li class="nav-item all-text-grey">
+            <%= link_to "Login", new_user_session_path, class: "navbar-link" %>
+          </li>
+          <li class="nav-item all-text-grey">
+            <%= link_to "Sign up", new_user_registration_path, class: "navbar-link" %>
           </li>
         <% end %>
-        <li class="nav-item">
-          <%= link_to "Bookmarks", "/dashboard/saved", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Remixes", "/remixes", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Profile", "/dashboard/show", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Settings", edit_user_registration_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %>
-        </li>
       </ul>
       <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto" style="width: 100%">
@@ -78,5 +90,5 @@
         </ul>
       </div>-->
     </div>
-  </div>
+  </nav>
 </div>

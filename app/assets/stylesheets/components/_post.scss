@@ -2,6 +2,16 @@ body {
   background-color: #343541;
 }
 
+.col-lg-10 {
+  margin-left: 16.66666667%;
+}
+
+@media (min-width: 992px) {
+  .col-lg-2 {
+    width: 16.66666667%;
+  }
+}
+
 .post-container {
   z-index: 0;
   display: flex;
@@ -9,7 +19,6 @@ body {
   justify-content: center;
   padding-top: 22px;
 }
-
 
 .post {
   position: relative;
