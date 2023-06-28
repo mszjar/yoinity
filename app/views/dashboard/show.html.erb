@@ -1,35 +1,33 @@
-<div class="post-container">
-  <div class="post" >
-    <!--search-bar-->
-    <%= render partial: "shared/search_bar" %>
-    <!--title-->
-    <div class="profile" style="color:white;">
-      <div class="mb-2" style="margin-top: 30px"><%= image_tag url_for(current_user.photo), class: "avatar-large" %></div>
-      <h2 class="mb-5"><%= current_user.nickname %></h2>
-      <div class="d-flex justify-content-center" style="color:white;">
-        <h3 class="mb-5", style="margin-right: 30px"><%= current_user.posts.count %> Stories</h3>
-        <h3 class="mb-5">
-          <%= link_to "#{current_user.followers_count} Followers", "#followersModal", "data-bs-toggle" => "modal", "data-bs-target" => "#followersModal" %>
-        </h3>
-        <h3 class="mb-5", style="margin-left: 30px">
-          <%= link_to "#{current_user.follow_count} Following", "#followingModal", "data-bs-toggle" => "modal", "data-bs-target" => "#followingModal" %>
-        </h3>
-      </div>
-      <div class="cards">
-        <% @posts.reverse.each do |post| %>
-          <% if current_user == post.user %>
-            <div class="dropdown">
-              <i class="fas fa-ellipsis-h" style="float: right; color: white;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><%= link_to 'Delete', post_path(post.token), data: { turbo_method: :delete, turbo_confirm: 'Delete this post?' }, class: 'dropdown-item' %></li>
-              </ul>
-            </div>
-          <% end %>
-          <%= link_to post_path(post.token) do %>
-            <%= render partial: "posts/card", locals: { post: post }%>
-          <% end %>
+<div class="post" >
+  <!--search-bar-->
+  <%= render partial: "shared/search_bar" %>
+  <!--title-->
+  <div class="profile" style="color:white;">
+    <div class="mb-2" style="margin-top: 30px"><%= image_tag url_for(current_user.photo), class: "avatar-large" %></div>
+    <h2 class="mb-5"><%= current_user.nickname %></h2>
+    <div class="d-flex justify-content-center" style="color:white;">
+      <h3 class="mb-5", style="margin-right: 30px"><%= current_user.posts.count %> Stories</h3>
+      <h3 class="mb-5">
+        <%= link_to "#{current_user.followers_count} Followers", "#followersModal", "data-bs-toggle" => "modal", "data-bs-target" => "#followersModal" %>
+      </h3>
+      <h3 class="mb-5", style="margin-left: 30px">
+        <%= link_to "#{current_user.follow_count} Following", "#followingModal", "data-bs-toggle" => "modal", "data-bs-target" => "#followingModal" %>
+      </h3>
+    </div>
+    <div class="cards">
+      <% @posts.reverse.each do |post| %>
+        <% if current_user == post.user %>
+          <div class="dropdown">
+            <i class="fas fa-ellipsis-h" style="float: right; color: white;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></i>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><%= link_to 'Delete', post_path(post.token), data: { turbo_method: :delete, turbo_confirm: 'Delete this post?' }, class: 'dropdown-item' %></li>
+            </ul>
+          </div>
         <% end %>
-      </div>
+        <%= link_to post_path(post.token) do %>
+          <%= render partial: "posts/card", locals: { post: post }%>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

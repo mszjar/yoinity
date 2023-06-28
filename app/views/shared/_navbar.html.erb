@@ -1,4 +1,4 @@
-<div class="navbar-expand side-fixed" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
+<div class="navbar-expand">
   <div>
     <ul class="d-flex align-items-center">
     <%= link_to "/", class: "navbar-brand" do %>
@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto" style="width: 100%">
         <% if user_signed_in? %>
-          <div class= "menu-container">
+          <div class= "">
           	<li>
               <%= link_to "Create", "/remixes/new", class: "btn btn-create" %>
             </li>
@@ -35,7 +35,7 @@
             </li>
           </div>
         <% else %>
-          <div class= "menu-container">
+          <div class= "">
             <li class="nav-item all-text-grey">
               <%= link_to "Login", new_user_session_path, class: "navbar-link" %>
             </li>
