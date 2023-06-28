@@ -49,8 +49,6 @@
 }
 
 .navbar-brand img {
-  margin-top: 12px;
-  //margin-left: 15px;
   width: 50px;
   border-radius: 8%;
 }
@@ -85,6 +83,8 @@
 
 .nav-item {
   display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .navbar-link {
@@ -114,4 +114,27 @@
   height: 100%;
   z-index: 1030;
   width: 20%;
+}
+
+.nav-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 15px;
+}
+
+.nav-link i {
+  margin-right: 0.5rem;
+}
+
+.nav-link:hover {
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.col-lg-2 {
+  min-height: 100vh;
+  position: fixed;
 }

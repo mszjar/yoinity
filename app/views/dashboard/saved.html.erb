@@ -1,18 +1,16 @@
-<div class="post-container">
-  <div class="post" >
-    <!--search-bar-->
-    <%= render partial: "shared/search_bar" %>
-    <!--title-->
-    <h4 style="color: white; margin-top: 30px;">Bookmarks</h4>
-    <div class="cards mt-5">
-      <div class="cards">
-        <% current_user.saved_posts.each do |post| %>
-          <%= link_to post_path(post.token)  do %>
-            <!--cards-->
-            <%= render partial: "posts/card", locals: { post: post }%>
-          <% end %>
+<div class="post" >
+  <!--search-bar-->
+  <%= render partial: "shared/search_bar" %>
+  <!--title-->
+  <h4 style="color: white; margin-top: 30px;">Bookmarks</h4>
+  <div class="cards mt-5">
+    <div class="cards">
+      <% current_user.saved_posts.each do |post| %>
+        <%= link_to post_path(post.token)  do %>
+          <!--cards-->
+          <%= render partial: "posts/card", locals: { post: post }%>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,25 +1,23 @@
-<div class="post-container" style="background-color: #343541">
-  <div class="post" >
-    <!--search-bar-->
-    <%= render partial: "shared/search_bar" %>
-    <!--Tabs-->
-    <div class="cards-header mt-5" data-controller="tabs">
-      <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
-        <%= link_to 'Explore', "/p", class: "tabs" %>
-      </h5>
-    </div>
-    <div class="mt-3" data-controller="tabs">
-      <div class="notifications">
-        <!-- story -->
-        <div class="notification story" data-tabs-target="notification">
-          <%= render partial: "story" %>
-        </div>
-        <!-- reviews -->
-        <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <%= render partial: "reviews" %>
-            </div>
+<div class="post" >
+  <!--search-bar-->
+  <%= render partial: "shared/search_bar" %>
+  <!--Tabs-->
+  <div class="cards-header mt-5" data-controller="tabs">
+    <h5 class="cards-header-item tab-index" data-tabs-target="tab" data-action="click->tabs#changeTab">
+      <%= link_to 'Explore', "/p", class: "tabs" %>
+    </h5>
+  </div>
+  <div class="mt-3" data-controller="tabs">
+    <div class="notifications">
+      <!-- story -->
+      <div class="notification story" data-tabs-target="notification">
+        <%= render partial: "story" %>
+      </div>
+      <!-- reviews -->
+      <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <%= render partial: "reviews" %>
           </div>
         </div>
       </div>
