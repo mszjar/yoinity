@@ -1,35 +1,45 @@
 <div class="navbar-expand">
   <div>
     <div>
-      <ul class="d-flex align-items-center">
+      <div class="d-flex">
         <%= link_to "/", class: "navbar-brand" do %>
           <%= image_tag "yoinity_logo.png" %>
         <% end %>
-        <p class="all-text-white mt-4", style="font-size: 28px">
+        <p class="all-text-white", style="font-size: 28px">
           <%= link_to "Yoinity", "/", class: "yoinity-logo"%>
         </p>
-      </ul>
+      </div>
     </div>
     <div class="navbar" id="navbarSupportedContent">
       <ul class="navbar-nav" style="width: 100%">
         <% if user_signed_in? %>
           <div class= "">
-          	<li>
-              <%= link_to "Create", "/remixes/new", class: "btn btn-create" %>
+            <li class="nav-item">
+              <%= link_to "Home", "/", class: "nav-link" %>
             </li>
-            <li class="nav-item active">
+            <% unless current_user.subscription_status == 'active' %>
+              <li class="nav-item">
+                <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "nav-link" %>
+              </li>
+            <% end %>
+            <li class="nav-item">
+              <%= link_to "Bookmarks", "/dashboard/saved", class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Remixes", "/remixes", class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Profile", "/dashboard/show", class: "nav-link" %>
+            </li>
+            <li class="mt-5 mb-5">
               <%= link_to "Voice design", "/remixes", class: "navbar-link dropdown-item" %>
             </li>
-            <li class="nav-item dropdown all-text-black">
+          	<li class="nav-item">
+              <%= link_to "Create", "/remixes/new", class: "btn btn-create" %>
+            </li>
+            <li class="nav-item dropdown all-text-black mt-5">
               <%= image_tag url_for(current_user.photo), class: "avatar-navbar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Home", "/", class: "dropdown-item" %>
-                <% unless current_user.subscription_status == 'active' %>
-                <%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "dropdown-item" %>
-                <% end %>
-                <%= link_to "Bookmarks", "/dashboard/saved", class: "dropdown-item" %>
-                <%= link_to "Remixes", "/remixes", class: "dropdown-item" %>
-                <%= link_to "Profile", "/dashboard/show", class: "dropdown-item" %>
                 <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
                 <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
               </div>
