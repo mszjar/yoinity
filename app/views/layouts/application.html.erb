@@ -67,7 +67,12 @@
         <!--main-content-->
         <%= yield %>
         <!--righ-side-navbar-->
-        <%= render "shared/flashes" %>
+        <% unless action_name == "index" && controller_name == "posts" %>
+          <%= render "shared/navbar_right" %>
+        <% end %>
       </div>
+      <% if action_name == "index" && controller_name == "posts" %>
+          <%= render "shared/navbar_right" %>
+      <% end %>
   </body>
 </html>
