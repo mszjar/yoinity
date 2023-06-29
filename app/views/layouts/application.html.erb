@@ -49,16 +49,14 @@
   <body>
       <div class="post-container">
         <!--left-side-navbar-->
-        <% if ["dashboard", "remixes", "profiles", "registrations", "sessions", "pages"].include?(controller_name) %>
-          <%= render "shared/navbar" %>
-        <% elsif action_name == "new" && controller_name == "posts" %>
+        <% if action_name == "new" && controller_name == "posts" %>
           <%= render "shared/flashes" %>
         <% elsif action_name == "show" && controller_name == "posts" %>
           <%= render "shared/navbar" %>
         <% elsif action_name == "index" && controller_name == "posts" %>
           <%= render "shared/navbar_standard" %>
         <% else %>
-          <%= render "shared/flashes" %>
+          <%= render "shared/navbar" %>
         <% end %>
         <!--main-content-->
         <%= yield %>
