@@ -32,9 +32,17 @@
             <li class="mt-5 mb-5">
               <%= link_to "Voice design", "/remixes", class: "yoinity-logo" %>
             </li>
-          	<li class="nav-item">
-              <%= link_to "Create", "/remixes/new", class: "btn btn-create" %>
-            </li>
+            <!--create button-->
+            <% if action_name == "index" && controller_name == "posts" %>
+              <li class="nav-item">
+                <%= link_to "Create", "#remixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#remixModal", class: "btn btn-create" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Create", "/remixes/new", class: "btn btn-create" %>
+              </li>
+            <% end %>
+            <!--avatar profile-->
             <li class="nav-item dropdown all-text-black mt-5">
                 <%= image_tag url_for(current_user.photo), class: "avatar-navbar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

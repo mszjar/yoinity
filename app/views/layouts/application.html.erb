@@ -51,10 +51,6 @@
         <!--left-side-navbar-->
         <% if action_name == "new" && controller_name == "posts" %>
           <%= render "shared/flashes" %>
-        <% elsif action_name == "show" && controller_name == "posts" %>
-          <%= render "shared/navbar" %>
-        <% elsif action_name == "index" && controller_name == "posts" %>
-          <%= render "shared/navbar_standard" %>
         <% else %>
           <%= render "shared/navbar" %>
         <% end %>
