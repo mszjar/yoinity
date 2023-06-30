@@ -126,3 +126,27 @@
   position:fixed;
   right:308px;
 }
+
+.account-menu {
+  display: flex;
+  position: fixed;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 40px;
+  padding: auto;
+}
+
+.account-menu:hover {
+  padding: auto;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  position: fixed;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 40px;
+}

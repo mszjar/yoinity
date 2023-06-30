@@ -42,14 +42,21 @@
                 <%= link_to "Create", "/remixes/new", class: "btn btn-create" %>
               </li>
             <% end %>
-            <!--avatar profile-->
-            <li class="nav-item dropdown all-text-black mt-5">
-                <%= image_tag url_for(current_user.photo), class: "avatar-navbar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <!--account-menu-->
+            <div class="account-menu">
+              <!--avatar profile-->
+              <%= image_tag url_for(current_user.photo), class: "avatar-navbar dropdown-toggle", role: "button",  id: "dropdownMenuLink", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
                 <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
               </div>
-            </li>
+              <!--nickname-->
+              <div class="align-items-center" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <div style="color:white;font-size:14px" ><%= current_user.nickname %></div>
+                <div style="color:grey;font-size:14px" >@<%= current_user.nickname %></div>
+              </div>
+              <i class="fas fa-ellipsis-h" style="float: right; color: white;margin-left:44px" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            </div>
           </div>
         <% else %>
           <div class= "">
