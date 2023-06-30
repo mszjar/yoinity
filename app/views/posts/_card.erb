@@ -4,11 +4,10 @@
     <div class="card-images">
       <div>
         <%= image_tag url_for(post.user.photo), class: "avatar-small" %>
-        <h3 class="nickname">@<%=post.user.nickname%></h3>
+        <h3 class="d-flex nickname justify-content-center">@<%=post.user.nickname%></h3>
       </div>
-      <div style="width:100%">
+      <div style="width:50%">
         <h5 class="card-title title"><%=post.title%></h5>
-        <p class="content"><%= post.content %></p>
       </div>
       <div>
         <% if post.photo.key.nil? %>
@@ -18,7 +17,7 @@
         <% end %>
       </div>
       <div class="infos-mini">
-      <p class="date"><%= post.created_at.strftime("%-d %B %Y") %></p>
+      <div class="date"><%= post.created_at.strftime("%-d %B %Y") %></div>
       <div class="play-quality">
         <!--play-icon-->
         <%= render partial: 'shared/play_icon' if post.remixes.present?%>
