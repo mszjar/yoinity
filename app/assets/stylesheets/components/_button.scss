@@ -31,7 +31,6 @@ a {
     226,
     0.945
   ); /* Use rgba value with opacity (0.8 in this example) */
-  color: black !important;
 }
 
 .btn-dropdown {
@@ -105,64 +104,6 @@ a {
   color: grey;
   text-decoration: none;
   border: none;
-}
-
-.btn-category {
-  color: white;
-  font-style: 12px;
-  border-radius: 8px;
-  background-color: rgba(
-    177,
-    176,
-    176,
-    0.5
-  ); /* Use rgba value with opacity (0.8 in this example) */
-  transition: background 0.3s ease;
-  text-decoration: none;
-  border: none;
-}
-
-.btn-category-post {
-  font-weight: lighter;
-  border-radius: 8%;
-  padding-left: 2px;
-  padding-right: 2px;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  position: absolute;
-  margin-bottom: 10px;
-  color: rgba(59, 83, 68, 0.658);
-  background-color: rgba(
-    219,
-    237,
-    219,
-    0.836
-  ); /* Use rgba value with opacity (0.8 in this example) */
-  border-radius: 8px;
-  transition: background 0.3s ease;
-  text-decoration: none;
-  border: none;
-  right: 34px;
-  top: 88px;
-}
-
-.btn-category-post:hover {
-  border-radius: 8%;
-  padding-left: 2px;
-  padding-right: 2px;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  margin-bottom: 10px;
-  position: absolute;
-  color: rgba(59, 83, 68, 0.658);
-  background-color: rgba(
-    219,
-    237,
-    219,
-    0.836
-  ); /* Use rgba value with opacity (0.8 in this example) */
-  right: 34px;
-  top: 88px;
 }
 
 .btn-mini-follow {

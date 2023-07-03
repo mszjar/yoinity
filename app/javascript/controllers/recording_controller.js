@@ -30,7 +30,7 @@ export default class extends Controller {
       this.startButton.disabled = true;
     }).catch((error) => {
       console.error('Error accessing audio stream:', error);
-      this.messages.innerHTML = 'Error accessing audio stream.';
+      this.messages.innerHTML = 'Error accessing audio stream: ' + error.message;
     });
   }
 
