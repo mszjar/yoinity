@@ -8,7 +8,6 @@
   content: "";
   display: block;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  /* you can adjust the color, style, and thickness of the border as needed */
 }
 
 .main-card {
@@ -28,8 +27,7 @@
 .card-images {
   display: flex;
   flex-direction: row;
-  // justify-content: space-between;
-  gap: 32px;
+  justify-content: space-between;
 }
 
 .container-index {

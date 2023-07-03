@@ -8,6 +8,7 @@
       </div>
       <div style="width:50%">
         <h5 class="card-title title"><%=post.title%></h5>
+        <div class="content"><%= post.content %></div>
       </div>
       <div>
         <% if post.photo.key.nil? %>
@@ -16,13 +17,14 @@
           <h3 class="post-image"> <%= image_tag url_for(post.photo), class: "avatar-post", loading: "lazy" %></h3>
         <% end %>
       </div>
-      <div class="infos-mini">
-      <div class="date"><%= post.created_at.strftime("%-d %B %Y") %></div>
-      <div class="play-quality">
-        <!--play-icon-->
-        <%= render partial: 'shared/play_icon' if post.remixes.present?%>
-        <!--quality-icon-->
-        <p class="quality"><%= post.post_qualities.count %> <i class="fa-solid fa-star" style="color: #ffd43b;"></i></p>
+      <div class="infos-mini" style="column-gap:4px">
+        <div class="date"><%= post.created_at.strftime("%-d %B %Y") %></div>
+        <div class="show-date"><%= post.speech_duration.round(0) %> min</div>
+        <div class="play-quality">
+          <!--play-icon-->
+          <%= render partial: 'shared/play_icon' if post.remixes.present?%>
+          <!--quality-icon-->
+          <p class="quality"><%= post.post_qualities.count %> <i class="fa-solid fa-star" style="color: #ffd43b;"></i></p>
       </div>
       </div>
     </div>
