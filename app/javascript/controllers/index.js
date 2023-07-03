@@ -16,6 +16,9 @@ application.register("checkout", CheckoutController)
 import LoadMoreController from "./load_more_controller"
 application.register("load-more", LoadMoreController)
 
+import NavbarController from "./navbar_controller"
+application.register("navbar", NavbarController)
+
 import PlayAllController from "./play_all_controller"
 application.register("play-all", PlayAllController)
 
