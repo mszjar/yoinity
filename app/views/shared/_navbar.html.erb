@@ -13,24 +13,24 @@
         <% if user_signed_in? %>
           <div class= "">
             <li class="nav-item">
-               <h6><%= link_to "Home", "/", class: "navbar-link tabs", data: { navbar_target: 'link' } %></h6>
+               <h6><%= link_to "Home", "/", class: "navbar-link tab-index", data: { navbar_target: 'link' } %></h6>
             </li>
             <% unless current_user.subscription_status == 'active' %>
               <li class="nav-item">
-                <h6><%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link tabs" %></h6>
+                <h6><%= link_to "Membership", "#", id: "checkout-button", data: { controller: "checkout", action: "click->checkout#checkout" }, class: "navbar-link tab-index" %></h6>
               </li>
             <% end %>
             <li class="nav-item">
-              <h6><%= link_to "Bookmarks", "/dashboard/saved", class: "navbar-link tabs", data: { navbar_target: 'link' } %></h6>
+              <h6><%= link_to "Bookmarks", "/dashboard/saved", class: "navbar-link tab-index", data: { navbar_target: 'link' } %></h6>
             </li>
             <li class="nav-item">
-              <h6><%= link_to "Remixes", "/remixes", class: "navbar-link tabs", data: { navbar_target: 'link' } %></h6>
+              <h6><%= link_to "Remixes", "/remixes", class: "navbar-link tab-index", data: { navbar_target: 'link' } %></h6>
             </li>
             <li class="nav-item">
-              <h6><%= link_to "Profile", "/dashboard/show", class: "navbar-link tabs", data: { navbar_target: 'link' } %></h6>
+              <h6><%= link_to "Profile", "/dashboard/show", class: "navbar-link tab-index", data: { navbar_target: 'link' } %></h6>
             </li>
             <li class="mt-5 mb-5">
-              <%= link_to "Voice design", "/voice_design", class: "yoinity-logo navbar-link", data: { navbar_target: 'link' } %>
+              <%= link_to "Voice design", "/voice_design", class: "yoinity-logo navbar-link tab-index", data: { navbar_target: 'link' } %>
             </li>
             <!--create button-->
             <% if action_name == "index" && controller_name == "posts" %>
