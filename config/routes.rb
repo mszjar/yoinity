@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get "voice_design", to: "pages#voice_design"
   get "dashboard/show", to: "dashboard#show"
   get "dashboard/saved", to: "dashboard#saved"
   get '/@:nickname', to: 'profiles#show', as: 'profile'
