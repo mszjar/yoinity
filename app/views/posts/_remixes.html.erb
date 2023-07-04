@@ -63,7 +63,7 @@
                     <% end %>
                   <% else %>
                     <%= link_to '/dashboard/show' do %>
-                    <div class="d-flex" style="gap:8px">
+                    <div class="d-flex" style="gap:8px;justify-content: center;">
                       <p data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= remix.user.nickname %></p>
                       <p data-audio-target="nickname" style="color:grey">@<%= remix.user.nickname %></p>
                     </div>
@@ -74,7 +74,7 @@
               <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
               </audio>
               <!--mini audio player -->
-              <div class="mt-2 avatar-audio-player">
+              <div class="avatar-audio-player">
                 <span class="current-time" data-audio-target="currentTime"></span>
                 <div data-audio-target="progressContainer" class="progress-bar-container">
                   <div class="progress-bar" data-audio-target="progressBar"></div>
