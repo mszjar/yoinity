@@ -1,0 +1,33 @@
+<!--title bar-->
+<div class="title-bar" >
+  <!--title-->
+  <h1 class="title"> <%= @post.title %></h1>
+  <!--post image-->
+  <div class="show-icons-item show-icons-item-end">
+    <% if @post.photo.key.nil? %>
+      <%= link_to "#imageModal", "data-bs-toggle" => "modal", "data-bs-target" => "#imageModal" do %>
+        <%= image_tag "default_image.png", class: "avatar-post", loading: "lazy" %>
+      <% end %>
+    <% else %>
+      <%= link_to "#imageModal", "data-bs-toggle" => "modal", "data-bs-target" => "#imageModal" do %>
+        <%= image_tag url_for(@post.photo), class: "avatar-post", loading: "lazy" %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <!-- Image Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body d-flex align-items-center justify-content-center p-0">
+          <% if @post.photo.key.nil? %>
+            <%= image_tag "default_image.png", loading: "lazy" %>
+          <% else %>
+            <%= image_tag url_for(@post.photo), loading: "lazy" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
