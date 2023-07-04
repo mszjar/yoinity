@@ -4,9 +4,15 @@
     <!--author avatar-->
     <div class="show-avatar">
       <div class="show-avatar-item">
+      <% if user_signed_in? && current_user.id != @post.user_id %>
         <%= link_to profile_path(@post.user.nickname) do %>
           <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
         <% end %>
+      <% else %>
+        <%= link_to '/dashboard/show' do %>
+          <%= image_tag url_for(@post.user.photo), class: "avatar-small", loading: "lazy" %>
+        <% end %>
+      <% end %>
       </div>
       <p class="d-flex align-items-center"><%= @post.user.nickname %></p>
       <div class="d-flex align-items-center" >
