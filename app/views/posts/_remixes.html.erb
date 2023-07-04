@@ -1,5 +1,6 @@
 <!--remixes bar-->
 <div class="remixes-bar" data-controller="play-all">
+
   <!--play all button (DISPLAY NONE IS ACTIVATED ON CSS UNTIL NEEDED)-->
   <div class="play-all">
     <div class="audio-player">
@@ -16,9 +17,9 @@
         </div>
     </div>
   </div>
+
   <!--remixes-->
   <div class="remixes">
-
     <!-- Remix button -->
     <div class="audio-player">
       <div class="avatar-container show-avatar-item">
@@ -38,7 +39,6 @@
     </div>
 
     <!--remixes-->
-
       <div class="remixes">
         <% @remixes.each do |remix| %>
           <div class="audio-player" style="gap:8px" data-controller="audio">
@@ -56,7 +56,7 @@
                 <div class="mt-2">
                   <% if user_signed_in? && current_user.id != remix.user_id %>
                     <%= link_to profile_path(remix.user.nickname) do %>
-                    <div class="d-flex" style="gap:8px;align-items:center">
+                    <div class="d-flex" style="gap:8px;justify-content: center;">
                       <p data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= remix.user.nickname %></p>
                       <p data-audio-target="nickname" style="color:grey">@<%= remix.user.nickname %></p>
                     </div>
@@ -85,14 +85,7 @@
           </div>
         <% end %>
       </div>
-
-
-
-
-
   </div>
-
   <!-- Remix form (Modal) -->
   <%= render partial: "remix_modal"%>
-
 </div>
