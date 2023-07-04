@@ -1,61 +1,60 @@
 <!--remixes bar-->
-<div class="remixes-bar" >
-
+<div class="remixes-bar" data-controller="play-all">
   <!--remixes-->
   <div class="remixes">
-
-
 
     <!-- Remix button -->
     <div class="audio-player">
       <div class="avatar-container show-avatar-item">
         <% if @post.remixes.count >= 1 %>
-          <div class="image-button" style="pointer-events: none;">
-            <i class="fas fa-plus avatar"></i> <!-- Font Awesome 'add' icon -->
+          <div class="image-button" style="display: none;">
+            <i class="fas fa-plus avatar-medium"></i> <!-- Font Awesome 'add' icon -->
           </div>
         <% else %>
           <%= link_to "#remixModal", "data-bs-toggle" => "modal", "data-bs-target" => "#remixModal", class: "" do %>
-            <i class="fas fa-plus avatar"></i> <!-- Font Awesome 'add' icon -->
+            <i class="fas fa-plus avatar-medium"></i> <!-- Font Awesome 'add' icon -->
           <% end %>
         <% end %>
       </div>
-      <div class="d-flex justify-content-center"><p style="font-size: 9px" >Add new</p></div>
+      <% unless @post.remixes.count >= 1 %>
+        <div class="d-flex justify-content-center"><p style="font-size: 9px" >Add new</p></div>
+      <% end %>
     </div>
 
-
-
-
     <!--remixes-->
-    <div class="remixes" data-controller="play-all">
-      <% @remixes.each do |remix| %>
-        <div class="audio-player" data-controller="audio">
-          <% if remix.present? && remix.audio.attached? %>
-            <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
-              <%= image_tag url_for(remix.user.photo), class: "avatar", loading: "lazy" %>
-              <div class="avatar-overlay">
-                <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
-                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
-                <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
+
+      <div class="remixes">
+        <% @remixes.each do |remix| %>
+          <div class="audio-player" data-controller="audio">
+            <% if remix.present? && remix.audio.attached? %>
+              <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
+                <%= image_tag url_for(remix.user.photo), class: "avatar-medium", loading: "lazy" %>
+                <div class="avatar-overlay">
+                  <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
+                  <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
+                  <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
+                </div>
               </div>
-            </div>
-            <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
-            <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
-            </audio>
-            <!--mini audio player -->
-            <div class="avatar-audio-player">
-              <span class="current-time" data-audio-target="currentTime"></span>
-              <div data-audio-target="progressContainer" class="progress-bar-container">
-                <div class="progress-bar" data-audio-target="progressBar"></div>
+              <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
+              <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
+              </audio>
+              <!--mini audio player -->
+              <div class="avatar-audio-player">
+                <span class="current-time" data-audio-target="currentTime"></span>
+                <div data-audio-target="progressContainer" class="progress-bar-container">
+                  <div class="progress-bar" data-audio-target="progressBar"></div>
+                </div>
+                <span class="duration" data-audio-target="duration"></span>
               </div>
-              <span class="duration" data-audio-target="duration"></span>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-      <!--play all button-->
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+          <!--play all button-->
       <div class="audio-player">
           <div data-action="click->play-all#togglePlayAll" class="avatar-container show-avatar-item">
-            <div class="avatar" style="background-color:#1FDF64; border-radius:50%;"></div>
+            <div class="avatar-navbar" style="background-color:#1FDF64; border-radius:50%;border: #2df75c 1px solid;"></div>
             <div class="avatar-overlay">
               <i class="play-icon fas fa-play" data-play-all-target="playAllIcon"></i>
               <i class="pause-icon fas fa-pause" data-play-all-target="pauseAllIcon" style="display: none;"></i>
@@ -63,8 +62,8 @@
             </div>
           </div>
           <div class="d-flex justify-content-center"><p data-play-all-target="nickname" style="font-size: 9px" >Play all</p></div>
-        </div>
       </div>
+
 
 
   </div>

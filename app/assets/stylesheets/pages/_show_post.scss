@@ -121,16 +121,23 @@
   margin-top: 34px;
 }
 
-.remixes {
+.remixes-bar {
+  margin-top: 28px;
+  margin-bottom: 28px;
   display: flex;
-  flex-direction: row;
-  gap: 8px;
+  align-items: center;
 }
 
-.remixes-bar {
+.remixes {
   display: flex;
-  justify-content: end;
-  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 58px;
+}
+
+.my-remixes {
+  display: flex;
+  gap: 8px;
 }
 
 .title-bar {

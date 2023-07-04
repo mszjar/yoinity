@@ -9,8 +9,10 @@
   </div>
   <div class="mt-3" data-controller="tabs">
     <div class="notifications">
-      <!-- story -->
       <div class="notification story" data-tabs-target="notification">
+        <!--remixes-->
+        <%= render partial: "remixes"%>
+        <!--story-->
         <%= render partial: "story" %>
       </div>
       <!-- reviews -->
