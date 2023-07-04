@@ -124,7 +124,6 @@
 .remixes-bar {
   margin-top: 38px;
   margin-bottom: 38px;
-  display: flex;
   align-items: center;
 }
 
@@ -138,6 +137,11 @@
 .my-remixes {
   display: flex;
   gap: 8px;
+}
+
+.play-all {
+  display: flex;
+  justify-content: end;
 }
 
 .title-bar {
