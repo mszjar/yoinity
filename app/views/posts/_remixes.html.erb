@@ -25,7 +25,7 @@
 
       <div class="remixes">
         <% @remixes.each do |remix| %>
-          <div class="audio-player" data-controller="audio">
+          <div class="audio-player" style="gap:8px" data-controller="audio">
             <% if remix.present? && remix.audio.attached? %>
               <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
                 <%= image_tag url_for(remix.user.photo), class: "avatar-medium", loading: "lazy" %>
@@ -35,11 +35,39 @@
                   <div class="green-overlay" data-audio-target="greenOverlay" style="display: none;"></div>
                 </div>
               </div>
-              <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
+              <div class="d-flex justify-content-between">
+              <!--username-->
+                <div style="align-items-center">
+                        <% if user_signed_in? && current_user.id != remix.user_id %>
+                          <%= link_to profile_path(remix.user.nickname) do %>
+                            <p data-audio-target="nickname" style="color:white;font-weight:bold"><%= remix.user.nickname %></p>
+                            <p data-audio-target="nickname" style="color:grey">@<%= remix.user.nickname %></p>
+                          <% end %>
+                        <% else %>
+                          <%= link_to '/dashboard/show' do %>
+                            <p data-audio-target="nickname" style="color:white;font-weight:bold"><%= remix.user.nickname %></p>
+                            <p data-audio-target="nickname" style="color:grey">@<%= remix.user.nickname %></p>
+                          <% end %>
+                        <% end %>
+                </div>
+                <!--follow button-->
+                <div class="d-flex align-items-center" >
+                  <% if user_signed_in? && current_user.id != remix.user_id %>
+                    <turbo-frame id="follow_button_<%= remix.user_id %>">
+                      <% user_follow = current_user.following?(User.find(remix.user_id)) %>
+                      <% if user_follow %>
+                        <%= button_to "Following ✔", unfollow_follower_path(User.find(remix.user_id)), class: "btn btn-mini-following", method: :post, remote: true %>
+                      <% else %>
+                        <%= button_to "Follow", follow_follower_path(User.find(remix.user_id)), class: "btn btn-mini-follow", method: :post, remote: true %>
+                      <% end %>
+                    </turbo-frame>
+                  <% end %>
+                </div>
+              </div>
               <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
               </audio>
               <!--mini audio player -->
-              <div class="avatar-audio-player">
+              <div class="mt-3 avatar-audio-player">
                 <span class="current-time" data-audio-target="currentTime"></span>
                 <div data-audio-target="progressContainer" class="progress-bar-container">
                   <div class="progress-bar" data-audio-target="progressBar"></div>
