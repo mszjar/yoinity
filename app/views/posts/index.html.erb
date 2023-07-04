@@ -20,7 +20,7 @@
     <%= render partial: 'posts', locals: { posts: @posts } %>
     <% if @posts.next_page %>
       <div class="show-more tab-index" id="load-more" data-controller="load-more">
-        <h6><a href="<%= posts_path(page: @posts.next_page) %>" data-action="click->load-more#loadMore" data-load-more-target="link">Show More</a></h6>
+        <a href="<%= posts_path(page: @posts.next_page) %>" data-action="click->load-more#loadMore" data-load-more-target="link">Show More</a>
       </div>
     <% end %>
   </div>
