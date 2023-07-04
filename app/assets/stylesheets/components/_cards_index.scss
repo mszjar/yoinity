@@ -6,9 +6,16 @@
 
 .cards > *:not(:last-child)::after {
   content: "";
+  display: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cards > *:not(:last-child):not(.dropdown-post)::after {
+  content: "";
   display: block;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 
 .main-card {
   width: 50%;
