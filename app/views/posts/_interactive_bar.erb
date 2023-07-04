@@ -32,10 +32,10 @@
 </div>
 
 <!--interactive-icons-->
-<div class="subtitle-interactive">
+<div class="subtitle-interactive" >
   <div class="show-icons">
     <!--icon reviews-->
-    <div class="show-icons-item">
+    <div class="show-icons-item" data-controller="tooltip" data-tooltip-content="Reviews">
       <% if @post.comments.count == 0 %>
         <button type="button" class="icon-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><i class="far fa-comment"></i></button>
       <% else %>
@@ -43,10 +43,10 @@
       <% end %>
       <p><%= @post.comments.count %></p>
     </div>
-    <!--icon save for later-->
+    <!--Bookmark (save for later)-->
     <div class="show-icons-item">
       <% if user_signed_in? %>
-        <turbo-frame id="save_button_<%= @post.id %>">
+        <turbo-frame id="save_button_<%= @post.id %>" data-controller="tooltip" data-tooltip-content="Bookmark">
           <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
           <% if saved_for_later.nil? %>
             <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
@@ -65,7 +65,7 @@
     <!--icon quality-->
     <div class="show-icons-item">
       <% if user_signed_in? %>
-        <turbo-frame id="quality_button_<%= @post.id %>">
+        <turbo-frame id="quality_button_<%= @post.id %>" data-controller="tooltip" data-tooltip-content="Did you find value on this post?">
           <% post_quality = current_user.post_qualities.find_by(post: @post) %>
           <% if post_quality.nil? %>
             <%= button_to post_qualities_path, class: "icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
@@ -104,7 +104,7 @@
     <% end %>
       <!--icon like-->
     <% if user_signed_in? %>
-      <turbo-frame id="like_button_<%= @post.id %>">
+      <turbo-frame id="like_button_<%= @post.id %>" data-controller="tooltip" data-tooltip-content="Like">
         <% post_like = current_user.post_likes.find_by(post: @post) %>
         <% if post_like.nil? %>
           <%= button_to post_likes_path, class: "icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
