@@ -47,25 +47,24 @@
     <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body>
-      <div class="post-container">
-        <!--left-side-navbar-->
-        <% if action_name == "new" && controller_name == "posts" %>
-          <%= render "shared/flashes" %>
-        <% else %>
-          <%= render "shared/navbar" %>
-        <% end %>
-        <!--main-content-->
-        <%= yield %>
-        <!--righ-side-navbar-->
-        <% unless action_name == "index" && controller_name == "posts" %>
-          <%= render "shared/navbar_right" %>
-        <% end %>
-      </div>
-      <% if action_name == "index" && controller_name == "posts" %>
-          <%= render "shared/navbar_right" %>
+    <div class="post-container">
+      <!--left-side-navbar-->
+      <% if action_name == "new" && controller_name == "posts" %>
+        <%= render "shared/flashes" %>
+      <% else %>
+        <%= render "shared/navbar" %>
       <% end %>
-
-          <!-- Service Worker Registration -->
+      <!--main-content-->
+      <%= yield %>
+      <!--righ-side-navbar-->
+      <% unless action_name == "index" && controller_name == "posts" %>
+        <%= render "shared/navbar_right" %>
+      <% end %>
+      <% if action_name == "index" && controller_name == "posts" %>
+        <%= render "shared/navbar_right" %>
+      <% end %>
+    </div>
+    <!-- Service Worker Registration -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
