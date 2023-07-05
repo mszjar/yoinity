@@ -4,8 +4,8 @@ if (workbox) {
   console.log(`Workbox is loaded`);
 
   workbox.routing.registerRoute(
-    new RegExp('https://www.yoinity.com/p/'),
-    new workbox.strategies.CacheFirst({
+    new RegExp('https://www.yoinity.com/'),
+    new workbox.strategies.StaleWhileRevalidate({
       cacheName: 'posts',
     })
   );
