@@ -5,7 +5,7 @@ if (workbox) {
 
   workbox.routing.registerRoute(
     new RegExp('https://www.yoinity.com/p/'),
-    new workbox.strategies.StaleWhileRevalidate({
+    new workbox.strategies.CacheFirst({
       cacheName: 'posts',
     })
   );
