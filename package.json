@@ -12,7 +12,8 @@
     "style-loader": "^3.3.2",
     "tippy.js": "^6.3.7",
     "webpack": "^5.78.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "workbox-sw": "^7.0.0"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js"
