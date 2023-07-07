@@ -8,6 +8,34 @@
   width: 100%;
 }
 
+// .navbar-scroll {
+//   position: sticky;
+// }
+
+// .navbar-left {
+//   position: fixed;
+//   padding-right: 60px;
+//   top: 25px;
+//   bottom: 0;
+//   left: 400px;
+//   z-index: 1;
+// }
+
+.navbar-left {
+  position: sticky;
+  padding-right: 60px;
+}
+
+@media (max-width: 1130px) {
+  .navbar-left {
+    padding-left: 60px;
+  }
+}
+
+.navbar-items {
+  position: fixed;
+}
+
 @media (max-width: 690px) {
   .menu-container {
     margin-top: 5px;
@@ -48,6 +76,13 @@
   }
 }
 
+.nav-logo {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-bottom: 20px;
+}
+
 .nav-item {
   display: flex;
   margin-left: 10px;
@@ -82,8 +117,8 @@
 }
 
 .navbar-right {
-  position:fixed;
-  right:308px;
+  position: sticky;
+  padding-left: 10px;
 }
 
 .account-menu {

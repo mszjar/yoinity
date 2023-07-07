@@ -57,12 +57,7 @@
       <!--main-content-->
       <%= yield %>
       <!--righ-side-navbar-->
-      <% unless action_name == "index" && controller_name == "posts" %>
-        <%= render "shared/navbar_right" %>
-      <% end %>
-      <% if action_name == "index" && controller_name == "posts" %>
-        <%= render "shared/navbar_right" %>
-      <% end %>
+      <%= render "shared/navbar_right" %>
     </div>
     <!-- Service Worker Registration -->
     <script>
