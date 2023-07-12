@@ -70,11 +70,19 @@
           </div>
         <% else %>
           <div class= "navbar-items">
-            <li class="nav-item all-text-grey">
-              <%= link_to "Login", new_user_session_path, class: "navbar-link" %>
+            <li class="nav-logo">
+              <%= link_to "/", class: "navbar-brand" do %>
+                <%= image_tag "yoinity_logo.png" %>
+              <% end %>
+              <div class="all-text-white", style="font-size: 24px">
+                <%= link_to "Yoinity", "/", class: "yoinity-logo"%>
+              </div>
             </li>
             <li class="nav-item all-text-grey">
-              <%= link_to "Sign up", new_user_registration_path, class: "navbar-link" %>
+              <%= link_to "Login", new_user_session_path, class: "navbar-link tab-index" %>
+            </li>
+            <li class="nav-item mt-5">
+              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-create" %>
             </li>
           </div>
         <% end %>
