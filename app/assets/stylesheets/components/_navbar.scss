@@ -8,22 +8,14 @@
   width: 100%;
 }
 
-// .navbar-scroll {
-//   position: sticky;
-// }
-
-// .navbar-left {
-//   position: fixed;
-//   padding-right: 60px;
-//   top: 25px;
-//   bottom: 0;
-//   left: 400px;
-//   z-index: 1;
-// }
-
 .navbar-left {
   position: sticky;
   padding-right: 60px;
+}
+
+.navbar-right {
+  position: sticky;
+  padding-left: 60px;
 }
 
 @media (max-width: 1130px) {
@@ -120,11 +112,6 @@
   margin-left: 10px;
   margin-top: 10px;
   margin-right: 15px;
-}
-
-.navbar-right {
-  position: sticky;
-  padding-left: 10px;
 }
 
 .account-menu {

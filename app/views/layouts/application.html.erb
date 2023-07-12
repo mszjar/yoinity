@@ -49,15 +49,17 @@
   <body>
     <div class="post-container">
       <!--left-side-navbar-->
-      <% if action_name == "new" && controller_name == "posts" %>
-        <%= render "shared/flashes" %>
-      <% else %>
+      <% unless action_name == "new" && controller_name == "posts" %>
         <%= render "shared/navbar" %>
       <% end %>
       <!--main-content-->
       <%= yield %>
       <!--righ-side-navbar-->
-      <%= render "shared/navbar_right" %>
+      <% unless action_name == "new" && controller_name == "posts" %>
+        <%= render "shared/navbar_right" %>
+      <% end %>
+      <!--alert-messages-->
+      <%= render "shared/flashes" %>
     </div>
     <!-- Service Worker Registration -->
     <script>
