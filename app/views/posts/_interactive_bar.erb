@@ -1,6 +1,6 @@
 <!--interactive-icons-->
 <div class="subtitle-interactive" >
-  <div class="show-icons">
+  <div class="show-icons mt-5">
     <!--icon reviews-->
     <div class="show-icons-item" data-controller="tooltip" data-tooltip-content="Reviews">
       <% if @post.comments.count == 0 %>
@@ -49,7 +49,7 @@
     </div>
   </div>
 
-  <div class="show-icons">
+  <div class="show-icons mt-5">
     <!--icon like-->
     <div class="show-icons-item">
       <% if user_signed_in? %>

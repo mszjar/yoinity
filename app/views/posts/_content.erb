@@ -1,12 +1,12 @@
-<!--date-->
+<!--date
 <div class="show-icons-item mt-5">
   <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
 </div>
-<!--duration-->
+  duration
 <div class="show-icons-item">
   <div class="show-date"><%= @post.speech_duration.round(0) %> min read</div>
 </div>
-<!--amazon polly-->
+  amazon polly
 <div class="show-icons-item mt-1 mb-3">
   <% if user_signed_in? %>
     <div class="audio-player" data-controller="audio">
@@ -22,6 +22,7 @@
     </div>
   <% end %>
 </div>
+-->
 <!--text content-->
 <div class="content-bar" >
     <p><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>
