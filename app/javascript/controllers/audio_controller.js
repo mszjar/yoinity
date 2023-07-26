@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["audio", "playIcon", "pauseIcon", "greenOverlay", "nickname", "progressBar", "duration", "progressContainer", "currentTime"];
 
   connect() {
-    this.hideIcons(); // Ensure icons are hidden initially
+    this.showControls(); // Ensure icons are shown initially
 
     this.audio = this.audioTarget;
     this.progressBar = this.progressBarTarget;
