@@ -1,0 +1,28 @@
+<!--date-->
+<div class="show-icons-item mt-5">
+  <div class="show-date"><%= @post.created_at.strftime("%-d %B %Y") %></div>
+</div>
+<!--duration-->
+<div class="show-icons-item">
+  <div class="show-date"><%= @post.speech_duration.round(0) %> min read</div>
+</div>
+<!--amazon polly-->
+<div class="show-icons-item mt-1 mb-3">
+  <% if user_signed_in? %>
+    <div class="audio-player" data-controller="audio">
+        <div data-action="mouseenter->audio#showControls click->audio#togglePlay" class="avatar-container show-avatar icon-button">
+            <div class="avatar-xxs" style="background-color:#1FDF64; border-radius:50%; height: 22px; width: 22px;"></div>
+            <div class="avatar-overlay-little">
+                <i class="play-icon fas fa-play" data-audio-target="playIcon"></i>
+                <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon"></i>
+            </div>
+        </div>
+      <audio data-audio-target="audio" data-src="<%= speech_post_path(@post.token) %>" type="audio/mpeg">
+      </audio>
+    </div>
+  <% end %>
+</div>
+<!--text content-->
+<div class="content-bar" >
+    <p><%= @post.content.gsub(/\n/, '<br>').html_safe %></p>
+</div>
