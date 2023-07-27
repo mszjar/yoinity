@@ -54,10 +54,21 @@
   border: #2df75c 1px solid;
 }
 
+.index-play-button {
+  font-size: 11px;
+}
+
 @media (max-width: 768px) {
   .avatar-small {
     width: 30px;
     height: 30px;
+  }
+  .avatar-xxs {
+    width: 16px;
+    height: 16px;
+  }
+  .index-play-button {
+    font-size: 7px;
   }
 }
 
@@ -68,10 +79,21 @@
   border-radius: 2px;
 }
 
+.avatar-show-post {
+  object-fit: cover;
+  width: 74px;
+  height: 74px;
+  border-radius: 2px;
+}
+
 @media (max-width: 768px) {
   .avatar-post {
     width: 45px;
     height: 45px;
+  }
+  .avatar-show-post {
+    width: 65px;
+    height: 65px;
   }
 }
 

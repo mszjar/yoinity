@@ -29,7 +29,7 @@
 
 @media (max-width: 768px) {
   .card-body .infos .title {
-    font-size: 12px; /* or whatever size you want */
+    font-size: 12px;
   }
 }
 
@@ -73,6 +73,9 @@
 @media (max-width: 768px) {
   .card-body .infos .date {
     font-size: 9px;
+  }
+  .card-body .infos .nickname {
+    font-size: 8px;
   }
 }
 
@@ -192,6 +195,9 @@
   .card-body .infos .content {
     width: 80%;
     font-size: 10px;
+  }
+  .card-body .infos .quality {
+    font-size: 12px;
   }
 }
 
