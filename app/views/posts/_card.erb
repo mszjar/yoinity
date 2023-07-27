@@ -1,10 +1,10 @@
 <div class="card">
   <div class="card-body">
     <div class="infos">
+    <div class="nickname">@<%=post.user.nickname%></div>
     <div class="card-images">
       <div>
         <%= image_tag url_for(post.user.photo), class: "avatar-small" %>
-        <h3 class="d-flex nickname justify-content-center">@<%=post.user.nickname%></h3>
       </div>
       <div style="width:50%">
         <h5 class="card-title title"><%=post.title%></h5>
