@@ -1,7 +1,11 @@
 <div class="card">
   <div class="card-body">
     <div class="infos">
-    <div class="nickname">@<%=post.user.nickname%></div>
+    <div class="d-flex" style="gap:8px">
+      <div class="nickname" style="color:white;font-weight:bold !important"><%=post.user.nickname%></div>
+      <div class="nickname" style="color:grey;font-weight:lighter !important">@<%=post.user.nickname%></div>
+      <div class="nickname" style="color:#80808085;font-weight:lighter !important">· <%= time_ago_in_words(post.created_at) %> ago</div>
+    </div>
     <div class="card-images">
       <div>
         <%= image_tag url_for(post.user.photo), class: "avatar-small" %>

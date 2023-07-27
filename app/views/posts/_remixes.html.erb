@@ -58,14 +58,14 @@
                     <%= link_to profile_path(remix.user.nickname) do %>
                     <div class="d-flex" style="gap:8px;justify-content: center;">
                       <p data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= remix.user.nickname %></p>
-                      <p data-audio-target="nickname" style="color:grey">@<%= remix.user.nickname %></p>
+                      <p data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= remix.user.nickname %></p>
                     </div>
                     <% end %>
                   <% else %>
                     <%= link_to '/dashboard/show' do %>
                     <div class="d-flex" style="gap:8px;justify-content: center;">
                       <p data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= remix.user.nickname %></p>
-                      <p data-audio-target="nickname" style="color:grey">@<%= remix.user.nickname %></p>
+                      <p data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= remix.user.nickname %></p>
                     </div>
                     <% end %>
                   <% end %>
