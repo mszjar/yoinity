@@ -10,9 +10,9 @@
           <div data-action="mouseenter->audio#showControls mouseleave->audio#hideIcons click->audio#togglePlay" class="avatar-container show-avatar-item">
             <%= image_tag url_for(remix.user.photo), class: "avatar-navbar", loading: "lazy" %>
             <div class="avatar-overlay">
-              <i class="play-icon fas fa-play" data-audio-target="playIcon" style="display: none;"></i>
-              <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="display: none;"></i>
-              <div class="green-overlay-medium" data-audio-target="greenOverlay" style="display: none;"></div>
+              <i class="play-icon fas fa-play" data-audio-target="playIcon" style="font-size: 12px;"></i>
+              <i class="pause-icon fas fa-pause" data-audio-target="pauseIcon" style="font-size: 12px;"></i>
+              <div class="green-overlay-medium" data-audio-target="greenOverlay" style="font-size: 12px;"></div>
             </div>
           </div>
           <div class="d-flex justify-content-center"><p data-audio-target="nickname" style="font-size: 9px"><%= remix.user.nickname %></p></div>
