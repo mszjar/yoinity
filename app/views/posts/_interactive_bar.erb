@@ -29,7 +29,7 @@
       <% end %>
     </div>
 
-    <!--icon quality-->
+    <!--icon like-->
     <div class="show-icons-item">
           <% if user_signed_in? %>
         <turbo-frame id="like_button_<%= @post.id %>" data-controller="tooltip" data-tooltip-content="Like">
@@ -47,10 +47,31 @@
         <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
       <% end %>
     </div>
+
+    <!--icon repost-->
+    <div class="show-icons-item" data-controller="tooltip" data-tooltip-content="Repost">
+      <button type="button" class="icon-button" data-bs-toggle="modal" data-bs-target="#repostModal">
+        <i class="fas fa-retweet"></i>
+      </button>
+      <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
+    </div>
+
   </div>
 
   <div class="show-icons mt-5">
-    <!--icon like-->
+    <!--listens-icon-->
+    <div class="show-icons-item" data-controller="tooltip" data-tooltip-content="Listens">
+      <button type="button" class="icon-button" data-bs-toggle="modal" data-bs-target="#listensModal">
+        <i class="fas fa-headphones"></i>
+      </button>
+      <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
+    </div>
+    <!--icon share-->
+    <div class="show-icons-item" data-controller="tooltip" data-tooltip-content="Share">
+      <button type="button" class="icon-button" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="fas fa-share-alt"></i></button>
+    </div>
+
+    <!--icon quality-->
     <div class="show-icons-item">
       <% if user_signed_in? %>
         <turbo-frame id="quality_button_<%= @post.id %>" data-controller="tooltip" data-tooltip-content="Did you find value on this post?">
@@ -68,7 +89,10 @@
       <div class='icon-button' style="font-size:16px"><%= @post.post_qualities.count %></div>
       <% end %>
     </div>
+
   </div>
+
+
 </div>
 
 

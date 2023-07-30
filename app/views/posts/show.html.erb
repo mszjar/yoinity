@@ -10,6 +10,8 @@
   <div class="mt-5">
         <!--title-bar-->
         <%= render partial: "title_bar"%>
+        <!--date-->
+        <div class="nickname" style="color:#80808085;font-weight:lighter !important"><%= time_ago_in_words(@post.created_at) %> ago</div>
         <!--remixes-->
         <%= render partial: "remixes"%>
         <!--interactive-bar-->
