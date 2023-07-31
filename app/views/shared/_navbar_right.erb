@@ -9,7 +9,12 @@
       <ul class="navbar-nav me-auto" style="width: 100%">
           <div class= "">
             <li class="nav-item">
-                <p style="color:gray;font-size:14px;">Here you will find more people</p>
+                  <% @users.each do |user| %>
+                    <div>
+                      <%= link_to user.nickname, profile_path(user.nickname) %>
+                      <%= button_to 'Follow', follow_follower_path(user), method: :post %>
+                    </div>
+                  <% end %>
             </li>
           </div>
       </ul>

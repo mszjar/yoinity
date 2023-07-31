@@ -16,4 +16,9 @@ class FollowersController < ApplicationController
       format.html { redirect_to request.path }
     end
   end
+
+  def suggested
+    @users = User.suggested_users(current_user)
+  end
+
 end
