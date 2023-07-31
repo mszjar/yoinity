@@ -1,5 +1,8 @@
 <turbo-frame id="quality_button_<%= @post.id %>">
   <%= button_to post_qualities_path, class: "icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
-    <i class="far fa-star"></i>
+    <div class="show-icons-item" style="gap:4px;" >
+      <i class="far fa-star"></i>
+      <div class='icon-button' style="font-size:16px"><%= @post.post_qualities.count %></div>
+    </div>
   <% end %>
 </turbo-frame>
