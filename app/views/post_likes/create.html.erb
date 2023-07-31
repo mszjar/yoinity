@@ -1,6 +1,9 @@
 <!-- app/views/post_likes/create.html.erb -->
 <turbo-frame id="like_button_<%= @post.id %>">
   <%= button_to post_like_path(@post_like), class: "icon-button", method: :delete do %>
-    <i class="fas fa-heart" style="color: #FF3040; font-size: 24px"></i>
+    <div class="show-icons-item"  style="gap:4px;">
+      <div><i class="fas fa-heart" style="color: #FF3040"></i></div>
+      <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
+    </div>
   <% end %>
 </turbo-frame>

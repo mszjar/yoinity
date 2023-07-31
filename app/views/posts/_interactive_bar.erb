@@ -30,21 +30,26 @@
     </div>
 
     <!--icon like-->
-    <div class="show-icons-item">
-          <% if user_signed_in? %>
+    <div class="">
+      <% if user_signed_in? %>
         <turbo-frame id="like_button_<%= @post.id %>" data-controller="tooltip" data-tooltip-content="Like">
           <% post_like = current_user.post_likes.find_by(post: @post) %>
           <% if post_like.nil? %>
             <%= button_to post_likes_path, class: "icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
-              <i class="far fa-heart" style=""></i>
+              <div class="show-icons-item" style="gap:4px;" >
+                <div><i class="far fa-heart"></i></div>
+                <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
+              </div>
             <% end %>
           <% else %>
             <%= button_to post_like_path(post_like), class: "icon-button", method: :delete do %>
-              <i class="fas fa-heart" style="color: #FF3040; "></i>
+              <div class="show-icons-item" style="gap:4px;" >
+                <div><i class="fas fa-heart" style="color: #FF3040;"></i></div>
+                <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
+              </div>
             <% end %>
           <% end %>
         </turbo-frame>
-        <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
       <% end %>
     </div>
 
