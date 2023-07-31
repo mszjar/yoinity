@@ -56,7 +56,7 @@ class User < ApplicationRecord
   end
 
   def self.suggested_users(current_user)
-    User.all_except(current_user).sort_by{ |user| -user.followers_count }.first(5)
+    User.all_except(current_user).sort_by{ |user| -user.followers_count }.first(10)
   end
 
   def self.all_except(user)
