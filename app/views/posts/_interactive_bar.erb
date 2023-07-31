@@ -17,34 +17,44 @@
           <% saved_for_later = current_user.saved_for_laters.find_by(post: @post) %>
           <% if saved_for_later.nil? %>
             <%= button_to saved_for_laters_path, class: "icon-button", params: { saved_for_later: { post_id: @post.id }}, method: :post do %>
-              <i class="far fa-bookmark"></i>
+              <div class="show-icons-item" style="gap:4px;" >
+                <i class="far fa-bookmark"></i>
+                <div class='icon-button' style="font-size:16px"><%= @post.saved_for_laters.count %></div>
+              </div>
             <% end %>
           <% else %>
             <%= button_to saved_for_later_path(saved_for_later), class: "icon-button", method: :delete do %>
-              <i class="fas fa-bookmark"></i>
+              <div class="show-icons-item" style="gap:4px;" >
+                <i class="fas fa-bookmark"></i>
+                <div class='icon-button' style="font-size:16px"><%= @post.saved_for_laters.count %></div>
+              </div>
             <% end %>
           <% end %>
         </turbo-frame>
-      <div class='icon-button' style="font-size:16px"><%= @post.saved_for_laters.count %></div>
       <% end %>
     </div>
 
     <!--icon like-->
     <div class="show-icons-item">
-          <% if user_signed_in? %>
+      <% if user_signed_in? %>
         <turbo-frame id="like_button_<%= @post.id %>" data-controller="tooltip" data-tooltip-content="Like">
           <% post_like = current_user.post_likes.find_by(post: @post) %>
           <% if post_like.nil? %>
             <%= button_to post_likes_path, class: "icon-button", params: { post_like: { post_id: @post.id }}, method: :post do %>
-              <i class="far fa-heart" style=""></i>
+              <div class="show-icons-item" style="gap:4px;" >
+                <div><i class="far fa-heart"></i></div>
+                <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
+              </div>
             <% end %>
           <% else %>
             <%= button_to post_like_path(post_like), class: "icon-button", method: :delete do %>
-              <i class="fas fa-heart" style="color: #FF3040; "></i>
+              <div class="show-icons-item" style="gap:4px;" >
+                <div><i class="fas fa-heart" style="color: #FF3040;"></i></div>
+                <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
+              </div>
             <% end %>
           <% end %>
         </turbo-frame>
-        <div class='icon-button' style="font-size:16px"><%= @post.post_likes.count %></div>
       <% end %>
     </div>
 
@@ -78,15 +88,20 @@
           <% post_quality = current_user.post_qualities.find_by(post: @post) %>
           <% if post_quality.nil? %>
             <%= button_to post_qualities_path, class: "icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
-              <i class="far fa-star"></i>
+              <div class="show-icons-item" style="gap:4px;" >
+                <i class="far fa-star"></i>
+                <div class='icon-button' style="font-size:16px"><%= @post.post_qualities.count %></div>
+              </div>
             <% end %>
           <% else %>
             <%= button_to post_quality_path(post_quality), class: "icon-button", method: :delete do %>
-              <i class="fas fa-star" style="color: #FFD43B"></i>
+              <div class="show-icons-item" style="gap:4px;" >
+                <i class="fas fa-star" style="color: #FFD43B"></i>
+                <div class='icon-button' style="font-size:16px"><%= @post.post_qualities.count %></div>
+              </div>
             <% end %>
           <% end %>
         </turbo-frame>
-      <div class='icon-button' style="font-size:16px"><%= @post.post_qualities.count %></div>
       <% end %>
     </div>
 

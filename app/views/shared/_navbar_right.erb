@@ -8,8 +8,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto" style="width: 100%">
           <div class= "">
-            <li class="nav-item">
-                <p style="color:gray;font-size:14px;">Here you will find more people</p>
+            <li class="">
+                  <% @users.each do |user| %>
+                    <div class="d-flex justify-content-between" style='gap:8px'>
+                      <!--avatar profile-->
+                      <%= link_to profile_path(user.nickname) do %>
+                      <div class="d-flex">
+                        <%= image_tag url_for(user.photo), class: "avatar-navbar" %>
+                        <!--nickname-->
+                        <div class="align-items-center">
+                          <div style="color:white;font-size:14px" ><%= user.nickname %></div>
+                          <div style="color:grey;font-size:14px" >@<%= user.nickname %></div>
+                        </div>
+                      </div>
+                      <% end %>
+                      <turbo-frame id="follow_button_<%= user.id %>">
+                        <% user_follow = current_user.following?(user) %>
+                        <% if user_follow %>
+                          <h2 class = "d-flex align-items-center"><%= button_to "Following ✔", unfollow_follower_path(user), class: "btn btn-mini-following", method: :post, remote: true %></h2>
+                        <% else %>
+                          <h2 class = "d-flex align-items-center"><%= button_to "Follow", follow_follower_path(user), class: "btn btn-mini-follow", method: :post, remote: true %></h2>
+                        <% end %>
+                      </turbo-frame>
+                    </div>
+                  <% end %>
             </li>
           </div>
       </ul>

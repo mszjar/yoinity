@@ -55,6 +55,9 @@ Rails.application.routes.draw do
       post 'follow'
       post 'unfollow'
     end
+    collection do
+      get 'suggested'
+    end
   end
 
   get "voice_design", to: "pages#voice_design"

@@ -1,5 +1,8 @@
 <turbo-frame id="save_button_<%= @post.id %>">
   <%= button_to saved_for_later_path(@saved_for_later), class: "icon-button", method: :delete do %>
-    <i class="fas fa-bookmark"></i>
+    <div class="show-icons-item" style="gap:4px;" >
+      <i class="fas fa-bookmark"></i>
+      <div class='icon-button' style="font-size:16px"><%= @post.saved_for_laters.count %></div>
+    </div>
   <% end %>
 </turbo-frame>

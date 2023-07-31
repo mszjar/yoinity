@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_action :set_suggested_users
   include Pundit::Authorization
 
   # Pundit: allow-list approach
@@ -33,4 +34,13 @@ class ApplicationController < ActionController::Base
   def default_url_options
     { host: ENV["DOMAIN"] || "localhost:3000" }
   end
+
+  def set_suggested_users
+    if user_signed_in?
+      @users = User.suggested_users(current_user)
+    else
+      @users = []
+    end
+  end
+
 end
