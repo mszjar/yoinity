@@ -22,11 +22,16 @@
           <% end %>
         </div>
       </div>
+      <!--posts, followers, following-->
       <div class="d-flex justify-content-center" style="color:white;">
-        <h6  class="mb-5", style="margin-right: 30px"><%= @user.posts.count %> Posts</h6>
-        <h6  class="mb-5"><%= @user.followers_count %> Followers</h6>
-        <h6  class="mb-5", style="margin-left: 30px"><%= @user.follow_count %> Following</h6>
-      </div>
+      <h6 class="mb-5", style="margin-right: 30px"><%= @user.posts.count %> Posts</h6>
+      <h6 class="mb-5">
+        <%= link_to "#{@user.followers_count} Followers", "#followersModal", "data-bs-toggle" => "modal", "data-bs-target" => "#followersModal" %>
+      </h6>
+      <h6 class="mb-5", style="margin-left: 30px">
+        <%= link_to "#{@user.follow_count} Following", "#followingModal", "data-bs-toggle" => "modal", "data-bs-target" => "#followingModal" %>
+      </h6>
+    </div>
     </div>
     <div class="cards">
       <% @user.posts.each do |post| %>
@@ -37,6 +42,71 @@
       <% end %>
     </div>
 </div>
+
+<!-- Followers Modal -->
+<div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="followersModalLabel">Followers</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <% @user.followers_by_type('User').each do |follower| %>
+          <div class="d-flex align-items-center" style="gap:8px">
+          <%= link_to profile_path(follower.nickname) do %>
+            <%= image_tag url_for(follower.photo), class: "avatar-xxs", loading: "lazy" %>
+          <% end %>
+          <div style= "color:white" ><%= follower.nickname %></div>
+            <% if user_signed_in? %>
+              <% user_follow = @user.following?(follower) %>
+              <% if user_follow %>
+                <p><%= button_to "Following ✔", unfollow_follower_path(follower), class: "btn btn-mini-following", method: :post %></p>
+              <% else %>
+                <p><%= button_to "Follow back", follow_follower_path(follower), class: "btn btn-mini-follow", method: :post %></p>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Following Modal -->
+<div class="modal fade" id="followingModal" tabindex="-1" aria-labelledby="followingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="followingModalLabel">Following</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <% @user.all_following.each do |followed_user| %>
+          <div class="d-flex align-items-center" style="gap:8px">
+          <%= link_to profile_path(followed_user.nickname) do %>
+            <%= image_tag url_for(followed_user.photo), class: "avatar-xxs", loading: "lazy" %>
+          <% end %>
+          <div style= "color:white" ><%= followed_user.nickname %></div>
+            <% if user_signed_in? %>
+              <% user_follow = @user.following?(followed_user) %>
+              <% if user_follow %>
+                <p><%= button_to "Remove", unfollow_follower_path(followed_user), class: "btn btn-mini-following", method: :post %></p>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Profile Image Modal -->
 <div class="modal fade" id="profileImageModal" tabindex="-1" aria-hidden="true">
