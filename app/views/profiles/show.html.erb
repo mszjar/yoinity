@@ -53,19 +53,16 @@
       </div>
       <div class="modal-body">
         <% @user.followers_by_type('User').each do |follower| %>
-          <div class="d-flex align-items-center" style="gap:8px">
-          <%= link_to profile_path(follower.nickname) do %>
-            <%= image_tag url_for(follower.photo), class: "avatar-xxs", loading: "lazy" %>
-          <% end %>
-          <div style= "color:white" ><%= follower.nickname %></div>
-            <% if user_signed_in? %>
-              <% user_follow = @user.following?(follower) %>
-              <% if user_follow %>
-                <p><%= button_to "Following ✔", unfollow_follower_path(follower), class: "btn btn-mini-following", method: :post %></p>
-              <% else %>
-                <p><%= button_to "Follow back", follow_follower_path(follower), class: "btn btn-mini-follow", method: :post %></p>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex" style="gap:8px;">
+              <!--avatar-->
+              <%= link_to profile_path(follower.nickname) do %>
+                <%= image_tag url_for(follower.photo), class: "avatar-xxs", loading: "lazy" %>
               <% end %>
-            <% end %>
+              <!--nickname-->
+              <div data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= follower.nickname %></div>
+              <div data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= follower.nickname %></div>
+            </div>
           </div>
         <% end %>
       </div>
@@ -86,17 +83,16 @@
       </div>
       <div class="modal-body">
         <% @user.all_following.each do |followed_user| %>
-          <div class="d-flex align-items-center" style="gap:8px">
-          <%= link_to profile_path(followed_user.nickname) do %>
-            <%= image_tag url_for(followed_user.photo), class: "avatar-xxs", loading: "lazy" %>
-          <% end %>
-          <div style= "color:white" ><%= followed_user.nickname %></div>
-            <% if user_signed_in? %>
-              <% user_follow = @user.following?(followed_user) %>
-              <% if user_follow %>
-                <p><%= button_to "Remove", unfollow_follower_path(followed_user), class: "btn btn-mini-following", method: :post %></p>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex" style="gap:8px;">
+              <!--avatar-->
+              <%= link_to profile_path(followed_user.nickname) do %>
+                <%= image_tag url_for(followed_user.photo), class: "avatar-xxs", loading: "lazy" %>
               <% end %>
-            <% end %>
+              <!--nickname-->
+              <div data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= followed_user.nickname %></div>
+              <div data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= followed_user.nickname %></div>
+            </div>
           </div>
         <% end %>
       </div>
