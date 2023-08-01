@@ -54,22 +54,13 @@
               <div class="d-flex" style="gap:8px">
               <!--username-->
                 <div class="mt-2">
-                  <% if user_signed_in? && current_user.id != remix.user_id %>
-                    <%= link_to profile_path(remix.user.nickname) do %>
+                  <%= link_to profile_path(remix.user.nickname) do %>
                     <div class="d-flex" style="gap:8px;justify-content: center;">
                       <p data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= remix.user.nickname %></p>
                       <p data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= remix.user.nickname %></p>
                     </div>
-                    <% end %>
-                  <% else %>
-                    <%= link_to '/dashboard/show' do %>
-                    <div class="d-flex" style="gap:8px;justify-content: center;">
-                      <p data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= remix.user.nickname %></p>
-                      <p data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= remix.user.nickname %></p>
-                    </div>
-                    <% end %>
                   <% end %>
-                  </div>
+                </div>
               </div>
               <audio data-play-all-target="audio" data-audio-target="audio" data-src="<%= rails_blob_path(remix.audio, disposition: "attachment") %>" type="<%= remix.audio.blob.content_type %>">
               </audio>
