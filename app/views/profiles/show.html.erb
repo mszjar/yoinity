@@ -54,15 +54,15 @@
       <div class="modal-body">
         <% @user.followers_by_type('User').each do |follower| %>
           <div class="d-flex justify-content-between">
-            <div class="d-flex" style="gap:8px;">
-              <!--avatar-->
               <%= link_to profile_path(follower.nickname) do %>
-                <%= image_tag url_for(follower.photo), class: "avatar-xxs", loading: "lazy" %>
+                <div class="d-flex" style="gap:8px;">
+                  <!--avatar-->
+                  <%= image_tag url_for(follower.photo), class: "avatar-xxs", loading: "lazy" %>
+                  <!--nickname-->
+                  <div data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= follower.nickname %></div>
+                  <div data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= follower.nickname %></div>
+                </div>
               <% end %>
-              <!--nickname-->
-              <div data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= follower.nickname %></div>
-              <div data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= follower.nickname %></div>
-            </div>
           </div>
         <% end %>
       </div>
@@ -84,15 +84,15 @@
       <div class="modal-body">
         <% @user.all_following.each do |followed_user| %>
           <div class="d-flex justify-content-between">
-            <div class="d-flex" style="gap:8px;">
-              <!--avatar-->
               <%= link_to profile_path(followed_user.nickname) do %>
-                <%= image_tag url_for(followed_user.photo), class: "avatar-xxs", loading: "lazy" %>
+                <div class="d-flex" style="gap:8px;">
+                  <!--avatar-->
+                  <%= image_tag url_for(followed_user.photo), class: "avatar-xxs", loading: "lazy" %>
+                  <!--nickname-->
+                  <div data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= followed_user.nickname %></div>
+                  <div data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= followed_user.nickname %></div>
+                </div>
               <% end %>
-              <!--nickname-->
-              <div data-audio-target="nickname" style="color:white;font-weight:bold !important"><%= followed_user.nickname %></div>
-              <div data-audio-target="nickname" style="color:grey;font-weight:lighter !important">@<%= followed_user.nickname %></div>
-            </div>
           </div>
         <% end %>
       </div>
