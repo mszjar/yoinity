@@ -84,7 +84,7 @@
     <!--icon quality-->
     <div class="show-icons-item">
       <% if user_signed_in? %>
-        <turbo-frame id="quality_button_<%= @post.id %>" data-controller="tooltip" data-tooltip-content="Did you find value on this post?">
+        <turbo-frame id="quality_button_<%= @post.id %>" data-controller="tooltip" data-tooltip-content="It's valuable">
           <% post_quality = current_user.post_qualities.find_by(post: @post) %>
           <% if post_quality.nil? %>
             <%= button_to post_qualities_path, class: "icon-button", params: { post_quality: { post_id: @post.id }}, method: :post do %>
