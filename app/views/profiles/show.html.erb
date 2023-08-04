@@ -34,7 +34,7 @@
     </div>
     </div>
     <div class="cards">
-      <% @user.posts.each do |post| %>
+      <% @user.posts.order(created_at: :desc).each do |post| %>
         <%= link_to post_path(post.token)  do %>
           <!--cards-->
           <%= render partial: "posts/card", locals: { post: post }%>

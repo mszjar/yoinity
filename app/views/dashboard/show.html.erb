@@ -19,7 +19,7 @@
       </h6>
     </div>
     <div class="cards">
-      <% @posts.reverse.each do |post| %>
+      <% @posts.order(created_at: :desc).each do |post| %>
           <!--three dots icon-->
           <div class="dropdown dropdown-post">
             <% if current_user == post.user %>
