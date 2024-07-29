@@ -1,10 +1,10 @@
 require 'faker'
 require "open-uri"
 
-puts "Destroying all posts and users..."
-Post.destroy_all
-User.destroy_all
-puts "All posts and users destroyed!"
+# puts "Destroying all posts and users..."
+# Post.destroy_all
+# User.destroy_all
+# puts "All posts and users destroyed!"
 
 puts "Creating users..."
 user1 = User.create!(email: "mario@email.com", password: "mario1234", nickname: "Mario", admin: false)
