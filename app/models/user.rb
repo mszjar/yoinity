@@ -25,8 +25,7 @@ class User < ApplicationRecord
   validates :nickname, length: { maximum: 25 }
   validates :stripe_subscription_id, presence: true, if: -> { subscription_status == 'active' }
 
-  acts_as_followable
-  acts_as_follower
+  include Followable
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

@@ -1,14 +1,15 @@
 class Follow < ApplicationRecord
-
-  extend ActsAsFollower::FollowerLib
-  extend ActsAsFollower::FollowScopes
-
-  # NOTE: Follows belong to the "followable" and "follower" interface
   belongs_to :followable, polymorphic: true
   belongs_to :follower,   polymorphic: true
 
-  def block!
-    self.update_attribute(:blocked, true)
-  end
+  validates :followable_id, uniqueness: {
+    scope: [:followable_type, :follower_id, :follower_type],
+    message: "is already followed"
+  }
 
+  scope :unblocked, -> { where(blocked: false) }
+
+  def block!
+    update(blocked: true)
+  end
 end

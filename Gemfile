@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.5"
+gem "rails", "~> 7.2.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -77,7 +77,6 @@ gem "sassc-rails"
 gem "pundit"
 gem "pg_search"
 gem "faker"
-gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem "font-awesome-sass", "~> 6.4.0"
 gem 'htmlbeautifier'
 gem 'aws-sdk-polly'
